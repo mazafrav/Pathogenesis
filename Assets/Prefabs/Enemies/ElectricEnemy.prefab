@@ -348,7 +348,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010135144, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -359,7 +359,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5270233, y: 1}
+  m_Size: {x: 1.45, y: 0.95}
   m_EdgeRadius: 0
 --- !u!114 &8854154956971808277
 MonoBehaviour:
@@ -373,10 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48818d3ff5545b428c773aa575c3438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementTime: 2
+  movementTime: 4
   speed: 4
-  height: 1.5
-  distance: 3
+  height: 2
+  distance: 8
   electricShockGameObject: {fileID: 4218750002020091076}
   cooldown: 1
   range: 3

@@ -31,16 +31,18 @@ public class ElectricEnemy : Enemy
 
     private bool isActiveElectricShock = false;
     private bool isMovingRight = false;
-    private float g = 1.0f, velocityY = 1.0f;
+    private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
+        distance += jumpOffset;
+        height += jumpOffset;
         rb2D = GetComponent<Rigidbody2D>();
 
-        g = (-2 * height * speed * speed) / (distance * distance);
-        
-        velocityY = (2 * height * speed) / distance;
+        g = (-2 * height * speed * speed) / ((distance / 2.0f) * (distance / 2.0f));
+        rb2D.gravityScale = g / Physics2D.gravity.y;
+        velocityY = (2 * height * speed) / (distance / 2.0f);
 
         electricShockGameObject.transform.localScale = new Vector3 (range, range, electricShockGameObject.transform.localScale.z);
 
