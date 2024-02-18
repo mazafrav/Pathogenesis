@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    [Header("Movement speed")]
     [SerializeField]
-    [Header("Player speed")]
     private float speed = 5.0f;
 
+    [Header("Jump")]
     [SerializeField]
-    [Header("Player jump")]
     private float height = 2;
     [SerializeField]
     private float distance = 3;
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb2D = null;
     private float deltaX = 0.0f;
     private bool pressedJumpButton = false;
-    private float g, velocidadY;
+    private float g = 1.0f, velocityY = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,20 +35,20 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         deltaX = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump"))
+        if (groundChecker.CanJump && Input.GetButtonDown("Jump"))
         {
             g = (-2 * height * speed * speed) / (distance * distance);
             rb2D.gravityScale = g / Physics2D.gravity.y;
-            velocidadY = (2 * height * speed) / distance;
+            velocityY = (2 * height * speed) / distance;
             pressedJumpButton = true;
         }
     }
 
     private void FixedUpdate()
     {
-        if (pressedJumpButton && groundChecker.CanJump)
+        if (pressedJumpButton)
         {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, velocidadY);
+            rb2D.velocity = new Vector2(rb2D.velocity.x, velocityY);
             pressedJumpButton = false;
         } 
       
