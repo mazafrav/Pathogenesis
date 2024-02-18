@@ -20,10 +20,13 @@ public class PlayerController : MonoBehaviour
     private float deltaX = 0.0f;
     private bool pressedJumpButton = false;
     private float g = 1.0f, velocityY = 1.0f;
+    private float jumpOffset = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
+        distance += jumpOffset;
+        height += jumpOffset;
         rb2D = GetComponent<Rigidbody2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
         //g = (-2 * height * speed * speed) / ((distance / 2) * (distance / 2));   
@@ -37,9 +40,9 @@ public class PlayerController : MonoBehaviour
         deltaX = Input.GetAxisRaw("Horizontal");
         if (groundChecker.CanJump && Input.GetButtonDown("Jump"))
         {
-            g = (-2 * height * speed * speed) / (distance * distance);
+            g = (-2 * height * speed * speed) / ((distance/2.0f) * (distance/2.0f));
             rb2D.gravityScale = g / Physics2D.gravity.y;
-            velocityY = (2 * height * speed) / distance;
+            velocityY = (2 * height * speed) / (distance/2.0f);
             pressedJumpButton = true;
         }
     }
