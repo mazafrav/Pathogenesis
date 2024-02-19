@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 2388860236661726551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.361, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3361358718881539650}
@@ -194,9 +194,9 @@ Transform:
   m_GameObject: {fileID: 4307129327484300445}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.361, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3361358718881539650}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -379,4 +379,4 @@ MonoBehaviour:
   distance: 8
   electricShockGameObject: {fileID: 4218750002020091076}
   cooldown: 1
-  range: 3
+  range: 4
