@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float distance = 3;
 
-    private GroundChecker groundChecker = null;
+    public GroundChecker groundChecker = null;
 
-    private Rigidbody2D rb2D = null;
+    public Rigidbody2D rb2D = null;
     private float deltaX = 0.0f;
     private bool pressedJumpButton = false;
     private float g = 1.0f, velocityY = 1.0f;
