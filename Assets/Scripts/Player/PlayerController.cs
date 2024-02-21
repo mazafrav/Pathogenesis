@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         deltaX = Input.GetAxisRaw("Horizontal");
-        if (groundChecker.CanJump && Input.GetButtonDown("Jump"))
+        if (groundChecker.isGrounded && Input.GetButtonDown("Jump"))
         {
             g = (-2 * height * speed * speed) / ((distance/2.0f) * (distance/2.0f));
             rb2D.gravityScale = g / Physics2D.gravity.y;

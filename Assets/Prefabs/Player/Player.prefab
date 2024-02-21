@@ -166,6 +166,8 @@ MonoBehaviour:
   speed: 6
   height: 2.2
   distance: 2
+  groundChecker: {fileID: 0}
+  rb2D: {fileID: 0}
 --- !u!114 &182016692347161028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +257,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.03}
+  m_Size: {x: 0.5, y: 0.03}
   m_EdgeRadius: 0
 --- !u!114 &7842192821338898193
 MonoBehaviour:
@@ -269,3 +271,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2365c4a4edf7d3b4db458c27f94553d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheckDistance: 0.5

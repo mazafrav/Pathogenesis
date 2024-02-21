@@ -5,13 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    public float followSpeed = 2f;
+    public float followSpeed = 1.5f;
     [SerializeField]
     public float zPos = -10f;
     [SerializeField]
-    public float yOffset = 2f;
+    public float yOffset = 1f;
     [SerializeField]
-    public float lookAheadDistance = 5f, lookAheadSpeed = 2f;
+    public float lookAheadDistance = 5f, lookAheadSpeed = 1f;
     [SerializeField]
     public PlayerController player;
 
@@ -34,7 +34,7 @@ public class CameraController : MonoBehaviour
         }
 
         targetPoint.x = player.transform.position.x + lookOffset;
-        if (player.groundChecker.CanJump) 
+        if (player.groundChecker.isGrounded) 
         {
             targetPoint.y = player.transform.position.y + yOffset;
         }
