@@ -9,7 +9,7 @@ public class GroundChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("TileMap"))
+        if (collision.gameObject.tag == "TileMap")
         {
             isGrounded = true;
         }
@@ -17,7 +17,7 @@ public class GroundChecker : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("TileMap"))
+        if (collision.gameObject.tag == "TileMap")
         {
             isGrounded = false;
         }
