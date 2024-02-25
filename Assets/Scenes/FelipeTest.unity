@@ -410,8 +410,8 @@ Transform:
   m_GameObject: {fileID: 369849769}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11, y: 1.5, z: 0}
-  m_LocalScale: {x: 4, y: 1, z: 1}
+  m_LocalPosition: {x: -18.0773, y: 1.5, z: 0}
+  m_LocalScale: {x: 22.034697, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 774447931}
@@ -1291,8 +1291,8 @@ Transform:
   m_GameObject: {fileID: 1203240714}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1.5, z: 0}
-  m_LocalScale: {x: 4, y: 1, z: 1}
+  m_LocalPosition: {x: 41.9946, y: 1.5, z: 0}
+  m_LocalScale: {x: 85.99192, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 774447931}
@@ -1697,7 +1697,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3361358718881539650, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4199998
+      value: 2.81
       objectReference: {fileID: 0}
     - target: {fileID: 3361358718881539650, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1739,6 +1739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8854154956971808277, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: windUp
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1754,11 +1758,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: 9.49
       objectReference: {fileID: 0}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: 2.518
       objectReference: {fileID: 0}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.z
