@@ -77,14 +77,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SetFreeMovement()
+    public void EnableFreeMovement()
     {
         hasFreeMovement = true;
         previousGravityscale = rb2D.gravityScale;
         rb2D.gravityScale = 0.0f;
     }
 
-    public void UnsetFreeMovement()
+    public void DisableFreeMovement()
     {
         hasFreeMovement = false;
         rb2D.gravityScale = previousGravityscale;

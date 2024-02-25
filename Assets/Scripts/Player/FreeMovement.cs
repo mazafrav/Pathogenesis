@@ -10,7 +10,7 @@ public class FreeMovement : MonoBehaviour
         PlayerController playerController = collision.GetComponent<PlayerController>();
         if(playerController != null)
         {
-            playerController.SetFreeMovement();
+            playerController.EnableFreeMovement();
         }
     }
 
@@ -19,7 +19,7 @@ public class FreeMovement : MonoBehaviour
         PlayerController playerController = collision.GetComponent<PlayerController>();
         if (playerController != null)
         {
-            playerController.UnsetFreeMovement();
+            playerController.DisableFreeMovement();
         }
     }
 }
