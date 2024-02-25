@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement speed")]
+    [Header("Movement")]
     [SerializeField]
     private float speed = 5.0f;
 
@@ -15,30 +15,42 @@ public class PlayerController : MonoBehaviour
     private float distance = 3;
 
     public GroundChecker groundChecker = null;
-
     public Rigidbody2D rb2D = null;
-    private float deltaX = 0.0f;
-    private bool pressedJumpButton = false;
+
+    private float deltaX = 0.0f, deltaY = 0.0f;
     private float g = 1.0f, velocityY = 1.0f;
+
+    private bool pressedJumpButton = false;
     private float jumpOffset = 0.5f;
 
-    // Start is called before the first frame update
+    private bool hasFreeMovement = false;
+    private float previousGravityscale = 1.0f;
+
     void Start()
     {
         distance += jumpOffset;
         height += jumpOffset;
+
         rb2D = GetComponent<Rigidbody2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
-        //g = (-2 * height * speed * speed) / ((distance / 2) * (distance / 2));   
-        //rb2D.gravityScale = g / Physics2D.gravity.y;
-        //velocidadY = (2 * height * speed) / (distance / 2);
+
+        if(hasFreeMovement)
+        {
+            rb2D.gravityScale = 0.0f;
+        }
+        else
+        {
+            g = (-2 * height * speed * speed) / ((distance / 2) * (distance / 2));
+            rb2D.gravityScale = g / Physics2D.gravity.y;
+            velocityY = (2 * height * speed) / (distance / 2);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         deltaX = Input.GetAxisRaw("Horizontal");
-        if (groundChecker.isGrounded && Input.GetButtonDown("Jump"))
+        deltaY = Input.GetAxisRaw("Vertical");
+        if (groundChecker.isGrounded && Input.GetButtonDown("Jump") && !hasFreeMovement)
         {
             g = (-2 * height * speed * speed) / ((distance/2.0f) * (distance/2.0f));
             rb2D.gravityScale = g / Physics2D.gravity.y;
@@ -55,6 +67,26 @@ public class PlayerController : MonoBehaviour
             pressedJumpButton = false;
         } 
       
-        rb2D.velocity = new Vector2(deltaX * speed, rb2D.velocity.y);
+        if(hasFreeMovement)
+        {
+            rb2D.velocity = new Vector2(deltaX * speed, deltaY * speed);
+        }
+        else
+        {
+            rb2D.velocity = new Vector2(deltaX * speed, rb2D.velocity.y);
+        }
+    }
+
+    public void SetFreeMovement()
+    {
+        hasFreeMovement = true;
+        previousGravityscale = rb2D.gravityScale;
+        rb2D.gravityScale = 0.0f;
+    }
+
+    public void UnsetFreeMovement()
+    {
+        hasFreeMovement = false;
+        rb2D.gravityScale = previousGravityscale;
     }
 }
