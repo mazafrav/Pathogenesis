@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 130719234686791670}
   - component: {fileID: 1782802139506379824}
   - component: {fileID: 2595475748587294360}
+  - component: {fileID: 4518946334730068295}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -298,8 +299,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6b44443ac653847b1837430d120976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  height: 2.1
-  distance: 2
-  groundChecker: {fileID: 130100337902420687}
-  rb2D: {fileID: 1782802139506379824}
+  locomotion: {fileID: 4518946334730068295}
+--- !u!114 &4518946334730068295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6502504440373144436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee24e668ff815b64f86e6872bf5b0b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpHeight: 2
+  jumpDistance: 3
+  rb2D: {fileID: 0}
+  groundChecker: {fileID: 0}

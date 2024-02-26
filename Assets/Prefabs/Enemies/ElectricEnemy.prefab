@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4093538651059435458}
   - component: {fileID: 5281546555838893824}
   - component: {fileID: 6099004757991992690}
+  - component: {fileID: 1275196306852582045}
   m_Layer: 3
   m_Name: ElectricEnemy
   m_TagString: Untagged
@@ -123,18 +124,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48818d3ff5545b428c773aa575c3438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  locomotion: {fileID: 1275196306852582045}
   stoppingDistance: 2.5
-  height: 2
-  distance: 8
-  windUp: 0.5
-  electricShockGameObject: {fileID: 5068238459060251847}
-  rayRange: 1
-  cooldown: 2
-  electricShockRange: 4.2
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 55
+--- !u!114 &1275196306852582045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178318046228212809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d29511a0af9d5f40bdbfe2b1961587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  jumpHeight: 2
+  jumpDistance: 3
+  electricShockGameObject: {fileID: 0}
+  rayRange: 1
+  cooldown: 1
+  windUp: 0.5
+  shockDuration: 0.5
 --- !u!1 &3149484935079753154
 GameObject:
   m_ObjectHideFlags: 0
