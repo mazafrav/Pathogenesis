@@ -25,21 +25,23 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.rb2D.velocity.x > 0f)
-        {
-            lookOffset = Mathf.Lerp(lookOffset, lookAheadDistance, lookAheadSpeed * Time.deltaTime);
-        } else if (player.rb2D.velocity.x < 0f)
-        {
-            lookOffset = -Mathf.Lerp(lookOffset, lookAheadDistance, lookAheadSpeed * Time.deltaTime); ;
-        }
+        // TODO: hay q cambiar esto un poco para q no dependa de un locomotion especifico (osea player ahora mismo)
 
-        targetPoint.x = player.transform.position.x + lookOffset;
-        if (player.groundChecker.isGrounded) 
-        {
-            targetPoint.y = player.transform.position.y + yOffset;
-        }
+        // if (player.rb2D.velocity.x > 0f)
+        // {
+        //     lookOffset = Mathf.Lerp(lookOffset, lookAheadDistance, lookAheadSpeed * Time.deltaTime);
+        // } else if (player.rb2D.velocity.x < 0f)
+        // {
+        //     lookOffset = -Mathf.Lerp(lookOffset, lookAheadDistance, lookAheadSpeed * Time.deltaTime); ;
+        // }
+
+        // targetPoint.x = player.transform.position.x + lookOffset;
+        // if (player.groundChecker.isGrounded) 
+        // {
+        //     targetPoint.y = player.transform.position.y + yOffset;
+        // }
         
 
-        transform.position = Vector3.Slerp(transform.position, targetPoint, followSpeed * Time.deltaTime);
+        // transform.position = Vector3.Slerp(transform.position, targetPoint, followSpeed * Time.deltaTime);
     }
 }
