@@ -15,7 +15,7 @@ public class ElectricLocomotion : HostLocomotion
     public float ElectricShockRange { get; private set; } = 3.0f;
     [SerializeField]
     private float windUp = 0.5f;
-    private float currentWindUpTime = 0.5f;
+    private float currentWindUpTime = 0f;
     [SerializeField]
     private float shockDuration = 0.5f;
     private float currentShockDuration = 0.5f;
@@ -72,7 +72,7 @@ public class ElectricLocomotion : HostLocomotion
 
     public override void Move(float deltaX, float deltaY = 0f)
     {
-        rb2D.velocity = new Vector2(Mathf.Sign(deltaX) * moveSpeed, rb2D.velocity.y);
+        rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
     }
 
     public override void Attack()

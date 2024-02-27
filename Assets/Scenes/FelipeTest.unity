@@ -383,6 +383,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &320196326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+  m_PrefabInstance: {fileID: 2118691340}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d29511a0af9d5f40bdbfe2b1961587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &320196327 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+  m_PrefabInstance: {fileID: 2118691340}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &369849769
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,31 +621,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &753945262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
-  m_PrefabInstance: {fileID: 7397411328010540998}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &753945267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753945262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d29511a0af9d5f40bdbfe2b1961587c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpHeight: 2
-  jumpDistance: 3
-  electricShockGameObject: {fileID: 0}
-  rayRange: 1
-  cooldown: 1
-  windUp: 0.5
-  shockDuration: 0.5
 --- !u!1 &774447930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,6 +1703,72 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &2091052497 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
+  m_PrefabInstance: {fileID: 5771655592525622705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2118691340
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2091052497}
+    m_Modifications:
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_Name
+      value: ElectricEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa48d90f86369134db41420e5b009588, type: 3}
 --- !u!1001 &5771655592525622705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1720,13 +1777,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2595475748587294360, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
+      propertyPath: locomotion
+      value: 
+      objectReference: {fileID: 320196326}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.46
+      value: -7.68
       objectReference: {fileID: 0}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.31
+      value: -2.86
       objectReference: {fileID: 0}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1766,7 +1827,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 320196327}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
 --- !u!1001 &6307372169551315100
@@ -1878,17 +1942,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
-      propertyPath: locomotion
-      value: 
-      objectReference: {fileID: 753945267}
+    - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 753945267}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa48d90f86369134db41420e5b009588, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

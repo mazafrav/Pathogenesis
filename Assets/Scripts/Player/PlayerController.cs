@@ -6,9 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
-    private PlayerLocomotion locomotion;
+    private HostLocomotion locomotion;
     private float deltaX = 0.0f, deltaY = 0.0f;
-
 
     void Start()
     {
@@ -22,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            locomotion.Jump();
+            locomotion.Jump(deltaX);
         }
 
     }
