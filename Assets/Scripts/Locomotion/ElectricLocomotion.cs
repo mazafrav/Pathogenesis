@@ -19,7 +19,6 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private float shockDuration = 0.5f;
     private float currentShockDuration = 0.5f;
-    private Rigidbody2D rb2D = null;
     private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
     private float currentCooldownTime = 0.0f;
 
@@ -77,6 +76,7 @@ public class ElectricLocomotion : HostLocomotion
 
     public override void Attack()
     {
+        if(!IsAttackReady()) return;
         currentWindUpTime = windUp;
     }
 

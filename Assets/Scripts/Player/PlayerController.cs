@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
-    private HostLocomotion locomotion;
+    public HostLocomotion locomotion;
     private float deltaX = 0.0f, deltaY = 0.0f;
 
     void Start()

@@ -13,6 +13,7 @@ public abstract class HostLocomotion : MonoBehaviour
     protected float jumpHeight = 2;
     [SerializeField]
     protected float jumpDistance = 3;
+    public Rigidbody2D rb2D {protected set; get;} = null;
 
     public abstract void Jump(float deltaX);
     public abstract void Move(float deltaX, float deltaY);

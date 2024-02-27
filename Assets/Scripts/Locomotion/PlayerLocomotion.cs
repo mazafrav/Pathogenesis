@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerLocomotion : HostLocomotion
 {
-    public Rigidbody2D rb2D = null;
     public GroundChecker groundChecker = null;
     private float g = 1.0f, velocityY = 1.0f, gravityScale = 0f;
     private float jumpOffset = 0.5f;
