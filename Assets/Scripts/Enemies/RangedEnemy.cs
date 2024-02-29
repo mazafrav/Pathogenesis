@@ -54,7 +54,6 @@ public class RangedEnemy : MonoBehaviour
                     Debug.Log(hitResult.collider.name);
                     if (hitResult.collider.gameObject.CompareTag("Player"))
                     {
-                        Debug.Log("COLLIDING CON PLAYER");
                         enablePatrolling = false;
                     }
                 }
@@ -74,6 +73,17 @@ public class RangedEnemy : MonoBehaviour
                     if (canShoot)
                     {
                         StartCoroutine(AimingPlayer());
+                    }
+                    if (isAiming)
+                    {
+                        LineRenderer line = shootOrigin.GetComponent<LineRenderer>();
+                        line.enabled = true;
+                        line.startColor = Color.yellow;
+                        line.endColor = Color.yellow;
+                        line.startWidth = 0.1f;
+                        line.endWidth = 0.1f;
+                        line.SetPosition(0, shootOrigin.transform.position);
+                        line.SetPosition(1, player.transform.position);
                     }
 
                 }
@@ -96,21 +106,13 @@ public class RangedEnemy : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("SHOOTING");
         Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.identity);
     }
 
     private IEnumerator AimingPlayer()
     {
         isAiming = true;
-        LineRenderer line = shootOrigin.GetComponent<LineRenderer>();
-        line.enabled = true;
-        line.startColor= Color.yellow;
-        line.endColor = Color.yellow;
-        line.startWidth = 0.1f;
-        line.endWidth = 0.1f;
-        line.SetPosition(0, shootOrigin.transform.position);
-        line.SetPosition(1, player.transform.position);
+        canShoot = false;
         yield return new WaitForSeconds(timeToShoot);
         if (isAiming)
         {
@@ -121,7 +123,7 @@ public class RangedEnemy : MonoBehaviour
 
     private IEnumerator ShootingCooldown(float cd)
     {
-        canShoot = false;
+        //canShoot = false;
         isAiming = false;
         LineRenderer line = shootOrigin.GetComponent<LineRenderer>();
         line.enabled = false;
