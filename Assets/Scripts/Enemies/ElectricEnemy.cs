@@ -17,11 +17,11 @@ public class ElectricEnemy : Enemy
 
     private GameObject player = null;
 
-    private Rigidbody2D rb2D = null;
+    //private Rigidbody2D rb2D = null;
 
-    private bool isActiveElectricShock = true;
-    private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
-    private float currentCooldownTime = 0.0f, currentWindUpTime = 0.5f;
+    //private bool isActiveElectricShock = true;
+    //private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
+    //private float currentCooldownTime = 0.0f, currentWindUpTime = 0.5f;
 
     private Vector2 direction = Vector2.zero;
     private bool isFinishedWindUp = false, isSeeingPlayer = false, isPatrolling = true;
@@ -41,12 +41,16 @@ public class ElectricEnemy : Enemy
         {
             isSeeingPlayer = true;
             isPatrolling = false;
+            locomotion.IsSeeingPlayer = true;
+            locomotion.Attack();
             Debug.Log("Seeing player");
             Debug.DrawRay(transform.position, direction * raycastHit2D.distance, Color.red);
         }
         else
         {
             isPatrolling = true;
+            locomotion.IsSeeingPlayer = false;
+            locomotion.ResetAttack();
             Debug.Log("Not seeing player");
         }
     }
@@ -66,18 +70,21 @@ public class ElectricEnemy : Enemy
         }
         else
         {
-            if (isSeeingPlayer && isFinishedWindUp)
+            if (isSeeingPlayer)
             {
-                float dis = Vector2.Distance(player.transform.position, transform.position);
-                if (dis > stoppingDistance)
+                if (locomotion.hasFinishedWindUp)
                 {
-                    locomotion.Move(direction.x);
-                    // rb2D.velocity = new Vector2(direction.x * speed, 0.0f);
+                    float dis = Vector2.Distance(player.transform.position, transform.position);
+                    if (dis > stoppingDistance)
+                    {
+                        locomotion.Move(direction.x);
+                        // rb2D.velocity = new Vector2(direction.x * speed, 0.0f);
+                    }
                 }
-            }
-            else
-            {
-                Debug.Log("Not moving during wind up");
+                else
+                {
+                    Debug.Log("Not moving during wind up");
+                }
             }
         }
     }
