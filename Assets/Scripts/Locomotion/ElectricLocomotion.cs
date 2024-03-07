@@ -8,28 +8,27 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private GameObject electricShockGameObject = null;
     [SerializeField]
-    private float rayRange = 1.0f;
+    private float electricShockRange = 4.0f;
     [SerializeField]
     private float cooldown = 1.0f;
     [SerializeField]
     private float windUp = 0.5f;
     [SerializeField]
     private float shockDuration = 0.5f;
-    [SerializeField]
-    private float electricShockRange = 4.0f;
 
     private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
     private float currentWindUpTime = 0.5f;
     private float currentCooldownTime = 0.0f;
     private float currentShockDuration = 0.0f;
     private bool isSeeingPlayer = false;
-    public bool hasFinishedWindUp = false;
+
     public float ElectricShockRange { get { return electricShockRange; } }
     public bool IsSeeingPlayer { set { isSeeingPlayer = value; } }
 
     void Start()
     {
         currentWindUpTime = windUp;
+        currentCooldownTime = cooldown;
         currentShockDuration = shockDuration;
         jumpDistance += jumpOffset;
         jumpHeight += jumpOffset;
@@ -56,15 +55,10 @@ public class ElectricLocomotion : HostLocomotion
                 if (currentWindUpTime <= 0f)
                 {
                     ActivateShock();
-                    hasFinishedWindUp = true;
-                }
-                else
-                {
-                    hasFinishedWindUp = false;
-                }              
+                    
+                }           
             }
-
-            if (!electricShockGameObject.activeSelf && currentCooldownTime > 0f)
+            else if (!electricShockGameObject.activeSelf && currentCooldownTime > 0f)
             {
                 currentCooldownTime = Mathf.Max(currentCooldownTime - Time.deltaTime, 0f);
             }
@@ -121,9 +115,14 @@ public class ElectricLocomotion : HostLocomotion
         return currentWindUpTime > 0f;
     }
 
+    public bool IsCooldownFinished() 
+    {  
+        return currentCooldownTime <= 0.0f;  
+    }
+
     public void ResetAttack()
     {
-        currentCooldownTime = 0.0f;
+        currentCooldownTime = cooldown;
         currentWindUpTime = windUp;
     }
 }

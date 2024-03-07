@@ -12,9 +12,11 @@ public class ElectricEnemy : Enemy
     [SerializeField]
     private float stoppingDistance = 10.0f;
 
+    [Header("Ray detection layer mask")]
     [SerializeField]
     private LayerMask rayLayerMask;
 
+    [Header("WindUp feedback")]
     [SerializeField]
     private SpriteRenderer[] spriteRenderers;
     [SerializeField]
@@ -23,8 +25,9 @@ public class ElectricEnemy : Enemy
     private GameObject player = null;
 
     private Vector2 direction = Vector2.zero;
-    private bool isFinishedWindUp = false, isSeeingPlayer = false, isPatrolling = true;
+    private bool isSeeingPlayer = false, isPatrolling = true;
     private Color colorWhenMoving;
+
     void Start()
     {
         //Habria q hacerlo x game manager probablemente
@@ -38,7 +41,7 @@ public class ElectricEnemy : Enemy
         direction = (player.transform.position - transform.position).normalized;
         RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, locomotion.ElectricShockRange, rayLayerMask);
         if(Vector2.Distance(player.transform.position, transform.position) <= locomotion.ElectricShockRange &&
-            raycastHit2D.collider != null && raycastHit2D.collider.CompareTag("Player"))
+            raycastHit2D.collider != null && raycastHit2D.collider.CompareTag("Player")) //We are seeing the player
         {
             isSeeingPlayer = true;
             isPatrolling = false;
@@ -47,11 +50,12 @@ public class ElectricEnemy : Enemy
             //Debug.Log("Seeing player");
             Debug.DrawRay(transform.position, direction * raycastHit2D.distance, Color.red);
         }
-        else
+        else //We are not seeing the player
         {
+            ChangeSpritesColor(colorWhenMoving);
             isPatrolling = true;
             locomotion.IsSeeingPlayer = false;
-            //locomotion.ResetAttack();
+            locomotion.ResetAttack();
             //Debug.Log("Not seeing player");
         }
     }
@@ -60,8 +64,6 @@ public class ElectricEnemy : Enemy
     {
         if (isPatrolling)
         {
-            spriteRenderers[0].color = colorWhenMoving;
-            spriteRenderers[1].color = colorWhenMoving;
             if (IsFacingRight())
             {
                 locomotion.Move(1);
@@ -72,12 +74,16 @@ public class ElectricEnemy : Enemy
             }
         }
         else if(isSeeingPlayer)
-        {
-           
-            if (!locomotion.IsWindingUp())
+        {                                        
+            if(locomotion.IsWindingUp() && locomotion.IsCooldownFinished())
             {
-                spriteRenderers[0].color = colorWhenMoving;
-                spriteRenderers[1].color = colorWhenMoving;
+                Debug.Log("Not moving during wind up");
+                locomotion.Move(0);
+                ChangeSpritesColor(colorWhileWindUp);
+            }
+            else
+            {
+                ChangeSpritesColor(colorWhenMoving);
                 Debug.Log("Moving towards player");
                 float dis = Vector2.Distance(player.transform.position, transform.position);
                 //Debug.Log(dis);
@@ -87,14 +93,13 @@ public class ElectricEnemy : Enemy
                     // rb2D.velocity = new Vector2(direction.x * speed, 0.0f);
                 }
             }
-            else
-            {
-                Debug.Log("Not moving during wind up");
-                locomotion.Move(0);
-                spriteRenderers[0].color = colorWhileWindUp;
-                spriteRenderers[1].color = colorWhileWindUp;
-            }           
         }
+    }
+
+    private void ChangeSpritesColor(Color newColor)
+    {
+        spriteRenderers[0].color = newColor;
+        spriteRenderers[1].color = newColor;
     }
 
     private bool IsFacingRight()
