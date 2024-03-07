@@ -113,7 +113,7 @@ public class ElectricLocomotion : HostLocomotion
 
     public override bool IsAttackReady()
     {
-        return /*currentCooldownTime <= 0f &&*/ currentWindUpTime <= 0f;
+        return currentCooldownTime <= 0f && currentWindUpTime <= 0f;
     }
 
     public bool IsWindingUp()
@@ -123,8 +123,8 @@ public class ElectricLocomotion : HostLocomotion
 
     public void ResetAttack()
     {
-        currentCooldownTime = 0f;
-        currentWindUpTime = 0f;
+        currentCooldownTime = 0.0f;
+        currentWindUpTime = windUp;
     }
 }
 

@@ -125,10 +125,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locomotion: {fileID: 1275196306852582045}
-  stoppingDistance: 2.5
-  playerLayerMask:
+  stoppingDistance: 1.5
+  rayLayerMask:
     serializedVersion: 2
     m_Bits: 55
+  spriteRenderers:
+  - {fileID: 7863156932767443082}
+  - {fileID: 4978048877296430105}
+  colorWhileWindUp: {r: 0, g: 0.5568628, b: 1, a: 1}
 --- !u!114 &1275196306852582045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,14 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d29511a0af9d5f40bdbfe2b1961587c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
   jumpHeight: 2
   jumpDistance: 3
   electricShockGameObject: {fileID: 5068238459060251847}
-  rayRange: 1
-  cooldown: 1
+  cooldown: 2
   windUp: 0.5
   shockDuration: 0.5
+  electricShockRange: 4
 --- !u!1 &3149484935079753154
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,7 +169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3271844721524176812
 Transform:
   m_ObjectHideFlags: 0
@@ -252,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 4437966881731499306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.361, y: 0, z: 0}
+  m_LocalPosition: {x: -0.3, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -441,7 +445,7 @@ GameObject:
   - component: {fileID: 8087892436720233006}
   - component: {fileID: 4788227576581711075}
   - component: {fileID: 214219439091893082}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PatrolDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +550,7 @@ Transform:
   m_GameObject: {fileID: 7264111225845142074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.361, y: 0, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
