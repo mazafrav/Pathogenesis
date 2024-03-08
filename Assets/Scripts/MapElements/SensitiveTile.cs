@@ -17,7 +17,7 @@ public class SensitiveTile : MonoBehaviour
         Debug.Log("enter");
         if (other.tag == "Player")
         {
-            velocityEnter = other.GetComponent<Rigidbody2D>().velocity.normalized;
+            velocityEnter = other.gameObject.GetComponent<PlayerLocomotion>().rb2D.velocity.normalized;
         }
     }
 
@@ -26,10 +26,10 @@ public class SensitiveTile : MonoBehaviour
         Debug.Log("exit");
         if (other.tag == "Player")
         {
-            Vector2 velocityExit = other.GetComponent<Rigidbody2D>().velocity.normalized;
+            Vector2 velocityExit = other.gameObject.GetComponent<PlayerLocomotion>().rb2D.velocity.normalized;
             if (Vector2.Dot(velocityEnter, velocityExit) > 0)
             {
-                door.activateDoor();
+                door.Activate();
                 Debug.Log("triggered");
             }
         }

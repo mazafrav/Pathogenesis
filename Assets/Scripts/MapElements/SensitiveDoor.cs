@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SensitiveDoor : MonoBehaviour
+public class SensitiveDoor : MonoBehaviour, Activable_Interface
 {
     private Vector2 initPos = Vector2.zero;
     private Vector3 activePos = Vector2.zero;
@@ -22,18 +22,23 @@ public class SensitiveDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void activateDoor()
+    public void Activate()
     {
         active = !active;
         if (active)
         {
             transform.position = activePos;
-        } else
+        }
+        else
         {
             transform.position = initPos;
         }
+    }
+
+    public void Deactivate()
+    {
     }
 }

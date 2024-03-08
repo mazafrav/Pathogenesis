@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 130100337902420687}
   m_Layer: 0
   m_Name: GroundChecker
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,5 +315,4 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 2
   jumpDistance: 2
-  rb2D: {fileID: 0}
   groundChecker: {fileID: 0}
