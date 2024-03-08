@@ -5106,16 +5106,16 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
@@ -5147,7 +5147,7 @@ CompositeCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -5211,7 +5211,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -5389,7 +5389,7 @@ GameObject:
   - component: {fileID: 1488169997}
   - component: {fileID: 1488169999}
   - component: {fileID: 1488169998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5480,19 +5480,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2186065398448540627, guid: 107c980bff5613f4486fb6f744ed3f91, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5625
+      value: 2.9779043
       objectReference: {fileID: 0}
     - target: {fileID: 2186065398448540627, guid: 107c980bff5613f4486fb6f744ed3f91, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3125
+      value: 0.6686143
+      objectReference: {fileID: 0}
+    - target: {fileID: 2186065398448540627, guid: 107c980bff5613f4486fb6f744ed3f91, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.89393
       objectReference: {fileID: 0}
     - target: {fileID: 2186065398448540627, guid: 107c980bff5613f4486fb6f744ed3f91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.23
+      value: -13.14
       objectReference: {fileID: 0}
     - target: {fileID: 2186065398448540627, guid: 107c980bff5613f4486fb6f744ed3f91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.21
+      value: -1.22
       objectReference: {fileID: 0}
     - target: {fileID: 2186065398448540627, guid: 107c980bff5613f4486fb6f744ed3f91, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5607,7 +5611,7 @@ GameObject:
   - component: {fileID: 1750397108}
   - component: {fileID: 1750397107}
   - component: {fileID: 1750397109}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
