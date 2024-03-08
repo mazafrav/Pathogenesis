@@ -39,6 +39,7 @@ public class ElectricEnemy : Enemy
     void Update()
     {
         direction = (player.transform.position - transform.position).normalized;
+        //RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(transform.position, direction, locomotion.ElectricShockRange);
         RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, locomotion.ElectricShockRange, rayLayerMask);
         if(Vector2.Distance(player.transform.position, transform.position) <= locomotion.ElectricShockRange &&
             raycastHit2D.collider != null && raycastHit2D.collider.CompareTag("Player")) //We are seeing the player
