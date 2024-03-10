@@ -16,17 +16,29 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private float shockDuration = 0.5f;
 
+    [Header("Feedback")]
+    [SerializeField]
+    private SpriteRenderer[] spriteRenderers;
+    [SerializeField]
+    private Color colorWhileWindUp, colorWhileCooldown;
+
+    private Color colorWhileMoving;
+
     private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentShockDuration = 0.0f;
-    private bool isSeeingPlayer = false;
+
+    private PlayerController playerController;
 
     public float ElectricShockRange { get { return electricShockRange; } }
-    public bool IsSeeingPlayer { get { return isSeeingPlayer; } set { isSeeingPlayer = value; } }
+
 
     void Start()
     {
-        //currentWindUpTime = windUp;
-        //currentCooldownTime = cooldown;
+        playerController = GetComponentInParent<PlayerController>();
+       
+
+        colorWhileMoving = spriteRenderers[0].color;
+
         currentShockDuration = shockDuration;
         jumpDistance += jumpOffset;
         jumpHeight += jumpOffset;
@@ -41,26 +53,41 @@ public class ElectricLocomotion : HostLocomotion
     }
 
     void Update()
-    {
-        //if (isSeeingPlayer)
-        //{
-            //Debug.Log("Cooldown: " + currentCooldownTime);
-            if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
+    {      
+        //Debug.Log("Cooldown: " + currentCooldownTime);
+        if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
+        {
+            currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
+            //Debug.Log("Wind up: " + currentWindUpTime);
+            if (currentWindUpTime <= 0f)
             {
+                ActivateShock();                   
+            }
+            //We don't move player who is controlling the electric enemy when is winding up
+            else if (playerController && playerController.locomotion.GetType() == this.GetType())
+            {
+                playerController.DeltaX = 0.0f; 
+            }
+        }
+        else if (!electricShockGameObject.activeSelf && currentCooldownTime > 0f)
+        {
+            currentCooldownTime = Mathf.Max(currentCooldownTime - Time.deltaTime, 0f);
 
-                currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
-                //Debug.Log("Wind up: " + currentWindUpTime);
-                if (currentWindUpTime <= 0f)
-                {
-                    ActivateShock();
-                    
-                }           
-            }
-            else if (!electricShockGameObject.activeSelf && currentCooldownTime > 0f)
+            //We only apply cooldown feedback when the player is controlling the electric enemy
+            if(playerController && playerController.locomotion.GetType() == this.GetType())
             {
-                currentCooldownTime = Mathf.Max(currentCooldownTime - Time.deltaTime, 0f);
+                if(currentCooldownTime <= 0f) 
+                {
+                    ChangeSpritesColor(colorWhileMoving);
+                }
+                else
+                {
+                    ChangeSpritesColor(colorWhileCooldown);
+                }
             }
-        //}         
+        }
+
+                 
 
         if (electricShockGameObject.activeSelf)
         {
@@ -86,22 +113,21 @@ public class ElectricLocomotion : HostLocomotion
     public override void Attack()
     {
         if(!IsAttackReady()) return;
+        ChangeSpritesColor(colorWhileWindUp);
         currentWindUpTime = windUp;
-        //currentCooldownTime = cooldown;
     }
 
     private void ActivateShock()
     {
         electricShockGameObject.SetActive(true);
-        //currentWindUpTime = windUp;
         currentCooldownTime = cooldown;
+        ChangeSpritesColor(colorWhileMoving);
     }
 
     private void DeactivateShock()
     {
         electricShockGameObject.SetActive(false);
         currentShockDuration = shockDuration;
-        //currentCooldownTime = cooldown;
     }
 
     public override bool IsAttackReady()
@@ -123,6 +149,13 @@ public class ElectricLocomotion : HostLocomotion
     {
         currentCooldownTime = 0f;
         currentWindUpTime = 0f;
+        ChangeSpritesColor(colorWhileMoving);
+    }
+
+    private void ChangeSpritesColor(Color newColor)
+    {
+        spriteRenderers[0].color = newColor;
+        spriteRenderers[1].color = newColor;
     }
 }
 

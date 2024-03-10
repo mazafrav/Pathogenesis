@@ -129,10 +129,6 @@ MonoBehaviour:
   rayLayerMask:
     serializedVersion: 2
     m_Bits: 55
-  spriteRenderers:
-  - {fileID: 7863156932767443082}
-  - {fileID: 4978048877296430105}
-  colorWhileWindUp: {r: 0, g: 0.5568628, b: 1, a: 1}
 --- !u!114 &1275196306852582045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +149,11 @@ MonoBehaviour:
   cooldown: 2
   windUp: 0.5
   shockDuration: 0.5
+  spriteRenderers:
+  - {fileID: 7863156932767443082}
+  - {fileID: 4978048877296430105}
+  colorWhileWindUp: {r: 0, g: 0.29803923, b: 1, a: 1}
+  colorWhileCooldown: {r: 0, g: 1, b: 0.636287, a: 1}
 --- !u!1 &3149484935079753154
 GameObject:
   m_ObjectHideFlags: 0
