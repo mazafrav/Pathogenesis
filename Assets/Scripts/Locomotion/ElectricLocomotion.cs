@@ -17,18 +17,16 @@ public class ElectricLocomotion : HostLocomotion
     private float shockDuration = 0.5f;
 
     private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
-    private float currentWindUpTime = 0.5f;
-    private float currentCooldownTime = 0.0f;
-    private float currentShockDuration = 0.0f;
+    private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentShockDuration = 0.0f;
     private bool isSeeingPlayer = false;
 
     public float ElectricShockRange { get { return electricShockRange; } }
-    public bool IsSeeingPlayer { set { isSeeingPlayer = value; } }
+    public bool IsSeeingPlayer { get { return isSeeingPlayer; } set { isSeeingPlayer = value; } }
 
     void Start()
     {
-        currentWindUpTime = windUp;
-        currentCooldownTime = cooldown;
+        //currentWindUpTime = windUp;
+        //currentCooldownTime = cooldown;
         currentShockDuration = shockDuration;
         jumpDistance += jumpOffset;
         jumpHeight += jumpOffset;
@@ -44,10 +42,10 @@ public class ElectricLocomotion : HostLocomotion
 
     void Update()
     {
-        if (isSeeingPlayer)
-        {
+        //if (isSeeingPlayer)
+        //{
             //Debug.Log("Cooldown: " + currentCooldownTime);
-            if (currentCooldownTime <= 0f)
+            if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
             {
 
                 currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
@@ -62,7 +60,7 @@ public class ElectricLocomotion : HostLocomotion
             {
                 currentCooldownTime = Mathf.Max(currentCooldownTime - Time.deltaTime, 0f);
             }
-        }         
+        //}         
 
         if (electricShockGameObject.activeSelf)
         {
@@ -88,7 +86,8 @@ public class ElectricLocomotion : HostLocomotion
     public override void Attack()
     {
         if(!IsAttackReady()) return;
-        currentWindUpTime = windUp;       
+        currentWindUpTime = windUp;
+        //currentCooldownTime = cooldown;
     }
 
     private void ActivateShock()
@@ -102,7 +101,7 @@ public class ElectricLocomotion : HostLocomotion
     {
         electricShockGameObject.SetActive(false);
         currentShockDuration = shockDuration;
-        currentCooldownTime = cooldown;
+        //currentCooldownTime = cooldown;
     }
 
     public override bool IsAttackReady()
@@ -122,8 +121,8 @@ public class ElectricLocomotion : HostLocomotion
 
     public void ResetAttack()
     {
-        currentCooldownTime = cooldown;
-        currentWindUpTime = windUp;
+        currentCooldownTime = 0f;
+        currentWindUpTime = 0f;
     }
 }
 

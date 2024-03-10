@@ -23,7 +23,10 @@ public class PlayerController : MonoBehaviour
         {
             locomotion.Jump(deltaX);
         }
-
+        else if(Input.GetMouseButtonDown(0))
+        {
+            locomotion.Attack();
+        }
     }
 
     private void FixedUpdate()

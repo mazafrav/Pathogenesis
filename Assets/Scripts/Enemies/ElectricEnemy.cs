@@ -44,6 +44,7 @@ public class ElectricEnemy : Enemy
         if(Vector2.Distance(player.transform.position, transform.position) <= locomotion.ElectricShockRange &&
             raycastHit2D.collider != null && raycastHit2D.collider.CompareTag("Player")) //We are seeing the player
         {
+            Debug.Log(raycastHit2D.collider.name);
             isSeeingPlayer = true;
             isPatrolling = false;
             locomotion.IsSeeingPlayer = true;
@@ -74,7 +75,7 @@ public class ElectricEnemy : Enemy
                 locomotion.Move(-1);
             }
         }
-        else if(isSeeingPlayer)
+        else if(locomotion.IsSeeingPlayer)
         {                                        
             if(locomotion.IsWindingUp() && locomotion.IsCooldownFinished())
             {

@@ -388,6 +388,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
   m_PrefabInstance: {fileID: 2118691340}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &320196328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+  m_PrefabInstance: {fileID: 2118691340}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d29511a0af9d5f40bdbfe2b1961587c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &369849769
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +923,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 774447931}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1047983185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 130100337902420687, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
+  m_PrefabInstance: {fileID: 5771655592525622705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2365c4a4edf7d3b4db458c27f94553d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1096104674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,17 +1719,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
   m_PrefabInstance: {fileID: 5771655592525622705}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2091052498 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4518946334730068295, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
-  m_PrefabInstance: {fileID: 5771655592525622705}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee24e668ff815b64f86e6872bf5b0b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2118691340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1762,7 +1773,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: windUp
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_Enabled
@@ -1781,10 +1796,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2105898412028735329, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2595475748587294360, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: locomotion
       value: 
-      objectReference: {fileID: 2091052498}
+      objectReference: {fileID: 320196328}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.39
@@ -1825,6 +1844,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4518946334730068295, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
+      propertyPath: groundChecker
+      value: 
+      objectReference: {fileID: 1047983185}
     - target: {fileID: 6502504440373144436, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1945,6 +1968,10 @@ PrefabInstance:
     - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_Name
       value: ElectricEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
