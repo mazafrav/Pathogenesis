@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
+    private GameObject playerBody;
+
+    [SerializeField]
     public HostLocomotion locomotion;
     private float deltaX = 0.0f, deltaY = 0.0f;
 
@@ -35,5 +38,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         locomotion.Move(deltaX, deltaY);
+    }
+
+    public void DisablePlayerBody()
+    {
+        playerBody.SetActive(false);
+    }
+    public void EnablePlayerBody()
+    {
+        playerBody.SetActive(true);
     }
 }
