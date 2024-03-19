@@ -16,6 +16,7 @@ public class ElectricEnemy : Enemy
     [SerializeField]
     private LayerMask rayLayerMask;
 
+    [SerializeField]
     private GameObject player = null;
 
     private Vector2 direction = Vector2.zero;
@@ -24,18 +25,31 @@ public class ElectricEnemy : Enemy
     void Start()
     {
         //Habria q hacerlo x game manager probablemente
-        player = GameObject.Find("Player");     
+        //player = GameObject.Find("Player");     
     }
 
     void Update()
     {
         direction = (player.transform.position - transform.position).normalized;
         //RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(transform.position, direction, locomotion.ElectricShockRange);
+        //for (int i = 0; i < raycastHit2Ds.Length; i++)
+        //{
+        //    ElectricEnemy electricEnemy = raycastHit2Ds[i].collider.GetComponent<ElectricEnemy>();
+        //    if (electricEnemy && electricEnemy.GetType() != this.GetType())
+        //    {                
+        //        if (raycastHit2Ds[i].collider.CompareTag("Player") || raycastHit2Ds[i].collider.CompareTag("Enemy"))
+        //        {
+        //            Debug.Log(raycastHit2Ds[i].collider.name);
+        //        }
+        //    }
+
+        //    //Debug.DrawRay(transform.position, direction * raycastHit2Ds[i].distance, Color.black);
+        //}
         RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, direction, locomotion.ElectricShockRange, rayLayerMask);
         if(Vector2.Distance(player.transform.position, transform.position) <= locomotion.ElectricShockRange &&
             raycastHit2D.collider != null && raycastHit2D.collider.CompareTag("Player")) //We are seeing the player
         {
-            Debug.Log(raycastHit2D.collider.name);
+            //Debug.Log(raycastHit2D.collider.name);
             isSeeingPlayer = true;
             isPatrolling = false;
             locomotion.Attack();            
@@ -68,17 +82,16 @@ public class ElectricEnemy : Enemy
         {                                        
             if(locomotion.IsWindingUp() && locomotion.IsCooldownFinished())
             {
-                Debug.Log("Not moving during wind up");
+                //Debug.Log("Not moving during wind up");
                 locomotion.Move(0);
             }
             else
             {
-                Debug.Log("Moving towards player");
+                //Debug.Log("Moving towards player");
                 float dis = Vector2.Distance(player.transform.position, transform.position);
                 if (dis > stoppingDistance)
                 {
                     locomotion.Move(direction.x);
-                    // rb2D.velocity = new Vector2(direction.x * speed, 0.0f);
                 }
             }
         }
