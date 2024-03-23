@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class RangedEnemy : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 2f;
     private Rigidbody2D rb;
-    private bool targetFound = false;
-    public bool enablePatrolling = true;
+    [Header("Movement")]
+    [SerializeField] private RangedLocomotion locomotion;
+    private bool enablePatrolling = true;
+    [Header("Shooting")]
     [SerializeField] private float detectionRange;
     private GameObject player;
     [SerializeField] private GameObject shootOrigin;
@@ -17,7 +18,6 @@ public class RangedEnemy : MonoBehaviour
     private bool canShoot = true;
     private bool isCancellingAggro = false;
     [SerializeField] private float timeToCancelAggro;
-    [SerializeField] private GameObject bulletPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -34,11 +34,11 @@ public class RangedEnemy : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
             if (IsFacingRight())
             {
-                rb.velocity = new Vector2(moveSpeed, 0);
+                locomotion.Move(1);
             }
             else
             {
-                rb.velocity = new Vector2(-moveSpeed, 0);
+                locomotion.Move(-1);
 
             }
 
@@ -62,6 +62,7 @@ public class RangedEnemy : MonoBehaviour
         else
         {
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            locomotion.Move(0);
             float distance = Vector3.Distance(transform.position, player.transform.position);
             RaycastHit2D hitResult = Physics2D.Raycast(shootOrigin.transform.position, (player.transform.position - shootOrigin.transform.position).normalized, detectionRange);
             if (hitResult.collider != null)
@@ -104,11 +105,6 @@ public class RangedEnemy : MonoBehaviour
         return transform.localScale.x > Mathf.Epsilon;
     }
 
-    private void Shoot()
-    {
-        Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.identity);
-    }
-
     private IEnumerator AimingPlayer()
     {
         isAiming = true;
@@ -116,7 +112,7 @@ public class RangedEnemy : MonoBehaviour
         yield return new WaitForSeconds(timeToShoot);
         if (isAiming)
         {
-            Shoot();
+            locomotion.Attack();
             StartCoroutine(ShootingCooldown(shootingCooldown));
         }
     }
