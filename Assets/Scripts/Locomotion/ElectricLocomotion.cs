@@ -110,7 +110,7 @@ public class ElectricLocomotion : HostLocomotion
         rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
     }
 
-    public override void Attack()
+    public override void Attack(float rotation = 0.0f)
     {
         if(!IsAttackReady()) return;
         ChangeSpritesColor(colorWhileWindUp);

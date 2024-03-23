@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class ShootingComponent : MonoBehaviour
 {
-    private Vector3 direction;
+    private Camera mainCam;
+    private Vector3 mousePos;
+    private GameObject playerBody;
 
     public bool bisActive = true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        playerBody = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -25,10 +28,10 @@ public class ShootingComponent : MonoBehaviour
 
     public void Aim()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 rot = mousePos - transform.position;
+        float rotZ = Mathf.Atan2(rot.y, rot.x) * Mathf.Rad2Deg;
 
-        direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-        transform.up = direction;
+        playerBody.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 }

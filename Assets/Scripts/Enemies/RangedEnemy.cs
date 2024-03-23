@@ -112,7 +112,9 @@ public class RangedEnemy : MonoBehaviour
         yield return new WaitForSeconds(timeToShoot);
         if (isAiming)
         {
-            locomotion.Attack();
+            Vector3 direction = player.transform.position - transform.position;
+            float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+            locomotion.Attack(rot);
             StartCoroutine(ShootingCooldown(shootingCooldown));
         }
     }
