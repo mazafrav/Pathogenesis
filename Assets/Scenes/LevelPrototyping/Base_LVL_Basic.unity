@@ -1931,7 +1931,6 @@ GameObject:
   - component: {fileID: 826061105}
   - component: {fileID: 826061104}
   - component: {fileID: 826061103}
-  - component: {fileID: 826061106}
   - component: {fileID: 826061107}
   m_Layer: 0
   m_Name: Main Camera
@@ -1983,7 +1982,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.72
+  orthographic size: 5.66
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2014,24 +2013,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &826061106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 826061102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccceaf0d0d9dbe849b0d17b636c97ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followSpeed: 2
-  zPos: -10
-  yOffset: 1
-  lookAheadDistance: 2
-  lookAheadSpeed: 2
-  player: {fileID: 1792839899}
 --- !u!114 &826061107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2501,10 +2482,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1792839900}
+  m_Follow: {fileID: 1958652685}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 6.72
+    OrthographicSize: 5.66
     NearClipPlane: -0.14
     FarClipPlane: 1000
     Dutch: 0
@@ -2554,20 +2535,9 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 923658876}
   m_ConfineScreenEdges: 1
   m_Damping: 0
---- !u!114 &1792839899 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2595475748587294360, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
-  m_PrefabInstance: {fileID: 717962198}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef6b44443ac653847b1837430d120976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1792839900 stripped
+--- !u!4 &1958652685 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7773273768846469444, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
   m_PrefabInstance: {fileID: 717962198}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
