@@ -8,7 +8,7 @@ public class PlayerLocomotion : HostLocomotion
     private float g = 1.0f, velocityY = 1.0f, gravityScale = 0f;
     private float jumpOffset = 0.5f;
     private bool isJumping = false;
-    private bool hasFreeMovement = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,16 +21,7 @@ public class PlayerLocomotion : HostLocomotion
 
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2) * (jumpDistance / 2));
         gravityScale = g / Physics2D.gravity.y;
-        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2);
-
-        if (hasFreeMovement)
-        {
-            rb2D.gravityScale = 0.0f;
-        }
-        else
-        {
-            rb2D.gravityScale = gravityScale;
-        }
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2);       
     }
 
     // Update is called once per frame
@@ -45,7 +36,7 @@ public class PlayerLocomotion : HostLocomotion
 
     public override void Jump(float deltaX = 0)
     {
-        if (!groundChecker.isGrounded || hasFreeMovement) return;
+        if (!groundChecker.isGrounded || rb2D.gravityScale <= 0.0f) return;
         isJumping = true;
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
         rb2D.gravityScale = g / Physics2D.gravity.y;
@@ -53,7 +44,7 @@ public class PlayerLocomotion : HostLocomotion
 
     public override void Move(float deltaX, float deltaY)
     {
-        if (hasFreeMovement)
+        if (rb2D.gravityScale <= 0.0f)
         {
             FreeMove(deltaX, deltaY);
         }
@@ -70,13 +61,11 @@ public class PlayerLocomotion : HostLocomotion
 
     public void EnableFreeMovement()
     {
-        hasFreeMovement = true;
         rb2D.gravityScale = 0.0f;
     }
 
     public void DisableFreeMovement()
     {
-        hasFreeMovement = false;
         rb2D.gravityScale = gravityScale;
     }
 
