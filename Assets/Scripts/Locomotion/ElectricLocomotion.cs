@@ -28,14 +28,14 @@ public class ElectricLocomotion : HostLocomotion
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentShockDuration = 0.0f;
 
     private PlayerController playerController;
-
+    private GroundChecker groundChecker;
     public float ElectricShockRange { get { return electricShockRange; } }
 
 
     void Start()
     {
-        playerController = GetComponentInParent<PlayerController>();
-       
+        playerController = GameManager.Instance.GetPlayer();
+        groundChecker = GetComponentInChildren<GroundChecker>();
 
         colorWhileMoving = spriteRenderers[0].color;
 
@@ -102,7 +102,10 @@ public class ElectricLocomotion : HostLocomotion
     public override void Jump(float deltaX)
     {
         if (currentWindUpTime > 0f) return;
-        rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
+        if(groundChecker.isGrounded)
+        {
+            rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
+        }
     }
 
     public override void Move(float deltaX, float deltaY = 0f)

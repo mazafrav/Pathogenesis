@@ -23,9 +23,7 @@ public class ElectricEnemy : Enemy
     private bool isSeeingPlayer = false, isPatrolling = true;
 
     void Start()
-    {
-        //Habria q hacerlo x game manager probablemente
-        //player = GameObject.Find("Player");     
+    {    
     }
 
     void Update()

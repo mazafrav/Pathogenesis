@@ -6,11 +6,13 @@ public class HostAbsorption : Interactable
 {
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
+    private Enemy enemyBehaviour;
 
     void Start()
     {
         hostLocomotion = GetComponent<HostLocomotion>();
         playerController = GameManager.Instance.GetPlayer();
+        enemyBehaviour = GetComponent<ElectricEnemy>();
     }
     protected override void OnInteract(GameObject interactedObject)
     {
@@ -18,6 +20,7 @@ public class HostAbsorption : Interactable
         playerController.locomotion = hostLocomotion;
         gameObject.transform.parent = playerController.transform;
         playerController.DisablePlayerBody();
+        enemyBehaviour.enabled = false;
     }
 
 }
