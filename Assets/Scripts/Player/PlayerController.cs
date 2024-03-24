@@ -14,11 +14,10 @@ public class PlayerController : MonoBehaviour
 
     public float DeltaX { set { deltaX = value; } }
 
-    //private ShootingComponent shootingComp;
 
     void Start()
     {
-        //shootingComp = GetComponent<ShootingComponent>();
+
     }
 
     void Update()

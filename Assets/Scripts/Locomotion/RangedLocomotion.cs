@@ -20,9 +20,9 @@ public class RangedLocomotion : HostLocomotion
         
     }
 
-    public override void Attack(float rotation = 0.0f)
+    public override void Attack()
     {
-        Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.Euler(0, 0, rotation + 90));
+        Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.identity);
     }
 
     public override bool IsAttackReady()
@@ -32,7 +32,7 @@ public class RangedLocomotion : HostLocomotion
 
     public override void Jump(float deltaX)
     {
-        rb2D.velocity = new Vector2(moveSpeed * deltaX, 4);
+
     }
 
     public override void Move(float deltaX, float deltaY = 0)

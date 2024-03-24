@@ -69,7 +69,7 @@ public class PlayerLocomotion : HostLocomotion
         rb2D.gravityScale = gravityScale;
     }
 
-    public override void Attack(float rotation = 0.0f)
+    public override void Attack()
     {
         return;
     }
