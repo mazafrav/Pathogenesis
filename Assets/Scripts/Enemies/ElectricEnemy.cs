@@ -78,20 +78,20 @@ public class ElectricEnemy : Enemy
         }
         else if(isSeeingPlayer)
         {                                        
-            if(locomotion.IsWindingUp() && locomotion.IsCooldownFinished())
-            {
-                //Debug.Log("Not moving during wind up");
-                locomotion.Move(0);
-            }
-            else
-            {
+            //if(locomotion.IsWindingUp() && locomotion.IsCooldownFinished())
+            //{
+            //    //Debug.Log("Not moving during wind up");
+            //    locomotion.Move(0);
+            //}
+            //else
+            //{
                 //Debug.Log("Moving towards player");
                 float dis = Vector2.Distance(player.transform.position, transform.position);
                 if (dis > stoppingDistance)
                 {
                     locomotion.Move(direction.x);
                 }
-            }
+            //}
         }
     }
 

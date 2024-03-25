@@ -64,10 +64,10 @@ public class ElectricLocomotion : HostLocomotion
                 ActivateShock();                   
             }
             //We don't move player who is controlling the electric enemy when is winding up
-            else if (playerController && playerController.locomotion.GetType() == this.GetType())
-            {
-                playerController.DeltaX = 0.0f; 
-            }
+            //else if (playerController && playerController.locomotion.GetType() == this.GetType())
+            //{
+            //    playerController.DeltaX = 0.0f; 
+            //}
         }
         else if (!electricShockGameObject.activeSelf && currentCooldownTime > 0f)
         {
@@ -110,7 +110,14 @@ public class ElectricLocomotion : HostLocomotion
 
     public override void Move(float deltaX, float deltaY = 0f)
     {
-        rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
+        if (IsWindingUp() && IsCooldownFinished())
+        {
+            rb2D.velocity = new Vector2(0.0f, rb2D.velocity.y);
+        }
+        else
+        {
+            rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
+        }
     }
 
     public override void Attack()
