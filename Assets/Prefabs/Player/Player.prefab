@@ -113,6 +113,8 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 2
   jumpDistance: 2
+  coyoteTime: 0.2
+  jumpBufferTime: 0.1
   groundChecker: {fileID: 130100337902420687}
 --- !u!1 &2105898412028735329
 GameObject:
@@ -365,4 +367,6 @@ MonoBehaviour:
   moveSpeed: 5
   jumpHeight: 2
   jumpDistance: 2
+  coyoteTime: 0.1
+  jumpBufferTime: 0.1
   groundChecker: {fileID: 130100337902420687}
