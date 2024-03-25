@@ -34,9 +34,21 @@ public class PlayerLocomotion : HostLocomotion
         }
     }
 
+    private void Update()
+    {
+        if (groundChecker.isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
+
     public override void Jump(float deltaX = 0)
     {
-        if (!groundChecker.isGrounded || rb2D.gravityScale <= 0.0f) return;
+        if (coyoteTimeCounter <= 0f || rb2D.gravityScale <= 0.0f) return;
         isJumping = true;
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
         rb2D.gravityScale = g / Physics2D.gravity.y;

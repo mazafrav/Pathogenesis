@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
         {
             locomotion.Jump(deltaX);
         }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            locomotion.JumpButtonUp();
+        }
         else if(Input.GetMouseButtonDown(0))
         {
             locomotion.Attack();
