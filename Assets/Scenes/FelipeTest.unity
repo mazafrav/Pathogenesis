@@ -1761,14 +1761,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 775871088629917626, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
-      propertyPath: m_Size.y
-      value: 0.050990716
-      objectReference: {fileID: 0}
-    - target: {fileID: 775871088629917626, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.010495357
-      objectReference: {fileID: 0}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.39
@@ -1812,10 +1804,6 @@ PrefabInstance:
     - target: {fileID: 6502504440373144436, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8935456655124352179, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.49
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1941,10 +1929,6 @@ PrefabInstance:
     - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_Name
       value: ElectricEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3954916039054728215, guid: aa48d90f86369134db41420e5b009588, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: player
