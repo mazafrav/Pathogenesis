@@ -56,6 +56,11 @@ public class PlayerLocomotion : HostLocomotion
 
     public override void Move(float deltaX, float deltaY)
     {
+        if(!rb2D)
+        {
+            return;
+        }
+
         if (rb2D.gravityScale <= 0.0f)
         {
             FreeMove(deltaX, deltaY);

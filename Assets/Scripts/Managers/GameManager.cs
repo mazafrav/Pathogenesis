@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerController player;
 
+    [SerializeField]
+    private PlayerLocomotion playerLocomotion;
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -29,4 +32,8 @@ public class GameManager : MonoBehaviour
         return player;
     }
 
+    public PlayerLocomotion GetPlayerLocomotion()
+    {
+        return playerLocomotion;
+    }
 }

@@ -14,4 +14,9 @@ public class Enemy : MonoBehaviour
         IsDead = true;
         this.enabled = false;
     }
+
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
+    }
 }

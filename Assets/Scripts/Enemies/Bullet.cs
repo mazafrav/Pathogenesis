@@ -34,11 +34,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Meter lógica de dañar al jugador aquí
-            Health health = collision.gameObject.GetComponent<Health>();
-            if (health)
-            {
-                health.DestroyOwner();
-            }
+            
             Debug.Log("TE HICE MUCHO DAÑO");
         }
         else

@@ -383,6 +383,79 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &354366790
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_Name
+      value: ElectricEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068238459060251847, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1965065343}
+    - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa48d90f86369134db41420e5b009588, type: 3}
 --- !u!1 &369849769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,6 +1817,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 5771655592525622707}
+    - target: {fileID: 4796828729407239301, guid: 59a75e9987649ca4b93493b04be1083b, type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 1965065343}
+    - target: {fileID: 4796828729407239301, guid: 59a75e9987649ca4b93493b04be1083b, type: 3}
+      propertyPath: playerLocomotion
+      value: 
+      objectReference: {fileID: 5771655592525622708}
     - target: {fileID: 6496974038760274254, guid: 59a75e9987649ca4b93493b04be1083b, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1763,7 +1844,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.38
+      value: -15.01
       objectReference: {fileID: 0}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1819,6 +1900,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef6b44443ac653847b1837430d120976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5771655592525622708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4518946334730068295, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
+  m_PrefabInstance: {fileID: 5771655592525622705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee24e668ff815b64f86e6872bf5b0b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6307372169551315100
@@ -1888,7 +1980,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.36
+      value: -9.37
       objectReference: {fileID: 0}
     - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1930,6 +2022,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: windUp
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: shockDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: player
       value: 
@@ -1946,6 +2046,7 @@ SceneRoots:
   - {fileID: 567158699}
   - {fileID: 5771655592525622705}
   - {fileID: 7397411328010540998}
+  - {fileID: 354366790}
   - {fileID: 774447931}
   - {fileID: 6307372169551315100}
   - {fileID: 4463726375058475434}
