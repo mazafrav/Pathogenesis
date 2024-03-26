@@ -10,7 +10,7 @@ public class RangedEnemy : MonoBehaviour
     private bool enablePatrolling = true;
     [Header("Shooting")]
     [SerializeField] private float detectionRange;
-    private GameObject player;
+    //private GameObject player;
     [SerializeField] private GameObject shootOrigin;
     private bool isAiming = false;
     [SerializeField] private float timeToShoot;
@@ -18,17 +18,23 @@ public class RangedEnemy : MonoBehaviour
     private bool canShoot = true;
     private bool isCancellingAggro = false;
     [SerializeField] private float timeToCancelAggro;
-
+    [SerializeField]
+    private GameObject player = null;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindWithTag("Player");
+        //player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!player)
+        {
+            return;
+        }
+
         if (enablePatrolling)
         {
             rb.constraints = RigidbodyConstraints2D.None;
@@ -41,7 +47,7 @@ public class RangedEnemy : MonoBehaviour
                 locomotion.Move(-1);
 
             }
-
+           
             float distance = Vector3.Distance(transform.position, player.transform.position);
             //Debug.Log(distance);
             if (distance <= detectionRange)

@@ -28,6 +28,11 @@ public class ElectricEnemy : Enemy
 
     void Update()
     {
+        if(!player)
+        {
+            return;
+        }
+
         direction = (player.transform.position - transform.position).normalized;
         //RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(transform.position, direction, locomotion.ElectricShockRange);
         //for (int i = 0; i < raycastHit2Ds.Length; i++)
@@ -77,7 +82,11 @@ public class ElectricEnemy : Enemy
             }
         }
         else if(isSeeingPlayer)
-        {                                        
+        {
+            if (!player)
+            {
+                return;
+            }
             //if(locomotion.IsWindingUp() && locomotion.IsCooldownFinished())
             //{
             //    //Debug.Log("Not moving during wind up");
@@ -85,8 +94,8 @@ public class ElectricEnemy : Enemy
             //}
             //else
             //{
-                //Debug.Log("Moving towards player");
-                float dis = Vector2.Distance(player.transform.position, transform.position);
+            //Debug.Log("Moving towards player");
+            float dis = Vector2.Distance(player.transform.position, transform.position);
                 if (dis > stoppingDistance)
                 {
                     locomotion.Move(direction.x);

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1275196306852582045}
   - component: {fileID: 6614421744070157238}
   - component: {fileID: 3733743548789898051}
+  - component: {fileID: 7824440051812931576}
   m_Layer: 3
   m_Name: ElectricEnemy
   m_TagString: Untagged
@@ -151,6 +152,8 @@ MonoBehaviour:
   moveSpeed: 3
   jumpHeight: 2
   jumpDistance: 3
+  coyoteTime: 0.1
+  jumpBufferTime: 0.1
   electricShockGameObject: {fileID: 5068238459060251847}
   electricShockRange: 4
   cooldown: 2
@@ -160,7 +163,7 @@ MonoBehaviour:
   - {fileID: 7863156932767443082}
   - {fileID: 4978048877296430105}
   colorWhileWindUp: {r: 0, g: 0.29803923, b: 1, a: 1}
-  colorWhileCooldown: {r: 0, g: 1, b: 0.636287, a: 1}
+  colorWhileCooldown: {r: 0.31290135, g: 0.84705883, b: 0.96981126, a: 1}
 --- !u!58 &6614421744070157238
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -223,6 +226,19 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+--- !u!114 &7824440051812931576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178318046228212809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5087fbd6e5f905746a6e14c56c00a4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 1178318046228212809}
 --- !u!1 &2778503270015055596
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 2778503270015055596}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.009, z: 0}
+  m_LocalPosition: {x: 0, y: 0.957, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,7 +303,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010206699, y: -0.441886}
+  m_Offset: {x: 0.010206699, y: -0.4590072}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -298,7 +314,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.191886, y: 0.06622803}
+  m_Size: {x: 1.191886, y: 0.03198564}
   m_EdgeRadius: 0
 --- !u!1 &3149484935079753154
 GameObject:
@@ -562,6 +578,7 @@ GameObject:
   - component: {fileID: 8401174071438189601}
   - component: {fileID: 8569173746458405968}
   - component: {fileID: 4264372909937117561}
+  - component: {fileID: 3957729136246110855}
   m_Layer: 3
   m_Name: ElectricShock
   m_TagString: Untagged
@@ -671,6 +688,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3957729136246110855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068238459060251847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a6852fc1b6a714c873670db64a5a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5677522451452172851
 GameObject:
   m_ObjectHideFlags: 0

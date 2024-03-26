@@ -42,7 +42,7 @@ public class ElectricLocomotion : HostLocomotion
         currentShockDuration = shockDuration;
         jumpDistance += jumpOffset;
         jumpHeight += jumpOffset;
-        rb2D = GetComponentInParent<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
 
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
         rb2D.gravityScale = g / Physics2D.gravity.y;
