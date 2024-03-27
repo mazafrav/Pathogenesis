@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SensitiveDoor : MonoBehaviour, Activable_Interface
+public class SensitiveDoor : MonoBehaviour, IActivatableElement
 {
     private Vector2 initPos = Vector2.zero;
     private Vector3 activePos = Vector2.zero;

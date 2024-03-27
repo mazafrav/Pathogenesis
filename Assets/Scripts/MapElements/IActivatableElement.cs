@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Activable_Interface
+public interface IActivatableElement
 {
     void Activate();
     void Deactivate();

@@ -7,6 +7,12 @@ public class GroundChecker : MonoBehaviour
 {
     public bool isGrounded { get; private set; }
 
+    private void Awake()
+    {
+        int LayerGroundChecker = LayerMask.NameToLayer("GroundChecker");
+        gameObject.layer = LayerGroundChecker;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         /**

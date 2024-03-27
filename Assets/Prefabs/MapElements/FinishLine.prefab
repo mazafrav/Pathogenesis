@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8521704689408888509}
   - component: {fileID: 8639328185594108062}
   - component: {fileID: 6853707752694441243}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FinishLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,5 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abed5a74fbfe3f47920b4de15b46c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLoader: {fileID: 0}
   LoadNextScene: 1
   SceneToLoad: 0

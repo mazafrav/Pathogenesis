@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1813098078735442465}
   - component: {fileID: 4336386520266715270}
   - component: {fileID: 558502299355184760}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SensitiveTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a483e445dde8b249a052a1cd9847daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 0}
+  activatableElement: {fileID: 0}
 --- !u!61 &558502299355184760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 174154736683176242}
   - component: {fileID: 1557111452251902837}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sensitiveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
