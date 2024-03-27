@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1813098078735442465}
   - component: {fileID: 4336386520266715270}
   - component: {fileID: 558502299355184760}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: SensitiveTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -102,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 174154736683176242}
   - component: {fileID: 1557111452251902837}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: sensitiveTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

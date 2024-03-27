@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8438728296673483205}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: PointOpen
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 1689736419402463871}
   - component: {fileID: 8180244663907817595}
   - component: {fileID: 6254766094864345595}
-  m_Layer: 11
-  m_Name: Square
+  m_Layer: 0
+  m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6484365150316536308}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: PointClose
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -217,7 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1665944531955470299}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: MovingBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
