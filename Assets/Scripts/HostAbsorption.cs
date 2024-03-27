@@ -11,7 +11,7 @@ public class HostAbsorption : Interactable
     void Start()
     {
         hostLocomotion = GetComponent<HostLocomotion>();
-        playerController = GameManager.Instance.GetPlayer();
+        playerController = GameManager.Instance.GetPlayerController();
         enemyBehaviour = GetComponent<ElectricEnemy>();
     }
     protected override void OnInteract(GameObject interactedObject)

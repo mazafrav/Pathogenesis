@@ -24,9 +24,9 @@ public class ElectricShock : MonoBehaviour
                     enemy.transform.parent = null;
                     Vector3 enemyPos = enemy.transform.position;
                     enemy.DestroyEnemy();
-                    GameManager.Instance.GetPlayer().transform.position = enemyPos;
-                    GameManager.Instance.GetPlayer().EnablePlayerBody();
-                    GameManager.Instance.GetPlayer().locomotion = GameManager.Instance.GetPlayerLocomotion();
+                    GameManager.Instance.GetPlayerController().transform.position = enemyPos;
+                    GameManager.Instance.GetPlayerController().EnablePlayerBody();
+                    GameManager.Instance.GetPlayerController().locomotion = GameManager.Instance.GetPlayerLocomotion();
                 }
                 else //The enemy is not possessed
                 {

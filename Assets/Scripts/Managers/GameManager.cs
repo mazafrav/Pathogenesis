@@ -7,9 +7,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private PlayerController player;
+    private GameObject player;
 
-    [SerializeField]
+    private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
 
     public static GameManager Instance { get; private set; }
@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public PlayerController GetPlayer()
+    public PlayerController GetPlayerController()
     {
-        return player;
+        return player.GetComponent<PlayerController>();
     }
 
     public PlayerLocomotion GetPlayerLocomotion()
     {
-        return playerLocomotion;
+        return player.GetComponent<PlayerLocomotion>();
     }
 }

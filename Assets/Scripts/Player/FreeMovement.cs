@@ -7,8 +7,8 @@ public class FreeMovement : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerLocomotion playerController = collision.GetComponent<PlayerLocomotion>();
-        if(playerController != null)
+        PlayerLocomotion playerController = collision.GetComponentInParent<PlayerLocomotion>();
+        if (playerController != null)
         {
             playerController.EnableFreeMovement();
         }
@@ -16,7 +16,7 @@ public class FreeMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        PlayerLocomotion playerController = collision.GetComponent<PlayerLocomotion>();
+        PlayerLocomotion playerController = collision.GetComponentInParent<PlayerLocomotion>();
         if (playerController != null)
         {
             playerController.DisableFreeMovement();

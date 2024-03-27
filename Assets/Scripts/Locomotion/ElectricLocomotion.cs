@@ -34,7 +34,7 @@ public class ElectricLocomotion : HostLocomotion
 
     void Start()
     {
-        playerController = GameManager.Instance.GetPlayer();
+        playerController = GameManager.Instance.GetPlayerController();
         groundChecker = GetComponentInChildren<GroundChecker>();
 
         colorWhileMoving = spriteRenderers[0].color;
