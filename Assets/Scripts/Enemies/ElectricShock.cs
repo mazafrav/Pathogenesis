@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class ElectricShock : MonoBehaviour
 {
+    float invTime = 0.5f;
+    bool wasPossessing = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    {     
         //Debug.Log(collision.gameObject.name);
 
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") && !wasPossessing)
         {
             Destroy(collision.gameObject);
         }
-        else
+        else if(collision.GetComponent<Enemy>() != null)
         {
             Enemy enemy = collision.GetComponent<Enemy>();
 
             if (enemy)
             {
                 if(enemy.transform.parent != null) //The enemy is possessed
-                {
+                {                                      
+                    wasPossessing = true;
                     Debug.Log("Possessed");
                     enemy.transform.parent = null;
                     Vector3 enemyPos = enemy.transform.position;
@@ -34,6 +38,21 @@ public class ElectricShock : MonoBehaviour
                 }
 
             }
+        }
+
+    }
+
+    private void Update()
+    {
+        if(wasPossessing)
+        {
+            invTime -= Time.deltaTime;
+        }
+
+        if(invTime <= 0.0f)
+        {
+            invTime = 0.5f;
+            wasPossessing = false;
         }
 
     }
