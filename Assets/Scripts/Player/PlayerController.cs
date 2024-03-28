@@ -46,10 +46,19 @@ public class PlayerController : MonoBehaviour
 
     public void DisablePlayerBody()
     {
-        playerBody.SetActive(false);
+        if(playerBody)
+        {
+            playerBody.SetActive(false);
+        }
     }
     public void EnablePlayerBody()
     {
-        playerBody.SetActive(true);
+        if (playerBody)
+        {
+            playerBody.SetActive(true);
+        }
+
     }
+
+    public GameObject GetPlayerBody() { return playerBody; }
 }

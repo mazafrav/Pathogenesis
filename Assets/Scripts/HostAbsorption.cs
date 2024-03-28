@@ -17,10 +17,15 @@ public class HostAbsorption : Interactable
     protected override void OnInteract(GameObject interactedObject)
     {
         base.OnInteract(interactedObject);
-        playerController.locomotion = hostLocomotion;
-        gameObject.transform.parent = playerController.transform;
-        playerController.DisablePlayerBody();
-        enemyBehaviour.enabled = false;
+
+        if(playerController.GetPlayerBody()) //we possess if the player exists
+        {
+            playerController.locomotion = hostLocomotion;
+            gameObject.transform.parent = playerController.transform;
+            playerController.DisablePlayerBody();
+            enemyBehaviour.enabled = false;
+        }
+
     }
 
 }
