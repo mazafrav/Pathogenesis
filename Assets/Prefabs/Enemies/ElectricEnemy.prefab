@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3733743548789898051}
   m_Layer: 3
   m_Name: ElectricEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,6 +38,7 @@ Transform:
   - {fileID: 4438798296613065076}
   - {fileID: 567320964431522720}
   - {fileID: 8401174071438189601}
+  - {fileID: 1211465411575666524}
   - {fileID: 8087892436720233006}
   - {fileID: 3271844721524176812}
   - {fileID: 2649592162455068176}
@@ -132,10 +133,6 @@ MonoBehaviour:
   hostInteractable: {fileID: 3733743548789898051}
   locomotion: {fileID: 1275196306852582045}
   stoppingDistance: 1.5
-  rayLayerMask:
-    serializedVersion: 2
-    m_Bits: 563
-  player: {fileID: 0}
 --- !u!114 &1275196306852582045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +153,7 @@ MonoBehaviour:
   electricShockGameObject: {fileID: 5068238459060251847}
   electricShockRange: 4
   cooldown: 2
-  windUp: 0.5
+  windUp: 1.5
   shockDuration: 0.5
   spriteRenderers:
   - {fileID: 7863156932767443082}
@@ -235,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2649592162455068176}
   - component: {fileID: 4993199457495352160}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3271844721524176812}
   - component: {fileID: 8117357837580025665}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Height
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 567320964431522720}
   - component: {fileID: 4978048877296430105}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Circle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +562,7 @@ GameObject:
   - component: {fileID: 8569173746458405968}
   - component: {fileID: 4264372909937117561}
   - component: {fileID: 3957729136246110855}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: ElectricShock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,6 +683,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a6852fc1b6a714c873670db64a5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: {fileID: 7476986461620708609}
+  interactionCollider: {fileID: 4264372909937117561}
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 520
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  invencibilityTime: 0.5
 --- !u!1 &5677522451452172851
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +711,7 @@ GameObject:
   - component: {fileID: 8087892436720233006}
   - component: {fileID: 4788227576581711075}
   - component: {fileID: 214219439091893082}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: PatrolDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,6 +790,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18129015, y: 1.4759936}
   m_EdgeRadius: 0
+--- !u!1 &6911789383419822696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1211465411575666524}
+  - component: {fileID: 690731694537946825}
+  - component: {fileID: 7476986461620708609}
+  m_Layer: 12
+  m_Name: ElectricShockRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1211465411575666524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6911789383419822696}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 20109762620599441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &690731694537946825
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6911789383419822696}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &7476986461620708609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6911789383419822696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 166f2d7c0298ef848a3c5dcaebfb02de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7264111225845142074
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4438798296613065076}
   - component: {fileID: 7863156932767443082}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Circle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
