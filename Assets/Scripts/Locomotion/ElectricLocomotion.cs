@@ -145,6 +145,13 @@ public class ElectricLocomotion : HostLocomotion
         return currentCooldownTime <= 0f && currentWindUpTime <= 0f;
     }
 
+    public override void ResetAttack()
+    {
+        currentCooldownTime = 0f;
+        currentWindUpTime = 0f;
+        ChangeSpritesColor(colorWhileMoving);
+    }
+
     public bool IsWindingUp()
     {
         return currentWindUpTime > 0f;
@@ -153,13 +160,6 @@ public class ElectricLocomotion : HostLocomotion
     public bool IsCooldownFinished() 
     {  
         return currentCooldownTime <= 0.0f;  
-    }
-
-    public void ResetAttack()
-    {
-        currentCooldownTime = 0f;
-        currentWindUpTime = 0f;
-        ChangeSpritesColor(colorWhileMoving);
     }
 
     private void ChangeSpritesColor(Color newColor)

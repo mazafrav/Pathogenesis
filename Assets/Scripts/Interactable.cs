@@ -50,6 +50,14 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    protected virtual void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

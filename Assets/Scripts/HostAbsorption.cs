@@ -12,7 +12,7 @@ public class HostAbsorption : Interactable
     {
         hostLocomotion = GetComponent<HostLocomotion>();
         playerController = GameManager.Instance.GetPlayerController();
-        enemyBehaviour = GetComponent<ElectricEnemy>();
+        enemyBehaviour = GetComponent<Enemy>();
     }
     protected override void OnInteract(GameObject interactedObject)
     {
@@ -20,6 +20,7 @@ public class HostAbsorption : Interactable
 
         if(playerController.GetPlayerBody()) //we possess if the player exists
         {
+            hostLocomotion.ResetAttack();
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;
             playerController.DisablePlayerBody();

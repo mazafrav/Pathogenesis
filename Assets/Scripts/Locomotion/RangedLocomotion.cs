@@ -39,4 +39,9 @@ public class RangedLocomotion : HostLocomotion
     {
         rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
     }
+
+    public override void ResetAttack()
+    {
+        return;
+    }
 }

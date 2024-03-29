@@ -27,4 +27,5 @@ public abstract class HostLocomotion : MonoBehaviour
     public abstract void Move(float deltaX, float deltaY);
     public abstract void Attack();
     public abstract bool IsAttackReady();
+    public abstract void ResetAttack();
 }

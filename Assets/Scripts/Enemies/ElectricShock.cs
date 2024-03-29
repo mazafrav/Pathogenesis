@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class ElectricShock : MonoBehaviour
 {
-    float invTime = 0.5f;
-    bool wasPossessing = false;
+    [SerializeField] float invencibilityTime = 0.5f;
+    private float currentInvecibilityTime = 0.5f;
+    private bool wasPossessing = false;
+
+    private void Start()
+    {
+        currentInvecibilityTime = invencibilityTime;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {     
@@ -46,12 +52,12 @@ public class ElectricShock : MonoBehaviour
     {
         if(wasPossessing)
         {
-            invTime -= Time.deltaTime;
+            currentInvecibilityTime -= Time.deltaTime;
         }
 
-        if(invTime <= 0.0f)
+        if(currentInvecibilityTime <= 0.0f)
         {
-            invTime = 0.5f;
+            currentInvecibilityTime = 0.5f;
             wasPossessing = false;
         }
 

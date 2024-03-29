@@ -95,4 +95,9 @@ public class PlayerLocomotion : HostLocomotion
     {
         return true;
     }
+
+    public override void ResetAttack()
+    {
+        return;
+    }
 }
