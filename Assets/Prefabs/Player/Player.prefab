@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 5900389725102208163}
   m_Layer: 9
   m_Name: Graphics
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621b44d07760304418fb4a4a20632a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0, z: 0}
+  mousePosition: {x: 0, y: 0, z: 0}
   bisActive: 1
 --- !u!1 &6502504440373144436
 GameObject:
@@ -296,6 +298,7 @@ GameObject:
   - component: {fileID: 3352753978018443518}
   - component: {fileID: 2595475748587294360}
   - component: {fileID: 4518946334730068295}
+  - component: {fileID: 6875837856013089499}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -333,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBody: {fileID: 1021976914963050282}
   locomotion: {fileID: 4518946334730068295}
+  shootingComponent: {fileID: 0}
 --- !u!114 &4518946334730068295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,3 +355,16 @@ MonoBehaviour:
   coyoteTime: 0.15
   jumpBufferTime: 0.1
   groundChecker: {fileID: 130100337902420687}
+--- !u!114 &6875837856013089499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6502504440373144436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36228bf19044343459affa31ed795696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invencibilityTime: 0.5
