@@ -52,6 +52,8 @@ public class DamageControl : MonoBehaviour
                     Vector3 enemyPos = enemy.transform.position;
                     enemy.DestroyEnemy();
                     GameManager.Instance.GetPlayerController().transform.position = enemyPos;
+                    GameManager.Instance.GetPlayerController().GetPlayerBody().transform.localPosition = Vector3.zero;
+
                     GameManager.Instance.GetPlayerController().EnablePlayerBody();
                     GameManager.Instance.GetPlayerController().locomotion = GameManager.Instance.GetPlayerLocomotion();
                 }

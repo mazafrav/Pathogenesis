@@ -20,6 +20,9 @@ public abstract class HostLocomotion : MonoBehaviour
     protected float jumpBufferTime = 0.1f;
     protected float jumpBufferCounter;
 
+    private DamageControl damageControl = null;
+    private Collider2D hostCollider;
+
     public Rigidbody2D rb2D { protected set; get; } = null;
 
     public abstract void Jump(float deltaX);
@@ -28,4 +31,11 @@ public abstract class HostLocomotion : MonoBehaviour
     public abstract void Attack(Vector3 target = default);
     public abstract bool IsAttackReady();
     public abstract void ResetAttack();
+
+    public virtual void Unpossess()
+    {
+        damageControl = GetComponentInChildren<DamageControl>();
+        hostCollider = GetComponentInChildren<Collider2D>();
+        damageControl.Damage(hostCollider);
+    }
 }
