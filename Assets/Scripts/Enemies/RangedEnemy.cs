@@ -14,17 +14,19 @@ public class RangedEnemy : Enemy
     [SerializeField] private GameObject shootOrigin;
     private bool isAiming = false;
     [SerializeField] private float timeToShoot;
-    [SerializeField] private float shootingCooldown;
+    [SerializeField] public float shootingCooldown;
+    [SerializeField] public float playerShootingCooldown;
     private bool canShoot = true;
     private bool isCancellingAggro = false;
     [SerializeField] private float timeToCancelAggro;
-    [SerializeField]
     private GameObject player = null;
+    [SerializeField]
+    public ShootingComponent shootingComponent;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        //player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -57,7 +59,7 @@ public class RangedEnemy : Enemy
                 Debug.DrawLine(shootOrigin.transform.position, player.transform.position, Color.red);
                 if (hitResult.collider != null)
                 {
-                    Debug.Log(hitResult.collider.name);
+                    //Debug.Log(hitResult.collider.name);
                     if (hitResult.collider.gameObject.CompareTag("Player"))
                     {
                         enablePatrolling = false;
@@ -118,7 +120,9 @@ public class RangedEnemy : Enemy
         yield return new WaitForSeconds(timeToShoot);
         if (isAiming)
         {
-            locomotion.Attack();
+            Vector3 direction = player.transform.position - transform.position;
+            float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+            locomotion.Attack(rot);
             StartCoroutine(ShootingCooldown(shootingCooldown));
         }
     }
@@ -153,11 +157,21 @@ public class RangedEnemy : Enemy
         }
     }
 
-
-    void OnDrawGizmosSelected()
+    public void ResetRigidbodyConstraints()
     {
-        // Draw a yellow sphere at the transform's position
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, detectionRange);
+        rb.constraints = RigidbodyConstraints2D.None;
     }
+
+    public void SetAimBehaviour(bool value)
+    {
+        shootingComponent.bisActive = value;
+    }
+
+    //void OnDrawGizmosSelected()
+    //{
+    //    // Draw a yellow sphere at the transform's position
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawSphere(transform.position, detectionRange);
+    //}
+
 }

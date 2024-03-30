@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public HostLocomotion locomotion;
     private float deltaX = 0.0f, deltaY = 0.0f;
 
+    public ShootingComponent shootingComponent;
     //public float DeltaX { set { deltaX = value; } }
 
 
@@ -35,7 +36,14 @@ public class PlayerController : MonoBehaviour
         }
         else if(Input.GetMouseButtonDown(0))
         {
-            locomotion.Attack();
+            if (!locomotion.GetType().Name.Equals("RangedLocomotion"))
+            {
+                locomotion.Attack();
+            }
+            else
+            {
+
+            }
         }
     }
 

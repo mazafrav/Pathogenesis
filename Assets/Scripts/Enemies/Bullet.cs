@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed = 10.0f;
     private Rigidbody2D rb;
     private GameObject player;
+    public DamageControl damageControl;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
-
-        Vector3 direction = player.transform.position - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
-
-        float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+        damageControl = GetComponentInParent<DamageControl>();
     }
 
     // Update is called once per frame
@@ -29,17 +25,25 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Efecto de impactar?
+        // photonic enemy cannot attack other phonotic enemies
+        if (collision.gameObject.GetComponentInParent<RangedEnemy>() == null)
+        {
+            //if (collision.gameObject.CompareTag("Player"))
+            //{
+            //    // Meter lógica de dañar al jugador aquí
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // Meter lógica de dañar al jugador aquí
-            
-            Debug.Log("TE HICE MUCHO DAÑO");
-        }
-        else
-        {
+            //    Debug.Log("TE HICE MUCHO DAÑO");
+            //}
+            //else
+            //{
+            //    Destroy(this.gameObject);
+            //}
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                damageControl.Damage(collision);
+            }
             Destroy(this.gameObject);
         }
+
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootingComponent : MonoBehaviour
 {
-    private Vector3 direction;
+    public Vector3 direction;
 
     public bool bisActive = true;
     // Start is called before the first frame update

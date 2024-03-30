@@ -24,6 +24,15 @@ public class HostAbsorption : Interactable
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;
             playerController.DisablePlayerBody();
+
+            RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
+            if (rangedEnemy != null)
+            {
+                playerController.shootingComponent = rangedEnemy.shootingComponent;
+                rangedEnemy.ResetRigidbodyConstraints();
+                rangedEnemy.SetAimBehaviour(true);
+            }
+
             enemyBehaviour.enabled = false;
         }
 

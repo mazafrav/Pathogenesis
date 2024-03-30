@@ -120,7 +120,7 @@ public class ElectricLocomotion : HostLocomotion
         }
     }
 
-    public override void Attack()
+    public override void Attack(float rotation = 0.0f)
     {
         if(!IsAttackReady()) return;
         ChangeSpritesColor(colorWhileWindUp);
