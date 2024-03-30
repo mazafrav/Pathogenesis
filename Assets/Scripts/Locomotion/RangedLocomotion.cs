@@ -10,12 +10,23 @@ public class RangedLocomotion : HostLocomotion
     private bool playerShot = false;
     private float shootCooldown;
     private float shootCDTimer = 0;
+
+    private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponentInParent<Rigidbody2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
         shootCooldown = GetComponent<RangedEnemy>().playerShootingCooldown;
+
+        jumpDistance += jumpOffset;
+        jumpHeight += jumpOffset;
+
+        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+        rb2D.gravityScale = g / Physics2D.gravity.y;
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
+
     }
 
     // Update is called once per frame
@@ -53,7 +64,7 @@ public class RangedLocomotion : HostLocomotion
     {
         if (groundChecker.isGrounded)
         {
-            rb2D.velocity = new Vector2(moveSpeed * deltaX, 7.5f);
+            rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
         }
     }
 

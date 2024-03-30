@@ -7,11 +7,13 @@ public class RangedEnemy : Enemy
     private Rigidbody2D rb;
     [Header("Movement")]
     [SerializeField] private RangedLocomotion locomotion;
+    [SerializeField] private GameObject graphics;
     private bool enablePatrolling = true;
     [Header("Shooting")]
     [SerializeField] private float detectionRange;
     //private GameObject player;
-    [SerializeField] private GameObject shootOrigin;
+    [SerializeField] private GameObject shootDetection;
+    [SerializeField] private GameObject bulletSpawner;
     private bool isAiming = false;
     [SerializeField] private float timeToShoot;
     [SerializeField] public float shootingCooldown;
@@ -26,7 +28,7 @@ public class RangedEnemy : Enemy
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player");
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
@@ -43,10 +45,12 @@ public class RangedEnemy : Enemy
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             if (IsFacingRight())
             {
+                graphics.transform.rotation = Quaternion.Euler(0,0, -90);
                 locomotion.Move(1);
             }
             else
             {
+                graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
                 locomotion.Move(-1);
 
             }
@@ -56,11 +60,11 @@ public class RangedEnemy : Enemy
             if (distance <= detectionRange)
             {
                 //RaycastHit2D hitResult = Physics2D.Linecast(shootOrigin.transform.position, player.transform.position, 1 << LayerMask.NameToLayer("Action"));
-                RaycastHit2D hitResult = Physics2D.Raycast(shootOrigin.transform.position, (player.transform.position - shootOrigin.transform.position).normalized, detectionRange);
-                Debug.DrawLine(shootOrigin.transform.position, player.transform.position, Color.red);
+                RaycastHit2D hitResult = Physics2D.Raycast(shootDetection.transform.position, (player.transform.position - shootDetection.transform.position).normalized, detectionRange);
+                Debug.DrawLine(shootDetection.transform.position, player.transform.position, Color.red);
                 if (hitResult.collider != null)
                 {
-                    //Debug.Log(hitResult.collider.name);
+                    Debug.Log(hitResult.collider.name);
                     if (hitResult.collider.gameObject.CompareTag("Player"))
                     {
                         enablePatrolling = false;
@@ -73,7 +77,7 @@ public class RangedEnemy : Enemy
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
             locomotion.Move(0);
             float distance = Vector3.Distance(transform.position, player.transform.position);
-            RaycastHit2D hitResult = Physics2D.Raycast(shootOrigin.transform.position, (player.transform.position - shootOrigin.transform.position).normalized, detectionRange);
+            RaycastHit2D hitResult = Physics2D.Raycast(shootDetection.transform.position, (player.transform.position - shootDetection.transform.position).normalized, detectionRange);
             if (hitResult.collider != null)
             {
                 if (distance <= detectionRange && hitResult.collider.gameObject.CompareTag("Player"))
@@ -86,13 +90,13 @@ public class RangedEnemy : Enemy
                     }
                     if (isAiming)
                     {
-                        LineRenderer line = shootOrigin.GetComponent<LineRenderer>();
+                        LineRenderer line = shootDetection.GetComponent<LineRenderer>();
                         line.enabled = true;
                         line.startColor = Color.yellow;
                         line.endColor = Color.yellow;
                         line.startWidth = 0.1f;
                         line.endWidth = 0.1f;
-                        line.SetPosition(0, shootOrigin.transform.position);
+                        line.SetPosition(0, bulletSpawner.transform.position);
                         line.SetPosition(1, player.transform.position);
                     }
 
@@ -130,7 +134,7 @@ public class RangedEnemy : Enemy
     {
         //canShoot = false;
         isAiming = false;
-        LineRenderer line = shootOrigin.GetComponent<LineRenderer>();
+        LineRenderer line = shootDetection.GetComponent<LineRenderer>();
         line.enabled = false;
         yield return new WaitForSeconds(cd);
         canShoot = true;

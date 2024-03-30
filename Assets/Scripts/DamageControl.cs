@@ -9,6 +9,8 @@ public class DamageControl : MonoBehaviour
     [SerializeField] float invencibilityTime = 0.5f;
     private float currentInvecibilityTime = 0.5f;
     private bool wasPossessing = false;
+
+    private LevelLoader levelLoader;
     // Start is called before the first frame update
     private void Start()
     {
@@ -34,7 +36,7 @@ public class DamageControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player") && !wasPossessing)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameManager.Instance.GetLevelLoader().RestartLevel();
         }
         else if (collider.GetComponent<Enemy>() != null)
         {

@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    [SerializeField]
+    private LevelLoader levelLoader;
+
     private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
 
@@ -35,5 +38,10 @@ public class GameManager : MonoBehaviour
     public PlayerLocomotion GetPlayerLocomotion()
     {
         return player.GetComponent<PlayerLocomotion>();
+    }
+
+    public LevelLoader GetLevelLoader()
+    {
+        return levelLoader;
     }
 }
