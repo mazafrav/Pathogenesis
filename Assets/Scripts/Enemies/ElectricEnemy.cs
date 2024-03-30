@@ -12,17 +12,10 @@ public class ElectricEnemy : Enemy
     [SerializeField]
     private float stoppingDistance = 10.0f;
 
-    //[Header("Ray detection layer mask")]
-    //[SerializeField]
-    //private LayerMask rayLayerMask;
-
-    //[SerializeField]
-    //private GameObject player = null;
-
     private ElectricShockRange shockRange = null;
 
     private Vector2 direction = Vector2.zero;
-    private bool isSeeingPlayer = false, isPatrolling = true;
+    private bool isSeeingTarget = false, isPatrolling = true;
 
     void Start()
     {
@@ -32,7 +25,7 @@ public class ElectricEnemy : Enemy
     void Update()
     {
 
-        if (shockRange.personInRange)
+        if (shockRange.personInRange) //We check if we see the target in range (player or other enemies)
         {
             direction = (shockRange.personInRange.transform.position - transform.position).normalized;
 
@@ -42,38 +35,35 @@ public class ElectricEnemy : Enemy
                 if (raycastHit2D[i].collider.gameObject == shockRange.personInRange)
                 {
                     Debug.Log("Seeing");
-                    isSeeingPlayer = true;
+                    isSeeingTarget = true;
                     Debug.DrawRay(transform.position, direction * raycastHit2D[i].distance, Color.red);
                     break;
                 }
                 else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap"))
                 {
                     Debug.Log("Not seeing");
-                    isSeeingPlayer = false;
+                    isSeeingTarget = false;
                     break;
                 }
             }
         }
         else
         {
-            isSeeingPlayer = false;
+            isSeeingTarget = false;
         }
 
 
 
-        if (isSeeingPlayer/*Vector2.Distance(shockRange.personInRange.position, transform.position) <= locomotion.ElectricShockRange*/
-           /*&& raycastHit2D[index].collider != null  && raycastHit2D[0].collider.CompareTag("Player")*/) //We are seeing the player
+        if (isSeeingTarget) //We are seeing the target
         {
-            //Debug.Log(raycastHit2D.collider.name);
             //isSeeingPlayer = true;
             isPatrolling = false;
             locomotion.Attack();
-            //Debug.DrawRay(transform.position, direction * raycastHit2D[0].distance, Color.red);
         }
-        else //We are not seeing the player
+        else //We are not seeing the target
         {
             isPatrolling = true;
-            isSeeingPlayer = false;
+            isSeeingTarget = false;
             locomotion.ResetAttack();
         }
     }
@@ -91,26 +81,15 @@ public class ElectricEnemy : Enemy
                 locomotion.Move(-1);
             }
         }
-        else if (isSeeingPlayer && shockRange.personInRange)
+        else if (isSeeingTarget && shockRange.personInRange)
         {
-            //if(locomotion.IsWindingUp() && locomotion.IsCooldownFinished())
-            //{
-            //    //Debug.Log("Not moving during wind up");
-            //    locomotion.Move(0);
-            //}
-            //else
-            //{
-            //Debug.Log("Moving towards player");
             float dis = Vector2.Distance(shockRange.personInRange.transform.position, transform.position);
             if (dis > stoppingDistance)
             {
                 locomotion.Move(direction.x);
             }
-            //}
         }
     }
-
-
 
     private bool IsFacingRight()
     {

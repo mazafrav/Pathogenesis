@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   jumpHeight: 2
-  jumpDistance: 3
+  jumpDistance: 8
   coyoteTime: 0.1
   jumpBufferTime: 0.1
   electricShockGameObject: {fileID: 5068238459060251847}
@@ -155,9 +155,7 @@ MonoBehaviour:
   cooldown: 2
   windUp: 1.5
   shockDuration: 0.5
-  spriteRenderers:
-  - {fileID: 7863156932767443082}
-  - {fileID: 0}
+  spriteRenderer: {fileID: 7863156932767443082}
   colorWhileWindUp: {r: 0, g: 0.29803923, b: 1, a: 1}
   colorWhileCooldown: {r: 0.31290135, g: 0.84705883, b: 0.96981126, a: 1}
 --- !u!58 &6614421744070157238
@@ -809,7 +807,7 @@ GameObject:
   - component: {fileID: 4438798296613065076}
   - component: {fileID: 7863156932767443082}
   m_Layer: 0
-  m_Name: Circle1
+  m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

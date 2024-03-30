@@ -18,7 +18,7 @@ public class ElectricLocomotion : HostLocomotion
 
     [Header("Feedback")]
     [SerializeField]
-    private SpriteRenderer[] spriteRenderers;
+    private SpriteRenderer spriteRenderer;
     [SerializeField]
     private Color colorWhileWindUp, colorWhileCooldown;
 
@@ -37,7 +37,7 @@ public class ElectricLocomotion : HostLocomotion
         playerController = GameManager.Instance.GetPlayerController();
         groundChecker = GetComponentInChildren<GroundChecker>();
 
-        colorWhileMoving = spriteRenderers[0].color;
+        colorWhileMoving = spriteRenderer.color;
 
         currentShockDuration = shockDuration;
         jumpDistance += jumpOffset;
@@ -62,12 +62,7 @@ public class ElectricLocomotion : HostLocomotion
             if (currentWindUpTime <= 0f)
             {
                 ActivateShock();                   
-            }
-            //We don't move player who is controlling the electric enemy when is winding up
-            //else if (playerController && playerController.locomotion.GetType() == this.GetType())
-            //{
-            //    playerController.DeltaX = 0.0f; 
-            //}
+            }           
         }
         else if (!electricShockGameObject.activeSelf && currentCooldownTime > 0f)
         {
@@ -164,8 +159,7 @@ public class ElectricLocomotion : HostLocomotion
 
     private void ChangeSpritesColor(Color newColor)
     {
-        spriteRenderers[0].color = newColor;
-        //spriteRenderers[1].color = newColor;
+        spriteRenderer.color = newColor;
     }
 }
 
