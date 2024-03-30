@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  player: {fileID: 0}
   damageControl: {fileID: 0}
 --- !u!70 &3499569912808795079
 CapsuleCollider2D:

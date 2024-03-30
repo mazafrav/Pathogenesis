@@ -28,11 +28,14 @@ public class RangedLocomotion : HostLocomotion
         }
     }
 
-    public override void Attack(float rotation = 0.0f)
+    public override void Attack(Vector3 target = default)
     {
         if (!IsAttackReady()) { return; }
         playerShot = false;
-        Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.Euler(0, 0, rotation + 90));
+        GameObject bullet = Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.Euler(0, 0, 0));
+        Vector3 direction = target - bullet.transform.position;
+        float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+        bullet.transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
         if (GetComponentInParent<PlayerController>() != null )
         {

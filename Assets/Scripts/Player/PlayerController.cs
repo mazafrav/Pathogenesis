@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-
+                locomotion.Attack(shootingComponent.mousePosition);
             }
         }
     }

@@ -6,13 +6,11 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10.0f;
     private Rigidbody2D rb;
-    private GameObject player;
+    public GameObject player;
     public DamageControl damageControl;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindWithTag("Player");
         damageControl = GetComponentInParent<DamageControl>();
     }
 
@@ -21,6 +19,11 @@ public class Bullet : MonoBehaviour
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
         
+        if (transform.position.y >= 20 || transform.position.y <= -20
+            || transform.position.x >= 30 || transform.position.x <= -30)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

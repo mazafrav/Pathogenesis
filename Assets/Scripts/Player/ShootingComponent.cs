@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootingComponent : MonoBehaviour
 {
     public Vector3 direction;
+    public Vector3 mousePosition;
 
     public bool bisActive = true;
     // Start is called before the first frame update
@@ -25,7 +26,7 @@ public class ShootingComponent : MonoBehaviour
 
     public void Aim()
     {
-        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);

@@ -19,14 +19,14 @@ public class RangedEnemy : Enemy
     private bool canShoot = true;
     private bool isCancellingAggro = false;
     [SerializeField] private float timeToCancelAggro;
-    private GameObject player = null;
+    public GameObject player = null;
     [SerializeField]
     public ShootingComponent shootingComponent;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -121,9 +121,7 @@ public class RangedEnemy : Enemy
         yield return new WaitForSeconds(timeToShoot);
         if (isAiming)
         {
-            Vector3 direction = player.transform.position - transform.position;
-            float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-            locomotion.Attack(rot);
+            locomotion.Attack(player.transform.position);
             StartCoroutine(ShootingCooldown(shootingCooldown));
         }
     }
