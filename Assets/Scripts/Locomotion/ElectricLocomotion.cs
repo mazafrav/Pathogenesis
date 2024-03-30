@@ -165,7 +165,7 @@ public class ElectricLocomotion : HostLocomotion
     private void ChangeSpritesColor(Color newColor)
     {
         spriteRenderers[0].color = newColor;
-        spriteRenderers[1].color = newColor;
+        //spriteRenderers[1].color = newColor;
     }
 }
 
