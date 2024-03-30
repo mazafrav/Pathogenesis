@@ -40,6 +40,7 @@ public class RangedEnemy : Enemy
         if (enablePatrolling)
         {
             rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             if (IsFacingRight())
             {
                 locomotion.Move(1);
@@ -160,6 +161,7 @@ public class RangedEnemy : Enemy
     public void ResetRigidbodyConstraints()
     {
         rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void SetAimBehaviour(bool value)
