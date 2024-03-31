@@ -127,7 +127,7 @@ MonoBehaviour:
   interactionCollider: {fileID: 3856197432893108036}
   filter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
@@ -139,6 +139,9 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 5260
 --- !u!61 &4059112965759983108
 BoxCollider2D:
   m_ObjectHideFlags: 0

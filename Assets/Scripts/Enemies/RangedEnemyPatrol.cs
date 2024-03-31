@@ -19,11 +19,11 @@ public class RangedEnemyPatrol : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player")) return;
-        
-        transform.parent.transform.localScale = 
-            new Vector2(-(Mathf.Sign(transform.parent.GetComponent<Rigidbody2D>().velocity.x)), 
-            transform.parent.transform.localScale.y);
-        
+        if (collision.CompareTag("TileMap"))
+        {
+            transform.parent.transform.localScale = 
+                new Vector2(-(Mathf.Sign(transform.parent.GetComponent<Rigidbody2D>().velocity.x)), 
+                transform.parent.transform.localScale.y);
+        }             
     }
 }
