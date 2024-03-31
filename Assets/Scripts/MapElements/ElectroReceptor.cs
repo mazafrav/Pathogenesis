@@ -17,7 +17,7 @@ public class ElectroReceptor : MonoBehaviour
         if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
     }
 
-    public void electroShock()
+    public void ElectroShock()
     {
         activatableInterface.Activate();
     }

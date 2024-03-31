@@ -32,7 +32,7 @@ public class ElectricShock : MonoBehaviour
             }   
             else if (o.gameObject.GetComponent<ElectroReceptor>() != null)
             {
-                o.gameObject.GetComponent<ElectroReceptor>().electroShock();
+                o.gameObject.GetComponent<ElectroReceptor>().ElectroShock();
             }
         }
     }
