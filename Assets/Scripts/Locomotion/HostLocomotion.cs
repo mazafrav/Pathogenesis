@@ -37,5 +37,6 @@ public abstract class HostLocomotion : MonoBehaviour
         damageControl = GetComponentInChildren<DamageControl>();
         hostCollider = GetComponentInChildren<Collider2D>();
         damageControl.Damage(hostCollider);
+        GameManager.Instance.GetCamera().Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
     }
 }

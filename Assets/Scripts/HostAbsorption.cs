@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public class HostAbsorption : Interactable
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
     private Enemy enemyBehaviour;
+    private CinemachineVirtualCamera virtualCamera;
 
     void Start()
     {
@@ -18,7 +20,8 @@ public class HostAbsorption : Interactable
         playerController = GameManager.Instance.GetPlayerController();
         enemyBehaviour = GetComponent<Enemy>();
         Physics2D.queriesStartInColliders = false;
-        Debug.Log(layerMask);
+        Debug.Log(layerMask);      
+        virtualCamera = GameManager.Instance.GetCamera();
     }
 
     protected override void OnCollided(GameObject collidedObject)
@@ -48,7 +51,7 @@ public class HostAbsorption : Interactable
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;
             playerController.DisablePlayerBody();
-
+            virtualCamera.Follow = hostLocomotion.transform;
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
             if (rangedEnemy != null)
             {

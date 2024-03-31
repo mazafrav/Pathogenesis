@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private LevelLoader levelLoader;
+
+    [SerializeField]
+    private CinemachineVirtualCamera virtualCamera;
 
     private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
@@ -43,5 +47,10 @@ public class GameManager : MonoBehaviour
     public LevelLoader GetLevelLoader()
     {
         return levelLoader;
+    }
+
+    public CinemachineVirtualCamera GetCamera() 
+    { 
+        return virtualCamera;
     }
 }
