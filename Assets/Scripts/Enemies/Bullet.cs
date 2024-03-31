@@ -41,15 +41,25 @@ public class Bullet : MonoBehaviour
             //{
             //    Destroy(this.gameObject);
             //}
+            Debug.Log("Mi pitote chocó con: " + collision.gameObject.name);
             if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
             {
                 collision.GetComponent<DamageControl>().Damage(collision);
+                Destroy(this.gameObject);
             }
             else if(collision.gameObject.CompareTag("Player")) //Damage a player
             {
                 collision.GetComponentInParent<DamageControl>().Damage(collision);
+                Destroy(this.gameObject);
             }
-            Destroy(this.gameObject);
+            else if (collision.gameObject.CompareTag("TileMap"))
+            {
+                Destroy(this.gameObject);
+            }
+            else if (collision.gameObject.CompareTag("MapElement"))
+            {
+                Destroy(this.gameObject);
+            }
         }
 
     }

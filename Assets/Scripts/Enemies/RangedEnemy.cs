@@ -178,13 +178,10 @@ public class RangedEnemy : Enemy
                                 if (IsFacingRight())
                                 {
                                     graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                                    locomotion.Move(1);
                                 }
                                 else
                                 {
                                     graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
-                                    locomotion.Move(-1);
-
                                 }
                                 break;
                             }
@@ -197,6 +194,14 @@ public class RangedEnemy : Enemy
                         line.endWidth = 0.1f;
                         line.SetPosition(0, bulletSpawner.transform.position);
                         line.SetPosition(1, rangedEnemyDetection.personInRange.transform.position);
+                    }
+                }
+                else
+                {
+                    CancelAiming();
+                    if (!isCancellingAggro)
+                    {
+                        StartCoroutine(CancelAggro());
                     }
                 }
             }
@@ -249,7 +254,7 @@ public class RangedEnemy : Enemy
         yield return new WaitForSeconds(timeToShoot);
         if (isAiming)
         {
-            locomotion.Attack(player.transform.position);
+            locomotion.Attack(rangedEnemyDetection.personInRange.transform.position);
             StartCoroutine(ShootingCooldown(shootingCooldown));
         }
     }
