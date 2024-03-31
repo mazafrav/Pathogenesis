@@ -24,6 +24,9 @@ public class RangedEnemy : Enemy
     public GameObject player = null;
     [SerializeField]
     public ShootingComponent shootingComponent;
+
+    float movementDirection = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,18 +46,31 @@ public class RangedEnemy : Enemy
         {
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            if (IsFacingRight())
-            {
-                graphics.transform.rotation = Quaternion.Euler(0,0, -90);
-                locomotion.Move(1);
-            }
-            else
+            //if (IsFacingRight())
+            //{
+            //    graphics.transform.rotation = Quaternion.Euler(0,0, -90);
+            //    locomotion.Move(1);
+            //}
+            //else
+            //{
+            //    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
+            //    locomotion.Move(-1);
+
+            //}
+
+            if (transform.position.x >= wayPoints[0].position.x)
             {
                 graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                locomotion.Move(-1);
-
+                movementDirection = -1;
             }
-           
+            else if (transform.position.x < wayPoints[1].position.x)
+            {
+                movementDirection = 1;
+                graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
+            }
+            locomotion.Move(movementDirection);
+
+
             float distance = Vector3.Distance(transform.position, player.transform.position);
             //Debug.Log(distance);
             if (distance <= detectionRange)
