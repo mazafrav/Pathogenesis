@@ -83,7 +83,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1409d6c8e3eaa947b3e397d7422a3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoints: []
+  wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   IsDead: 0
   hostInteractable: {fileID: 0}
   locomotion: {fileID: 2843505179004484964}
@@ -110,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28da18c53ab91f5438a9663fa38c2bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 4
   jumpHeight: 4
   jumpDistance: 4
   coyoteTime: 0.1
@@ -147,6 +149,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 5260
+  graphics: {fileID: 5905917215000478002}
+  weaponGraphics: {fileID: 8601716645142450873}
 --- !u!61 &4059112965759983108
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -759,7 +763,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6336304723267710215}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -768,7 +772,7 @@ Transform:
   - {fileID: 9030609768684054685}
   - {fileID: 7424267711373240912}
   m_Father: {fileID: 5614215624366767450}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!114 &3053358784906759610
 MonoBehaviour:
   m_ObjectHideFlags: 0

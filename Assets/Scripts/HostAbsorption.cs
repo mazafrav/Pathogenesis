@@ -9,6 +9,10 @@ public class HostAbsorption : Interactable
 {
     [SerializeField]
     private LayerMask layerMask;
+    [SerializeField]
+    private SpriteRenderer graphics;
+    [SerializeField]
+    private SpriteRenderer weaponGraphics;
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
     private Enemy enemyBehaviour;
@@ -49,6 +53,7 @@ public class HostAbsorption : Interactable
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;
             playerController.DisablePlayerBody();
+            graphics.color = new Color(0.6107601f, 0.7075472f, 0.6252144f);
 
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
@@ -59,6 +64,7 @@ public class HostAbsorption : Interactable
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
             if (rangedEnemy != null)
             {
+                weaponGraphics.color = new Color(0.6107601f, 0.7075472f, 0.6252144f);
                 playerController.shootingComponent = rangedEnemy.shootingComponent;
                 rangedEnemy.ResetRigidbodyConstraints();
                 rangedEnemy.SetAimBehaviour(true);
