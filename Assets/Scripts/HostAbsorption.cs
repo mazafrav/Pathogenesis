@@ -16,30 +16,43 @@ public class HostAbsorption : Interactable
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
     private Enemy enemyBehaviour;
-    
+
     void Start()
     {
         hostLocomotion = GetComponent<HostLocomotion>();
         playerController = GameManager.Instance.GetPlayerController();
         enemyBehaviour = GetComponent<Enemy>();
         Physics2D.queriesStartInColliders = false;
-        Debug.Log(layerMask);      
+        Debug.Log(layerMask);
     }
 
     protected override void OnCollided(GameObject collidedObject)
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (collidedObject.transform.position - transform.position).normalized, 10f, ~layerMask);
         Debug.DrawLine(transform.position, collidedObject.transform.position + (collidedObject.transform.position - transform.position).normalized * 0.2f, Color.green);
+        bool playerLOS = false;
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.CompareTag("Player"))
             {
+                playerLOS = true;
                 if (playerInRange && Input.GetKeyDown(KeyCode.E))
                 {
                     OnInteract(collidedObject);
                     playerInRange = false;
                 }
             }
+        }
+
+        if (playerLOS && playerController.AbsorbableHostInRange == null)
+        {
+            Debug.LogWarning(playerLOS + " : " + playerController.AbsorbableHostInRange);
+            playerController.OnEnterAbsorbableRange(this);
+        }
+        else if (!playerLOS && playerController.AbsorbableHostInRange == this)
+        {
+            Debug.LogWarning("disable absorbable");
+            playerController.OnLeaveAbsorbableRange();
         }
     }
 
@@ -73,6 +86,14 @@ public class HostAbsorption : Interactable
             enemyBehaviour.enabled = false;
         }
 
+    }
+
+    protected override void OnTriggerExit2D(Collider2D collision)
+    {
+        if (playerController.AbsorbableHostInRange == this)
+        {
+            playerController.OnLeaveAbsorbableRange();
+        }
     }
 
 }

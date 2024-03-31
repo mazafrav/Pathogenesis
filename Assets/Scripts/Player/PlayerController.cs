@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
     private GameObject playerBody;
+    [SerializeField]
+    private VisualEffect absortionRangeVfx;
 
     [SerializeField]
     public HostLocomotion locomotion;
@@ -14,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public ShootingComponent shootingComponent;
     //public float DeltaX { set { deltaX = value; } }
-
+    public HostAbsorption AbsorbableHostInRange { get; private set; } = null;
 
     void Start()
     {
@@ -34,7 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             locomotion.JumpButtonUp();
         }
-        else if(Input.GetMouseButtonDown(0))
+        else if (Input.GetMouseButtonDown(0))
         {
             if (!locomotion.GetType().Name.Equals("RangedLocomotion"))
             {
@@ -45,9 +48,13 @@ public class PlayerController : MonoBehaviour
                 locomotion.Attack(shootingComponent.mousePosition);
             }
         }
-        else if(Input.GetKeyDown(KeyCode.F))
-        {           
+        else if (Input.GetKeyDown(KeyCode.F))
+        {
             locomotion.Unpossess();
+        }
+        if(AbsorbableHostInRange != null)
+        {
+            UpdateAbsortionVfxDirection();
         }
     }
 
@@ -58,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     public void DisablePlayerBody()
     {
-        if(playerBody)
+        if (playerBody)
         {
             playerBody.SetActive(false);
         }
@@ -70,6 +77,26 @@ public class PlayerController : MonoBehaviour
             playerBody.SetActive(true);
         }
 
+    }
+
+    public void OnEnterAbsorbableRange(HostAbsorption host)
+    {
+        AbsorbableHostInRange = host;
+        absortionRangeVfx.SetVector3("Direction", (host.transform.position - playerBody.transform.position).normalized);
+        absortionRangeVfx.Play();
+        Debug.Log("IN RANGE: " + host.name);
+    }
+
+    public void UpdateAbsortionVfxDirection()
+    {
+        absortionRangeVfx.SetVector3("Direction", (AbsorbableHostInRange.transform.position - playerBody.transform.position).normalized);
+    }
+
+    public void OnLeaveAbsorbableRange()
+    {
+        AbsorbableHostInRange = null;
+        absortionRangeVfx.Stop();
+        Debug.Log("NOT IN RANGE");
     }
 
     public GameObject GetPlayerBody() { return playerBody; }
