@@ -22,13 +22,14 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private Color colorWhileWindUp, colorWhileCooldown;
 
-    private Color colorWhileMoving;
+    private Color defaultColor;
 
     private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentShockDuration = 0.0f;
 
     private PlayerController playerController;
     private GroundChecker groundChecker;
+    private HostAbsorption absorption;
     public float ElectricShockRange { get { return electricShockRange; } }
 
 
@@ -36,8 +37,9 @@ public class ElectricLocomotion : HostLocomotion
     {
         playerController = GameManager.Instance.GetPlayerController();
         groundChecker = GetComponentInChildren<GroundChecker>();
+        absorption = GetComponent<HostAbsorption>();
 
-        colorWhileMoving = spriteRenderer.color;
+        defaultColor = spriteRenderer.color;
 
         currentShockDuration = shockDuration;
         jumpDistance += jumpOffset;
@@ -58,7 +60,8 @@ public class ElectricLocomotion : HostLocomotion
         if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
         {
             currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
-            ChangeSpritesColor(Color.Lerp(colorWhileMoving, colorWhileWindUp, 1.0f - currentWindUpTime));
+
+            ChangeSpritesColor(Color.Lerp(GetCurrentColor(), colorWhileWindUp, 1.0f - currentWindUpTime));
             //Debug.Log("Wind up: " + currentWindUpTime);
             if (currentWindUpTime <= 0f)
             {
@@ -72,8 +75,7 @@ public class ElectricLocomotion : HostLocomotion
             //We only apply cooldown feedback when the player is controlling the electric enemy
             if(playerController && playerController.locomotion.GetType() == this.GetType())
             {
-
-                ChangeSpritesColor(Color.Lerp(colorWhileCooldown, colorWhileMoving, 1.0f - currentCooldownTime));
+                ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - currentCooldownTime));
 
                 //if (currentCooldownTime <= 0f) 
                 //{
@@ -148,7 +150,8 @@ public class ElectricLocomotion : HostLocomotion
     {
         currentCooldownTime = 0f;
         currentWindUpTime = 0f;
-        ChangeSpritesColor(colorWhileMoving);
+        Color currentColor = GetCurrentColor();
+        ChangeSpritesColor(currentColor);
     }
 
     public bool IsWindingUp()
@@ -160,6 +163,8 @@ public class ElectricLocomotion : HostLocomotion
     {  
         return currentCooldownTime <= 0.0f;  
     }
+
+    private Color GetCurrentColor() { return transform.parent != null ? absorption.possessingColor : defaultColor; }
 
     private void ChangeSpritesColor(Color newColor)
     {
