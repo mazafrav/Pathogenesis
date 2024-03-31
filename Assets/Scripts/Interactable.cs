@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,7 +20,7 @@ public class Interactable : MonoBehaviour
         interactionCollider.OverlapCollider(filter, collidedObjects);
         foreach (var o in collidedObjects)
         {
-            if(o)
+            if (o)
             {
                 OnCollided(o.gameObject);
             }
@@ -44,7 +45,7 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             playerInRange = true;
         }
