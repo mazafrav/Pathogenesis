@@ -21,7 +21,8 @@ public class PlayerLocomotion : HostLocomotion
 
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2) * (jumpDistance / 2));
         gravityScale = g / Physics2D.gravity.y;
-        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2);       
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2);
+        rb2D.gravityScale = g / Physics2D.gravity.y;
     }
 
     // Update is called once per frame
