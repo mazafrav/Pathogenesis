@@ -141,7 +141,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2646997951098926621}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 331ff927d84368540bb39c296bc00b1e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 1665944531955470299}
   m_Layer: 0
   m_Name: MovingBlock
-  m_TagString: Untagged
+  m_TagString: MapElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
