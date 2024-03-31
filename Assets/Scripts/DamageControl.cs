@@ -32,7 +32,7 @@ public class DamageControl : MonoBehaviour
         }
     }
 
-    public void Damage(Collider2D collider, GameObject objectToDestroy = null)
+    public void Damage(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player") && !wasPossessing)
         {
