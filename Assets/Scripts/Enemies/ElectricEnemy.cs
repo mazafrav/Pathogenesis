@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ public class ElectricEnemy : Enemy
     void Start()
     {
         shockRange = GetComponentInChildren<ElectricShockRange>();
+        shockRange.transform.localScale = new Vector3(locomotion.ElectricShockRange * 2.0f, locomotion.ElectricShockRange * 2.0f, shockRange.transform.localScale.z);
     }
 
     void Update()
@@ -73,16 +75,18 @@ public class ElectricEnemy : Enemy
     {
         if (isPatrolling)
         {
-            if(transform.position.x >= wayPoints[0].position.x)
+            if (wayPoints.Length != 0)
             {
-                movementDirection = -1;
+                if (transform.position.x >= wayPoints[0].position.x)
+                {
+                    movementDirection = -1;
+                }
+                else if (transform.position.x < wayPoints[1].position.x)
+                {
+                    movementDirection = 1;
+                }
+                locomotion.Move(movementDirection);
             }
-            else if(transform.position.x < wayPoints[1].position.x)
-            {
-                movementDirection = 1;
-            }
-            locomotion.Move(movementDirection);
-
             //if (IsFacingRight())
             //{
             //    locomotion.Move(1);

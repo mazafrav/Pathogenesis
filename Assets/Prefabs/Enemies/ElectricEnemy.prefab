@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48818d3ff5545b428c773aa575c3438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wayPoints: []
   IsDead: 0
   hostInteractable: {fileID: 3733743548789898051}
   locomotion: {fileID: 1275196306852582045}
@@ -616,7 +617,7 @@ MonoBehaviour:
   range: {fileID: 7476986461620708609}
   interactionCollider: {fileID: 4264372909937117561}
   filter:
-    useTriggers: 0
+    useTriggers: 1
     useLayerMask: 0
     useDepth: 0
     useOutsideDepth: 0
@@ -624,7 +625,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 520
+      m_Bits: 2568
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
