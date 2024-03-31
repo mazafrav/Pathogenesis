@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    protected Transform[] wayPoints;
+
     public bool IsDead = false;
     [SerializeField]
     private Interactable hostInteractable;

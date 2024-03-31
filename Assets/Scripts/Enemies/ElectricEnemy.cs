@@ -16,6 +16,7 @@ public class ElectricEnemy : Enemy
 
     private Vector2 direction = Vector2.zero;
     private bool isSeeingTarget = false, isPatrolling = true;
+    private float movementDirection = 1.0f;
 
     void Start()
     {
@@ -72,14 +73,24 @@ public class ElectricEnemy : Enemy
     {
         if (isPatrolling)
         {
-            if (IsFacingRight())
+            if(transform.position.x >= wayPoints[0].position.x)
             {
-                locomotion.Move(1);
+                movementDirection = -1;
             }
-            else
+            else if(transform.position.x < wayPoints[1].position.x)
             {
-                locomotion.Move(-1);
+                movementDirection = 1;
             }
+            locomotion.Move(movementDirection);
+
+            //if (IsFacingRight())
+            //{
+            //    locomotion.Move(1);
+            //}
+            //else
+            //{
+            //    locomotion.Move(-1);
+            //}
         }
         else if (isSeeingTarget && shockRange.personInRange)
         {

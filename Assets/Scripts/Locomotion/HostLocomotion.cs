@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,10 @@ public abstract class HostLocomotion : MonoBehaviour
         damageControl = GetComponentInChildren<DamageControl>();
         hostCollider = GetComponentInChildren<Collider2D>();
         damageControl.Damage(hostCollider);
-        GameManager.Instance.GetCamera().Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
+        CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
+        if(cinemachineVirtualCamera != null )
+        {
+            cinemachineVirtualCamera.Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
+        }       
     }
 }
