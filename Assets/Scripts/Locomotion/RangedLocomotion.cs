@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RangedLocomotion : HostLocomotion
 {
+    [Header("Attack")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject shootOrigin;
     private GroundChecker groundChecker;
