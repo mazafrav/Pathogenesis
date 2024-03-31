@@ -16,9 +16,11 @@ public class HostAbsorption : Interactable
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
     private Enemy enemyBehaviour;
+    public Color possessingColor { get; private set; }
 
     void Start()
     {
+        possessingColor = new Color(0.6107601f, 0.7075472f, 0.6252144f);
         hostLocomotion = GetComponent<HostLocomotion>();
         playerController = GameManager.Instance.GetPlayerController();
         enemyBehaviour = GetComponent<Enemy>();
@@ -66,7 +68,7 @@ public class HostAbsorption : Interactable
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;
             playerController.DisablePlayerBody();
-            graphics.color = new Color(0.6107601f, 0.7075472f, 0.6252144f);
+            graphics.color = possessingColor;
 
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
@@ -77,7 +79,7 @@ public class HostAbsorption : Interactable
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
             if (rangedEnemy != null)
             {
-                weaponGraphics.color = new Color(0.6107601f, 0.7075472f, 0.6252144f);
+                weaponGraphics.color = possessingColor;
                 playerController.shootingComponent = rangedEnemy.shootingComponent;
                 rangedEnemy.ResetRigidbodyConstraints();
                 rangedEnemy.SetAimBehaviour(true);
