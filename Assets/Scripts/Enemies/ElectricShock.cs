@@ -30,6 +30,10 @@ public class ElectricShock : MonoBehaviour
                Debug.Log(o.gameObject.name);
                 damageControl.Damage(o);
             }   
+            else if (o.gameObject.GetComponent<ElectroReceptor>() != null)
+            {
+                o.gameObject.GetComponent<ElectroReceptor>().electroShock();
+            }
         }
     }
 
