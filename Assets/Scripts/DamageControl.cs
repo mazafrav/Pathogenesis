@@ -27,7 +27,7 @@ public class DamageControl : MonoBehaviour
 
         if (currentInvecibilityTime <= 0.0f)
         {
-            currentInvecibilityTime = 0.5f;
+            currentInvecibilityTime = invencibilityTime;
             wasPossessing = false;
         }
     }
