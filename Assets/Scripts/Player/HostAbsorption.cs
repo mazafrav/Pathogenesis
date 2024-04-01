@@ -20,7 +20,7 @@ public class HostAbsorption : Interactable
 
     void Start()
     {
-        possessingColor = new Color(0.6107601f, 0.7075472f, 0.6252144f);
+        possessingColor = new Color(0.6696f, 0.7624f, 0.7981f);
         hostLocomotion = GetComponent<HostLocomotion>();
         playerController = GameManager.Instance.GetPlayerController();
         enemyBehaviour = GetComponent<Enemy>();
