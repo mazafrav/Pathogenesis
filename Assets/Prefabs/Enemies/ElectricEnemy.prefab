@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d29511a0af9d5f40bdbfe2b1961587c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1.5
   jumpHeight: 2
   jumpDistance: 8
   coyoteTime: 0.1
@@ -227,6 +227,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 5260
   graphics: {fileID: 7863156932767443082}
+  weaponGraphics: {fileID: 0}
 --- !u!114 &4330372733500021139
 MonoBehaviour:
   m_ObjectHideFlags: 0
