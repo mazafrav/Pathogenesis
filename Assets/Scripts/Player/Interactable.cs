@@ -29,7 +29,7 @@ public class Interactable : MonoBehaviour
 
     protected virtual void OnCollided(GameObject collidedObject)
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange && Input.GetMouseButtonDown(0))
         {
             OnInteract(collidedObject);
             playerInRange = false;

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3714384544568055674}
   - component: {fileID: 4059112965759983108}
   - component: {fileID: 6805146684784495755}
-  - component: {fileID: 7226133399077826576}
   - component: {fileID: 2297060442174404073}
   m_Layer: 3
   m_Name: RangedEnemy
@@ -122,9 +121,9 @@ MonoBehaviour:
   shootOrigin: {fileID: 8697794661830917710}
   shootCDTimer: 0
   windUpTimer: 0
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  colorWhileWindUp: {r: 1, g: 0.9298433, b: 0.3443396, a: 1}
-  colorWhileCooldown: {r: 0.82373774, g: 1, b: 0, a: 1}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  colorWhileWindUp: {r: 0.77068, g: 0.8117647, b: 0.09411763, a: 1}
+  colorWhileCooldown: {r: 0.74628437, g: 0.8301887, b: 0.49733, a: 1}
 --- !u!114 &3714384544568055674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,19 +202,6 @@ BoxCollider2D:
   m_Size: {x: 0.9986136, y: 1.1857336}
   m_EdgeRadius: 0
 --- !u!114 &6805146684784495755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35908868805287134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36228bf19044343459affa31ed795696, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invencibilityTime: 0.5
---- !u!114 &7226133399077826576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

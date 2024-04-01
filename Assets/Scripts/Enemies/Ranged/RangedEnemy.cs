@@ -96,13 +96,7 @@ public class RangedEnemy : Enemy
                     graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
                 }
                 locomotion.Move(movementDirection);
-            }
-
-            float distance = Vector3.Distance(transform.position, player.transform.position);
-            //Debug.Log(distance);
-            //if (distance <= detectionRange)
-
-           
+            }           
             
             if (rangedEnemyDetection.personInRange != null)
 
@@ -158,7 +152,7 @@ public class RangedEnemy : Enemy
                 for (int i = 0; i < raycastHit2D.Length; i++)
                 {
                     if (raycastHit2D[i].collider.CompareTag("TileMap") &&
-                        (Vector2.Distance(raycastHit2D[i].collider.transform.position, transform.position) < Vector2.Distance(rangedEnemyDetection.personInRange.transform.position, transform.position)))
+                        (Vector2.Distance(raycastHit2D[i].point, transform.position) < Vector2.Distance(rangedEnemyDetection.personInRange.transform.position, transform.position)))
                     {
                         isSeeing = false;
                         break;
@@ -183,27 +177,37 @@ public class RangedEnemy : Enemy
                     }
                     if (isAiming)
                     {
-                        RaycastHit2D[] pitoteRayCast = Physics2D.RaycastAll(bulletSpawner.transform.position, (rangedEnemyDetection.personInRange.transform.position - bulletSpawner.transform.position).normalized, detectionRange);
-                        //Array.Sort(raycastHit2D, delegate (RaycastHit2D hit1, RaycastHit2D hit2)
+                        //RaycastHit2D[] pitoteRayCast = Physics2D.RaycastAll(bulletSpawner.transform.position, (rangedEnemyDetection.personInRange.transform.position - bulletSpawner.transform.position).normalized, detectionRange);
+                        ////Array.Sort(raycastHit2D, delegate (RaycastHit2D hit1, RaycastHit2D hit2)
+                        ////{
+                        ////    return Vector2.Distance(hit1.collider.transform.position, transform.position).CompareTo(Vector2.Distance(hit1.collider.transform.position, transform.position));
+                        ////});
+                        //for (int i = 0; i < pitoteRayCast.Length; i++)
                         //{
-                        //    return Vector2.Distance(hit1.collider.transform.position, transform.position).CompareTo(Vector2.Distance(hit1.collider.transform.position, transform.position));
-                        //});
-                        for (int i = 0; i < pitoteRayCast.Length; i++)
+                        //    if (pitoteRayCast[i].collider.CompareTag("TileMap") &&
+                        //        (Vector2.Distance(pitoteRayCast[i].point, transform.position) < Vector2.Distance(rangedEnemyDetection.personInRange.transform.position, transform.position)))
+                        //    {
+                        //        if (IsFacingRight())
+                        //        {
+                        //            graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
+                        //        }
+                        //        else
+                        //        {
+                        //            graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
+                        //        }
+                        //        break;
+                        //    }
+                        //    //Debug.Log("Elemento golpeado: " + raycastHit2D[i].collider.gameObject.name + " con distancia " + Vector2.Distance(raycastHit2D[i].collider.transform.position, transform.position));
+
+                        //}
+
+                        if (rangedEnemyDetection.personInRange.transform.position.x <= transform.position.x)
                         {
-                            if (pitoteRayCast[i].collider.CompareTag("TileMap") &&
-                                (Vector2.Distance(pitoteRayCast[i].collider.transform.position, transform.position) < Vector2.Distance(rangedEnemyDetection.personInRange.transform.position, transform.position)))
-                            {
-                                if (IsFacingRight())
-                                {
-                                    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                                }
-                                else
-                                {
-                                    graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
-                                }
-                                break;
-                            }
-                            //Debug.Log("Elemento golpeado: " + raycastHit2D[i].collider.gameObject.name + " con distancia " + Vector2.Distance(raycastHit2D[i].collider.transform.position, transform.position));
+                            graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
+                        }
+                        else
+                        {
+                            graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
 
                         }
                         LineRenderer line = GetComponent<LineRenderer>();
