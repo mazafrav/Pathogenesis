@@ -16,15 +16,15 @@ public class DamagingGround : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
+        if (other.CompareTag("Enemy")) //Damage an enemy
         {
-            collision.gameObject.GetComponent<DamageControl>().Damage(collision.collider);
+            other.GetComponent<DamageControl>().Damage(other);
         }
-        else if (collision.gameObject.CompareTag("Player")) //Damage a player
+        else if (other.CompareTag("Player")) //Damage a player
         {
-            collision.gameObject.GetComponentInParent<DamageControl>().Damage(collision.collider);
+            other.GetComponentInParent<DamageControl>().Damage(other);
         }
     }
 }

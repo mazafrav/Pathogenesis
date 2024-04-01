@@ -90,7 +90,7 @@ MonoBehaviour:
   hostInteractable: {fileID: 0}
   locomotion: {fileID: 2843505179004484964}
   graphics: {fileID: 6336304723267710215}
-  detectionRange: 14
+  detectionRange: 10
   shootDetection: {fileID: 7212329797493683486}
   bulletSpawner: {fileID: 8697794661830917710}
   timeToShoot: 0.5
@@ -120,6 +120,11 @@ MonoBehaviour:
   jumpBufferTime: 0.1
   bulletPrefab: {fileID: 4539472987443507277, guid: 53e900c3883ec7e4f9f12db044ba8027, type: 3}
   shootOrigin: {fileID: 8697794661830917710}
+  shootCDTimer: 0
+  windUpTimer: 0
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  colorWhileWindUp: {r: 0, g: 0, b: 0, a: 0}
+  colorWhileCooldown: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &3714384544568055674
 MonoBehaviour:
   m_ObjectHideFlags: 0

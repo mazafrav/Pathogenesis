@@ -82,20 +82,21 @@ public class RangedEnemy : Enemy
             //    locomotion.Move(-1);
 
             //}
-
-            if (transform.position.x >= wayPoints[0].position.x)
+            if (wayPoints.Length != 0)
             {
-                graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                movementDirection = -1;
-            }
+                if (transform.position.x >= wayPoints[0].position.x)
+                {
+                    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
+                    movementDirection = -1;
+                }
 
-            else if (transform.position.x < wayPoints[1].position.x)
-            {
-                movementDirection = 1;
-                graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
+                else if (transform.position.x < wayPoints[1].position.x)
+                {
+                    movementDirection = 1;
+                    graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
+                }
+                locomotion.Move(movementDirection);
             }
-            locomotion.Move(movementDirection);
-
 
             float distance = Vector3.Distance(transform.position, player.transform.position);
             //Debug.Log(distance);

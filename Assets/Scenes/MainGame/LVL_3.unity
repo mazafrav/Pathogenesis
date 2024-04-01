@@ -6914,6 +6914,10 @@ PrefabInstance:
       propertyPath: wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 885504951}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5614215624366767450, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.01
@@ -7122,7 +7126,7 @@ Transform:
   m_GameObject: {fileID: 826061102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.965084, y: 11.480859, z: -10}
+  m_LocalPosition: {x: -21.983757, y: 11.480859, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7473,7 +7477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5985050026731585847, guid: 8155e51e0dc6c8e4089c0b670708b45c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.03
+      value: -19.82
       objectReference: {fileID: 0}
     - target: {fileID: 5985050026731585847, guid: 8155e51e0dc6c8e4089c0b670708b45c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8015,7 +8019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5985050026731585847, guid: 8155e51e0dc6c8e4089c0b670708b45c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.31
+      value: -22.55
       objectReference: {fileID: 0}
     - target: {fileID: 5985050026731585847, guid: 8155e51e0dc6c8e4089c0b670708b45c, type: 3}
       propertyPath: m_LocalPosition.y
