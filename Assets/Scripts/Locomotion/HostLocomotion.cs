@@ -35,13 +35,16 @@ public abstract class HostLocomotion : MonoBehaviour
 
     public virtual void Unpossess()
     {
-        damageControl = GetComponentInChildren<DamageControl>();
-        hostCollider = GetComponentInChildren<Collider2D>();
-        damageControl.Damage(hostCollider);
-        CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
-        if(cinemachineVirtualCamera != null )
+        if (this.GetType() != typeof(PlayerLocomotion))
         {
-            cinemachineVirtualCamera.Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
-        }       
+            damageControl = GetComponentInChildren<DamageControl>();
+            hostCollider = GetComponentInChildren<Collider2D>();
+            damageControl.Damage(hostCollider);
+            CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
+            if (cinemachineVirtualCamera != null)
+            {
+                cinemachineVirtualCamera.Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
+            }
+        }    
     }
 }
