@@ -228,7 +228,6 @@ MonoBehaviour:
     m_Bits: 5260
   graphics: {fileID: 7863156932767443082}
   weaponGraphics: {fileID: 0}
-  possessingColor: {r: 0.6107601, g: 0.7075472, b: 0.6252144, a: 0}
 --- !u!114 &4330372733500021139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +382,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
+  m_Offset: {x: -0.006980419, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -394,7 +393,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.45}
+  m_Size: {x: 1.4467344, y: 0.45}
   m_EdgeRadius: 0
 --- !u!1 &3954916039054728215
 GameObject:

@@ -48,11 +48,6 @@ public class RangedEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (!player)
-        {
-            return;
-        }
-
         if (shootingCooldownTimer <= 0f && timeToShootTimer > 0f)
         {
             timeToShootTimer = Mathf.Max(timeToShootTimer - Time.deltaTime, 0f);
