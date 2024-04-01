@@ -8,11 +8,9 @@ public class RangedLocomotion : HostLocomotion
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject shootOrigin;    
     private GroundChecker groundChecker;
-    private bool playerShot = false;
     private float shootCooldown, windUp;
     public float shootCDTimer = 0.0f, windUpTimer = 0.0f;
-    private Vector3 target;
-    private PlayerController playerController;
+    private ShootingComponent shootingComponent;
 
     private SpriteRenderer spriteRenderer;
     public Color defaultColor;
@@ -26,7 +24,7 @@ public class RangedLocomotion : HostLocomotion
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameManager.Instance.GetPlayerController();
+        shootingComponent = GetComponentInChildren<ShootingComponent>();
         rb2D = GetComponentInParent<Rigidbody2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
         shootCooldown = GetComponent<RangedEnemy>().playerShootingCooldown;
@@ -62,7 +60,7 @@ public class RangedLocomotion : HostLocomotion
             //Debug.Log("Wind up: " + currentWindUpTime);
             if (windUpTimer <= 0f)
             {
-                Shoot(target, shootCDTimer);
+                Shoot(shootingComponent.mousePosition, shootCDTimer);
             }
         }
         else if (shootCDTimer > 0f)
@@ -79,7 +77,6 @@ public class RangedLocomotion : HostLocomotion
 
         if (GetComponentInParent<PlayerController>() != null )
         {
-            this.target = target;
             windUpTimer = windUp;
         }
         else

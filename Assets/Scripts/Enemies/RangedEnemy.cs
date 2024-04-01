@@ -271,7 +271,7 @@ public class RangedEnemy : Enemy
         canShoot = false;
         timeToShootTimer = timeToShoot;
         yield return new WaitForSeconds(timeToShoot);
-        if (isAiming && rangedEnemyDetection.personInRange!=null)
+         if (isAiming && rangedEnemyDetection.personInRange!=null)
         {
             locomotion.Attack(rangedEnemyDetection.personInRange.transform.position);
             StartCoroutine(ShootingCooldown(shootingCooldown));
@@ -288,7 +288,7 @@ public class RangedEnemy : Enemy
         canShoot = true;
     }
 
-    private void CancelAiming()
+    public void CancelAiming()
     {
         if (isAiming)
         {
