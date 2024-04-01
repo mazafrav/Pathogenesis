@@ -28,38 +28,25 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // photonic enemy cannot attack other phonotic enemies
-        if (collision.gameObject.GetComponentInParent<RangedEnemy>() == null)
-        {
-            //if (collision.gameObject.CompareTag("Player"))
-            //{
-            //    // Meter lógica de dañar al jugador aquí
 
-            //    Debug.Log("TE HICE MUCHO DAÑO");
-            //}
-            //else
-            //{
-            //    Destroy(this.gameObject);
-            //}
-            Debug.Log("Mi pitote chocó con: " + collision.gameObject.name);
-            if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
-            {
-                collision.GetComponent<DamageControl>().Damage(collision);
-                Destroy(this.gameObject);
-            }
-            else if(collision.gameObject.CompareTag("Player")) //Damage a player
-            {
-                collision.GetComponentInParent<DamageControl>().Damage(collision);
-                Destroy(this.gameObject);
-            }
-            else if (collision.gameObject.CompareTag("TileMap"))
-            {
-                Destroy(this.gameObject);
-            }
-            else if (collision.gameObject.CompareTag("MapElement"))
-            {
-                Destroy(this.gameObject);
-            }
+        Debug.Log("Mi pitote chocó con: " + collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
+        {
+            collision.GetComponent<DamageControl>().Damage(collision);
+            Destroy(this.gameObject);
+        }
+        else if(collision.gameObject.CompareTag("Player")) //Damage a player
+        {
+            collision.GetComponentInParent<DamageControl>().Damage(collision);
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("TileMap"))
+        {
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("MapElement"))
+        {
+            Destroy(this.gameObject);
         }
 
     }
