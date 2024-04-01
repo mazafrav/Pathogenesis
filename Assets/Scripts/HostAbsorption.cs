@@ -38,7 +38,7 @@ public class HostAbsorption : Interactable
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 playerLOS = true;
-                if (playerInRange && Input.GetKeyDown(KeyCode.E))
+                if (playerInRange && Input.GetMouseButtonDown(0))
                 {
                     OnInteract(collidedObject);
                     playerInRange = false;

@@ -6,22 +6,35 @@ public class RangedLocomotion : HostLocomotion
 {
     [Header("Attack")]
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject shootOrigin;
+    [SerializeField] private GameObject shootOrigin;    
     private GroundChecker groundChecker;
     private bool playerShot = false;
     private float shootCooldown, windUp;
-    private float shootCDTimer = 0.0f, windUpTimer = 0.0f;
+    public float shootCDTimer = 0.0f, windUpTimer = 0.0f;
     private Vector3 target;
+    private PlayerController playerController;
+
+    private SpriteRenderer spriteRenderer;
+    public Color defaultColor;
+    [SerializeField]
+    public Color colorWhileWindUp, colorWhileCooldown;
+    private HostAbsorption absorption;
+
 
     private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GameManager.Instance.GetPlayerController();
         rb2D = GetComponentInParent<Rigidbody2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
         shootCooldown = GetComponent<RangedEnemy>().playerShootingCooldown;
         windUp = GetComponent<RangedEnemy>().playerWindUp;
+        spriteRenderer = GetComponent<RangedEnemy>().graphics.GetComponent<SpriteRenderer>();
+        defaultColor = spriteRenderer.color;
+        absorption = GetComponent<HostAbsorption>();
+
 
         jumpDistance += jumpOffset;
         jumpHeight += jumpOffset;
@@ -45,7 +58,7 @@ public class RangedLocomotion : HostLocomotion
         {
             windUpTimer = Mathf.Max(windUpTimer - Time.deltaTime, 0f);
 
-            //ChangeSpritesColor(Color.Lerp(GetCurrentColor(), colorWhileWindUp, 1.0f - currentWindUpTime));
+            ChangeSpritesColor(Color.Lerp(GetCurrentColor(), colorWhileWindUp, 1.0f - windUpTimer));
             //Debug.Log("Wind up: " + currentWindUpTime);
             if (windUpTimer <= 0f)
             {
@@ -55,6 +68,8 @@ public class RangedLocomotion : HostLocomotion
         else if (shootCDTimer > 0f)
         {
             shootCDTimer = Mathf.Max(shootCDTimer - Time.deltaTime, 0f);
+
+            ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - shootCDTimer));
         }
     }
 
@@ -109,4 +124,11 @@ public class RangedLocomotion : HostLocomotion
             shootCDTimer = shootCooldown;
         }
     }
+
+    public void ChangeSpritesColor(Color newColor)
+    {
+        spriteRenderer.color = newColor;
+    }
+    public Color GetCurrentColor() { return transform.parent != null ? absorption.possessingColor : defaultColor; }
+
 }

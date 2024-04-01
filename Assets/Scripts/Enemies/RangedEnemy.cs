@@ -8,7 +8,7 @@ public class RangedEnemy : Enemy
     private Rigidbody2D rb;
     [Header("Movement")]
     [SerializeField] private RangedLocomotion locomotion;
-    [SerializeField] private GameObject graphics;
+    [SerializeField] public GameObject graphics;
     private bool enablePatrolling = true;
 
     [Header("Attack")]
@@ -18,8 +18,10 @@ public class RangedEnemy : Enemy
     [SerializeField] private GameObject bulletSpawner;
     private bool isAiming = false;
     [SerializeField] private float timeToShoot;
+    private float timeToShootTimer;
     [SerializeField] public float playerWindUp;
     [SerializeField] public float shootingCooldown;
+    private float shootingCooldownTimer;
     [SerializeField] public float playerShootingCooldown;
     private bool canShoot = true;
     private bool isCancellingAggro = false;
@@ -49,6 +51,25 @@ public class RangedEnemy : Enemy
         if (!player)
         {
             return;
+        }
+
+        if (shootingCooldownTimer <= 0f && timeToShootTimer > 0f)
+        {
+            timeToShootTimer = Mathf.Max(timeToShootTimer - Time.deltaTime, 0f);
+
+            locomotion.ChangeSpritesColor(Color.Lerp(locomotion.GetCurrentColor(), locomotion.colorWhileWindUp, 1.0f - timeToShootTimer));
+            //Debug.Log("Wind up: " + currentWindUpTime);
+            if (timeToShootTimer <= 0f)
+            {
+                ActivateCD();
+            }
+        }
+        else if (shootingCooldownTimer > 0f)
+        {
+            shootingCooldownTimer = Mathf.Max(shootingCooldownTimer - Time.deltaTime, 0f);
+
+            locomotion.ChangeSpritesColor(Color.Lerp(locomotion.colorWhileCooldown, locomotion.GetCurrentColor(), 1.0f - shootingCooldownTimer));
+
         }
 
         if (enablePatrolling)
@@ -252,6 +273,7 @@ public class RangedEnemy : Enemy
     {
         isAiming = true;
         canShoot = false;
+        timeToShootTimer = timeToShoot;
         yield return new WaitForSeconds(timeToShoot);
         if (isAiming && rangedEnemyDetection.personInRange!=null)
         {
@@ -274,6 +296,7 @@ public class RangedEnemy : Enemy
     {
         if (isAiming)
         {
+            locomotion.ChangeSpritesColor(Color.Lerp(locomotion.GetCurrentColor(), locomotion.defaultColor, 0.1f));
             StopCoroutine(AimingPlayer());
             StartCoroutine(ShootingCooldown(shootingCooldown / 2));
         }
@@ -301,11 +324,9 @@ public class RangedEnemy : Enemy
         shootingComponent.bisActive = value;
     }
 
-    //void OnDrawGizmosSelected()
-    //{
-    //    // Draw a yellow sphere at the transform's position
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawSphere(transform.position, detectionRange);
-    //}
+    private void ActivateCD()
+    {
+        shootingCooldownTimer = shootingCooldown;
+    }
 
 }

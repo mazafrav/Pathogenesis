@@ -630,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: wayPoints.Array.size
@@ -1061,7 +1061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 35908868805287134, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2440992622452792228, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
       propertyPath: player
@@ -1075,6 +1075,50 @@ PrefabInstance:
       propertyPath: wayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1521398075}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: colorWhileWindUp.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: colorWhileWindUp.b
+      value: 0.09411763
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: colorWhileWindUp.g
+      value: 0.8117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: colorWhileWindUp.r
+      value: 0.77068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: colorWhileCooldown.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: colorWhileCooldown.b
+      value: 0.49733
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: colorWhileCooldown.g
+      value: 0.8301887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2843505179004484964, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: colorWhileCooldown.r
+      value: 0.74628437
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714384544568055674, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: possessingColor.b
+      value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714384544568055674, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: possessingColor.g
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714384544568055674, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: possessingColor.r
+      value: 0.6117647
+      objectReference: {fileID: 0}
     - target: {fileID: 5614215624366767450, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.56
