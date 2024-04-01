@@ -18,36 +18,38 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
-        
+        /*
         if (transform.position.y >= 20 || transform.position.y <= -20
             || transform.position.x >= 30 || transform.position.x <= -30)
         {
             Destroy(gameObject);
         }
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        Debug.Log("Mi pitote chocó con: " + collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
+        if (collision.gameObject.GetComponentInParent<RangedEnemy>() == null)
         {
-            collision.GetComponent<DamageControl>().Damage(collision);
-            Destroy(this.gameObject);
+            Debug.Log("Mi pitote chocó con: " + collision.gameObject.name);
+            if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
+            {
+                collision.GetComponent<DamageControl>().Damage(collision);
+                Destroy(this.gameObject);
+            }
+            else if (collision.gameObject.CompareTag("Player")) //Damage a player
+            {
+                collision.GetComponentInParent<DamageControl>().Damage(collision);
+                Destroy(this.gameObject);
+            }
+            else if (collision.gameObject.CompareTag("TileMap"))
+            {
+                Destroy(this.gameObject);
+            }
+            else if (collision.gameObject.CompareTag("MapElement"))
+            {
+                Destroy(this.gameObject);
+            }
         }
-        else if(collision.gameObject.CompareTag("Player")) //Damage a player
-        {
-            collision.GetComponentInParent<DamageControl>().Damage(collision);
-            Destroy(this.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("TileMap"))
-        {
-            Destroy(this.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("MapElement"))
-        {
-            Destroy(this.gameObject);
-        }
-
     }
 }

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7482923173863068422}
   - component: {fileID: 9216670809804133026}
   - component: {fileID: 6673099776137959890}
+  - component: {fileID: 3197975891938380361}
   m_Layer: 0
   m_Name: fotoReceptor
-  m_TagString: Untagged
+  m_TagString: MapElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,3 +100,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatableElement: {fileID: 0}
   timeToDeactivate: 0
+--- !u!58 &3197975891938380361
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894579311422686104}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 8.2513885e-10, y: 0.0069217673}
+  serializedVersion: 2
+  m_Radius: 0.2854709

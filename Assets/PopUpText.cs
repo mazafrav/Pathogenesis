@@ -24,7 +24,7 @@ public class PopUpText : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
             newColor.a = 1.0f;
         }

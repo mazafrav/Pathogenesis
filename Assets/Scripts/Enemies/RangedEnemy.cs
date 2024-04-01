@@ -207,7 +207,7 @@ public class RangedEnemy : Enemy
 
                         }
                         LineRenderer line = GetComponent<LineRenderer>();
-                        line.enabled = true;
+                        line.enabled = false;
                         line.startWidth = 0.1f;
                         line.endWidth = 0.1f;
                         line.SetPosition(0, bulletSpawner.transform.position);

@@ -122,9 +122,9 @@ MonoBehaviour:
   shootOrigin: {fileID: 8697794661830917710}
   shootCDTimer: 0
   windUpTimer: 0
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
-  colorWhileWindUp: {r: 0, g: 0, b: 0, a: 0}
-  colorWhileCooldown: {r: 0, g: 0, b: 0, a: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  colorWhileWindUp: {r: 1, g: 0.9298433, b: 0.3443396, a: 1}
+  colorWhileCooldown: {r: 0.82373774, g: 1, b: 0, a: 1}
 --- !u!114 &3714384544568055674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35908868805287134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
