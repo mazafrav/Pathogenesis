@@ -6664,6 +6664,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: damagingGround (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9132261259468119427, guid: a49f46578231baa4faa68b4bd61feba4, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7098,7 +7102,7 @@ Transform:
   m_GameObject: {fileID: 826061102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.607025, y: -3.4103107, z: -10}
+  m_LocalPosition: {x: -19.60701, y: -3.4103107, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7611,7 +7615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5295952354615927848, guid: 029e271d59b7ded43ab37f9d329299bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.43
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5295952354615927848, guid: 029e271d59b7ded43ab37f9d329299bc, type: 3}
       propertyPath: m_LocalPosition.z
