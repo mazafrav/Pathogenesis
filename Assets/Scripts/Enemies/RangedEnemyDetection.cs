@@ -11,7 +11,6 @@ public class RangedEnemyDetection : MonoBehaviour
         if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy")))
         {
             personInRange = collision.gameObject;
-            Debug.Log("Detectando jugador!!");
         }
     }
 
@@ -20,7 +19,6 @@ public class RangedEnemyDetection : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             personInRange = null;
-            Debug.Log("Aayy dejé de detectar al jugador :(");
         }
     }
 }

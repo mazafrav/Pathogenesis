@@ -18,6 +18,7 @@ public class RangedEnemy : Enemy
     [SerializeField] private GameObject bulletSpawner;
     private bool isAiming = false;
     [SerializeField] private float timeToShoot;
+    [SerializeField] public float playerWindUp;
     [SerializeField] public float shootingCooldown;
     [SerializeField] public float playerShootingCooldown;
     private bool canShoot = true;
@@ -252,7 +253,7 @@ public class RangedEnemy : Enemy
         isAiming = true;
         canShoot = false;
         yield return new WaitForSeconds(timeToShoot);
-        if (isAiming)
+        if (isAiming && rangedEnemyDetection.personInRange!=null)
         {
             locomotion.Attack(rangedEnemyDetection.personInRange.transform.position);
             StartCoroutine(ShootingCooldown(shootingCooldown));

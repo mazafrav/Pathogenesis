@@ -36,6 +36,7 @@ public class DamageControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player") && !wasPossessing)
         {
+            GameManager.Instance.GetPlayerController().DisablePlayerBody();
             GameManager.Instance.GetLevelLoader().RestartLevel();
         }
         else if (collider.GetComponent<Enemy>() != null)
@@ -64,11 +65,5 @@ public class DamageControl : MonoBehaviour
 
             }
         }
-
-        //if (objectToDestroy != null)
-        //{
-        //    Destroy(objectToDestroy);
-        //}
-
     }
 }

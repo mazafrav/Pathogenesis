@@ -81,6 +81,7 @@ public class HostAbsorption : Interactable
             {
                 weaponGraphics.color = possessingColor;
                 playerController.shootingComponent = rangedEnemy.shootingComponent;
+                rangedEnemy.GetComponent<LineRenderer>().enabled = false;
                 rangedEnemy.ResetRigidbodyConstraints();
                 rangedEnemy.SetAimBehaviour(true);
             }
