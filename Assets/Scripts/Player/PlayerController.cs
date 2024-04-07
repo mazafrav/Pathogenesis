@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour
         deltaX = Input.GetAxisRaw("Horizontal");
         deltaY = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             locomotion.Jump(deltaX);
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if (Input.GetKeyUp(KeyCode.W))
         {
             locomotion.JumpButtonUp();
         }
