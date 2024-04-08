@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public float GetDeltaY() { return deltaY; }
+
     void Update()
     {
         deltaX = Input.GetAxisRaw("Horizontal");
