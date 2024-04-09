@@ -76,15 +76,6 @@ public class ElectricLocomotion : HostLocomotion
             if(playerController && playerController.locomotion.GetType() == this.GetType())
             {
                 ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - currentCooldownTime));
-
-                //if (currentCooldownTime <= 0f) 
-                //{
-                //    ChangeSpritesColor(colorWhileMoving);
-                //}
-                //else
-                //{
-                //    ChangeSpritesColor(colorWhileCooldown);
-                //}
             }
         }
 
@@ -124,21 +115,22 @@ public class ElectricLocomotion : HostLocomotion
     public override void Attack(Vector3 target = default)
     {
         if(!IsAttackReady()) return;
-        //ChangeSpritesColor(colorWhileWindUp);
         currentWindUpTime = windUp;
     }
 
     private void ActivateShock()
     {
         electricShockGameObject.SetActive(true);
-        currentCooldownTime = cooldown;
-        //ChangeSpritesColor(colorWhileMoving);
     }
 
     private void DeactivateShock()
     {
         electricShockGameObject.SetActive(false);
         currentShockDuration = shockDuration;
+        currentCooldownTime = cooldown;
+        currentWindUpTime = 0f;
+        Color currentColor = GetCurrentColor();
+        ChangeSpritesColor(currentColor);
     }
 
     public override bool IsAttackReady()
@@ -148,10 +140,10 @@ public class ElectricLocomotion : HostLocomotion
 
     public override void ResetAttack()
     {
-        currentCooldownTime = 0f;
-        currentWindUpTime = 0f;
-        Color currentColor = GetCurrentColor();
-        ChangeSpritesColor(currentColor);
+        //currentCooldownTime = 0f;
+        //currentWindUpTime = 0f;
+        //Color currentColor = GetCurrentColor();
+        //ChangeSpritesColor(currentColor);
     }
 
     public bool IsWindingUp()

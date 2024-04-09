@@ -15,6 +15,7 @@ public class HostAbsorption : Interactable
     private SpriteRenderer weaponGraphics;
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
+    private PlayerLocomotion playerLocomotion;
     private Enemy enemyBehaviour;
     public Color possessingColor { get; private set; }
 
@@ -23,6 +24,7 @@ public class HostAbsorption : Interactable
         possessingColor = new Color(0.6696f, 0.7624f, 0.7981f);
         hostLocomotion = GetComponent<HostLocomotion>();
         playerController = GameManager.Instance.GetPlayerController();
+        playerLocomotion = GameManager.Instance.GetPlayerLocomotion();
         enemyBehaviour = GetComponent<Enemy>();
         Physics2D.queriesStartInColliders = false;
         Debug.Log(layerMask);
@@ -64,6 +66,7 @@ public class HostAbsorption : Interactable
 
         if (playerController.GetPlayerBody()) //we possess if the player exists
         {
+            playerLocomotion.DisableFreeMovement();
             hostLocomotion.ResetAttack();
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;

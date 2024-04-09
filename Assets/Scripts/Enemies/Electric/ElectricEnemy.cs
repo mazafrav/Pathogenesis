@@ -67,7 +67,7 @@ public class ElectricEnemy : Enemy
         {
             isPatrolling = true;
             isSeeingTarget = false;
-            locomotion.ResetAttack();
+            //locomotion.ResetAttack();
         }
     }
 
