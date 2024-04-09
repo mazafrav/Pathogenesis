@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public float GetDeltaX() { return deltaX; }
     public float GetDeltaY() { return deltaY; }
 
     void Update()
