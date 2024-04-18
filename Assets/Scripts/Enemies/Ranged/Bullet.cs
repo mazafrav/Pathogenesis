@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
                 return;
             }
 
-            Debug.Log("Mi pitote choc� con: " + collision.gameObject.name);
+            //Debug.Log("Mi pitote choc� con: " + collision.gameObject.name);
             if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
             {
                 if (collision.gameObject.GetComponent<CrystallineLocomotion>() != null && isReflected)

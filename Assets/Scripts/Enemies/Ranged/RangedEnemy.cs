@@ -34,9 +34,8 @@ public class RangedEnemy : Enemy
     [SerializeField]
     private RangedEnemyDetection rangedEnemyDetection;
     private bool isSeeing = false;
+    private Vector3 targetPosition;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -45,20 +44,20 @@ public class RangedEnemy : Enemy
 
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Windup color
         if (shootingCooldownTimer <= 0f && timeToShootTimer > 0f)
         {
             timeToShootTimer = Mathf.Max(timeToShootTimer - Time.deltaTime, 0f);
 
             locomotion.ChangeSpritesColor(Color.Lerp(locomotion.GetCurrentColor(), locomotion.colorWhileWindUp, 1.0f - timeToShootTimer));
-            //Debug.Log("Wind up: " + currentWindUpTime);
             if (timeToShootTimer <= 0f)
             {
                 ActivateCD();
             }
         }
+        // Cooldown color
         else if (shootingCooldownTimer > 0f)
         {
             shootingCooldownTimer = Mathf.Max(shootingCooldownTimer - Time.deltaTime, 0f);
@@ -67,21 +66,11 @@ public class RangedEnemy : Enemy
 
         }
 
+        // Patrolling behaviour. This means the Ranged Enemy hasn't found any target to shoot
         if (enablePatrolling)
         {
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            //if (IsFacingRight())
-            //{
-            //    graphics.transform.rotation = Quaternion.Euler(0,0, -90);
-            //    locomotion.Move(1);
-            //}
-            //else
-            //{
-            //    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-            //    locomotion.Move(-1);
-
-            //}
             if (wayPoints.Length != 0)
             {
                 if (transform.position.x >= wayPoints[0].position.x)
@@ -96,29 +85,84 @@ public class RangedEnemy : Enemy
                     graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
                 }
                 locomotion.Move(movementDirection);
-            }           
+            }
+
+            // Search target selects the closest visible target and stops the patrolling behaviour
+            rangedEnemyDetection.targetInRange = SearchTarget();
             
-            if (rangedEnemyDetection.personInRange != null)
+        }
 
+        // Shooting behaviour. Target is not null
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            locomotion.Move(0);
+
+            // When a possible target leaves the ranged enemy's detection area, it's removed from the "allTargetsInRange" array.
+            // Hence, we need to check if its current target has left its detection area.
+            if (!rangedEnemyDetection.allTargetsInRange.Contains(rangedEnemyDetection.targetInRange))
             {
-                //RaycastHit2D hitResult = Physics2D.Linecast(shootOrigin.transform.position, player.transform.position, 1 << LayerMask.NameToLayer("Action"));
-                //RaycastHit2D hitResult = Physics2D.Raycast(shootDetection.transform.position, (player.transform.position - shootDetection.transform.position).normalized, detectionRange);
-                //Debug.DrawLine(shootDetection.transform.position, player.transform.position, Color.red);
-                //if (hitResult.collider != null)
-                //{
-                //    Debug.Log(hitResult.collider.name);
-                //    if (hitResult.collider.gameObject.CompareTag("Player"))
-                //    {
-                //        enablePatrolling = false;
-                //    }
-                //}
+                // We search once again for its closest visible target. If there is none, patrolling behaviour is restored.
+                rangedEnemyDetection.targetInRange = SearchTarget();
 
-                RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (rangedEnemyDetection.personInRange.transform.position - transform.position).normalized, detectionRange);
+                //if (rangedEnemyDetection.targetInRange == null)
+                //{
+                //    CancelAiming();
+                //    if (!isCancellingAggro)
+                //    {
+                //        StartCoroutine(CancelAggro());
+                //    }
+                //}                
+            }
+            else
+            {
+                // We check if there is any obstacle between the ranged enemy and its target.
+                // We do this by seeing if there is any tile map closer to the enemy than its target.
+                RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized, detectionRange);
                 for (int i = 0; i < raycastHit2D.Length; i++)
                 {
-                    if (raycastHit2D[i].collider.gameObject == rangedEnemyDetection.personInRange)
+                    if (raycastHit2D[i].collider.CompareTag("TileMap") &&
+                        (Vector2.Distance(raycastHit2D[i].point, transform.position) < Vector2.Distance(rangedEnemyDetection.targetInRange.transform.position, transform.position)))
+                    {
+                        isSeeing = false;
+                        break;
+                    }
+                    else if (raycastHit2D[i].collider.gameObject == rangedEnemyDetection.targetInRange)
+                    {
+                        Debug.DrawRay(transform.position, (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized * raycastHit2D[i].distance, Color.red);
+                        isSeeing = true;
+                        
+                    }
+                }
+
+                // If target is visible, start aiming and shoot.
+                // If it's not, look for another target. If there is none, enable patrolling once again.
+                CheckTargetIsVisible();
+                
+            }           
+        }
+    }
+
+    private bool IsFacingRight()
+    {
+        return transform.localScale.x > Mathf.Epsilon;
+    }
+
+    private GameObject SearchTarget()
+    {
+        GameObject result = null;
+        if (rangedEnemyDetection.allTargetsInRange.Count != 0)
+        {
+            foreach (var target in rangedEnemyDetection.allTargetsInRange)
+            {
+                RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (target.transform.position - transform.position).normalized, detectionRange);
+                for (int i = 0; i < raycastHit2D.Length; i++)
+                {
+                    if (raycastHit2D[i].collider.gameObject == target)
                     {
                         enablePatrolling = false;
+                        result = target;
+                        Debug.Log("MI TARGET ES: " + result.gameObject.name);
                         break;
                     }
                     else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap"))
@@ -131,194 +175,99 @@ public class RangedEnemy : Enemy
         }
         else
         {
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
-            locomotion.Move(0);
+            enablePatrolling = true;
+        }
+        return result;
+    }
 
-            if (rangedEnemyDetection.personInRange == null)
+    private void CheckTargetIsVisible()
+    {
+        if (isSeeing)
+        {
+            //StopCoroutine(CancelAggro());
+            //isCancellingAggro = false;
+            if (canShoot)
             {
-                CancelAiming();
-                if (!isCancellingAggro)
-                {
-                    StartCoroutine(CancelAggro());
-                }
+                StartCoroutine(AimRoutine());
             }
-            else
+            if (isAiming)
             {
-                RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (rangedEnemyDetection.personInRange.transform.position - transform.position).normalized, detectionRange);
-                //Array.Sort(raycastHit2D, delegate (RaycastHit2D hit1, RaycastHit2D hit2)
-                //{
-                //    return Vector2.Distance(hit1.collider.transform.position, transform.position).CompareTo(Vector2.Distance(hit1.collider.transform.position, transform.position));
-                //});
-                for (int i = 0; i < raycastHit2D.Length; i++)
+                targetPosition = rangedEnemyDetection.targetInRange.transform.position;
+                if (rangedEnemyDetection.targetInRange.transform.position.x <= transform.position.x)
                 {
-                    if (raycastHit2D[i].collider.CompareTag("TileMap") &&
-                        (Vector2.Distance(raycastHit2D[i].point, transform.position) < Vector2.Distance(rangedEnemyDetection.personInRange.transform.position, transform.position)))
-                    {
-                        isSeeing = false;
-                        break;
-                    }
-                    else if (raycastHit2D[i].collider.gameObject == rangedEnemyDetection.personInRange)
-                    {
-                        Debug.DrawRay(transform.position, (rangedEnemyDetection.personInRange.transform.position - transform.position).normalized * raycastHit2D[i].distance, Color.red);
-                        isSeeing = true;
-                        
-                    }
-                    //Debug.Log("Elemento golpeado: " + raycastHit2D[i].collider.gameObject.name + " con distancia " + Vector2.Distance(raycastHit2D[i].collider.transform.position, transform.position));
-
-                }
-
-                if (isSeeing)
-                {
-                    StopCoroutine(CancelAggro());
-                    isCancellingAggro = false;
-                    if (canShoot)
-                    {
-                        StartCoroutine(AimingPlayer());
-                    }
-                    if (isAiming)
-                    {
-                        //RaycastHit2D[] pitoteRayCast = Physics2D.RaycastAll(bulletSpawner.transform.position, (rangedEnemyDetection.personInRange.transform.position - bulletSpawner.transform.position).normalized, detectionRange);
-                        ////Array.Sort(raycastHit2D, delegate (RaycastHit2D hit1, RaycastHit2D hit2)
-                        ////{
-                        ////    return Vector2.Distance(hit1.collider.transform.position, transform.position).CompareTo(Vector2.Distance(hit1.collider.transform.position, transform.position));
-                        ////});
-                        //for (int i = 0; i < pitoteRayCast.Length; i++)
-                        //{
-                        //    if (pitoteRayCast[i].collider.CompareTag("TileMap") &&
-                        //        (Vector2.Distance(pitoteRayCast[i].point, transform.position) < Vector2.Distance(rangedEnemyDetection.personInRange.transform.position, transform.position)))
-                        //    {
-                        //        if (IsFacingRight())
-                        //        {
-                        //            graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                        //        }
-                        //        else
-                        //        {
-                        //            graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
-                        //        }
-                        //        break;
-                        //    }
-                        //    //Debug.Log("Elemento golpeado: " + raycastHit2D[i].collider.gameObject.name + " con distancia " + Vector2.Distance(raycastHit2D[i].collider.transform.position, transform.position));
-
-                        //}
-
-                        if (rangedEnemyDetection.personInRange.transform.position.x <= transform.position.x)
-                        {
-                            graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                        }
-                        else
-                        {
-                            graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
-
-                        }
-                        LineRenderer line = GetComponent<LineRenderer>();
-                        line.enabled = false;
-                        line.startWidth = 0.1f;
-                        line.endWidth = 0.1f;
-                        line.SetPosition(0, bulletSpawner.transform.position);
-                        line.SetPosition(1, rangedEnemyDetection.personInRange.transform.position);
-                    }
+                    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
                 }
                 else
                 {
-                    CancelAiming();
-                    if (!isCancellingAggro)
-                    {
-                        StartCoroutine(CancelAggro());
-                    }
+                    graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
+
                 }
             }
-            //float distance = Vector3.Distance(transform.position, player.transform.position);
-            //RaycastHit2D hitResult = Physics2D.Raycast(shootDetection.transform.position, (player.transform.position - shootDetection.transform.position).normalized, detectionRange);
-            //if (hitResult.collider != null)
+        }
+        else
+        {
+            if (!isAiming)
+            {
+                rangedEnemyDetection.targetInRange = SearchTarget();
+            }
+            //CancelAiming();
+            //if (!isCancellingAggro)
             //{
-            //    if (distance <= detectionRange && hitResult.collider.gameObject.CompareTag("Player"))
-            //    {
-            //        StopCoroutine(CancelAggro());
-            //        isCancellingAggro = false;
-            //        if (canShoot)
-            //        {
-            //            StartCoroutine(AimingPlayer());
-            //        }
-            //        if (isAiming)
-            //        {
-            //            LineRenderer line = shootDetection.GetComponent<LineRenderer>();
-            //            line.enabled = true;
-            //            line.startColor = Color.yellow;
-            //            line.endColor = Color.yellow;
-            //            line.startWidth = 0.1f;
-            //            line.endWidth = 0.1f;
-            //            line.SetPosition(0, bulletSpawner.transform.position);
-            //            line.SetPosition(1, player.transform.position);
-            //        }
-
-            //    }
-            //    else
-            //    {
-            //        CancelAiming();
-            //        if (!isCancellingAggro)
-            //        {
-            //            StartCoroutine(CancelAggro());
-            //        }
-            //    }
+            //    StartCoroutine(CancelAggro());
             //}
         }
     }
 
-    private bool IsFacingRight()
-    {
-        return transform.localScale.x > Mathf.Epsilon;
-    }
-
-    private IEnumerator AimingPlayer()
+    private IEnumerator AimRoutine()
     {
         isAiming = true;
         canShoot = false;
         timeToShootTimer = timeToShoot;
+
         yield return new WaitForSeconds(timeToShoot);
-         if (isAiming && rangedEnemyDetection.personInRange!=null)
-        {
-            locomotion.Attack(rangedEnemyDetection.personInRange.transform.position);
-            StartCoroutine(ShootingCooldown(shootingCooldown));
-        }
+
+        locomotion.Attack(targetPosition);
+        StartCoroutine(ShootingCooldownRoutine(shootingCooldown));
+        
     }
 
-    private IEnumerator ShootingCooldown(float cd)
+    private IEnumerator ShootingCooldownRoutine(float cd)
     {
         //canShoot = false;
         isAiming = false;
-        LineRenderer line = GetComponent<LineRenderer>();
-        line.enabled = false;
         yield return new WaitForSeconds(cd);
         canShoot = true;
     }
 
-    public void CancelAiming()
-    {
-        if (isAiming)
-        {
-            locomotion.ChangeSpritesColor(Color.Lerp(locomotion.GetCurrentColor(), locomotion.defaultColor, 0.1f));
-            StopCoroutine(AimingPlayer());
-            StartCoroutine(ShootingCooldown(shootingCooldown / 2));
-        }
-    }
+    //public void CancelAiming()
+    //{
+    //    if (isAiming)
+    //    {
+    //        locomotion.ChangeSpritesColor(Color.Lerp(locomotion.GetCurrentColor(), locomotion.defaultColor, 0.1f));
+    //        StopCoroutine(AimRoutine());
+    //        StartCoroutine(ShootingCooldownRoutine(shootingCooldown / 2));
+    //    }
+    //}
 
-    private IEnumerator CancelAggro()
-    {
-        isCancellingAggro = true;
-        yield return new WaitForSeconds(timeToCancelAggro);
-        if (isCancellingAggro)
-        {
-            enablePatrolling = true;
-            isCancellingAggro = false;
-        }
-    }
+    //private IEnumerator CancelAggro()
+    //{
+    //    isCancellingAggro = true;
+    //    yield return new WaitForSeconds(timeToCancelAggro);
+    //    if (isCancellingAggro)
+    //    {
+    //        enablePatrolling = true;
+    //        isCancellingAggro = false;
+    //    }
+    //}
 
+    // Used for when possessing
     public void ResetRigidbodyConstraints()
     {
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
+    // Used for when possessing
     public void SetAimBehaviour(bool value)
     {
         shootingComponent.bisActive = value;
