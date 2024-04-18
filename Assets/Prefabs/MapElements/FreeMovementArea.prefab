@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5245007123191242173}
   - component: {fileID: 6458835044180167473}
   - component: {fileID: 1114430238847233219}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BlockingBouncines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,6 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBlockBouncines: 0
   blockingBouncines: {fileID: 1497288495188407417}
+  applyThrust: 0
+  thrust: 20
+  time: 1
 --- !u!60 &4929705715960539555
 PolygonCollider2D:
   m_ObjectHideFlags: 0

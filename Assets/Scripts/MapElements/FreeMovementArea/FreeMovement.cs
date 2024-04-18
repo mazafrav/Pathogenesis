@@ -44,6 +44,14 @@ public class FreeMovement : MonoBehaviour
         if (playerLocomotion && playerController && playerController.GetPlayerBody().gameObject.activeSelf)
         {
             playerLocomotion.EnableFreeMovement();
+
+            if (canBlockBouncines)
+            {
+                blockingBouncines.SetActive(false);
+                blockingBouncines.GetComponent<BoxCollider2D>().enabled = false;
+                blockingBouncines.GetComponent<BlockingBouncines>().enabled = false;
+            }
+
         }
     }
 
