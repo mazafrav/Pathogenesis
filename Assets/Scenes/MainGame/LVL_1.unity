@@ -6032,6 +6032,10 @@ PrefabInstance:
       propertyPath: canBlockBouncines
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6824548261883244714, guid: 107c980bff5613f4486fb6f744ed3f91, type: 3}
+      propertyPath: canBlockBounciness
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6372,6 +6376,10 @@ PrefabInstance:
       propertyPath: canBlockBouncines
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6824548261883244714, guid: 107c980bff5613f4486fb6f744ed3f91, type: 3}
+      propertyPath: canBlockBounciness
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6544,7 +6552,7 @@ Transform:
   m_GameObject: {fileID: 826061102}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.509048, y: 8.286949, z: -10}
+  m_LocalPosition: {x: -18.538391, y: 8.350025, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7300,7 +7308,7 @@ Transform:
   m_GameObject: {fileID: 1750397105}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.46, y: 8.170001, z: -10}
+  m_LocalPosition: {x: -32.07, y: 8.35, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
