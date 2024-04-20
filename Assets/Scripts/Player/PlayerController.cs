@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     //public float DeltaX { set { deltaX = value; } }
     public HostAbsorption AbsorbableHostInRange { get; private set; } = null;
 
+    public bool HasDisabledControls { get; set; } = false;
+
     void Start()
     {
 

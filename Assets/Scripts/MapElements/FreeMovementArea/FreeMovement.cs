@@ -5,11 +5,13 @@ using UnityEngine;
 public class FreeMovement : MonoBehaviour
 {
     [Header("Bounciness avoidance")]
-    [SerializeField] private bool canBlockBouncines = false;
-    [SerializeField] private GameObject blockingBouncines;
+    [SerializeField] private bool canBlockBounciness = false;
+    [SerializeField] private GameObject blockingBounciness;
     [Header("Thrust")]
     [SerializeField] private bool applyThrust = false;
+    [SerializeField] private bool applyThrustOverTheFloor = false;
     [SerializeField] private float thrust = 20.0f;
+
     [SerializeField] private float time = 1.0f;
     private bool hasDisabledControls = false;
     private float currentTime = 0.0f;
@@ -17,18 +19,16 @@ public class FreeMovement : MonoBehaviour
     private void Start()
     {
         currentTime = time;
-        blockingBouncines.SetActive(false);
-        blockingBouncines.GetComponent<BoxCollider2D>().enabled = false;
-        blockingBouncines.GetComponent<BlockingBouncines>().enabled = false;
+        ActivateBlockingBounciness(false);
     }
 
     private void Update()
     {
-        if(hasDisabledControls)
+        if (hasDisabledControls)
         {
             currentTime -= Time.deltaTime;
         }
-        if(currentTime<=0.0f)
+        if (currentTime <= 0.0f)
         {
             currentTime = time;
             hasDisabledControls = false;
@@ -44,6 +44,12 @@ public class FreeMovement : MonoBehaviour
         if (playerLocomotion && playerController && playerController.GetPlayerBody().gameObject.activeSelf)
         {
             playerLocomotion.EnableFreeMovement();
+
+            if (canBlockBounciness)
+            {
+                ActivateBlockingBounciness(false);
+            }
+
         }
     }
 
@@ -55,25 +61,45 @@ public class FreeMovement : MonoBehaviour
         {
             playerLocomotion.DisableFreeMovement();
 
-            if (applyThrust)
-            {
-                Vector2 dir = new Vector2(playerController.GetDeltaX(), playerController.GetDeltaY());               
-                collision.GetComponent<Rigidbody2D>().AddForce(dir * thrust, ForceMode2D.Impulse);
-
-                if(dir.x > 0.0f || dir.x < 0.0f)
-                {
-                    playerController.enabled = false;
-                    hasDisabledControls = true;
-                }
-            }
+            ApplyThrust(playerController, collision);
             
             //We block the bouncines that happen when the player goes from bottom to up
-            if (canBlockBouncines && playerController.GetDeltaY() > 0.0f)
+            if (canBlockBounciness && playerController.GetDeltaY() > 0.0f)
             {
-                blockingBouncines.SetActive(true);
-                blockingBouncines.GetComponent<BoxCollider2D>().enabled = true;
-                blockingBouncines.GetComponent<BlockingBouncines>().enabled = true;
+                ActivateBlockingBounciness(true);
             }         
+        }
+    }
+
+
+    private void ActivateBlockingBounciness(bool isActive)
+    {
+        blockingBounciness.SetActive(isActive);
+        blockingBounciness.GetComponent<BoxCollider2D>().enabled = isActive;
+        blockingBounciness.GetComponent<BlockingBouncines>().enabled = isActive;
+    }
+
+    private void ApplyThrust(PlayerController playerController, Collider2D collision)
+    {
+        if (applyThrust)
+        {
+            Vector2 dir = new Vector2(playerController.GetDeltaX(), playerController.GetDeltaY());
+            if (dir.x > 0.0f || dir.x < 0.0f)
+            {
+                playerController.enabled = false;
+                playerController.HasDisabledControls = true;
+            }
+            collision.GetComponent<Rigidbody2D>().AddForce(dir * thrust, ForceMode2D.Impulse);
+        }
+        else if (applyThrustOverTheFloor)
+        {
+            Vector2 dir = new Vector2(playerController.GetDeltaX(), playerController.GetDeltaY());
+            if (dir.x > 0.0f || dir.x < 0.0f)
+            {
+                playerController.enabled = false;
+                hasDisabledControls = true;
+            }
+            collision.GetComponent<Rigidbody2D>().AddForce(dir * thrust, ForceMode2D.Impulse);
         }
     }
 }
