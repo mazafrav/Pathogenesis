@@ -154,9 +154,9 @@ MonoBehaviour:
   coyoteTime: 0.1
   jumpBufferTime: 0.1
   electricShockGameObject: {fileID: 5068238459060251847}
-  electricShockRange: 3
+  electricShockRange: 4
   cooldown: 2
-  windUp: 0.7
+  windUp: 0.5
   shockDuration: 0.5
   spriteRenderer: {fileID: 7863156932767443082}
   colorWhileWindUp: {r: 0.4901961, g: 0.56078434, b: 0.91372555, a: 1}
@@ -195,7 +195,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 1.19
 --- !u!114 &3733743548789898051
 MonoBehaviour:
   m_ObjectHideFlags: 0
