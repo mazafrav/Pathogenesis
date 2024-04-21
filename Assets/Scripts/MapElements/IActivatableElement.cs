@@ -5,5 +5,7 @@ using UnityEngine;
 public interface IActivatableElement
 {
     void Activate();
-    void Deactivate();
+
+    void Open();
+    void Close();
 }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SensitiveTile : MonoBehaviour
@@ -8,16 +10,25 @@ public class SensitiveTile : MonoBehaviour
     //Will only trigger if exiting in the same direction that the body entered the collision
 
     [SerializeField]
-    public GameObject activatableElement;
+    public GameObject[] activatableElements;
     // Start is called before the first frame update
     private Vector2 velocityEnter = Vector2.zero;
-    private bool isActive = false;
-    private IActivatableElement activatableInterface;
+    private IActivatableElement[] activatableInterfaces;
 
     private void Start()
     {
-        activatableInterface = activatableElement.GetComponent<IActivatableElement>();
-        if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
+        /*
+        for (var index = 0; index < activatableElements.Length; index++)
+        {
+            if (activatableElements[index].GetComponent<IActivatableElement>() == null) 
+            { 
+                throw new System.Exception("Object does not implement IActivaatbleElement"); 
+            }
+            GameObject objectActivable = activatableElements[index];
+
+            activatableInterfaces[index] = objectActivable.GetComponent<IActivatableElement>();
+        }
+        */
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,17 +48,17 @@ public class SensitiveTile : MonoBehaviour
             Vector2 velocityExit = other.gameObject.GetComponentInParent<PlayerLocomotion>().rb2D.velocity.normalized;
             if (Vector2.Dot(velocityEnter, velocityExit) > 0)
             {
-                isActive = !isActive;
-                if (isActive)
-                {
-                    activatableInterface.Activate();
-                }
-                else
-                {
-                    activatableInterface.Deactivate();
-                }
-                Debug.Log("triggered " + isActive);
+                ActivateActivables();
             }
         }
     }
+
+    private void ActivateActivables()
+    {
+        for (var index = 0; index < activatableElements.Length; index++)
+        {
+            activatableElements[index].GetComponent<IActivatableElement>().Activate();
+        }
+    }
+
 }

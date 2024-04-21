@@ -23,7 +23,7 @@ public class FotoReceptor : MonoBehaviour
     {
         if (other.tag == "FotoBullet")
         {
-            activatableInterface.Activate();
+            activatableInterface.Open();
         }
     }
 }

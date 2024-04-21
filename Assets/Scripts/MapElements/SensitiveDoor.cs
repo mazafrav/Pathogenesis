@@ -38,7 +38,12 @@ public class SensitiveDoor : MonoBehaviour, IActivatableElement
         }
     }
 
-    public void Deactivate()
+    public void Open()
     {
+    }
+
+    public void Close()
+    {
+
     }
 }

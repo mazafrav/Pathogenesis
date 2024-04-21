@@ -19,6 +19,6 @@ public class ElectroReceptor : MonoBehaviour
 
     public void ElectroShock()
     {
-        activatableInterface.Activate();
+        activatableInterface.Open();
     }
 }
