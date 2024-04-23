@@ -17,16 +17,13 @@ public class RangedEnemy : Enemy
     [SerializeField] private GameObject shootDetection;
     [SerializeField] private GameObject bulletSpawner;
     private bool isAiming = false;
-    [SerializeField] private float timeToShoot;
+    [SerializeField] private float timeToShoot; //a.k.a. Windup for AI
     private float timeToShootTimer;
     [SerializeField] public float playerWindUp;
     [SerializeField] public float shootingCooldown;
     private float shootingCooldownTimer;
     [SerializeField] public float playerShootingCooldown;
     private bool canShoot = true;
-    private bool isCancellingAggro = false;
-    [SerializeField] private float timeToCancelAggro;
-    public GameObject player = null;
     [SerializeField]
     public ShootingComponent shootingComponent;
 
@@ -103,16 +100,7 @@ public class RangedEnemy : Enemy
             if (!rangedEnemyDetection.allTargetsInRange.Contains(rangedEnemyDetection.targetInRange))
             {
                 // We search once again for its closest visible target. If there is none, patrolling behaviour is restored.
-                rangedEnemyDetection.targetInRange = SearchTarget();
-
-                //if (rangedEnemyDetection.targetInRange == null)
-                //{
-                //    CancelAiming();
-                //    if (!isCancellingAggro)
-                //    {
-                //        StartCoroutine(CancelAggro());
-                //    }
-                //}                
+                rangedEnemyDetection.targetInRange = SearchTarget();          
             }
             else
             {
@@ -148,11 +136,15 @@ public class RangedEnemy : Enemy
         return transform.localScale.x > Mathf.Epsilon;
     }
 
+    // Searches for closest visible target. If there is none, go back to patrolling
     private GameObject SearchTarget()
     {
         GameObject result = null;
+
+        // If there are any possible targets in range, they will be stored in this "allTargetsInRange" array
         if (rangedEnemyDetection.allTargetsInRange.Count != 0)
         {
+            // Check if Ranged can aim any of the possible targets
             foreach (var target in rangedEnemyDetection.allTargetsInRange)
             {
                 RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (target.transform.position - transform.position).normalized, detectionRange);
@@ -184,12 +176,13 @@ public class RangedEnemy : Enemy
     {
         if (isSeeing)
         {
-            //StopCoroutine(CancelAggro());
-            //isCancellingAggro = false;
+            // If Ranged is seeing the target, start aiming
             if (canShoot)
             {
                 StartCoroutine(AimRoutine());
             }
+            // While aiming AND seeing the target, store its position.
+            // In case of losing sight of the target, it will shoot at its last known position
             if (isAiming)
             {
                 targetPosition = rangedEnemyDetection.targetInRange.transform.position;
@@ -206,15 +199,12 @@ public class RangedEnemy : Enemy
         }
         else
         {
+            // If not seeing and not aiming, look for another target.
+            // If there is no target, patrolling behaviour will be restored.
             if (!isAiming)
             {
                 rangedEnemyDetection.targetInRange = SearchTarget();
             }
-            //CancelAiming();
-            //if (!isCancellingAggro)
-            //{
-            //    StartCoroutine(CancelAggro());
-            //}
         }
     }
 
@@ -238,27 +228,6 @@ public class RangedEnemy : Enemy
         yield return new WaitForSeconds(cd);
         canShoot = true;
     }
-
-    //public void CancelAiming()
-    //{
-    //    if (isAiming)
-    //    {
-    //        locomotion.ChangeSpritesColor(Color.Lerp(locomotion.GetCurrentColor(), locomotion.defaultColor, 0.1f));
-    //        StopCoroutine(AimRoutine());
-    //        StartCoroutine(ShootingCooldownRoutine(shootingCooldown / 2));
-    //    }
-    //}
-
-    //private IEnumerator CancelAggro()
-    //{
-    //    isCancellingAggro = true;
-    //    yield return new WaitForSeconds(timeToCancelAggro);
-    //    if (isCancellingAggro)
-    //    {
-    //        enablePatrolling = true;
-    //        isCancellingAggro = false;
-    //    }
-    //}
 
     // Used for when possessing
     public void ResetRigidbodyConstraints()
