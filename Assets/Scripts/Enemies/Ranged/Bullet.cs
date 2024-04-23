@@ -31,41 +31,39 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponentInParent<RangedEnemy>() == null)
+        if (collision.gameObject.GetComponent<Reflect>() != null)
         {
-            if (collision.gameObject.GetComponent<Reflect>() != null)
+            Debug.Log("Collided with reflect");
+            transform.up = -transform.up;
+            isReflected = true;
+            return;
+        }
+
+        //Debug.Log("Mi pitote choc� con: " + collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
+        {
+            if (collision.gameObject.GetComponent<CrystallineLocomotion>() != null && isReflected)
             {
-                Debug.Log("Collided with reflect");
-                transform.up = -transform.up;
-                isReflected = true;
+                isReflected = false;
                 return;
             }
-
-            //Debug.Log("Mi pitote choc� con: " + collision.gameObject.name);
-            if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
-            {
-                if (collision.gameObject.GetComponent<CrystallineLocomotion>() != null && isReflected)
-                {
-                    isReflected = false;
-                    return;
-                }
-                Debug.LogWarning("Rip cristalino");
-                collision.GetComponent<DamageControl>().Damage(collision);
-                Destroy(this.gameObject);
-            }
-            else if (collision.gameObject.CompareTag("Player")) //Damage a player
-            {
-                collision.GetComponentInParent<DamageControl>().Damage(collision);
-                Destroy(this.gameObject);
-            }
-            else if (collision.gameObject.CompareTag("TileMap"))
-            {
-                Destroy(this.gameObject);
-            }
-            else if (collision.gameObject.CompareTag("MapElement"))
-            {
-                Destroy(this.gameObject);
-            }
+            Debug.LogWarning("Rip cristalino");
+            collision.GetComponent<DamageControl>().Damage(collision);
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player")) //Damage a player
+        {
+            collision.GetComponentInParent<DamageControl>().Damage(collision);
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("TileMap"))
+        {
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("MapElement"))
+        {
+            Destroy(this.gameObject);
         }
     }
+    
 }

@@ -12,7 +12,10 @@ public class RangedEnemyDetection : MonoBehaviour
     {
         if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy")) && !allTargetsInRange.Contains(collision.gameObject))
         {
-           allTargetsInRange.Add(collision.gameObject);
+            if (collision.gameObject.GetComponent<RangedLocomotion>() == null)
+            {
+                allTargetsInRange.Add(collision.gameObject);
+            }
         }
     }
 
