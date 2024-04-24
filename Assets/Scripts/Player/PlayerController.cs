@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private GameObject playerBody;
     [SerializeField]
     private VisualEffect absortionRangeVfx;
+    [SerializeField]
+    private ParticleSystem deathEffect;
 
     [SerializeField]
     public HostLocomotion locomotion;
@@ -74,6 +76,12 @@ public class PlayerController : MonoBehaviour
         {
             playerBody.SetActive(false);
         }
+    }
+
+    public void PlayerBodyDeath()
+    {
+        Instantiate(deathEffect, playerBody.transform.position, playerBody.transform.rotation);
+        DisablePlayerBody();
     }
     public void EnablePlayerBody()
     {

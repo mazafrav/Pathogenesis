@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wayPoints: []
+  deathEffect: {fileID: 4784911079922076189, guid: a2b475ddab912154bb2dac7b34e55fd8, type: 3}
   IsDead: 1
   hostInteractable: {fileID: 0}
   locomotion: {fileID: 2843505179004484964}
@@ -94,8 +95,6 @@ MonoBehaviour:
   playerWindUp: 0.5
   shootingCooldown: 1.5
   playerShootingCooldown: 1
-  timeToCancelAggro: 2
-  player: {fileID: 0}
   shootingComponent: {fileID: 3053358784906759610}
   rangedEnemyDetection: {fileID: 4616672319838726419}
 --- !u!114 &2843505179004484964
@@ -717,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0981389939b14d94aa01be0f0d9289f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allTargetsInRange: []
 --- !u!1 &6336304723267710215
 GameObject:
   m_ObjectHideFlags: 0
