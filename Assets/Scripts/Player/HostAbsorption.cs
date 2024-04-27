@@ -34,17 +34,26 @@ public class HostAbsorption : Interactable
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (collidedObject.transform.position - transform.position).normalized, 10f, ~layerMask);
         Debug.DrawLine(transform.position, collidedObject.transform.position + (collidedObject.transform.position - transform.position).normalized * 0.2f, Color.green);
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.gameObject.CompareTag("Player"))
+            {                          
+                OnInteract(collidedObject);
+            }
+        }      
+    }
+
+    protected override void OnActivateAbsorptionVFX(GameObject collidedObject)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (collidedObject.transform.position - transform.position).normalized, 10f, ~layerMask);
+        Debug.DrawLine(transform.position, collidedObject.transform.position + (collidedObject.transform.position - transform.position).normalized * 0.2f, Color.green);
         bool playerLOS = false;
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.CompareTag("Player"))
-            {
-                playerLOS = true;
-                if (playerInRange /*&& Input.GetMouseButtonDown(0)*/)
-                {
-                    OnInteract(collidedObject);
-                    playerInRange = false;
-                }
+            {                              
+                playerLOS = true;               
             }
         }
 
@@ -58,6 +67,11 @@ public class HostAbsorption : Interactable
             Debug.LogWarning("disable absorbable");
             playerController.OnLeaveAbsorbableRange();
         }
+    }
+
+    protected override void OnDeactivateAbsorptionVFX()
+    {
+        playerController.OnLeaveAbsorbableRange();
     }
 
     protected override void OnInteract(GameObject interactedObject)
@@ -93,13 +107,4 @@ public class HostAbsorption : Interactable
         }
 
     }
-
-    protected override void OnTriggerExit2D(Collider2D collision)
-    {
-        if (playerController.AbsorbableHostInRange == this)
-        {
-            playerController.OnLeaveAbsorbableRange();
-        }
-    }
-
 }
