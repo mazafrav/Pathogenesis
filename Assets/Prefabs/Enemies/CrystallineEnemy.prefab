@@ -165,8 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wayPoints: []
   deathEffect: {fileID: 4784911079922076189, guid: b4344960ac42eea4ab2aa538001ceabd, type: 3}
-  IsDead: 0
-  hostInteractable: {fileID: 3714384544568055674}
   locomotion: {fileID: 6721288742054024510}
 --- !u!114 &6721288742054024510
 MonoBehaviour:
@@ -180,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072e2e3d03e54894997ac61723aad172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possessingParameters: {fileID: 11400000, guid: 987c079cdc7c41d46aa6e546ed531868, type: 2}
   moveSpeed: 5
   jumpHeight: 2
   jumpDistance: 3

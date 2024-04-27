@@ -96,6 +96,9 @@ public class ElectricLocomotion : HostLocomotion
         if (currentWindUpTime > 0f) return;
         if(groundChecker.isGrounded)
         {
+            g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+            rb2D.gravityScale = g / Physics2D.gravity.y;
+            velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
             rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
         }
     }
@@ -166,6 +169,17 @@ public class ElectricLocomotion : HostLocomotion
     public override void Aim(Vector3 target = default)
     {
         return;
+    }
+
+    public override void SetPossessingParameters()
+    {
+        base.SetPossessingParameters();
+
+        ElectricEnemyPossessingParameters electricPossessingParameters = (ElectricEnemyPossessingParameters)possessingParameters;
+        electricShockRange = electricPossessingParameters.electricShockRange;
+        cooldown = electricPossessingParameters.cooldown;
+        windUp = electricPossessingParameters.windUp;
+        shockDuration = electricPossessingParameters.shockDuration;
     }
 }
 

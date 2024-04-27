@@ -9,16 +9,16 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private ParticleSystem deathEffect;
 
-    public bool IsDead = false;
-    [SerializeField]
-    private Interactable hostInteractable;
+    //public bool IsDead = false;
+    //[SerializeField]
+    //private Interactable hostInteractable;
 
-    protected virtual void OnDeath()
-    {
-        hostInteractable.enabled = true;
-        IsDead = true;
-        this.enabled = false;
-    }
+    //protected virtual void OnDeath()
+    //{
+    //    hostInteractable.enabled = true;
+    //    IsDead = true;
+    //    this.enabled = false;
+    //}
 
     public void DestroyEnemy()
     {

@@ -133,8 +133,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   deathEffect: {fileID: 4784911079922076189, guid: a063e00af1890904d94930b404a16f5c, type: 3}
-  IsDead: 0
-  hostInteractable: {fileID: 3733743548789898051}
   locomotion: {fileID: 1275196306852582045}
   stoppingDistance: 1.5
 --- !u!114 &1275196306852582045
@@ -149,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d29511a0af9d5f40bdbfe2b1961587c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possessingParameters: {fileID: 11400000, guid: 4f78a542c06850d4f9a705ed5dce52f2, type: 2}
   moveSpeed: 1.2
   jumpHeight: 2
   jumpDistance: 8

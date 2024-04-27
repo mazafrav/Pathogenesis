@@ -5,6 +5,9 @@ using UnityEngine;
 
 public abstract class HostLocomotion : MonoBehaviour
 {
+    [SerializeField]
+    protected PossessingParameters possessingParameters;
+
     [Header("Movement")]
     [SerializeField]
     protected float moveSpeed = 5.0f;
@@ -48,5 +51,12 @@ public abstract class HostLocomotion : MonoBehaviour
                 cinemachineVirtualCamera.Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
             }
         }    
+    }
+
+    public virtual void SetPossessingParameters()
+    {
+        moveSpeed = possessingParameters.moveSpeed;
+        jumpHeight = possessingParameters.jumpHeight;
+        jumpDistance = possessingParameters.jumpDistance;
     }
 }
