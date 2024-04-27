@@ -213,6 +213,7 @@ public class RangedEnemy : Enemy
         isAiming = true;
         canShoot = false;
         timeToShootTimer = timeToShoot;
+        locomotion.Aim(targetPosition);
 
         yield return new WaitForSeconds(timeToShoot);
 

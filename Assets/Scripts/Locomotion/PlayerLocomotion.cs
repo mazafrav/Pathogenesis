@@ -101,4 +101,9 @@ public class PlayerLocomotion : HostLocomotion
     {
         return;
     }
+
+    public override void Aim(Vector3 target = default)
+    {
+        return;
+    }
 }

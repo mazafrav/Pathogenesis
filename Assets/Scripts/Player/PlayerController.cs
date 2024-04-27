@@ -18,10 +18,10 @@ public class PlayerController : MonoBehaviour
     private float deltaX = 0.0f, deltaY = 0.0f;
 
     public ShootingComponent shootingComponent;
-    //public float DeltaX { set { deltaX = value; } }
     public HostAbsorption AbsorbableHostInRange { get; private set; } = null;
 
     public bool HasDisabledControls { get; set; } = false;
+    private Vector3 mousePos;
 
     void Start()
     {
@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
         deltaX = Input.GetAxisRaw("Horizontal");
         deltaY = Input.GetAxisRaw("Vertical");
 
+        locomotion.Aim(mousePos);
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             locomotion.Jump(deltaX);
@@ -46,14 +48,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            if (!locomotion.GetType().Name.Equals("RangedLocomotion"))
-            {
-                locomotion.Attack();
-            }
-            else
-            {
-                locomotion.Attack(shootingComponent.mousePosition);
-            }
+            locomotion.Attack(mousePos);
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
@@ -68,6 +63,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         locomotion.Move(deltaX, deltaY);
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if(shootingComponent)
+        {
+            shootingComponent.Aim(mousePos);
+        }
     }
 
     public void DisablePlayerBody()
@@ -97,7 +98,6 @@ public class PlayerController : MonoBehaviour
         AbsorbableHostInRange = host;
         absortionRangeVfx.SetVector3("Direction", (host.transform.position - playerBody.transform.position).normalized);
         absortionRangeVfx.Play();
-        Debug.Log("IN RANGE: " + host.name);
     }
 
     public void UpdateAbsortionVfxDirection()
@@ -109,7 +109,6 @@ public class PlayerController : MonoBehaviour
     {
         AbsorbableHostInRange = null;
         absortionRangeVfx.Stop();
-        Debug.Log("NOT IN RANGE");
     }
 
     public GameObject GetPlayerBody() { return playerBody; }

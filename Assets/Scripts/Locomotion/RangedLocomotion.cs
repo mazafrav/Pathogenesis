@@ -60,7 +60,7 @@ public class RangedLocomotion : HostLocomotion
             //Debug.Log("Wind up: " + currentWindUpTime);
             if (windUpTimer <= 0f)
             {
-                Shoot(shootingComponent.mousePosition, shootCDTimer);
+                Shoot(shootingComponent.transform.up, shootCDTimer);
             }
         }
         else if (shootCDTimer > 0f)
@@ -115,6 +115,7 @@ public class RangedLocomotion : HostLocomotion
         Vector3 direction = target - bullet.transform.position;
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         bullet.transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+        bullet.GetComponent<Bullet>().owner = gameObject;
 
         if (cooldown >= 0.0f) 
         {
@@ -128,4 +129,7 @@ public class RangedLocomotion : HostLocomotion
     }
     public Color GetCurrentColor() { return transform.parent != null ? absorption.possessingColor : defaultColor; }
 
+    public override void Aim(Vector3 target = default)
+    {
+    }
 }

@@ -113,11 +113,7 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void Attack(Vector3 target = default)
     {
-        // if(!IsAttackReady()) return;
-        // currentWindUpTime = windUp;
-        float angle = AngleBetweenPoints(target, transform.position);
-        mirror.transform.rotation = Quaternion.Euler (new Vector3(0f, 0f, angle));
-        // transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, time.deltaTime);
+        ActivateStab();
     }
     
     float AngleBetweenPoints(Vector2 a, Vector2 b) {
@@ -167,5 +163,12 @@ public class CrystallineLocomotion : HostLocomotion
     private void ChangeSpritesColor(Color newColor)
     {
         spriteRenderer.color = newColor;
+    }
+
+    public override void Aim(Vector3 target = default)
+    {
+        float angle = AngleBetweenPoints(target, transform.position);
+        mirror.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        // transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, time.deltaTime);
     }
 }

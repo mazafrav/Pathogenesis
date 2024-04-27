@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject player;
     public DamageControl damageControl;
+    public GameObject owner;
 
     private bool isReflected = false;
     // Start is called before the first frame update
@@ -31,22 +32,29 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(owner == collision.gameObject) return;
+
         if (collision.gameObject.GetComponent<Reflect>() != null)
         {
-            Debug.Log("Collided with reflect");
-            transform.up = -transform.up;
-            isReflected = true;
+            Vector2 rot = Vector2.Reflect(transform.up, collision.gameObject.transform.right);
+            transform.up = rot;
+            HostLocomotion ownerLocomotion = collision.gameObject.GetComponentInParent<HostLocomotion>();
+            if(ownerLocomotion != null)
+            {
+                owner = ownerLocomotion.gameObject;
+            }
+            else
+            {
+                owner = collision.gameObject;
+            }
+
+            Debug.Log(owner);
             return;
         }
 
         //Debug.Log("Mi pitote choc� con: " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
         {
-            if (collision.gameObject.GetComponent<CrystallineLocomotion>() != null && isReflected)
-            {
-                isReflected = false;
-                return;
-            }
             Debug.LogWarning("Rip cristalino");
             collision.GetComponent<DamageControl>().Damage(collision);
             Destroy(this.gameObject);
@@ -65,5 +73,5 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    
+
 }

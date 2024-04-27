@@ -162,6 +162,11 @@ public class ElectricLocomotion : HostLocomotion
     {
         spriteRenderer.color = newColor;
     }
+
+    public override void Aim(Vector3 target = default)
+    {
+        return;
+    }
 }
 
 
