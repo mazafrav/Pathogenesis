@@ -50,10 +50,10 @@ public class PlayerController : MonoBehaviour
         {
             locomotion.Attack(mousePos);
         }
-        else if (Input.GetKeyDown(KeyCode.F))
-        {
-            locomotion.Unpossess();
-        }
+        //else if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    locomotion.Unpossess();
+        //}
         if(AbsorbableHostInRange != null)
         {
             UpdateAbsortionVfxDirection();
