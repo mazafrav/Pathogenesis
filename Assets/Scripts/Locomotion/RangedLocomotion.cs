@@ -112,10 +112,13 @@ public class RangedLocomotion : HostLocomotion
     private void Shoot(Vector3 target, float cooldown = -1.0f)
     {
         GameObject bullet = Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.Euler(0, 0, 0));
-        Vector3 direction = target - bullet.transform.position;
-        float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        bullet.transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+        Vector3 direction = shootingComponent.transform.up;
+        Debug.Log(shootingComponent.name);
+        // float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+        // Quaternion.LookRotation()
+        // bullet.transform.rotation = Quaternion.Euler(0, 0, rot + 90);
         bullet.GetComponent<Bullet>().owner = gameObject;
+        bullet.transform.up = direction.normalized;
 
         if (cooldown >= 0.0f) 
         {
@@ -131,5 +134,6 @@ public class RangedLocomotion : HostLocomotion
 
     public override void Aim(Vector3 target = default)
     {
+        shootingComponent.Aim(target);
     }
 }

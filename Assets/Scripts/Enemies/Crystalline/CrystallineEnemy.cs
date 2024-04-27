@@ -64,7 +64,7 @@ public class CrystalineEnemy : Enemy
 
     private void UpdateOrientation()
     {
-        locomotion.Attack(currentRangedTarget.transform.position);
+        locomotion.Aim(currentRangedTarget.transform.position);
     }
 
 

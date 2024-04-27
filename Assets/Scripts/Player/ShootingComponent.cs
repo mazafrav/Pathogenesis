@@ -8,7 +8,6 @@ public class ShootingComponent : MonoBehaviour
 
     public void Aim(Vector2 target)
     {
-        Debug.Log("Aiming: " + target + " " + bisActive);
         // if(!bisActive) return;
         transform.up = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
     }

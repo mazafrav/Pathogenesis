@@ -265,7 +265,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 70318e4a8aaf97f4aad8349d890973c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -343,7 +343,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.65, y: 0}
+  m_Offset: {x: 0.7002387, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -354,7 +354,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08, y: 1.38}
+  m_Size: {x: 0.18047762, y: 1.38}
   m_EdgeRadius: 0
 --- !u!114 &6098536425945800098
 MonoBehaviour:
@@ -502,7 +502,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -515,7 +515,7 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 8875280482900557516}
   - component: {fileID: 372864127837661307}
   - component: {fileID: 4616672319838726419}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: EnemyDetectionRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,7 +663,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -673,7 +673,7 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 520
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -682,7 +682,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 10
 --- !u!114 &4616672319838726419
 MonoBehaviour:
   m_ObjectHideFlags: 0

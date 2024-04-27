@@ -43,6 +43,10 @@ public class RangedEnemy : Enemy
 
     void Update()
     {
+        // if(targetPosition != null)
+        // {
+        //     locomotion.Aim(targetPosition);
+        // }
         // Windup color
         if (shootingCooldownTimer <= 0f && timeToShootTimer > 0f)
         {
@@ -186,15 +190,16 @@ public class RangedEnemy : Enemy
             if (isAiming)
             {
                 targetPosition = rangedEnemyDetection.targetInRange.transform.position;
-                if (rangedEnemyDetection.targetInRange.transform.position.x <= transform.position.x)
-                {
-                    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                }
-                else
-                {
-                    graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
+                locomotion.Aim(targetPosition);
+                // if (rangedEnemyDetection.targetInRange.transform.position.x <= transform.position.x)
+                // {
+                //     graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
+                // }
+                // else
+                // {
+                //     graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
 
-                }
+                // }
             }
         }
         else
@@ -213,14 +218,13 @@ public class RangedEnemy : Enemy
         isAiming = true;
         canShoot = false;
         timeToShootTimer = timeToShoot;
-        locomotion.Aim(targetPosition);
 
         yield return new WaitForSeconds(timeToShoot);
 
         locomotion.Attack(targetPosition);
         StartCoroutine(ShootingCooldownRoutine(shootingCooldown));
-        
     }
+    
 
     private IEnumerator ShootingCooldownRoutine(float cd)
     {

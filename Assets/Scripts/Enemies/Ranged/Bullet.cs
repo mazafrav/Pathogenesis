@@ -55,7 +55,6 @@ public class Bullet : MonoBehaviour
         //Debug.Log("Mi pitote choc� con: " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
         {
-            Debug.LogWarning("Rip cristalino");
             collision.GetComponent<DamageControl>().Damage(collision);
             Destroy(this.gameObject);
         }
