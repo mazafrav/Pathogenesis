@@ -105,9 +105,4 @@ public class ElectricEnemy : Enemy
             }
         }
     }
-
-    private bool IsFacingRight()
-    {
-        return transform.localScale.x > Mathf.Epsilon;
-    }
 }
