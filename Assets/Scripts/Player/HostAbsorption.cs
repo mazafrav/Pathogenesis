@@ -48,6 +48,7 @@ public class HostAbsorption : Interactable
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (collidedObject.transform.position - transform.position).normalized, 10f, ~layerMask);
         Debug.DrawLine(transform.position, collidedObject.transform.position + (collidedObject.transform.position - transform.position).normalized * 0.2f, Color.green);
+        /*
         bool playerLOS = false;
         if (hit.collider != null)
         {
@@ -56,13 +57,13 @@ public class HostAbsorption : Interactable
                 playerLOS = true;               
             }
         }
-
-        if (playerLOS && playerController.AbsorbableHostInRange == null)
+        */
+        if (/*playerLOS &&*/ playerController.AbsorbableHostInRange == null)
         {
-            Debug.LogWarning(playerLOS + " : " + playerController.AbsorbableHostInRange);
+            // Debug.LogWarning(playerLOS + " : " + playerController.AbsorbableHostInRange);
             playerController.OnEnterAbsorbableRange(this);
         }
-        else if (!playerLOS && playerController.AbsorbableHostInRange == this)
+        else if (/*!playerLOS &&*/ playerController.AbsorbableHostInRange == this)
         {
             Debug.LogWarning("disable absorbable");
             playerController.OnLeaveAbsorbableRange();
