@@ -94,9 +94,6 @@ public class RangedLocomotion : HostLocomotion
     {
         if (groundChecker.isGrounded)
         {
-            g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-            rb2D.gravityScale = g / Physics2D.gravity.y;
-            velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
             rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
         }
     }
@@ -143,6 +140,10 @@ public class RangedLocomotion : HostLocomotion
     public override void SetPossessingParameters()
     {
         base.SetPossessingParameters();
+
+        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+        rb2D.gravityScale = g / Physics2D.gravity.y;
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         RangedEnemyPossessingParameters rangedPossessingParameters = (RangedEnemyPossessingParameters)possessingParameters;
         windUp = rangedPossessingParameters.windUp;

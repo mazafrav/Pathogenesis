@@ -8,6 +8,8 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private GameObject electricShockGameObject = null;
     [SerializeField]
+    private GameObject electricShockRangeGameObject = null;
+    [SerializeField]
     private float electricShockRange = 4.0f;
     [SerializeField]
     private float cooldown = 1.0f;
@@ -52,6 +54,8 @@ public class ElectricLocomotion : HostLocomotion
 
         electricShockGameObject.SetActive(false);
         electricShockGameObject.transform.localScale = new Vector3(electricShockRange * 2.0f, electricShockRange * 2.0f, electricShockGameObject.transform.localScale.z);
+
+        electricShockRangeGameObject.transform.localScale = new Vector3(electricShockRange * 2.0f, electricShockRange * 2.0f, electricShockGameObject.transform.localScale.z);
     }
 
     void Update()
@@ -96,9 +100,6 @@ public class ElectricLocomotion : HostLocomotion
         if (currentWindUpTime > 0f) return;
         if(groundChecker.isGrounded)
         {
-            g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-            rb2D.gravityScale = g / Physics2D.gravity.y;
-            velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
             rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
         }
     }
@@ -175,11 +176,18 @@ public class ElectricLocomotion : HostLocomotion
     {
         base.SetPossessingParameters();
 
+        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+        rb2D.gravityScale = g / Physics2D.gravity.y;
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
+
         ElectricEnemyPossessingParameters electricPossessingParameters = (ElectricEnemyPossessingParameters)possessingParameters;
-        electricShockRange = electricPossessingParameters.electricShockRange;
         cooldown = electricPossessingParameters.cooldown;
         windUp = electricPossessingParameters.windUp;
         shockDuration = electricPossessingParameters.shockDuration;
+        electricShockRange = electricPossessingParameters.electricShockRange;
+
+        electricShockGameObject.transform.localScale = new Vector3(electricShockRange * 2.0f, electricShockRange * 2.0f, electricShockGameObject.transform.localScale.z);
+        electricShockRangeGameObject.transform.localScale = new Vector3(electricShockRange * 2.0f, electricShockRange * 2.0f, electricShockGameObject.transform.localScale.z);
     }
 }
 

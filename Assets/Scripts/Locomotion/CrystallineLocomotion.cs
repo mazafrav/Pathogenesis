@@ -95,9 +95,6 @@ public class CrystallineLocomotion : HostLocomotion
         if (currentWindUpTime > 0f) return;
         if(groundChecker.isGrounded)
         {
-            g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-            rb2D.gravityScale = g / Physics2D.gravity.y;
-            velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
             rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
         }
     }
@@ -178,6 +175,10 @@ public class CrystallineLocomotion : HostLocomotion
     public override void SetPossessingParameters()
     {
         base.SetPossessingParameters();
+
+        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+        rb2D.gravityScale = g / Physics2D.gravity.y;
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         CrystallineEnemyPossessingParameters crystallinePossessingParameters = (CrystallineEnemyPossessingParameters)possessingParameters;
         stabRange = crystallinePossessingParameters.stabRange;
