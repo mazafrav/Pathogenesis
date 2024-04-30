@@ -13,6 +13,13 @@ public class HostAbsorption : Interactable
     private SpriteRenderer graphics;
     [SerializeField]
     private SpriteRenderer weaponGraphics;
+
+    [SerializeField]
+    private float cameraShakeIntensity = 0.6f;
+    [SerializeField]
+    private float cameraShakeTime = 0.3f;
+
+
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
@@ -94,6 +101,13 @@ public class HostAbsorption : Interactable
             {
                 cinemachineVirtualCamera.Follow = hostLocomotion.transform;
             }
+
+            CameraShake cameraShake = cinemachineVirtualCamera.GetComponent<CameraShake>();
+            if(cameraShake)
+            {
+                cameraShake.ShakeCamera(cameraShakeTime, cameraShakeTime);
+            }
+           
 
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
             if (rangedEnemy != null)
