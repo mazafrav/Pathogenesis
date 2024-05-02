@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2593499289874731956}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.160484, y: -10.986961, z: 0}
+  m_LocalPosition: {x: 11.16777, y: -10.986961, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -464,6 +464,7 @@ GameObject:
   - component: {fileID: 6638146125867208158}
   - component: {fileID: 7355807386815547623}
   - component: {fileID: 5807420308629004400}
+  - component: {fileID: 1075711015028149996}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -541,6 +542,23 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!114 &1075711015028149996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255713724316667627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &8814914420911538780
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,6 +570,7 @@ GameObject:
   - component: {fileID: 7723080395241092619}
   - component: {fileID: 3911145193672846626}
   - component: {fileID: 6436983442925811673}
+  - component: {fileID: 4223864681139038062}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -639,3 +658,15 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 1087868110258503463}
   m_ConfineScreenEdges: 1
   m_Damping: 0
+--- !u!114 &4223864681139038062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8814914420911538780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16810a90f3142e41ba16706760a3271, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
