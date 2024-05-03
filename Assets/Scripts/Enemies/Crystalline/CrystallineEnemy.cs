@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CrystalineEnemy : Enemy
 {
-    [SerializeField] private CrystallineLocomotion locomotion;
+    //[SerializeField] private CrystallineLocomotion locomotion;
     private GameObject currentRangedTarget = null;
     private List<GameObject> closeTargets;
 

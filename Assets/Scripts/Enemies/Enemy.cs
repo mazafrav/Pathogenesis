@@ -5,24 +5,34 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
+    protected HostLocomotion locomotion;
+    [SerializeField]
     protected Transform[] wayPoints;
     [SerializeField]
     private ParticleSystem deathEffect;
 
-    //public bool IsDead = false;
-    //[SerializeField]
-    //private Interactable hostInteractable;
+    protected float movementDirection = 0;
 
-    //protected virtual void OnDeath()
-    //{
-    //    hostInteractable.enabled = true;
-    //    IsDead = true;
-    //    this.enabled = false;
-    //}
+    private int currentWayPointIndex = 0;
+    private float minDistanceToWaypoint = 0.3f;
 
     public void DestroyEnemy()
     {
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
         Destroy(gameObject);
     }
+
+   virtual protected void Patrol()
+   {
+        Vector2 dirToWaypoint = (wayPoints[currentWayPointIndex].position - transform.position).normalized;
+        movementDirection = dirToWaypoint.x;
+        float distanceToWayPoint = (transform.position - wayPoints[currentWayPointIndex].position).magnitude;
+        locomotion.Move(dirToWaypoint.x);
+
+        if (distanceToWayPoint < minDistanceToWaypoint)
+        {
+            currentWayPointIndex = (currentWayPointIndex + 1) % wayPoints.Length;
+        }
+   }
+
 }

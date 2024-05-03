@@ -9,20 +9,23 @@ public class ElectricEnemy : Enemy
 
     [Header("Movement")]
     [SerializeField]
-    ElectricLocomotion locomotion;
-    [SerializeField]
     private float stoppingDistance = 10.0f;
 
     private ElectricShockRange shockRange = null;
 
     private Vector2 direction = Vector2.zero;
     private bool isSeeingTarget = false, isPatrolling = true;
-    private float movementDirection = 1.0f;
+    
+    private ElectricLocomotion electricLocomotion;
+
 
     void Start()
     {
+
+        //transform.position = wayPoints[0].position;
+        electricLocomotion = (ElectricLocomotion)locomotion;
         shockRange = GetComponentInChildren<ElectricShockRange>();
-        shockRange.transform.localScale = new Vector3(locomotion.ElectricShockRange * 2.0f, locomotion.ElectricShockRange * 2.0f, shockRange.transform.localScale.z);
+        shockRange.transform.localScale = new Vector3(electricLocomotion.ElectricShockRange * 2.0f, electricLocomotion.ElectricShockRange * 2.0f, shockRange.transform.localScale.z);
     }
 
     void Update()
@@ -32,7 +35,7 @@ public class ElectricEnemy : Enemy
         {
             direction = (shockRange.personInRange.transform.position - transform.position).normalized;
 
-            RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, direction, locomotion.ElectricShockRange/*, rayLayerMask*/);
+            RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, direction, electricLocomotion.ElectricShockRange);
             for (int i = 0; i < raycastHit2D.Length; i++)
             {
                 if (raycastHit2D[i].collider.gameObject == shockRange.personInRange)
@@ -77,24 +80,19 @@ public class ElectricEnemy : Enemy
         {
             if (wayPoints.Length != 0)
             {
-                if (transform.position.x >= wayPoints[0].position.x)
-                {
-                    movementDirection = -1;
-                }
-                else if (transform.position.x < wayPoints[1].position.x)
-                {
-                    movementDirection = 1;
-                }
-                locomotion.Move(movementDirection);
+                //if (transform.position.x >= wayPoints[0].position.x)
+                //{
+                //    movementDirection = -1;
+                //}
+                //else if (transform.position.x < wayPoints[1].position.x)
+                //{
+                //    movementDirection = 1;
+                //}
+                //locomotion.Move(movementDirection);
+                Patrol();
+               
             }
-            //if (IsFacingRight())
-            //{
-            //    locomotion.Move(1);
-            //}
-            //else
-            //{
-            //    locomotion.Move(-1);
-            //}
+         
         }
         else if (isSeeingTarget && shockRange.personInRange)
         {

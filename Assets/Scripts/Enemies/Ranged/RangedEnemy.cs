@@ -7,7 +7,6 @@ public class RangedEnemy : Enemy
 {
     private Rigidbody2D rb;
     [Header("Movement")]
-    [SerializeField] private RangedLocomotion locomotion;
     [SerializeField] public GameObject graphics;
     private bool enablePatrolling = true;
 
@@ -27,14 +26,16 @@ public class RangedEnemy : Enemy
     [SerializeField]
     public ShootingComponent shootingComponent;
 
-    float movementDirection = -1;
     [SerializeField]
     private RangedEnemyDetection rangedEnemyDetection;
     private bool isSeeing = false;
     private Vector3 targetPosition;
 
+    private RangedLocomotion rangedLocomotion;
+
     void Start()
     {
+        rangedLocomotion = (RangedLocomotion)locomotion;
         rb = GetComponent<Rigidbody2D>();
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GetComponent<Collider2D>());
         rangedEnemyDetection.transform.localScale = new Vector3(detectionRange * 2.0f, detectionRange * 2.0f, rangedEnemyDetection.transform.localScale.z);
@@ -52,7 +53,7 @@ public class RangedEnemy : Enemy
         {
             timeToShootTimer = Mathf.Max(timeToShootTimer - Time.deltaTime, 0f);
 
-            locomotion.ChangeSpritesColor(Color.Lerp(locomotion.GetCurrentColor(), locomotion.colorWhileWindUp, 1.0f - timeToShootTimer));
+            rangedLocomotion.ChangeSpritesColor(Color.Lerp(rangedLocomotion.GetCurrentColor(), rangedLocomotion.colorWhileWindUp, 1.0f - timeToShootTimer));
             if (timeToShootTimer <= 0f)
             {
                 ActivateCD();
@@ -63,7 +64,7 @@ public class RangedEnemy : Enemy
         {
             shootingCooldownTimer = Mathf.Max(shootingCooldownTimer - Time.deltaTime, 0f);
 
-            locomotion.ChangeSpritesColor(Color.Lerp(locomotion.colorWhileCooldown, locomotion.GetCurrentColor(), 1.0f - shootingCooldownTimer));
+            rangedLocomotion.ChangeSpritesColor(Color.Lerp(rangedLocomotion.colorWhileCooldown, rangedLocomotion.GetCurrentColor(), 1.0f - shootingCooldownTimer));
 
         }
 
@@ -74,18 +75,27 @@ public class RangedEnemy : Enemy
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             if (wayPoints.Length != 0)
             {
-                if (transform.position.x >= wayPoints[0].position.x)
-                {
-                    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                    movementDirection = -1;
-                }
+                //if (transform.position.x >= wayPoints[0].position.x)
+                //{
+                //    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
+                //    movementDirection = -1;
+                //}
 
-                else if (transform.position.x < wayPoints[1].position.x)
+                //else if (transform.position.x < wayPoints[1].position.x)
+                //{
+                //    movementDirection = 1;
+                //    graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
+                //}
+                //locomotion.Move(movementDirection);
+                Patrol();
+                if(movementDirection > 0)
                 {
-                    movementDirection = 1;
                     graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
                 }
-                locomotion.Move(movementDirection);
+                else if(movementDirection < 0)
+                {
+                    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
+                }
             }
 
             // Search target selects the closest visible target and stops the patrolling behaviour
