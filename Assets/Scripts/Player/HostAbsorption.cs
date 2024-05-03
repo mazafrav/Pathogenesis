@@ -1,8 +1,5 @@
 using Cinemachine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class HostAbsorption : Interactable
@@ -14,10 +11,16 @@ public class HostAbsorption : Interactable
     [SerializeField]
     private SpriteRenderer weaponGraphics;
 
+    [Header("Possession Effect")]
     [SerializeField]
     private float cameraShakeIntensity = 0.6f;
     [SerializeField]
-    private float cameraShakeTime = 0.3f;
+    private float possessionEffectTime = 1.5f;
+    [SerializeField]
+    private float zoomValue = 0.0f;
+    private float originalZoom;
+
+    private float possessionTimer = 0.0f;
 
 
     private HostLocomotion hostLocomotion;
@@ -25,6 +28,8 @@ public class HostAbsorption : Interactable
     private PlayerLocomotion playerLocomotion;
     private Enemy enemyBehaviour;
     public Color possessingColor { get; private set; }
+
+    private bool doOnce = false;
 
     void Start()
     {
@@ -35,6 +40,40 @@ public class HostAbsorption : Interactable
         enemyBehaviour = GetComponent<Enemy>();
         Physics2D.queriesStartInColliders = false;
         Debug.Log(layerMask);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (possessionTimer > 0f)
+        {
+            playerController.isPossessing = true;
+            possessionTimer = Mathf.Max(possessionTimer - Time.deltaTime, 0f);
+
+            ChangeColor(Color.Lerp(graphics.color, possessingColor, 1 - possessionTimer / possessionEffectTime));
+            ChangePossessionMaterial(Mathf.Clamp(1 - possessionTimer / possessionEffectTime, 0f, 1f));
+
+            if  (zoomValue > 0f)
+            {
+                Zoom(Mathf.Lerp(originalZoom, zoomValue, Mathf.Clamp(1 - possessionTimer / possessionEffectTime + 0.25f, 0f, 1f)));
+            }
+
+        }
+        else
+        {
+            if (doOnce)
+            {
+                playerController.isPossessing = false;
+
+                if (zoomValue > 0f)
+                {
+                    Zoom(originalZoom);
+                }
+                //CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
+                //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = false;
+                doOnce = false;
+            }
+        }
     }
 
     protected override void OnCollided(GameObject collidedObject)
@@ -94,7 +133,7 @@ public class HostAbsorption : Interactable
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;
             playerController.DisablePlayerBody();
-            graphics.color = possessingColor;
+            //graphics.color = possessingColor;
 
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
@@ -105,22 +144,57 @@ public class HostAbsorption : Interactable
             CameraShake cameraShake = cinemachineVirtualCamera.GetComponent<CameraShake>();
             if(cameraShake)
             {
-                cameraShake.ShakeCamera(cameraShakeTime, cameraShakeTime);
+                cameraShake.ShakeCamera(cameraShakeIntensity, possessionEffectTime);
             }
            
 
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
             if (rangedEnemy != null)
             {
-                weaponGraphics.color = possessingColor;
+                //weaponGraphics.color = possessingColor;
                 playerController.shootingComponent = rangedEnemy.shootingComponent;
                 rangedEnemy.GetComponent<LineRenderer>().enabled = false;
                 rangedEnemy.ResetRigidbodyConstraints();
                 rangedEnemy.SetAimBehaviour(true);
             }
+            possessionTimer = possessionEffectTime;
+            doOnce = true;
+            cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
+            originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
 
+            if (zoomValue > 0.0f) // Transformation of a natural zoom value chosen by arrobaManu to a practical zoom value
+            {
+                zoomValue = Mathf.Clamp(originalZoom - zoomValue, 1 , 20);
+            }
             enemyBehaviour.enabled = false;
         }
 
+    }
+
+    private void ChangeColor(Color color)
+    {
+        graphics.color = color;
+        RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
+        if (rangedEnemy != null)
+        {
+            weaponGraphics.color = color;
+        }
+    }
+
+    private void ChangePossessionMaterial(float value)
+    {
+        graphics.material.SetFloat("_Progress", value);
+        //RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
+        //if (rangedEnemy != null)
+        //{
+        //    weaponGraphics.material.SetFloat("_Progress", value);
+        //}
+    }
+
+    private void Zoom(float value)
+    {
+        CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
+
+        cinemachineVirtualCamera.m_Lens.OrthographicSize = value;
     }
 }

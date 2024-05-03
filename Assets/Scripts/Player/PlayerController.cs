@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public bool HasDisabledControls { get; set; } = false;
     private Vector3 mousePos;
 
+    public bool isPossessing = false;
+    private bool doOnce = true;
     void Start()
     {
 
@@ -33,30 +35,44 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        deltaX = Input.GetAxisRaw("Horizontal");
-        deltaY = Input.GetAxisRaw("Vertical");
+        if (!isPossessing)
+        {
+            if (doOnce)
+            {
+                GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                doOnce = false;
+            }
 
-        locomotion.Aim(mousePos);
+            deltaX = Input.GetAxisRaw("Horizontal");
+            deltaY = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            locomotion.Jump(deltaX);
+            locomotion.Aim(mousePos);
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                locomotion.Jump(deltaX);
+            }
+            else if (Input.GetKeyUp(KeyCode.W))
+            {
+                locomotion.JumpButtonUp();
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                locomotion.Attack(mousePos);
+            }
+            //else if (Input.GetKeyDown(KeyCode.F))
+            //{
+            //    locomotion.Unpossess();
+            //}
+            if (AbsorbableHostInRange != null)
+            {
+                UpdateAbsortionVfxDirection();
+            }
         }
-        else if (Input.GetKeyUp(KeyCode.W))
+        else
         {
-            locomotion.JumpButtonUp();
-        }
-        else if (Input.GetMouseButtonDown(0))
-        {
-            locomotion.Attack(mousePos);
-        }
-        //else if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    locomotion.Unpossess();
-        //}
-        if(AbsorbableHostInRange != null)
-        {
-            UpdateAbsortionVfxDirection();
+            GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            doOnce = true;
         }
     }
 
