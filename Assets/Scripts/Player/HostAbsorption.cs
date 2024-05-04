@@ -159,7 +159,7 @@ public class HostAbsorption : Interactable
             }
             possessionTimer = possessionEffectTime;
             doOnce = true;
-            cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
+            //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
             originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
 
             if (zoomValue > 0.0f) // Transformation of a natural zoom value chosen by arrobaManu to a practical zoom value
