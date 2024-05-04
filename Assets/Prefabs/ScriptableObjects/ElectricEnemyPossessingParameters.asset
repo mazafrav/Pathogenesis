@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ElectricEnemyPossessingParameters
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  jumpHeight: 2
-  jumpDistance: 4
+  jumpHeight: 3
+  jumpDistance: 12
+  gravityModifier: 1.3
   electricShockRange: 5
   cooldown: 1
   windUp: 0.5

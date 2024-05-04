@@ -7,4 +7,6 @@ public class PossessingParameters : ScriptableObject
     public float jumpHeight;
 
     public float jumpDistance;
+
+    public float gravityModifier;
 }
