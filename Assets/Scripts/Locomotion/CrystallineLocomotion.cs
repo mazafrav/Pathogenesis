@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class CrystallineLocomotion : HostLocomotion
 {
-[Header("Attack")]
+    [Header("Attack")]
     [SerializeField]
-    private GameObject mirror;
+    private GameObject graphics;
     [SerializeField]
     private float maxAngularSpeed = 10f;
 
     [SerializeField]
-    private GameObject stabGameObject = null;
+    private CrystallineStab crystallineStab;
     [SerializeField]
     private float stabRange = 4.0f;
     [SerializeField]
@@ -56,7 +56,7 @@ public class CrystallineLocomotion : HostLocomotion
     }
 
     void Update()
-    {      
+    {
         if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
         {
             currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
@@ -64,36 +64,34 @@ public class CrystallineLocomotion : HostLocomotion
             ChangeSpritesColor(Color.Lerp(GetCurrentColor(), colorWhileWindUp, 1.0f - currentWindUpTime));
             if (currentWindUpTime <= 0f)
             {
-                ActivateStab();                   
-            }           
+                ActivateStab();
+            }
         }
-        // else if (!electricShockGameObject.activeSelf && currentCooldownTime > 0f)
-        // {
-        //     currentCooldownTime = Mathf.Max(currentCooldownTime - Time.deltaTime, 0f);
+        else if (crystallineStab.isDamageActive)
+        {
+            currentStabDuration = Mathf.Max(currentStabDuration - Time.deltaTime, 0f);
+            crystallineStab.MoveStab(1 - Mathf.Abs(1 - 2 * (currentStabDuration / stabDuration)));
+            if (currentStabDuration <= 0f)
+            {
+                DeactivateStab();
+            }
+        }
+        else if (!crystallineStab.isDamageActive && currentCooldownTime > 0f)
+        {
+            currentCooldownTime = Mathf.Max(currentCooldownTime - Time.deltaTime, 0f);
+            //We only apply cooldown feedback when the player is controlling the electric enemy
+            if (playerController && playerController.locomotion.GetType() == this.GetType())
+            {
+                ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - currentCooldownTime));
+            }
+        }
 
-        //     //We only apply cooldown feedback when the player is controlling the electric enemy
-        //     if(playerController && playerController.locomotion.GetType() == this.GetType())
-        //     {
-        //         ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - currentCooldownTime));
-        //     }
-        // }
-
-                 
-
-        // if (electricShockGameObject.activeSelf)
-        // {
-        //     currentStabDuration = Mathf.Max(currentStabDuration - Time.deltaTime, 0f);
-        //     if (currentStabDuration <= 0f)
-        //     {
-        //         DeactivateStab();
-        //     }
-        // }
     }
 
     public override void Jump(float deltaX)
     {
         if (currentWindUpTime > 0f) return;
-        if(groundChecker.isGrounded)
+        if (groundChecker.isGrounded)
         {
             rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
         }
@@ -113,17 +111,21 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void Attack(Vector3 target = default)
     {
-        ActivateStab();
+        if (IsAttackReady())
+        {
+            currentWindUpTime = windUp;
+        }
     }
-    
-    float AngleBetweenPoints(Vector2 a, Vector2 b) {
+
+    float AngleBetweenPoints(Vector2 a, Vector2 b)
+    {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
 
 
     private void ActivateStab()
     {
-        Debug.LogError("Activate Stab not implemented!");
+        crystallineStab.isDamageActive = true;
     }
 
     private void DeactivateStab()
@@ -133,19 +135,21 @@ public class CrystallineLocomotion : HostLocomotion
         currentWindUpTime = 0f;
         Color currentColor = GetCurrentColor();
         ChangeSpritesColor(currentColor);
+        crystallineStab.isDamageActive = false;
+        crystallineStab.MoveStab(0f);
     }
 
     public override bool IsAttackReady()
     {
-        return currentCooldownTime <= 0f && currentWindUpTime <= 0f;
+        return currentCooldownTime <= 0f && currentWindUpTime <= 0f && !crystallineStab.isDamageActive;
     }
 
     public override void ResetAttack()
     {
-        //currentCooldownTime = 0f;
-        //currentWindUpTime = 0f;
-        //Color currentColor = GetCurrentColor();
-        //ChangeSpritesColor(currentColor);
+        currentCooldownTime = 0f;
+        currentWindUpTime = 0f;
+        Color currentColor = GetCurrentColor();
+        ChangeSpritesColor(currentColor);
     }
 
     public bool IsWindingUp()
@@ -153,9 +157,9 @@ public class CrystallineLocomotion : HostLocomotion
         return currentWindUpTime > 0f;
     }
 
-    public bool IsCooldownFinished() 
-    {  
-        return currentCooldownTime <= 0.0f;  
+    public bool IsCooldownFinished()
+    {
+        return currentCooldownTime <= 0.0f;
     }
 
     private Color GetCurrentColor() { return transform.parent != null ? absorption.possessingColor : defaultColor; }
@@ -168,8 +172,18 @@ public class CrystallineLocomotion : HostLocomotion
     public override void Aim(Vector3 target = default)
     {
         float angle = AngleBetweenPoints(target, transform.position);
-        mirror.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-        // transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, time.deltaTime);
+        if(angle < 0f)
+        {
+            if(angle > -90f)
+            {
+                angle = 0f;
+            }
+            else
+            {
+                angle = 180f;
+            }
+        }
+        graphics.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
     public override void SetPossessingParameters()
@@ -185,6 +199,5 @@ public class CrystallineLocomotion : HostLocomotion
         cooldown = crystallinePossessingParameters.cooldown;
         windUp = crystallinePossessingParameters.windUp;
         stabDuration = crystallinePossessingParameters.stabDuration;
-
     }
 }
