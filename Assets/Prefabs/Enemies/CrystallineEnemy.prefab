@@ -187,16 +187,16 @@ MonoBehaviour:
   jumpDistance: 3
   coyoteTime: 0.1
   jumpBufferTime: 0.1
-  mirror: {fileID: 1272691700377037685}
+  graphics: {fileID: 6336304723267710215}
   maxAngularSpeed: 10
-  stabGameObject: {fileID: 0}
+  crystallineStab: {fileID: 8177829030128081836}
   stabRange: 4
-  cooldown: 1
+  cooldown: 3
   windUp: 0.5
   stabDuration: 0.5
   spriteRenderer: {fileID: 5905917215000478002}
-  colorWhileWindUp: {r: 0, g: 0, b: 0, a: 0}
-  colorWhileCooldown: {r: 0, g: 0, b: 0, a: 0}
+  colorWhileWindUp: {r: 0.6830188, g: 0.16882162, b: 0.6147412, a: 1}
+  colorWhileCooldown: {r: 0.493589, g: 0.22465642, b: 0.5245282, a: 1}
 --- !u!1 &49632745737564221
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,8 +308,8 @@ Transform:
   m_GameObject: {fileID: 734616480627949131}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071066, w: 0.70710707}
-  m_LocalPosition: {x: -0.067, y: -0, z: 0}
-  m_LocalScale: {x: 0.3491, y: 1.2967, z: 1}
+  m_LocalPosition: {x: -0.335, y: -0, z: 0}
+  m_LocalScale: {x: 0.3491, y: 1.7420524, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1136644953377256132}
@@ -395,7 +395,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -439,7 +439,7 @@ Transform:
   m_GameObject: {fileID: 771860517613132541}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 1.065, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -454,6 +454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1136644953377256132}
+  - component: {fileID: 8177829030128081836}
   m_Layer: 3
   m_Name: Stab
   m_TagString: Untagged
@@ -480,6 +481,36 @@ Transform:
   - {fileID: 96754856411585693}
   m_Father: {fileID: 3535523218091891979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8177829030128081836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181884160739413950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797c3f76f712e874ab4856be4bd14a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPos: {fileID: 2171995105864870169}
+  endPos: {fileID: 96754856411585693}
+  stabGameObject: {fileID: 734616480627949131}
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  isDamageActive: 0
 --- !u!1 &1272691700377037685
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +574,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.7002387, y: 0}
@@ -686,7 +717,7 @@ Transform:
   m_GameObject: {fileID: 3274725627121859739}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.067, y: 0, z: 0}
+  m_LocalPosition: {x: -0.34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
