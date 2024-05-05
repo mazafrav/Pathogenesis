@@ -21,8 +21,6 @@ public class ElectricEnemy : Enemy
 
     void Start()
     {
-
-        //transform.position = wayPoints[0].position;
         electricLocomotion = (ElectricLocomotion)locomotion;
         shockRange = GetComponentInChildren<ElectricShockRange>();
         shockRange.transform.localScale = new Vector3(electricLocomotion.ElectricShockRange * 2.0f, electricLocomotion.ElectricShockRange * 2.0f, shockRange.transform.localScale.z);

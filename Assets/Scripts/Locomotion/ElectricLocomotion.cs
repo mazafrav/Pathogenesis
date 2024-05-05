@@ -35,6 +35,7 @@ public class ElectricLocomotion : HostLocomotion
     public float ElectricShockRange { get { return electricShockRange; } }
 
 
+
     void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
@@ -176,11 +177,12 @@ public class ElectricLocomotion : HostLocomotion
     {
         base.SetPossessingParameters();
 
-        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+        ElectricEnemyPossessingParameters electricPossessingParameters = (ElectricEnemyPossessingParameters)possessingParameters;
+
+        g =( (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f)) ) * electricPossessingParameters.gravityModifier;
         rb2D.gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
-        ElectricEnemyPossessingParameters electricPossessingParameters = (ElectricEnemyPossessingParameters)possessingParameters;
         cooldown = electricPossessingParameters.cooldown;
         windUp = electricPossessingParameters.windUp;
         shockDuration = electricPossessingParameters.shockDuration;

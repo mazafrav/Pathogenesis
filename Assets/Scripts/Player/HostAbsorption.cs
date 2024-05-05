@@ -139,13 +139,14 @@ public class HostAbsorption : Interactable
             if (cinemachineVirtualCamera != null)
             {
                 cinemachineVirtualCamera.Follow = hostLocomotion.transform;
+
+                CameraShake cameraShake = cinemachineVirtualCamera.GetComponent<CameraShake>();
+                if(cameraShake)
+                {
+                    cameraShake.ShakeCamera(cameraShakeIntensity, possessionEffectTime);
+                }
             }
 
-            CameraShake cameraShake = cinemachineVirtualCamera.GetComponent<CameraShake>();
-            if(cameraShake)
-            {
-                cameraShake.ShakeCamera(cameraShakeIntensity, possessionEffectTime);
-            }
            
 
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
@@ -160,7 +161,13 @@ public class HostAbsorption : Interactable
             possessionTimer = possessionEffectTime;
             doOnce = true;
             //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
-            originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
+
+            if(cinemachineVirtualCamera)
+            {
+
+                originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
+            }
+
 
             if (zoomValue > 0.0f) // Transformation of a natural zoom value chosen by arrobaManu to a practical zoom value
             {

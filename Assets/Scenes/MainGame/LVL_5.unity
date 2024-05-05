@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6439,7 +6439,7 @@ PrefabInstance:
     - target: {fileID: 4796828729407239301, guid: 59a75e9987649ca4b93493b04be1083b, type: 3}
       propertyPath: virtualCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 702595367}
     - target: {fileID: 6496974038760274254, guid: 59a75e9987649ca4b93493b04be1083b, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -6960,11 +6960,11 @@ PrefabInstance:
       objectReference: {fileID: 717962204}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.112778
+      value: 14.1205635
       objectReference: {fileID: 0}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.383953
+      value: 2.383955
       objectReference: {fileID: 0}
     - target: {fileID: 7723080395241092619, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7000,6 +7000,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1036415482003136424, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
   m_PrefabInstance: {fileID: 702595365}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &702595367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3911145193672846626, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
+  m_PrefabInstance: {fileID: 702595365}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &716263748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7937,6 +7948,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 220842338}
   - {fileID: 178687444}
+  - {fileID: 702595365}
   - {fileID: 1176302438}
   - {fileID: 717962198}
   - {fileID: 499291503}
@@ -7954,4 +7966,3 @@ SceneRoots:
   - {fileID: 1254969339}
   - {fileID: 271859975}
   - {fileID: 150265642}
-  - {fileID: 702595365}
