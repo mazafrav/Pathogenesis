@@ -106,7 +106,7 @@ public class RangedEnemy : Enemy
         // Shooting behaviour. Target is not null
         else
         {
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            //rb.constraints = RigidbodyConstraints2D.FreezePosition;
             locomotion.Move(0);
 
             // When a possible target leaves the ranged enemy's detection area, it's removed from the "allTargetsInRange" array.
