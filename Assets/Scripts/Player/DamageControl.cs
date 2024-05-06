@@ -56,6 +56,7 @@ public class DamageControl : MonoBehaviour
                     GameManager.Instance.GetPlayerController().GetPlayerBody().transform.localPosition = Vector3.zero;
 
                     GameManager.Instance.GetPlayerController().EnablePlayerBody();
+                    GameManager.Instance.GetCamera().Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
                     GameManager.Instance.GetPlayerController().locomotion = GameManager.Instance.GetPlayerLocomotion();
                 }
                 else //The enemy is not possessed

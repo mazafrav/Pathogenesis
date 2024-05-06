@@ -162,15 +162,12 @@ public class HostAbsorption : Interactable
             doOnce = true;
             //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
 
-            if(cinemachineVirtualCamera)
-            {
-
-                originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
-            }
-
-
             if (zoomValue > 0.0f) // Transformation of a natural zoom value chosen by arrobaManu to a practical zoom value
             {
+                if (cinemachineVirtualCamera)
+                {
+                    originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
+                }
                 zoomValue = Mathf.Clamp(originalZoom - zoomValue, 1 , 20);
             }
             enemyBehaviour.enabled = false;

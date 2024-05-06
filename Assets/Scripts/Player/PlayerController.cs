@@ -35,45 +35,53 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isPossessing)
+        if (!GameManager.Instance.isPaused)
         {
-            if (doOnce)
+            if (!isPossessing)
             {
-                GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-                doOnce = false;
-            }
+                if (doOnce)
+                {
+                    GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                    doOnce = false;
+                }
 
-            deltaX = Input.GetAxisRaw("Horizontal");
-            deltaY = Input.GetAxisRaw("Vertical");
+                deltaX = Input.GetAxisRaw("Horizontal");
+                deltaY = Input.GetAxisRaw("Vertical");
 
-            locomotion.Aim(mousePos);
+                locomotion.Aim(mousePos);
 
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                locomotion.Jump(deltaX);
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    locomotion.Jump(deltaX);
+                }
+                else if (Input.GetKeyUp(KeyCode.W))
+                {
+                    locomotion.JumpButtonUp();
+                }
+                else if (Input.GetMouseButtonDown(0))
+                {
+                    locomotion.Attack(mousePos);
+                }
+                //else if (Input.GetKeyDown(KeyCode.F))
+                //{
+                //    locomotion.Unpossess();
+                //}
+                if (AbsorbableHostInRange != null)
+                {
+                    UpdateAbsortionVfxDirection();
+                }
             }
-            else if (Input.GetKeyUp(KeyCode.W))
+            else
             {
-                locomotion.JumpButtonUp();
-            }
-            else if (Input.GetMouseButtonDown(0))
-            {
-                locomotion.Attack(mousePos);
-            }
-            //else if (Input.GetKeyDown(KeyCode.F))
-            //{
-            //    locomotion.Unpossess();
-            //}
-            if (AbsorbableHostInRange != null)
-            {
-                UpdateAbsortionVfxDirection();
+                GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+                doOnce = true;
             }
         }
-        else
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-            doOnce = true;
+            GameManager.Instance.PauseGame();
         }
     }
 
