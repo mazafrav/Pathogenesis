@@ -1,7 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CrystallineLocomotion : HostLocomotion
 {
@@ -67,7 +66,6 @@ public class CrystallineLocomotion : HostLocomotion
 
         if (isClimbing && !wallCheckerL.isGrounded && !wallCheckerR.isGrounded)
         {
-            Debug.Log("is falsing");
             rb2D.gravityScale = g / Physics2D.gravity.y;
             isClimbing = false;
         }
@@ -219,13 +217,39 @@ public class CrystallineLocomotion : HostLocomotion
         float angle = AngleBetweenPoints(target, transform.position);
         if (angle < 0f)
         {
-            if (angle > -90f)
+            angle += 360f;
+        }
+
+        float maxAngle = 180f;
+        float minAngle = 0f;
+        Vector3 up = transform.up;
+        Vector3 right = transform.right;
+        if (isClimbing)
+        {
+            if (wallCheckerL.isGrounded)
             {
-                angle = 0f;
+                maxAngle -= 90f;
+                minAngle -= 90f;
+                up = transform.right;
+                right = -transform.up;
             }
             else
             {
-                angle = 180f;
+                maxAngle += 90f;
+                minAngle += 90f;
+                up = -transform.right;
+                right = transform.up;
+            }
+        }
+        if (Vector3.Cross(right, target - transform.position).z < 0f)
+        {
+            if (Vector3.Cross(up, target - transform.position).z < 0)
+            {
+                angle = minAngle;
+            }
+            else
+            {
+                angle = maxAngle;
             }
         }
         graphics.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
