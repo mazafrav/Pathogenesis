@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
+
+    public bool isPaused = false;
 
     public static GameManager Instance { get; private set; }
 
@@ -52,5 +55,21 @@ public class GameManager : MonoBehaviour
     public CinemachineVirtualCamera GetCamera() 
     { 
         return virtualCamera;
+    }
+
+    public void PauseGame()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0.0f;
+            SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+            SceneManager.UnloadSceneAsync("PauseMenu");
+        }
     }
 }
