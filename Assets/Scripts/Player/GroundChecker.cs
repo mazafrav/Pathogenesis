@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class GroundChecker : MonoBehaviour
 {
     public bool isGrounded { get; private set; }
+    private int groundCount = 0;
 
     private void Awake()
     {
@@ -21,7 +22,8 @@ public class GroundChecker : MonoBehaviour
             isGrounded = true;
         }
         **/
-        isGrounded = true;
+        groundCount++;
+        isGrounded = groundCount > 0;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -32,6 +34,7 @@ public class GroundChecker : MonoBehaviour
             isGrounded = false;
         }
         **/
-        isGrounded = false;
+        groundCount = Mathf.Max(groundCount - 1, 0);
+        isGrounded = groundCount > 0;
     }
 }

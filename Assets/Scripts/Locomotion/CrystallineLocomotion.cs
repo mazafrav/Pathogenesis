@@ -10,11 +10,8 @@ public class CrystallineLocomotion : HostLocomotion
     private GameObject graphics;
     [SerializeField]
     private float maxAngularSpeed = 10f;
-
     [SerializeField]
     private CrystallineStab crystallineStab;
-    [SerializeField]
-    private float stabRange = 4.0f;
     [SerializeField]
     private float cooldown = 1.0f;
     [SerializeField]
@@ -34,13 +31,19 @@ public class CrystallineLocomotion : HostLocomotion
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentStabDuration = 0.0f;
 
     private PlayerController playerController;
+    [SerializeField]
     private GroundChecker groundChecker;
+    [SerializeField]
+    private GroundChecker wallCheckerR;
+    [SerializeField]
+    private GroundChecker wallCheckerL;
     private HostAbsorption absorption;
+    private bool isClimbing = false;
+    private float climbedDistance = 0f;
 
     void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
-        groundChecker = GetComponentInChildren<GroundChecker>();
         absorption = GetComponent<HostAbsorption>();
 
         defaultColor = spriteRenderer.color;
@@ -57,6 +60,23 @@ public class CrystallineLocomotion : HostLocomotion
 
     void Update()
     {
+        if (groundChecker.isGrounded)
+        {
+            climbedDistance = 0f;
+        }
+
+        if (isClimbing && !wallCheckerL.isGrounded && !wallCheckerR.isGrounded)
+        {
+            Debug.Log("is falsing");
+            rb2D.gravityScale = g / Physics2D.gravity.y;
+            isClimbing = false;
+        }
+        else if (!isClimbing && (wallCheckerL.isGrounded || wallCheckerR.isGrounded))
+        {
+            isClimbing = true;
+            rb2D.gravityScale = 0;
+        }
+
         if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
         {
             currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
@@ -88,13 +108,30 @@ public class CrystallineLocomotion : HostLocomotion
 
     }
 
-    public override void Jump(float deltaX)
+    public override void Jump(float deltaY)
     {
-        if (currentWindUpTime > 0f) return;
-        if (groundChecker.isGrounded)
-        {
-            rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
-        }
+        return;
+        // if (IsWindingUp() && IsCooldownFinished())
+        // {
+        //     rb2D.velocity = new Vector2(0.0f, rb2D.velocity.y);
+        // }
+        // else
+        // {
+        //     if (!isClimbing && (wallCheckerL.isGrounded || wallCheckerR.isGrounded))
+        //     {
+        //         isClimbing = true;
+        //         rb2D.gravityScale = 0f;
+        //     }
+        //     if (isClimbing)
+        //     {
+        //         rb2D.velocity = new Vector2(rb2D.velocity.x, deltaY * moveSpeed);
+        //     }
+        // }
+        // if (currentWindUpTime > 0f) return;
+        // if (groundChecker.isGrounded)
+        // {
+        //     rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
+        // }
     }
 
     public override void Move(float deltaX, float deltaY = 0f)
@@ -105,7 +142,14 @@ public class CrystallineLocomotion : HostLocomotion
         }
         else
         {
-            rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
+            if (isClimbing)
+            {
+                rb2D.velocity = new Vector2(deltaX * moveSpeed, deltaY * moveSpeed);
+            }
+            else
+            {
+                rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
+            }
         }
     }
 
@@ -171,10 +215,11 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void Aim(Vector3 target = default)
     {
+        if (crystallineStab.isDamageActive) return;
         float angle = AngleBetweenPoints(target, transform.position);
-        if(angle < 0f)
+        if (angle < 0f)
         {
-            if(angle > -90f)
+            if (angle > -90f)
             {
                 angle = 0f;
             }
@@ -195,7 +240,6 @@ public class CrystallineLocomotion : HostLocomotion
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         CrystallineEnemyPossessingParameters crystallinePossessingParameters = (CrystallineEnemyPossessingParameters)possessingParameters;
-        stabRange = crystallinePossessingParameters.stabRange;
         cooldown = crystallinePossessingParameters.cooldown;
         windUp = crystallinePossessingParameters.windUp;
         stabDuration = crystallinePossessingParameters.stabDuration;
