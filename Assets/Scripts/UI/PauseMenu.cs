@@ -10,6 +10,11 @@ public class PauseMenu : MonoBehaviour
         GameManager.Instance.PauseGame();
     }
 
+    public void ResetLevel()
+    {
+        GameManager.Instance.ResetLevelFromPause();
+    }
+
     public void BackToMenu()
     {
         SceneManager.LoadScene("MainMenu");

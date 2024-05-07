@@ -57,6 +57,12 @@ public class GameManager : MonoBehaviour
         return virtualCamera;
     }
 
+    public void ResetLevelFromPause()
+    {
+        PauseGame();
+        GameManager.Instance.GetLevelLoader().RestartLevel();
+    }
+
     public void PauseGame()
     {
         isPaused = !isPaused;
