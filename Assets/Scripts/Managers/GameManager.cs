@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused = false;
 
+    public bool IsThereAGamepadConnected {  get; private set; }
+
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -35,6 +37,13 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+    }
+
+    private void Update()
+    {
+        //We check if there is a gamepad connected
+        IsThereAGamepadConnected = Input.GetJoystickNames()[0].Length > 0;         
     }
 
     public PlayerController GetPlayerController()

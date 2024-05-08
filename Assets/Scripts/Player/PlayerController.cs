@@ -25,9 +25,10 @@ public class PlayerController : MonoBehaviour
 
     public bool isPossessing = false;
     private bool doOnce = false;
+
     void Start()
     {
-
+     
     }
 
     public float GetDeltaX() { return deltaX; }
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+      
         if (!GameManager.Instance.isPaused)
         {
             if (!isPossessing)
@@ -48,19 +50,19 @@ public class PlayerController : MonoBehaviour
 
                 deltaX = Input.GetAxisRaw("Horizontal");
                 deltaY = Input.GetAxisRaw("Vertical");
-
+                
                 locomotion.Aim(mousePos);
 
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetButtonDown("Jump"))
                 {
                     locomotion.Jump(deltaX);
                 }
-                else if (Input.GetKeyUp(KeyCode.W))
+                else if (Input.GetButtonUp("Jump"))
                 {
                     locomotion.JumpButtonUp();
                 }
-                else if (Input.GetMouseButtonDown(0))
-                {
+                else if (Input.GetButtonDown("Attack"))
+                {              
                     locomotion.Attack(mousePos);
                 }
                 //else if (Input.GetKeyDown(KeyCode.F))
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButtonDown("PauseMenu"))
         {
             GameManager.Instance.PauseGame();
         }
@@ -88,7 +90,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         locomotion.Move(deltaX, deltaY);
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        mousePos = GameManager.Instance.IsThereAGamepadConnected ? new Vector2(Input.GetAxisRaw("AimX"), Input.GetAxisRaw("AimY")) : Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if(shootingComponent)
         {

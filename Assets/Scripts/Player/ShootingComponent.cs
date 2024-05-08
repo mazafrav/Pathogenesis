@@ -1,14 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ShootingComponent : MonoBehaviour
 {
     public bool bisActive = true;
 
+    private bool flipRot = true;
+
+    RangedEnemy enemyIA;
+
+    private void Start()
+    {
+        enemyIA = GetComponentInParent<RangedEnemy>();
+    }
+
     public void Aim(Vector2 target)
     {
         // if(!bisActive) return;
-        transform.up = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
-    }
+
+        if (enemyIA.enabled) //The ranged enemy AI is active
+        {
+            transform.up = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
+        }
+        else if (GameManager.Instance.IsThereAGamepadConnected)
+        {
+            if ((target.x > 0.2f || target.x < -0.2f) || (target.y > 0.2f || target.y < -0.2f))
+            {
+                float angle = Mathf.Atan2(target.x, target.y) * Mathf.Rad2Deg;
+                angle = flipRot ? -angle : angle;
+
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            }
+        }
+    }  
 }
