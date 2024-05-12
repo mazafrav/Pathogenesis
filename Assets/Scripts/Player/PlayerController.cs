@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
                 
                 locomotion.Aim(mousePos);
 
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetButtonDown("Jump") && GameManager.Instance.canPlayerProcessInput)
                 {
                     locomotion.Jump(deltaX);
                 }
