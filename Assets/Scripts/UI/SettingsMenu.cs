@@ -40,8 +40,15 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-
      
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("PauseMenu"))
+        {
+            Back();
+        }
     }
 
     public void SetResolution(int resolutionIndex)

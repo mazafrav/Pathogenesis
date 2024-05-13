@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
@@ -84,7 +85,19 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("PauseMenu"))
         {
-            GameManager.Instance.PauseGame();
+            bool isSettingsOn = false;
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                if (SceneManager.GetSceneAt(i).name.Equals("SettingsMenu"))
+                {
+                    isSettingsOn = true;
+                    break;
+                }
+            }
+            if (!isSettingsOn)
+            {
+                GameManager.Instance.PauseGame();
+            }
         }
     }
 
