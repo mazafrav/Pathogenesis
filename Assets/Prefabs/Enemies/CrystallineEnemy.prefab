@@ -171,6 +171,10 @@ MonoBehaviour:
   locomotion: {fileID: 6721288742054024510}
   wayPoints: []
   deathEffect: {fileID: 4784911079922076189, guid: b4344960ac42eea4ab2aa538001ceabd, type: 3}
+  range: {fileID: 6513760127648393129}
+  graphics: {fileID: 6336304723267710215}
+  detectionRange: 5
+  stabRange: 2
 --- !u!114 &6721288742054024510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8875280482900557516}
   - component: {fileID: 372864127837661307}
-  - component: {fileID: 4616672319838726419}
+  - component: {fileID: 6513760127648393129}
   m_Layer: 2
   m_Name: EnemyDetectionRange
   m_TagString: Untagged
@@ -1002,7 +1006,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5614215624366767450}
@@ -1041,8 +1045,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10
---- !u!114 &4616672319838726419
+  m_Radius: 0.5
+--- !u!114 &6513760127648393129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1051,10 +1055,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4303730276416573966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0981389939b14d94aa01be0f0d9289f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 166f2d7c0298ef848a3c5dcaebfb02de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allTargetsInRange: []
 --- !u!1 &5281711778142915549
 GameObject:
   m_ObjectHideFlags: 0

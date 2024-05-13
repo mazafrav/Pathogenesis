@@ -156,6 +156,7 @@ public class CrystallineLocomotion : HostLocomotion
         if (IsAttackReady())
         {
             currentWindUpTime = windUp;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
     }
 
@@ -179,6 +180,8 @@ public class CrystallineLocomotion : HostLocomotion
         ChangeSpritesColor(currentColor);
         crystallineStab.isDamageActive = false;
         crystallineStab.MoveStab(0f);
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public override bool IsAttackReady()
