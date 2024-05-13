@@ -20,7 +20,7 @@ public class ShootingComponent : MonoBehaviour
     {
         // if(!bisActive) return;
 
-        if (enemyIA.enabled) //The ranged enemy AI is active
+        if (enemyIA.enabled || (!enemyIA.enabled && !GameManager.Instance.IsThereAGamepadConnected)) //The ranged enemy AI is active or is disabled with no gamepads connected
         {
             transform.up = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         }
