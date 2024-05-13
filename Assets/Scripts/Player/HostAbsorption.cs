@@ -1,6 +1,7 @@
 using Cinemachine;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HostAbsorption : Interactable
 {
@@ -18,6 +19,8 @@ public class HostAbsorption : Interactable
     private float possessionEffectTime = 1.5f;
     [SerializeField]
     private float zoomValue = 0.0f;
+    [SerializeField]
+    private float controllerVibrationIntestity = 1.0f;
     private float originalZoom;
 
     private float possessionTimer = 0.0f;
@@ -58,6 +61,12 @@ public class HostAbsorption : Interactable
                 Zoom(Mathf.Lerp(originalZoom, zoomValue, Mathf.Clamp(1 - possessionTimer / possessionEffectTime + 0.25f, 0f, 1f)));
             }
 
+            Gamepad gamepad = Gamepad.current;
+            if (gamepad != null)
+            {
+                gamepad.SetMotorSpeeds(controllerVibrationIntestity, controllerVibrationIntestity);
+            }
+
         }
         else
         {
@@ -68,6 +77,12 @@ public class HostAbsorption : Interactable
                 if (zoomValue > 0f)
                 {
                     Zoom(originalZoom);
+                }
+
+                Gamepad gamepad = Gamepad.current;
+                if (gamepad != null)
+                {
+                    gamepad.SetMotorSpeeds(0f, 0f);
                 }
                 //CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
                 //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = false;
