@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 
 public class ShootingComponent : MonoBehaviour
 {
-    public bool bisActive = true;
+    [SerializeField]
+    private float deadZone = 0.5f;
 
     private bool flipRot = true;
+    public bool bisActive = true;
 
     RangedEnemy enemyIA;
 
@@ -26,7 +28,7 @@ public class ShootingComponent : MonoBehaviour
         }
         else if (GameManager.Instance.IsThereAGamepadConnected)
         {
-            if ((target.x > 0.2f || target.x < -0.2f) || (target.y > 0.2f || target.y < -0.2f))
+            if ((target.x > deadZone || target.x < -deadZone) || (target.y > deadZone || target.y < -deadZone))
             {
                 float angle = Mathf.Atan2(target.x, target.y) * Mathf.Rad2Deg;
                 angle = flipRot ? -angle : angle;
