@@ -20,12 +20,14 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetLevel()
     {
+        GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         GameManager.Instance.ResetLevelFromPause();
     }
 
     public void BackToMenu()
     {
         Time.timeScale = 1.0f;
+        GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         SceneManager.LoadScene("MainMenu");
         //SceneManager.UnloadSceneAsync("Pause")
     }

@@ -49,10 +49,13 @@ public class PlayerLocomotion : HostLocomotion
 
     public override void Jump(float deltaX = 0)
     {
-        if (coyoteTimeCounter <= 0f || rb2D.gravityScale <= 0.0f) return;
-        isJumping = true;
-        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-        rb2D.gravityScale = g / Physics2D.gravity.y;
+        if(rb2D)
+        {
+            if (coyoteTimeCounter <= 0f || rb2D.gravityScale <= 0.0f) return;
+            isJumping = true;
+            g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+            rb2D.gravityScale = g / Physics2D.gravity.y;
+        }
     }
 
     public override void Move(float deltaX, float deltaY)

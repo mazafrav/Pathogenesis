@@ -19,6 +19,7 @@ public class FinishLine : MonoBehaviour
             {
                 SceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
             }
+            GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
             levelLoader.StartLoadingLevel(SceneToLoad);
         }
     }
