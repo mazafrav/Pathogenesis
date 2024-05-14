@@ -42,7 +42,6 @@ public class HostAbsorption : Interactable
         playerLocomotion = GameManager.Instance.GetPlayerLocomotion();
         enemyBehaviour = GetComponent<Enemy>();
         Physics2D.queriesStartInColliders = false;
-        Debug.Log(layerMask);
     }
 
     protected override void Update()

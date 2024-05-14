@@ -80,7 +80,7 @@ public class CrystalineEnemy : Enemy
                 }
                 else
                 {
-                    locomotion.Move(direction.x);
+                    locomotion.Move(direction.x, direction.y);
                 }
                 UpdateOrientation(range.personInRange.transform.position);
 
