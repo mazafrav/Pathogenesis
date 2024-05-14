@@ -195,9 +195,10 @@ MonoBehaviour:
     m_Bits: 5260
   graphics: {fileID: 7863156932767443082}
   weaponGraphics: {fileID: 0}
-  cameraShakeIntensity: 0.6
-  possessionEffectTime: 1.5
-  zoomValue: 0
+  cameraShakeIntensity: 0
+  possessionEffectTime: 0.7
+  zoomValue: 1
+  controllerVibrationIntestity: 0.1
 --- !u!114 &4330372733500021139
 MonoBehaviour:
   m_ObjectHideFlags: 0

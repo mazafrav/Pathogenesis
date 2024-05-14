@@ -20,7 +20,7 @@ public class HostAbsorption : Interactable
     [SerializeField]
     private float zoomValue = 0.0f;
     [SerializeField]
-    private float controllerVibrationIntestity = 1.0f;
+    private float controllerVibrationIntestity = 0.01f;
     private float originalZoom;
 
     private float possessionTimer = 0.0f;
