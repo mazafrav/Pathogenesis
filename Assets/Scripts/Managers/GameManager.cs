@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -54,10 +55,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //We check if there is a gamepad connected
-        if(Input.GetJoystickNames().Length > 0)
-        {
-             IsThereAGamepadConnected = Input.GetJoystickNames()[0].Length > 0;    
-        }
+        IsThereAGamepadConnected = Gamepad.all.Count > 0;
+        //if(Input.GetJoystickNames().Length > 0)
+        //{
+        //     IsThereAGamepadConnected = Input.GetJoystickNames()[0].Length > 0;    
+        //}
         
         //We add a delay to the player input when we resume the game from the pause menu
         if(processInputTimer > 0)

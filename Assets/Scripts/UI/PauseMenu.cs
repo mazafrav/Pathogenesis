@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -20,12 +21,14 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetLevel()
     {
+        GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         GameManager.Instance.ResetLevelFromPause();
     }
 
     public void BackToMenu()
     {
         Time.timeScale = 1.0f;
+        GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         SceneManager.LoadScene("MainMenu");
         //SceneManager.UnloadSceneAsync("Pause")
     }
@@ -33,7 +36,7 @@ public class PauseMenu : MonoBehaviour
     public void OpenSettings()
     {
         eventSystem.GetComponent<EventSystem>().enabled = false;
-        eventSystem.GetComponent<StandaloneInputModule>().enabled = false;
+        eventSystem.GetComponent<InputSystemUIInputModule>().enabled = false;
 
         SceneManager.LoadScene("SettingsMenu", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync("PauseMenu");

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -78,10 +79,10 @@ public class SettingsMenu : MonoBehaviour
                 isMainMenuOn = true;
                 //Settings
                 eventSystem1.gameObject.GetComponent<EventSystem>().enabled = false;
-                eventSystem1.gameObject.GetComponent<StandaloneInputModule>().enabled = false;
+                eventSystem1.gameObject.GetComponent<InputSystemUIInputModule>().enabled = false;
                 //Main menu
                 eventSystem.gameObject.GetComponent<EventSystem>().enabled = true;
-                eventSystem.gameObject.GetComponent<StandaloneInputModule>().enabled = true;
+                eventSystem.gameObject.GetComponent<InputSystemUIInputModule>().enabled = true;
                 break;
             }
         }
@@ -90,7 +91,7 @@ public class SettingsMenu : MonoBehaviour
         {
             //GameObject eventSys = GameObject.FindGameObjectWithTag("EventSystemLevel");
             //eventSys.GetComponent<EventSystem>().enabled = false;
-            //eventSys.GetComponent<StandaloneInputModule>().enabled = false;
+            //eventSys.GetComponent<InputSystemUIInputModule>().enabled = false;
 
             SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
         }

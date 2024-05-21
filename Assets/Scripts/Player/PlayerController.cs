@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,10 +28,16 @@ public class PlayerController : MonoBehaviour
 
     public bool isPossessing = false;
     private bool doOnce = false;
+    PlayerInputActions playerInputActions;
 
     void Start()
     {
-     
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Player.Enable();
+        playerInputActions.Player.Jump.performed += Jump;
+        playerInputActions.Player.Jump.canceled += JumpButtomUp;
+        playerInputActions.Player.Attack.performed += Attack;
+        playerInputActions.Player.PauseMenu.performed += PauseMenu;
     }
 
     public float GetDeltaX() { return deltaX; }
@@ -50,27 +57,35 @@ public class PlayerController : MonoBehaviour
                     doOnce = false;
                 }
 
-                deltaX = Input.GetAxisRaw("Horizontal");
-                deltaY = Input.GetAxisRaw("Vertical");
-                
+
+                deltaX = playerInputActions.Player.Movement.ReadValue<Vector2>().x;
+                deltaY = playerInputActions.Player.Movement.ReadValue<Vector2>().y;
+
                 locomotion.Aim(mousePos);
 
-                if (Input.GetButtonDown("Jump") && GameManager.Instance.canPlayerProcessInput)
-                {
-                    locomotion.Jump(deltaX);
-                }
-                else if (Input.GetButtonUp("Jump"))
-                {
-                    locomotion.JumpButtonUp();
-                }
-                else if (Input.GetButtonDown("Attack"))
-                {              
-                    locomotion.Attack(mousePos);
-                }
+                #region OldInput
+                //deltaX = Input.GetAxisRaw("Horizontal");
+                //deltaY = Input.GetAxisRaw("Vertical");
+
+
+                //if (Input.GetButtonDown("Jump") && GameManager.Instance.canPlayerProcessInput)
+                //{
+                //    locomotion.Jump(deltaX);
+                //}
+                //else if (Input.GetButtonUp("Jump"))
+                //{
+                //    locomotion.JumpButtonUp();
+                //}
+                //else if (Input.GetButtonDown("Attack"))
+                //{              
+                //    locomotion.Attack(mousePos);
+                //}
                 //else if (Input.GetKeyDown(KeyCode.F))
                 //{
                 //    locomotion.Unpossess();
                 //}
+                #endregion
+
                 if (AbsorbableHostInRange != null)
                 {
                     UpdateAbsortionVfxDirection();
@@ -83,29 +98,31 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("PauseMenu"))
-        {
-            bool isSettingsOn = false;
-            for (int i = 0; i < SceneManager.sceneCount; i++)
-            {
-                if (SceneManager.GetSceneAt(i).name.Equals("SettingsMenu"))
-                {
-                    isSettingsOn = true;
-                    break;
-                }
-            }
-            if (!isSettingsOn)
-            {
-                GameManager.Instance.PauseGame();
-            }
-        }
+        #region OldInput
+        //if (Input.GetButtonDown("PauseMenu"))
+        //{
+        //    bool isSettingsOn = false;
+        //    for (int i = 0; i < SceneManager.sceneCount; i++)
+        //    {
+        //        if (SceneManager.GetSceneAt(i).name.Equals("SettingsMenu"))
+        //        {
+        //            isSettingsOn = true;
+        //            break;
+        //        }
+        //    }
+        //    if (!isSettingsOn)
+        //    {
+        //        GameManager.Instance.PauseGame();
+        //    }
+        //}
+        #endregion
     }
 
     private void FixedUpdate()
     {
         locomotion.Move(deltaX, deltaY);
 
-        mousePos = GameManager.Instance.IsThereAGamepadConnected ? new Vector2(Input.GetAxisRaw("AimX"), Input.GetAxisRaw("AimY")) : Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = GameManager.Instance.IsThereAGamepadConnected ? /*new Vector2(Input.GetAxisRaw("AimX"), Input.GetAxisRaw("AimY"))*/  playerInputActions.Player.Aim.ReadValue<Vector2>() : Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if(shootingComponent)
         {
@@ -113,27 +130,53 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void DisablePlayerBody()
+
+    #region PlayerInputActions
+
+    public void UnregisterPlayerInputActions()
     {
-        if (playerBody)
+        playerInputActions.Player.Jump.performed -= Jump;
+        playerInputActions.Player.Jump.canceled -= JumpButtomUp;
+        playerInputActions.Player.Attack.performed -= Attack;
+        playerInputActions.Player.PauseMenu.performed -= PauseMenu;
+    }
+    private void Jump(InputAction.CallbackContext context)
+    {
+        if(GameManager.Instance.canPlayerProcessInput)
         {
-            playerBody.SetActive(false);
+            locomotion.Jump(deltaX);
         }
     }
 
-    public void PlayerBodyDeath()
+    private void JumpButtomUp(InputAction.CallbackContext context)
     {
-        Instantiate(deathEffect, playerBody.transform.position, playerBody.transform.rotation);
-        DisablePlayerBody();
+        locomotion.JumpButtonUp();
     }
-    public void EnablePlayerBody()
-    {
-        if (playerBody)
-        {
-            playerBody.SetActive(true);
-        }
 
+    private void Attack(InputAction.CallbackContext context)
+    {
+        locomotion.Attack(mousePos);
     }
+
+    private void PauseMenu(InputAction.CallbackContext context)
+    {
+        Debug.Log("Pausa");
+
+        bool isSettingsOn = false;
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (SceneManager.GetSceneAt(i).name.Equals("SettingsMenu"))
+            {
+                isSettingsOn = true;
+                break;
+            }
+        }
+        if (!isSettingsOn)
+        {         
+            GameManager.Instance.PauseGame();
+        }
+    }
+    #endregion
 
     public void OnEnterAbsorbableRange(HostAbsorption host)
     {
@@ -151,6 +194,29 @@ public class PlayerController : MonoBehaviour
     {
         AbsorbableHostInRange = null;
         absortionRangeVfx.Stop();
+    }
+
+    public void PlayerBodyDeath()
+    {
+        Instantiate(deathEffect, playerBody.transform.position, playerBody.transform.rotation);
+        DisablePlayerBody();
+    }
+
+    public void DisablePlayerBody()
+    {
+        if (playerBody)
+        {
+            playerBody.SetActive(false);
+        }
+    }
+
+    public void EnablePlayerBody()
+    {
+        if (playerBody)
+        {
+            playerBody.SetActive(true);
+        }
+
     }
 
     public GameObject GetPlayerBody() { return playerBody; }
