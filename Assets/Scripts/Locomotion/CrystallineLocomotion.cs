@@ -36,14 +36,21 @@ public class CrystallineLocomotion : HostLocomotion
     private GroundChecker wallCheckerR;
     [SerializeField]
     private GroundChecker wallCheckerL;
+    [SerializeField]
+    private GroundChecker ceilChecker;
     private HostAbsorption absorption;
     private bool isClimbing = false;
     private float climbedDistance = 0f;
+    private CrystalineEnemy enemyIA;
+    private bool flipRot = true;
+
 
     void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
         absorption = GetComponent<HostAbsorption>();
+
+        enemyIA = GetComponent<CrystalineEnemy>();
 
         defaultColor = spriteRenderer.color;
 
@@ -64,12 +71,12 @@ public class CrystallineLocomotion : HostLocomotion
             climbedDistance = 0f;
         }
 
-        if (isClimbing && !wallCheckerL.isGrounded && !wallCheckerR.isGrounded)
+        if (isClimbing && !wallCheckerL.isGrounded && !wallCheckerR.isGrounded && !ceilChecker.isGrounded)
         {
             rb2D.gravityScale = g / Physics2D.gravity.y;
             isClimbing = false;
         }
-        else if (!isClimbing && (wallCheckerL.isGrounded || wallCheckerR.isGrounded))
+        else if (!isClimbing && (wallCheckerL.isGrounded || wallCheckerR.isGrounded || ceilChecker.isGrounded))
         {
             isClimbing = true;
             rb2D.gravityScale = 0;
@@ -217,7 +224,26 @@ public class CrystallineLocomotion : HostLocomotion
     public override void Aim(Vector3 target = default)
     {
         if (crystallineStab.isDamageActive) return;
-        float angle = AngleBetweenPoints(target, transform.position);
+        if (target == default) return;
+        float angle = 0f;
+        if (!GameManager.Instance.IsThereAGamepadConnected || enemyIA.enabled)
+        {
+            angle = AngleBetweenPoints(target, transform.position);
+        }
+        else if (GameManager.Instance.IsThereAGamepadConnected)
+        {
+            if (target.x > 0.6f || target.x < -0.6f || target.y > 0.6f || target.y < -0.6f)
+            {
+                angle = Mathf.Atan2(target.x, target.y) * Mathf.Rad2Deg;
+                angle -= 90f;
+                angle = flipRot ? -angle : angle;
+            }
+            else
+            {
+                return;
+            }
+        }
+
         if (angle < 0f)
         {
             angle += 360f;
@@ -236,12 +262,19 @@ public class CrystallineLocomotion : HostLocomotion
                 up = transform.right;
                 right = -transform.up;
             }
-            else
+            else if(wallCheckerR.isGrounded)
             {
                 maxAngle += 90f;
                 minAngle += 90f;
                 up = -transform.right;
                 right = transform.up;
+            }
+            else
+            {
+                maxAngle += 180f;
+                minAngle += 180f;
+                up = -up;
+                right = -right;
             }
         }
         if (Vector3.Cross(right, target - transform.position).z < 0f)

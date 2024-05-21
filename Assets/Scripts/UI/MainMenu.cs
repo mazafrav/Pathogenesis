@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -31,7 +32,7 @@ public class MainMenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         eventSystem.gameObject.GetComponent<EventSystem>().enabled = false;
-        eventSystem.gameObject.GetComponent<StandaloneInputModule>().enabled = false;
+        eventSystem.gameObject.GetComponent<InputSystemUIInputModule>().enabled = false;
         SceneManager.LoadScene("SettingsMenu", LoadSceneMode.Additive);
     }
 
