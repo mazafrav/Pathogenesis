@@ -155,10 +155,10 @@ MonoBehaviour:
   jumpBufferTime: 0.1
   electricShockGameObject: {fileID: 5068238459060251847}
   electricShockRangeGameObject: {fileID: 6911789383419822696}
-  electricShockRange: 4
-  cooldown: 2
-  windUp: 0.5
-  shockDuration: 0.5
+  electricShockRange: 5
+  cooldown: 1
+  windUp: 0.2
+  shockDuration: 1.2
   spriteRenderer: {fileID: 7863156932767443082}
   colorWhileWindUp: {r: 0.4901961, g: 0.56078434, b: 0.91372555, a: 1}
   colorWhileCooldown: {r: 0.5568628, g: 0.9254902, b: 1, a: 1}
@@ -521,8 +521,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 20109762620599441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -567,8 +567,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1950f2e7497c16247895c9c459eca290, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.14901961}
+  m_Sprite: {fileID: 21300000, guid: c9652fe1f4fc991409d941ee84fa5214, type: 3}
+  m_Color: {r: 0.7885935, g: 0.759434, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -612,7 +612,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &3957729136246110855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +641,22 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  electricAttackSprites:
+  - {fileID: 21300000, guid: c9652fe1f4fc991409d941ee84fa5214, type: 3}
+  - {fileID: 21300000, guid: 6e44d62e61061624c95a3df0801edd7f, type: 3}
+  - {fileID: 21300000, guid: f7a3cc2bec909ac418535221ba7a2b65, type: 3}
+  - {fileID: 21300000, guid: 9da08ec534a56b149a86bd77716f4e74, type: 3}
+  - {fileID: 21300000, guid: f7a3cc2bec909ac418535221ba7a2b65, type: 3}
+  - {fileID: 21300000, guid: 6e44d62e61061624c95a3df0801edd7f, type: 3}
+  - {fileID: 21300000, guid: c9652fe1f4fc991409d941ee84fa5214, type: 3}
+  scaleByStep:
+  - 0.25
+  - 0.5
+  - 0.75
+  - 1
+  - 0.75
+  - 0.5
+  - 0.25
 --- !u!1 &6911789383419822696
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +685,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 20109762620599441}
@@ -871,7 +887,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 4
 --- !u!1 &8600302745253390337
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private float windUp = 0.5f;
     [SerializeField]
-    private float shockDuration = 0.5f;
+    private float shockDuration = 1.0f;
 
     [Header("Feedback")]
     [SerializeField]
@@ -54,9 +55,8 @@ public class ElectricLocomotion : HostLocomotion
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         electricShockGameObject.SetActive(false);
-        electricShockGameObject.transform.localScale = new Vector3(electricShockRange * 2.0f, electricShockRange * 2.0f, electricShockGameObject.transform.localScale.z);
 
-        electricShockRangeGameObject.transform.localScale = new Vector3(electricShockRange * 2.0f, electricShockRange * 2.0f, electricShockGameObject.transform.localScale.z);
+        electricShockRangeGameObject.transform.localScale = new Vector3(electricShockRange, electricShockRange, electricShockGameObject.transform.localScale.z);
     }
 
     void Update()
@@ -187,9 +187,12 @@ public class ElectricLocomotion : HostLocomotion
         windUp = electricPossessingParameters.windUp;
         shockDuration = electricPossessingParameters.shockDuration;
         electricShockRange = electricPossessingParameters.electricShockRange;
+        electricShockRangeGameObject.transform.localScale = new Vector3(electricShockRange, electricShockRange, electricShockGameObject.transform.localScale.z);
+    }
 
-        electricShockGameObject.transform.localScale = new Vector3(electricShockRange * 2.0f, electricShockRange * 2.0f, electricShockGameObject.transform.localScale.z);
-        electricShockRangeGameObject.transform.localScale = new Vector3(electricShockRange * 2.0f, electricShockRange * 2.0f, electricShockGameObject.transform.localScale.z);
+    public float GetShockDuration()
+    {
+        return shockDuration;
     }
 }
 

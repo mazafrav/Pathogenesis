@@ -23,7 +23,7 @@ public class ElectricEnemy : Enemy
     {
         electricLocomotion = (ElectricLocomotion)locomotion;
         shockRange = GetComponentInChildren<ElectricShockRange>();
-        shockRange.transform.localScale = new Vector3(electricLocomotion.ElectricShockRange * 2.0f, electricLocomotion.ElectricShockRange * 2.0f, shockRange.transform.localScale.z);
+        shockRange.transform.localScale = new Vector3(electricLocomotion.ElectricShockRange, electricLocomotion.ElectricShockRange, shockRange.transform.localScale.z);
     }
 
     void Update()
