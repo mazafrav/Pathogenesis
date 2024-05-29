@@ -78,17 +78,7 @@ public class ElectricEnemy : Enemy
         {
             if (wayPoints.Length != 0)
             {
-                //if (transform.position.x >= wayPoints[0].position.x)
-                //{
-                //    movementDirection = -1;
-                //}
-                //else if (transform.position.x < wayPoints[1].position.x)
-                //{
-                //    movementDirection = 1;
-                //}
-                //locomotion.Move(movementDirection);
-                Patrol();
-               
+                Patrol();             
             }
          
         }

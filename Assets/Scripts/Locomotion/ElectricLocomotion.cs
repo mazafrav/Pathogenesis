@@ -25,6 +25,13 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private Color colorWhileWindUp, colorWhileCooldown;
 
+    [Header("Movement")]
+    [SerializeField]
+    private float deltaXModifier = 0.5f;
+    [SerializeField]
+    private float deltaYModifier = 1.2f;
+
+
     private Color defaultColor;
 
     private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
@@ -107,13 +114,23 @@ public class ElectricLocomotion : HostLocomotion
 
     public override void Move(float deltaX, float deltaY = 0f)
     {
-        if (IsWindingUp() && IsCooldownFinished())
+        if (groundChecker.isGrounded && IsWindingUp() && IsCooldownFinished()) //while charging his attack dont move
         {
             rb2D.velocity = new Vector2(0.0f, rb2D.velocity.y);
         }
         else
         {
-            rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
+            //when is jumping and possessed we apply a modifier to the X direction
+            if (!groundChecker.isGrounded && transform.parent != null)
+            {
+                float Y = (rb2D.velocity.y < 0.0f && deltaY < 0)? deltaYModifier * deltaY : rb2D.velocity.y;
+                rb2D.velocity = new Vector2(deltaXModifier * deltaX * moveSpeed, Y);
+            }
+            else //normal movement
+            {
+               rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
+            }
+
         }
     }
 
