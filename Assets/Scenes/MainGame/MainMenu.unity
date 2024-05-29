@@ -1242,13 +1242,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1657160603}
+  - component: {fileID: 1657160596}
   - component: {fileID: 1657160602}
   - component: {fileID: 1657160601}
   - component: {fileID: 1657160600}
   - component: {fileID: 1657160599}
   - component: {fileID: 1657160598}
   - component: {fileID: 1657160597}
-  - component: {fileID: 1657160596}
   - component: {fileID: 1657160595}
   - component: {fileID: 1657160594}
   - component: {fileID: 1657160593}
@@ -1561,16 +1561,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tracks:
+  - {fileID: -6201801996060492279, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
+  - {fileID: -7848438850205626608, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
   - {fileID: -9171541996276959818, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
   - {fileID: 7019671014192937063, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
   - {fileID: 7894143866835462569, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
   - {fileID: 6167974104865375285, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
-  - {fileID: 5390753156490458618, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
-  - {fileID: 8301040822500353435, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
-  - {fileID: -5582731371502900342, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
   selectionIndex: 0
   transitionSpeed: 0.5
-  currentState: 0
 --- !u!82 &1657160597
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2137,7 +2135,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

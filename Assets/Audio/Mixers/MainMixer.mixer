@@ -6,7 +6,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot - Level1_Capa0
+  m_Name: Snapshot - Level_Basic
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 069057a085144444cbf56851b109b076
   m_FloatValues:
@@ -132,28 +132,6 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!245 &-6901765016195058045
-AudioMixerSnapshotController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ' '
-  m_AudioMixer: {fileID: 24100000}
-  m_SnapshotID: b6a81de5e17943c4c854d48d6c737bd9
-  m_FloatValues:
-    1bd8e5c0f9f54684d8560eee21cd98ef: -0.30163807
-    cbafa751a3128684b8c9881d489015eb: -2.647181
-    44e868f54bc332f499ccbc46ac1c4f29: -0.0024420023
-    56642198f91a9c34583703c4f0749ec8: -3.5922954
-    a3a3c1ea19d9c6b45bb4e4faae71c081: 302
-    e6ce0cfa4f5fcdf4f98cc655758aa8f3: -0.30163807
-    3e85765bd29b4d940b96317380a13599: 0.10800299
-    85af109bdcc560947aa6dd3528242fb4: -18.757307
-    7c127a5c1b2abfe49b9079e0c075aca3: 0.23288241
-    ff3d2bde24dd7054abefe7adde128864: 11.135805
-    a374471fa4d055b479e99bca89fa8471: 0.23288241
-  m_TransitionOverrides: {}
 --- !u!244 &-6658557399454116356
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -373,7 +351,6 @@ AudioMixerController:
   m_Snapshots:
   - {fileID: -6201801996060492279}
   - {fileID: -7848438850205626608}
-  - {fileID: -6901765016195058045}
   - {fileID: -9171541996276959818}
   - {fileID: 7019671014192937063}
   - {fileID: 7894143866835462569}
@@ -415,7 +392,7 @@ AudioMixerController:
     - e564af020f4e9f249b3ac38879f0a20e
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -6901765016195058045}
+  m_TargetSnapshot: {fileID: 6167974104865375285}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -592,7 +569,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot - Level1_Capa3
+  m_Name: Snapshot - Cristalino
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: e1c6a41c8b1cdf444adc24f9acf91638
   m_FloatValues:
@@ -615,7 +592,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 'Snapshot - Level1_Capa1 '
+  m_Name: Snapshot - Fotonico
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 1ea957ba1a794554281d62bd5651efa2
   m_FloatValues:
@@ -675,7 +652,7 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot - Level1_Capa2
+  m_Name: Snapshot - Electrico
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: b6f9d0c224fdb6a4fa7095d43310b6d0
   m_FloatValues:
