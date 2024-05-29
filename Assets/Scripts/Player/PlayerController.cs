@@ -29,15 +29,20 @@ public class PlayerController : MonoBehaviour
     public bool isPossessing = false;
     private bool doOnce = false;
     PlayerInputActions playerInputActions;
+    public bool hasJumped { get; set; } = false;
+
+    GroundChecker groundChecker;
 
     void Start()
     {
+        groundChecker = GetComponentInChildren<GroundChecker>();
+
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Jump.canceled += JumpButtomUp;
         playerInputActions.Player.Attack.performed += Attack;
-        playerInputActions.Player.PauseMenu.performed += PauseMenu;
+        playerInputActions.Player.PauseMenu.performed += PauseMenu;      
     }
 
     public float GetDeltaX() { return deltaX; }
@@ -57,34 +62,21 @@ public class PlayerController : MonoBehaviour
                     doOnce = false;
                 }
 
-
                 deltaX = playerInputActions.Player.Movement.ReadValue<Vector2>().x;
                 deltaY = playerInputActions.Player.Movement.ReadValue<Vector2>().y;
 
-                locomotion.Aim(mousePos);
+                if(!hasJumped && deltaY > 0.2f)
+                {
+                    locomotion.Jump(deltaX);
+                    hasJumped = true;
+                }
+                else if(hasJumped && deltaY <= 0.2f)
+                {                    
+                    hasJumped = false;
+                    locomotion.JumpButtonUp();
+                }
 
-                #region OldInput
-                //deltaX = Input.GetAxisRaw("Horizontal");
-                //deltaY = Input.GetAxisRaw("Vertical");
-
-
-                //if (Input.GetButtonDown("Jump") && GameManager.Instance.canPlayerProcessInput)
-                //{
-                //    locomotion.Jump(deltaX);
-                //}
-                //else if (Input.GetButtonUp("Jump"))
-                //{
-                //    locomotion.JumpButtonUp();
-                //}
-                //else if (Input.GetButtonDown("Attack"))
-                //{              
-                //    locomotion.Attack(mousePos);
-                //}
-                //else if (Input.GetKeyDown(KeyCode.F))
-                //{
-                //    locomotion.Unpossess();
-                //}
-                #endregion
+                locomotion.Aim(mousePos);           
 
                 if (AbsorbableHostInRange != null)
                 {
@@ -98,31 +90,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        #region OldInput
-        //if (Input.GetButtonDown("PauseMenu"))
-        //{
-        //    bool isSettingsOn = false;
-        //    for (int i = 0; i < SceneManager.sceneCount; i++)
-        //    {
-        //        if (SceneManager.GetSceneAt(i).name.Equals("SettingsMenu"))
-        //        {
-        //            isSettingsOn = true;
-        //            break;
-        //        }
-        //    }
-        //    if (!isSettingsOn)
-        //    {
-        //        GameManager.Instance.PauseGame();
-        //    }
-        //}
-        #endregion
+
     }
 
     private void FixedUpdate()
     {
         locomotion.Move(deltaX, deltaY);
 
-        mousePos = GameManager.Instance.IsThereAGamepadConnected ? /*new Vector2(Input.GetAxisRaw("AimX"), Input.GetAxisRaw("AimY"))*/  playerInputActions.Player.Aim.ReadValue<Vector2>() : Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = GameManager.Instance.IsThereAGamepadConnected ? playerInputActions.Player.Aim.ReadValue<Vector2>() : Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if(shootingComponent)
         {
@@ -141,11 +116,12 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.PauseMenu.performed -= PauseMenu;
     }
     private void Jump(InputAction.CallbackContext context)
-    {
-        if(GameManager.Instance.canPlayerProcessInput)
+    {      
+        if (GameManager.Instance.canPlayerProcessInput)
         {
             locomotion.Jump(deltaX);
-        }
+                
+        }     
     }
 
     private void JumpButtomUp(InputAction.CallbackContext context)
