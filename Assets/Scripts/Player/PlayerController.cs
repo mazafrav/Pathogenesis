@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 using UnityEngine.InputSystem;
+using UnityEditor.ShaderGraph.Internal;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     public HostLocomotion locomotion;
+    [SerializeField]
+    private float joystickJumpThreshold = 0.2f;
     private float deltaX = 0.0f, deltaY = 0.0f;
 
     public ShootingComponent shootingComponent;
@@ -65,12 +68,12 @@ public class PlayerController : MonoBehaviour
                 deltaX = playerInputActions.Player.Movement.ReadValue<Vector2>().x;
                 deltaY = playerInputActions.Player.Movement.ReadValue<Vector2>().y;
 
-                if(!hasJumped && deltaY > 0.2f)
+                if(!hasJumped && deltaY > joystickJumpThreshold)
                 {
                     locomotion.Jump(deltaX);
                     hasJumped = true;
                 }
-                else if(hasJumped && deltaY <= 0.2f)
+                else if(hasJumped && deltaY <= joystickJumpThreshold)
                 {                    
                     hasJumped = false;
                     locomotion.JumpButtonUp();
