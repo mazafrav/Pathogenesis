@@ -130,9 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locomotion: {fileID: 1275196306852582045}
-  wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  wayPoints: []
   deathEffect: {fileID: 4784911079922076189, guid: a063e00af1890904d94930b404a16f5c, type: 3}
   stoppingDistance: 1.5
 --- !u!114 &1275196306852582045
@@ -162,6 +160,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7863156932767443082}
   colorWhileWindUp: {r: 0.4901961, g: 0.56078434, b: 0.91372555, a: 1}
   colorWhileCooldown: {r: 0.5568628, g: 0.9254902, b: 1, a: 1}
+  deltaXModifier: 0.5
+  deltaYModifier: 1.2
 --- !u!114 &3733743548789898051
 MonoBehaviour:
   m_ObjectHideFlags: 0
