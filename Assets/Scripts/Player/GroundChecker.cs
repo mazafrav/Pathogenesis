@@ -24,6 +24,11 @@ public class GroundChecker : MonoBehaviour
         **/
         groundCount++;
         isGrounded = groundCount > 0;
+        if (isGrounded)
+        {
+            Animator animator = GetComponentInParent<Animator>();
+            if (animator != null) { animator.SetBool("Grounded", true); }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -36,5 +41,10 @@ public class GroundChecker : MonoBehaviour
         **/
         groundCount = Mathf.Max(groundCount - 1, 0);
         isGrounded = groundCount > 0;
+        if (!isGrounded)
+        {
+            Animator animator = GetComponentInParent<Animator>();
+            if (animator != null) { animator.SetBool("Grounded", false); }
+        }
     }
 }

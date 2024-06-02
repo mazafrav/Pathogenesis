@@ -8,6 +8,9 @@ public class PlayerLocomotion : HostLocomotion
     private float g = 1.0f, velocityY = 1.0f, gravityScale = 0f;
     private float jumpOffset = 0.5f;
     private bool isJumping = false;
+
+    [SerializeField]
+    public Animator animator;
     
 
     // Start is called before the first frame update
@@ -37,9 +40,11 @@ public class PlayerLocomotion : HostLocomotion
 
     private void Update()
     {
+        animator.SetFloat("Speed", Mathf.Abs(rb2D.velocity.x) + Mathf.Abs(rb2D.velocity.y));
         if (groundChecker.isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
+
         }
         else
         {
@@ -55,6 +60,8 @@ public class PlayerLocomotion : HostLocomotion
             isJumping = true;
             g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
             rb2D.gravityScale = g / Physics2D.gravity.y;
+            animator.SetBool("Grounded", false);
+            animator.SetBool("Jumping", true);
         }
     }
 
