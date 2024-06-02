@@ -19,12 +19,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
 
+    [SerializeField]
+    private DynamicMusicController musicController;
+
     private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
 
     private GameObject levelEventSystem;
 
     public bool isPaused = false;
+    private int pausedMusicSelection = 1;
 
     public bool canPlayerProcessInput { get; private set; } = true;
     private float processInputTimer = 0.0f;
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(Instance);
         }
 
     }
@@ -108,6 +113,8 @@ public class GameManager : MonoBehaviour
             levelEventSystem.SetActive(false);
             canPlayerProcessInput = false;
             Time.timeScale = 0.0f;
+            pausedMusicSelection = musicController.GetSelectionIndex();
+            musicController.SetSelectionIndex(2);
             SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
         }
         else
@@ -116,6 +123,12 @@ public class GameManager : MonoBehaviour
             processInputTimer = 0.1f;
             Time.timeScale = 1.0f;
             SceneManager.UnloadSceneAsync("PauseMenu");
+            musicController.SetSelectionIndex(pausedMusicSelection);
         }
+    }
+
+    public void SetMusicSelectionIndex(int index)
+    {
+        musicController.SetSelectionIndex(index);
     }
 }

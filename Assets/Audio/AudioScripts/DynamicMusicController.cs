@@ -7,9 +7,9 @@ public class DynamicMusicController : MonoBehaviour
 {
     public AudioMixerSnapshot[] tracks = new AudioMixerSnapshot[5];
     [SerializeField]
-    public int selectionIndex = 0;
+    private int selectionIndex = 0;
     [SerializeField]
-    public float transitionSpeed = 0.5f;
+    private float transitionSpeed = 0.5f;
  
     public static DynamicMusicController instance;
     private void Awake()
@@ -30,6 +30,17 @@ public class DynamicMusicController : MonoBehaviour
     {
         tracks[selectionIndex].TransitionTo(transitionSpeed);
     }
-}
+
+    public void SetSelectionIndex(int index)
+    {
+        selectionIndex = index;
+    }
+
+    public int GetSelectionIndex()
+    {
+        return selectionIndex;
+    }       
+        
+ }
 
 

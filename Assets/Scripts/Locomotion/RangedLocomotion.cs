@@ -150,5 +150,7 @@ public class RangedLocomotion : HostLocomotion
         windUp = rangedPossessingParameters.windUp;
         shootCooldown = rangedPossessingParameters.shootCooldown;
 
+        GameManager.Instance.SetMusicSelectionIndex(3);
+
     }
 }

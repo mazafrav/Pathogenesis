@@ -304,5 +304,7 @@ public class CrystallineLocomotion : HostLocomotion
         cooldown = crystallinePossessingParameters.cooldown;
         windUp = crystallinePossessingParameters.windUp;
         stabDuration = crystallinePossessingParameters.stabDuration;
+
+        GameManager.Instance.SetMusicSelectionIndex(5);
     }
 }

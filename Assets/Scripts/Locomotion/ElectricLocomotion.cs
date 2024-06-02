@@ -205,6 +205,8 @@ public class ElectricLocomotion : HostLocomotion
         shockDuration = electricPossessingParameters.shockDuration;
         electricShockRange = electricPossessingParameters.electricShockRange;
         electricShockRangeGameObject.transform.localScale = new Vector3(electricShockRange, electricShockRange, electricShockGameObject.transform.localScale.z);
+
+        GameManager.Instance.SetMusicSelectionIndex(4);
     }
 
     public float GetShockDuration()
