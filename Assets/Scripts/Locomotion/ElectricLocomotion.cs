@@ -162,10 +162,10 @@ public class ElectricLocomotion : HostLocomotion
 
     public override void ResetAttack()
     {
-        //currentCooldownTime = 0f;
-        //currentWindUpTime = 0f;
-        //Color currentColor = GetCurrentColor();
-        //ChangeSpritesColor(currentColor);
+        currentCooldownTime = 0f;
+        currentWindUpTime = 0f;
+        ChangeSpritesColor(GetCurrentColor());
+        electricShockGameObject.SetActive(false);
     }
 
     public bool IsWindingUp()
