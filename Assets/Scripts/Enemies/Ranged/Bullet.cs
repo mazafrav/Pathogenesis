@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     public GameObject player;
     public DamageControl damageControl;
     public GameObject owner;
+    [SerializeField]
+    public ParticleSystem BulletVFX;
 
     private bool isReflected = false;
     // Start is called before the first frame update
@@ -56,21 +58,28 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")) //Damage an enemy
         {
             collision.GetComponent<DamageControl>().Damage(collision);
-            Destroy(this.gameObject);
+            DestroyBullet();
         }
         else if (collision.gameObject.CompareTag("Player")) //Damage a player
         {
             collision.GetComponentInParent<DamageControl>().Damage(collision);
-            Destroy(this.gameObject);
+            DestroyBullet();
         }
         else if (collision.gameObject.CompareTag("TileMap"))
         {
-            Destroy(this.gameObject);
+            DestroyBullet();
         }
         else if (collision.gameObject.CompareTag("MapElement"))
         {
-            Destroy(this.gameObject);
+            DestroyBullet();
         }
+    }
+
+    private void DestroyBullet()
+    {
+        ParticleSystem bulletVFX = Instantiate(BulletVFX, this.gameObject.transform.position, Quaternion.identity);
+        bulletVFX.Play();
+        Destroy(this.gameObject);
     }
 
 }
