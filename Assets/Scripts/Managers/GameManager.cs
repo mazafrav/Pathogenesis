@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
 
-    [SerializeField]
     private DynamicMusicController musicController;
 
     private PlayerController playerController;
@@ -54,6 +53,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
        levelEventSystem = GameObject.Find("EventSystem");
+       musicController = DynamicMusicController.instance;
     }
 
     private void Update()
