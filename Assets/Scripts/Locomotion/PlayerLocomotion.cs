@@ -90,11 +90,15 @@ public class PlayerLocomotion : HostLocomotion
     public void EnableFreeMovement()
     {
         rb2D.gravityScale = 0.0f;
+        animator.SetBool("IsInFreeMovement", true);
+        isJumping = false;
+        animator.SetBool("Jumping", false);
     }
 
     public void DisableFreeMovement()
     {
         rb2D.gravityScale = gravityScale;
+        animator.SetBool("IsInFreeMovement", false);
     }
 
     public override void Attack(Vector3 target = default)
