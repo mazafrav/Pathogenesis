@@ -5,30 +5,38 @@ using UnityEngine;
 
 public class CrystalineEnemy : Enemy
 {
-    private GameObject currentRangedTarget = null;
-    private List<GameObject> closeTargets;
+    public GameObject currentRangedTarget = null;
+    public List<GameObject> closeTargets;
 
     [SerializeField] 
     private ElectricShockRange range; // we use the same behaviour as the electric enemy xd
+    [SerializeField]
+    private PhotonicDetection photonicRange;
     [SerializeField] 
     public GameObject graphics;
 
-    [SerializeField] private float detectionRange = 5f;
+    [SerializeField] private float photonicDetectionRange = 7f;
+    [SerializeField] private float detectionRange = 4f;
     [SerializeField] private float stabRange = 2f;
 
+    public float timeToCancelAggro = 1.5f;
 
-    private bool isSeeingTarget = false, isPatrolling = true;
+
+    private bool isSeeingTarget = false;
     private Vector3 direction;
 
     void Start()
     {
         closeTargets = new List<GameObject>();
         range.transform.localScale = new Vector3(detectionRange * 2.0f, detectionRange * 2.0f, range.transform.localScale.z);
+        photonicRange.transform.localScale = new Vector3(photonicDetectionRange * 2.0f, photonicDetectionRange * 2.0f, 
+            photonicRange.transform.localScale.z);
+
     }
 
     void Update()
     {
-        if (!isSeeingTarget) // if it's not seeing any target, just patro
+        if (!isSeeingTarget) // if it's not seeing any target, just patrol
         {
             UpdateTarget();
             if (currentRangedTarget != null)
@@ -83,11 +91,6 @@ public class CrystalineEnemy : Enemy
                     locomotion.Move(direction.x, direction.y);
                 }
                 UpdateOrientation(range.personInRange.transform.position);
-
-                //if (Mathf.Abs(range.personInRange.transform.position.y - transform.position.y) >= 0.5f)
-                //{
-                //    isSeeingTarget = false;
-                //}
             }
 
             else
@@ -155,27 +158,5 @@ public class CrystalineEnemy : Enemy
     {
         locomotion.Aim(position);
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
-        {
-            closeTargets.Add(collision.gameObject);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
-        {
-            closeTargets.Remove(collision.gameObject);
-            if (collision.gameObject == currentRangedTarget)
-            {
-                currentRangedTarget = null;
-            }
-        }
-    }
-
 
 }
