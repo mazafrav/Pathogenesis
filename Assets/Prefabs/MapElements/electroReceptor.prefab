@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5781864749450594661}
   - component: {fileID: 747066025512220312}
   - component: {fileID: 2888764600608411743}
+  - component: {fileID: 8225193837037947966}
   m_Layer: 11
   m_Name: electroReceptor
   m_TagString: MapElement
@@ -135,3 +136,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activatableElement: {fileID: 0}
   timeToDeactivate: 0
+--- !u!95 &8225193837037947966
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5786152768667599089}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5df589f4178f0b1489159520805eab0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

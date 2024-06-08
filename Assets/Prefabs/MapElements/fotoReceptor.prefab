@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9216670809804133026}
   - component: {fileID: 6673099776137959890}
   - component: {fileID: 3197975891938380361}
+  - component: {fileID: 8400796629454826301}
   m_Layer: 0
   m_Name: fotoReceptor
   m_TagString: MapElement
@@ -135,3 +136,24 @@ CircleCollider2D:
   m_Offset: {x: 8.2513885e-10, y: 0.0069217673}
   serializedVersion: 2
   m_Radius: 0.2854709
+--- !u!95 &8400796629454826301
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8894579311422686104}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d3811312687bb2d4fa39b4628ed10dec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
