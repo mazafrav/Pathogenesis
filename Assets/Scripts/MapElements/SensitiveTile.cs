@@ -11,6 +11,8 @@ public class SensitiveTile : MonoBehaviour
 
     [SerializeField]
     public GameObject[] activatableElements;
+    [SerializeField]
+    public Animator animator;
     // Start is called before the first frame update
     private Vector2 velocityEnter = Vector2.zero;
     private IActivatableElement[] activatableInterfaces;
@@ -55,6 +57,7 @@ public class SensitiveTile : MonoBehaviour
 
     private void ActivateActivables()
     {
+        animator.Play("SensitiveTileActivated");
         for (var index = 0; index < activatableElements.Length; index++)
         {
             activatableElements[index].GetComponent<IActivatableElement>().Activate();
