@@ -40,10 +40,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6336727943846253135}
-  - component: {fileID: 1689736419402463871}
   - component: {fileID: 8180244663907817595}
+  - component: {fileID: 4534442206789885736}
   - component: {fileID: 6254766094864345595}
-  - component: {fileID: 310365630844495141}
+  - component: {fileID: 8006374191543114737}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -66,23 +66,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1665944531955470299}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1689736419402463871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2646997951098926621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4da44519c0662e4cbc5073e49e7b852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointOpen: {fileID: 8438728296673483205}
-  pointClose: {fileID: 6484365150316536308}
-  movingSpeed: 5
-  animator: {fileID: 310365630844495141}
-  isOpened: 0
 --- !u!212 &8180244663907817595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -124,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e008c84d30f81ef4d8bfcf559ff04fa4, type: 3}
+  m_Sprite: {fileID: -1445196070, guid: b6f7e67bfc6337f4aa3a6690451b285a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,6 +118,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4534442206789885736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2646997951098926621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa1823914de2f894ca5f49b0724ea139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointOpen: {fileID: 8438728296673483205}
+  pointClose: {fileID: 6484365150316536308}
+  movingSpeed: 3
+  animator: {fileID: 8006374191543114737}
+  isOpened: 0
 --- !u!61 &6254766094864345595
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0050793, y: 1.9911383}
   m_EdgeRadius: 0
---- !u!95 &310365630844495141
+--- !u!95 &8006374191543114737
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -190,7 +190,7 @@ Animator:
   m_GameObject: {fileID: 2646997951098926621}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 15878e14977911b419e63099c211c2e8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 740d01cc8f63d9748baad11fda1f9d85, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -242,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1665944531955470299}
   m_Layer: 0
-  m_Name: MovingBlock
+  m_Name: MovingBlockElectric
   m_TagString: MapElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

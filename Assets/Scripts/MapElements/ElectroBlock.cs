@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingBlock : MonoBehaviour, IActivatableElement
+public class ElectroBlock : MonoBehaviour, IActivatableElement
 {
     public Transform pointOpen;
     public Transform pointClose;
@@ -28,7 +28,7 @@ public class MovingBlock : MonoBehaviour, IActivatableElement
     
     public void Activate()
     {
-        animator.Play("MovingBlockActivation");
+        animator.Play("ElectroBlockActivation");
         if (isOpened)
         {
             nextPosition = pointClose.position;
@@ -42,13 +42,13 @@ public class MovingBlock : MonoBehaviour, IActivatableElement
 
     public void Open()
     {
-        animator.Play("MovingBlockActivation");
+        animator.Play("ElectroBlockActivation");
         nextPosition = pointOpen.position;
     }
 
     public void Close()
     {
-        animator.Play("MovingBlockActivation");
+        animator.Play("ElectroBlockActivation");
         nextPosition = pointClose.position;
     }
 }
