@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1483389402370250680}
   - component: {fileID: 3028280406842794893}
   - component: {fileID: 3736559685275923322}
+  - component: {fileID: 5413088778430204139}
   m_Layer: 11
   m_Name: DamagingBarrier
   m_TagString: MapElement
@@ -143,3 +144,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25366923, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &5413088778430204139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218365662720230770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36228bf19044343459affa31ed795696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invencibilityTime: 1
