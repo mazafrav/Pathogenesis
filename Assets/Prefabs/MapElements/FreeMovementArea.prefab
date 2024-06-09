@@ -137,7 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBlockBounciness: 0
-  blockingBounciness: {fileID: 1497288495188407417}
+  blockingBounciness:
+  - {fileID: 1497288495188407417}
   applyThrust: 0
   applyThrustOverTheFloor: 0
   thrust: 20

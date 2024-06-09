@@ -6,7 +6,7 @@ public class FreeMovement : MonoBehaviour
 {
     [Header("Bounciness avoidance")]
     [SerializeField] private bool canBlockBounciness = false;
-    [SerializeField] private GameObject blockingBounciness;
+    [SerializeField] private GameObject[] blockingBounciness;
     [Header("Thrust")]
     [SerializeField] private bool applyThrust = false;
     [SerializeField] private bool applyThrustOverTheFloor = false;
@@ -74,9 +74,12 @@ public class FreeMovement : MonoBehaviour
 
     private void ActivateBlockingBounciness(bool isActive)
     {
-        blockingBounciness.SetActive(isActive);
-        blockingBounciness.GetComponent<BoxCollider2D>().enabled = isActive;
-        blockingBounciness.GetComponent<BlockingBouncines>().enabled = isActive;
+        foreach (GameObject obj in blockingBounciness)
+        {
+            obj.SetActive(isActive);
+            obj.GetComponent<BoxCollider2D>().enabled = isActive;
+            obj.GetComponent<BlockingBouncines>().enabled = isActive;
+        }
     }
 
     private void ApplyThrust(PlayerController playerController, Collider2D collision)
