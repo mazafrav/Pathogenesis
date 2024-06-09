@@ -48,7 +48,6 @@ public class DamageControl : MonoBehaviour
                 if (enemy.transform.parent != null) //The enemy is possessed
                 {
                     wasPossessing = true;
-                    Debug.Log("Possessed");
                     enemy.transform.parent = null;
                     Vector3 enemyPos = enemy.transform.position;
                     enemy.DestroyEnemy();

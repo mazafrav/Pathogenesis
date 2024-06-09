@@ -35,7 +35,6 @@ public class SensitiveTile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("enter");
         if (other.tag == "Player")
         {
             velocityEnter = other.gameObject.GetComponentInParent<PlayerLocomotion>().rb2D.velocity.normalized;
@@ -44,7 +43,6 @@ public class SensitiveTile : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("exit");
         if (other.tag == "Player")
         {
             Vector2 velocityExit = other.gameObject.GetComponentInParent<PlayerLocomotion>().rb2D.velocity.normalized;

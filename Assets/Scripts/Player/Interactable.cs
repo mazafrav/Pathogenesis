@@ -72,6 +72,5 @@ public class Interactable : MonoBehaviour
     {
         if (interacted) return;
         interacted = true;
-        Debug.Log("Interacted with " + interactedObject.name);
     }
 }

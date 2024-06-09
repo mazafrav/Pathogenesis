@@ -112,8 +112,7 @@ public class RangedLocomotion : HostLocomotion
     private void Shoot(Vector3 target, float cooldown = -1.0f)
     {
         GameObject bullet = Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.Euler(0, 0, 0));
-        Vector3 direction = shootingComponent.transform.up;
-        Debug.Log(shootingComponent.name);
+        Vector3 direction = shootingComponent.transform.up;       
         // float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         // Quaternion.LookRotation()
         // bullet.transform.rotation = Quaternion.Euler(0, 0, rot + 90);

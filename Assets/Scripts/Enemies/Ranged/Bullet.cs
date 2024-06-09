@@ -50,7 +50,6 @@ public class Bullet : MonoBehaviour
                 owner = collision.gameObject;
             }
 
-            Debug.Log(owner);
             return;
         }
 

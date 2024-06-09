@@ -168,7 +168,6 @@ public class RangedEnemy : Enemy
                     {
                         enablePatrolling = false;
                         result = target;
-                        Debug.Log("MI TARGET ES: " + result.gameObject.name);
                         break;
                     }
                     else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap"))

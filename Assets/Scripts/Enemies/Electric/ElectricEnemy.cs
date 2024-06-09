@@ -38,14 +38,12 @@ public class ElectricEnemy : Enemy
             {
                 if (raycastHit2D[i].collider.gameObject == shockRange.personInRange)
                 {
-                    Debug.Log("Seeing");
                     isSeeingTarget = true;
                     Debug.DrawRay(transform.position, direction * raycastHit2D[i].distance, Color.red);
                     break;
                 }
                 else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap"))
                 {
-                    Debug.Log("Not seeing");
                     isSeeingTarget = false;
                     break;
                 }
