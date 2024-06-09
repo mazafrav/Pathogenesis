@@ -49,6 +49,10 @@ public class ElectricShock : MonoBehaviour
             {
                 o.gameObject.GetComponent<ElectroReceptor>().ElectroShock();
             }
+            else if(o.gameObject.GetComponent<CrystalBlock>() != null)
+            {
+                o.gameObject.GetComponent<CrystalBlock>().DestroyCrystalBlock();
+            }
         }
         currentStepTime += Time.deltaTime;
         if (currentStepTime > stepTime)
