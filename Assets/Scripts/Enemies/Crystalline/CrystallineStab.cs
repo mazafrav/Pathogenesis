@@ -42,6 +42,10 @@ public class CrystallineStab : MonoBehaviour
             {
                 damageControl.Damage(o);
             }
+            else if (o.gameObject.GetComponent<KineticReceptor>() != null)
+            {
+                o.gameObject.GetComponent<KineticReceptor>().Stabbed();
+            }
         }
     }
 }
