@@ -31,8 +31,6 @@ public class CrystallineLocomotion : HostLocomotion
 
     private PlayerController playerController;
     [SerializeField]
-    private GroundChecker groundChecker;
-    [SerializeField]
     private GroundChecker wallCheckerR;
     [SerializeField]
     private GroundChecker wallCheckerL;

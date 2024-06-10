@@ -7,7 +7,7 @@ public class RangedLocomotion : HostLocomotion
     [Header("Attack")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject shootOrigin;    
-    private GroundChecker groundChecker;
+    //private GroundChecker groundChecker;
     private float shootCooldown, windUp;
     public float shootCDTimer = 0.0f, windUpTimer = 0.0f;
     private ShootingComponent shootingComponent;
@@ -26,7 +26,7 @@ public class RangedLocomotion : HostLocomotion
     {
         shootingComponent = GetComponentInChildren<ShootingComponent>();
         rb2D = GetComponentInParent<Rigidbody2D>();
-        groundChecker = GetComponentInChildren<GroundChecker>();
+        //groundChecker = GetComponentInChildren<GroundChecker>();
         shootCooldown = GetComponent<RangedEnemy>().playerShootingCooldown;
         windUp = GetComponent<RangedEnemy>().playerWindUp;
         spriteRenderer = GetComponent<RangedEnemy>().graphics.GetComponent<SpriteRenderer>();

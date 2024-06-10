@@ -115,6 +115,7 @@ MonoBehaviour:
   jumpDistance: 4
   coyoteTime: 0.1
   jumpBufferTime: 0.1
+  groundChecker: {fileID: 3949019572260824486}
   bulletPrefab: {fileID: 4539472987443507277, guid: 53e900c3883ec7e4f9f12db044ba8027, type: 3}
   shootOrigin: {fileID: 8697794661830917710}
   shootCDTimer: 0

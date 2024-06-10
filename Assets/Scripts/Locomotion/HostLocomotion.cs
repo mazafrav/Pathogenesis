@@ -24,6 +24,9 @@ public abstract class HostLocomotion : MonoBehaviour
     protected float jumpBufferTime = 0.1f;
     protected float jumpBufferCounter;
 
+    [SerializeField]
+    public GroundChecker groundChecker;
+
     private DamageControl damageControl = null;
     private Collider2D hostCollider;
 

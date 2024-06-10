@@ -26,9 +26,15 @@ public class PlayerController : MonoBehaviour
     public bool HasDisabledControls { get; set; } = false;
     private Vector3 mousePos;
 
+    Queue<string> inputBuffer;
+    [SerializeField]
+    private float inputBufferTime = 0.5f;
+
     public bool isPossessing = false;
     private bool doOnce = false;
     PlayerInputActions playerInputActions;
+
+    int counter = 0;
 
     void Start()
     {
@@ -38,6 +44,8 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Jump.canceled += JumpButtomUp;
         playerInputActions.Player.Attack.performed += Attack;
         playerInputActions.Player.PauseMenu.performed += PauseMenu;
+
+        inputBuffer = new Queue<string>(5);
     }
 
     public float GetDeltaX() { return deltaX; }
@@ -96,6 +104,29 @@ public class PlayerController : MonoBehaviour
                 GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
                 doOnce = true;
             }
+
+            // INPUT BUFFER ANALYSIS
+            if (inputBuffer.Count > 0)
+            {
+                Debug.Log(inputBuffer.Count);
+                switch(inputBuffer.Peek())
+                {
+                    case "jump":
+                        if (locomotion.groundChecker.isGrounded)
+                        {
+                            locomotion.Jump(deltaX);
+                            inputBuffer.Dequeue();
+                        }
+                        break;
+                    case "attack":
+                        if (locomotion.IsAttackReady())
+                        {
+                            locomotion.Attack(mousePos);
+                            inputBuffer.Dequeue();
+                        }
+                        break;
+                }
+            }
         }
 
         #region OldInput
@@ -140,22 +171,35 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Attack.performed -= Attack;
         playerInputActions.Player.PauseMenu.performed -= PauseMenu;
     }
+
+    void RemoveAction()
+    {
+        inputBuffer.Dequeue();
+    }
     private void Jump(InputAction.CallbackContext context)
     {
-        if(GameManager.Instance.canPlayerProcessInput)
+
+        if (GameManager.Instance.canPlayerProcessInput)
         {
-            locomotion.Jump(deltaX);
+            //counter++;
+            //Debug.Log(counter);
+            //locomotion.Jump(deltaX);
+            inputBuffer.Enqueue("jump");
+            Invoke("RemoveAction", inputBufferTime);
         }
     }
 
     private void JumpButtomUp(InputAction.CallbackContext context)
     {
         locomotion.JumpButtonUp();
+        //inputBuffer.Enqueue("jumpUp");
     }
 
     private void Attack(InputAction.CallbackContext context)
     {
-        locomotion.Attack(mousePos);
+        //locomotion.Attack(mousePos);
+        inputBuffer.Enqueue("attack");
+        Invoke("RemoveAction", inputBufferTime);
     }
 
     private void PauseMenu(InputAction.CallbackContext context)

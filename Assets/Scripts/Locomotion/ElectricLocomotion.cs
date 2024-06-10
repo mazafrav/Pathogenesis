@@ -38,7 +38,7 @@ public class ElectricLocomotion : HostLocomotion
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentShockDuration = 0.0f;
 
     private PlayerController playerController;
-    private GroundChecker groundChecker;
+    //private GroundChecker groundChecker;
     private HostAbsorption absorption;
     public float ElectricShockRange { get { return electricShockRange; } }
 
@@ -47,7 +47,7 @@ public class ElectricLocomotion : HostLocomotion
     void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
-        groundChecker = GetComponentInChildren<GroundChecker>();
+        //groundChecker = GetComponentInChildren<GroundChecker>();
         absorption = GetComponent<HostAbsorption>();
 
         defaultColor = spriteRenderer.color;
