@@ -174,7 +174,10 @@ public class PlayerController : MonoBehaviour
 
     void RemoveAction()
     {
-        inputBuffer.Dequeue();
+        if (inputBuffer.Count > 0)
+        {
+            inputBuffer.Dequeue();
+        }
     }
     private void Jump(InputAction.CallbackContext context)
     {
