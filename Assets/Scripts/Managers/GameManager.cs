@@ -114,7 +114,20 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0.0f;
             pausedMusicSelection = musicController.GetSelectionIndex();
             musicController.SetSelectionIndex(2);
-            SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
+
+            bool isPauseOn = false;
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                if (SceneManager.GetSceneAt(i).name.Equals("PauseMenu"))
+                {
+                    isPauseOn = true;
+                    break;
+                }
+            }
+            if (!isPauseOn)
+            {
+                SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
+            }
         }
         else
         {           
