@@ -20,18 +20,15 @@ public class GameManager : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
 
     private DynamicMusicController musicController;
-
     private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
 
     private GameObject levelEventSystem;
-
-    public bool isPaused = false;
     private int pausedMusicSelection = 1;
-
-    public bool canPlayerProcessInput { get; private set; } = true;
     private float processInputTimer = 0.0f;
 
+    public bool isPaused { get; set; } = false;
+    public bool canPlayerProcessInput { get; set; } = true;
     public bool IsThereAGamepadConnected {  get; private set; }
 
     public static GameManager Instance { get; private set; }
@@ -39,31 +36,39 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
-        if (Instance != null && Instance != this)
+        //if (Instance != null && Instance != this)
+        //{
+        //    Destroy(this);
+           
+        //}
+        //else
+        //{
+        //    Instance = this;
+            
+        //}
+
+
+        if (Instance != null)
         {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
+            Instance.SetInfo();
+            Destroy(gameObject);
+            return;
         }
 
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-       levelEventSystem = GameObject.Find("EventSystem");
-       musicController = DynamicMusicController.instance;
+       //levelEventSystem = GameObject.Find("EventSystem");
+       musicController = GetComponentInChildren<DynamicMusicController>();      
     }
 
     private void Update()
     {
         //We check if there is a gamepad connected
         IsThereAGamepadConnected = Gamepad.all.Count > 0;
-        //if(Input.GetJoystickNames().Length > 0)
-        //{
-        //     IsThereAGamepadConnected = Input.GetJoystickNames()[0].Length > 0;    
-        //}
         
         //We add a delay to the player input when we resume the game from the pause menu
         if(processInputTimer > 0)
@@ -74,6 +79,30 @@ public class GameManager : MonoBehaviour
             {
                 canPlayerProcessInput = true;          
             }
+        }
+    }
+
+    //Here we set info for the game manager such as player, camera...
+    public void SetInfo()
+    {
+        isPaused = false;
+        canPlayerProcessInput = true;
+
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+        if (virtualCamera == null)
+        {
+            virtualCamera = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+        }
+        if (levelEventSystem == null)
+        {
+            levelEventSystem = GameObject.Find("EventSystem");
+        }
+        if (levelLoader == null)
+        {
+            levelLoader = GameObject.FindObjectOfType<LevelLoader>();
         }
     }
 
@@ -100,7 +129,7 @@ public class GameManager : MonoBehaviour
     public void ResetLevelFromPause()
     {
         PauseGame();
-        GameManager.Instance.GetLevelLoader().RestartLevel();
+        levelLoader.RestartLevel();
     }
 
     public void PauseGame()
