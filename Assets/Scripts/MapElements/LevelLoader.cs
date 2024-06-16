@@ -39,6 +39,7 @@ public class LevelLoader : MonoBehaviour
 
     public void RestartLevel()
     {
+        GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         StartLoadingLevel(SceneManager.GetActiveScene().buildIndex);
     }
 

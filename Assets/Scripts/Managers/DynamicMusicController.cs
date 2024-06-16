@@ -11,21 +11,6 @@ public class DynamicMusicController : MonoBehaviour
     [SerializeField]
     private float transitionSpeed = 0.5f;
  
-    //public static DynamicMusicController instance;
-    private void Awake()
-    {
-        //if (instance == null)
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject);
-          
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
-    }
-
     void Update()
     {
         tracks[selectionIndex].TransitionTo(transitionSpeed);

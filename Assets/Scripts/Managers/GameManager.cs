@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -35,19 +36,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // If there is an instance, and it's not me, delete myself.
-        //if (Instance != null && Instance != this)
-        //{
-        //    Destroy(this);
-           
-        //}
-        //else
-        //{
-        //    Instance = this;
-            
-        //}
-
-
         if (Instance != null)
         {
             Instance.SetInfo();
@@ -62,7 +50,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       //levelEventSystem = GameObject.Find("EventSystem");
        musicController = GetComponentInChildren<DynamicMusicController>();      
     }
 
@@ -99,7 +86,7 @@ public class GameManager : MonoBehaviour
         }
         if (levelEventSystem == null)
         {
-            levelEventSystem = GameObject.Find("EventSystem");
+            levelEventSystem = GameObject.FindGameObjectWithTag("EventSystemLevel");
         }
         if (levelLoader == null)
         {
@@ -138,8 +125,9 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
 
         if (isPaused)
-        {         
-            levelEventSystem.SetActive(false);
+        {
+            levelEventSystem.GetComponent<EventSystem>().enabled = false;
+            levelEventSystem.GetComponent<InputSystemUIInputModule>().enabled = false;
             canPlayerProcessInput = false;
             Time.timeScale = 0.0f;
             pausedMusicSelection = musicController.GetSelectionIndex();
@@ -160,8 +148,9 @@ public class GameManager : MonoBehaviour
             }
         }
         else
-        {           
-            levelEventSystem.SetActive(true);
+        {
+            levelEventSystem.GetComponent<EventSystem>().enabled = true;
+            levelEventSystem.GetComponent<InputSystemUIInputModule>().enabled = true;
             processInputTimer = 0.1f;
             Time.timeScale = 1.0f;
             SceneManager.UnloadSceneAsync("PauseMenu");
