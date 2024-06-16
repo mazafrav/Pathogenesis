@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-      
         if (!GameManager.Instance.isPaused)
         {
             if (!isPossessing)
@@ -65,34 +64,10 @@ public class PlayerController : MonoBehaviour
                     doOnce = false;
                 }
 
-
                 deltaX = playerInputActions.Player.Movement.ReadValue<Vector2>().x;
                 deltaY = playerInputActions.Player.Movement.ReadValue<Vector2>().y;
 
                 locomotion.Aim(mousePos);
-
-                #region OldInput
-                //deltaX = Input.GetAxisRaw("Horizontal");
-                //deltaY = Input.GetAxisRaw("Vertical");
-
-
-                //if (Input.GetButtonDown("Jump") && GameManager.Instance.canPlayerProcessInput)
-                //{
-                //    locomotion.Jump(deltaX);
-                //}
-                //else if (Input.GetButtonUp("Jump"))
-                //{
-                //    locomotion.JumpButtonUp();
-                //}
-                //else if (Input.GetButtonDown("Attack"))
-                //{              
-                //    locomotion.Attack(mousePos);
-                //}
-                //else if (Input.GetKeyDown(KeyCode.F))
-                //{
-                //    locomotion.Unpossess();
-                //}
-                #endregion
 
                 if (AbsorbableHostInRange != null)
                 {
@@ -128,32 +103,13 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        #region OldInput
-        //if (Input.GetButtonDown("PauseMenu"))
-        //{
-        //    bool isSettingsOn = false;
-        //    for (int i = 0; i < SceneManager.sceneCount; i++)
-        //    {
-        //        if (SceneManager.GetSceneAt(i).name.Equals("SettingsMenu"))
-        //        {
-        //            isSettingsOn = true;
-        //            break;
-        //        }
-        //    }
-        //    if (!isSettingsOn)
-        //    {
-        //        GameManager.Instance.PauseGame();
-        //    }
-        //}
-        #endregion
     }
 
     private void FixedUpdate()
     {
         locomotion.Move(deltaX, deltaY);
 
-        mousePos = GameManager.Instance.IsThereAGamepadConnected ? /*new Vector2(Input.GetAxisRaw("AimX"), Input.GetAxisRaw("AimY"))*/  playerInputActions.Player.Aim.ReadValue<Vector2>() : Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = GameManager.Instance.IsThereAGamepadConnected ? playerInputActions.Player.Aim.ReadValue<Vector2>() : Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if(shootingComponent)
         {
