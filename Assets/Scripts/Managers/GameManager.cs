@@ -6,7 +6,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -58,6 +60,19 @@ public class GameManager : MonoBehaviour
         //We check if there is a gamepad connected
         IsThereAGamepadConnected = Gamepad.all.Count > 0;
         
+        //if(IsThereAGamepadConnected)
+        //{
+        //    if(Gamepad.current is DualShockGamepad)
+        //    {
+        //        Debug.Log("DualShock connected");
+        //    }
+        //    else if(Gamepad.current is XInputController) 
+        //    {
+        //        Debug.Log("XBOX gamepad connected");
+        //    }
+        //}
+       
+
         //We add a delay to the player input when we resume the game from the pause menu
         if(processInputTimer > 0)
         {
