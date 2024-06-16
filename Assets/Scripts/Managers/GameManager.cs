@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        Instance.SetInfo(); //This is neccessary if we start in any level
         DontDestroyOnLoad(gameObject);
     }
 
