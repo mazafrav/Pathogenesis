@@ -40,11 +40,14 @@ public class CrystallineStab : MonoBehaviour
         {
             if(!transform.IsChildOf(o.transform))
             {
-                damageControl.Damage(o);
-            }
-            else if (o.gameObject.GetComponent<KineticReceptor>() != null)
-            {
-                o.gameObject.GetComponent<KineticReceptor>().Stabbed();
+                if (o.gameObject.GetComponent<KineticReceptor>() != null)
+                {
+                    o.gameObject.GetComponent<KineticReceptor>().Stabbed();
+                }
+                else
+                {
+                    damageControl.Damage(o);
+                }
             }
         }
     }

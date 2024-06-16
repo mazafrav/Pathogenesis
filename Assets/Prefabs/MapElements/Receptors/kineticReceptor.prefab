@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8436254016735221191}
   - component: {fileID: 7100679853093770974}
   - component: {fileID: 8815143021026367103}
+  - component: {fileID: 900803625814304740}
   m_Layer: 11
   m_Name: kineticReceptor
   m_TagString: MapElement
@@ -120,3 +121,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.31
+--- !u!114 &900803625814304740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037893335225477849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e4413bf039f344f83418372ffbfc1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activatableElement: {fileID: 0}
+  timeToDeactivate: 0

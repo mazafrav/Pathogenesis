@@ -6,9 +6,9 @@ public class KineticReceptor : MonoBehaviour
 {
     [SerializeField]
     public GameObject activatableElement;
-    private IActivatableElement activatableInterface;
     [SerializeField]
     public float timeToDeactivate = 0f;
+    private IActivatableElement activatableInterface;
 
     // Start is called before the first frame update
     private void Start()
@@ -19,7 +19,6 @@ public class KineticReceptor : MonoBehaviour
 
     public void Stabbed()
     {
-        Debug.Log("Abriiido");
         activatableInterface.Open();
     }
 }
