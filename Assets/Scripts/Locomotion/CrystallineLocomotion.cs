@@ -2,6 +2,14 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum AdhesionDirection : ushort
+{
+    N = 0,
+    E = 1,
+    S = 2,
+    W = 3
+}
+
 public class CrystallineLocomotion : HostLocomotion
 {
     [Header("Attack")]
@@ -42,6 +50,8 @@ public class CrystallineLocomotion : HostLocomotion
     private CrystalineEnemy enemyIA;
     private bool flipRot = true;
 
+    public AdhesionDirection directionClimb = AdhesionDirection.S;
+
 
     void Start()
     {
@@ -73,11 +83,24 @@ public class CrystallineLocomotion : HostLocomotion
         {
             rb2D.gravityScale = g / Physics2D.gravity.y;
             isClimbing = false;
+            directionClimb = AdhesionDirection.S;
         }
         else if (!isClimbing && (wallCheckerL.isGrounded || wallCheckerR.isGrounded || ceilChecker.isGrounded))
         {
             isClimbing = true;
             rb2D.gravityScale = 0;
+            if (ceilChecker.isGrounded)
+            {
+                directionClimb = AdhesionDirection.N;
+            }
+            else if (wallCheckerL.isGrounded)
+            {
+                directionClimb = AdhesionDirection.E;
+            }
+            else if (wallCheckerR.isGrounded) 
+            {
+                directionClimb = AdhesionDirection.W;
+            }
         }
 
         if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
@@ -108,7 +131,6 @@ public class CrystallineLocomotion : HostLocomotion
                 ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - currentCooldownTime));
             }
         }
-
     }
 
     public override void Jump(float deltaY)
