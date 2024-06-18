@@ -245,7 +245,7 @@ public class RangedEnemy : Enemy
 
     // Used for when possessing
     public void ResetRigidbodyConstraints()
-    {
+    {       
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
@@ -253,6 +253,7 @@ public class RangedEnemy : Enemy
     // Used for when possessing
     public void SetAimBehaviour(bool value)
     {
+        StopAllCoroutines();
         shootingComponent.bisActive = value;
     }
 
