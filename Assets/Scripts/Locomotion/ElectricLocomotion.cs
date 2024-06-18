@@ -120,10 +120,10 @@ public class ElectricLocomotion : HostLocomotion
         }
         else
         {
-            //when is jumping and possessed we apply a modifier to the X direction
+            //when is jumping and possessed we apply a modifier to the X and Y direction
             if (!groundChecker.isGrounded && transform.parent != null)
             {
-                float Y = (rb2D.velocity.y < 0.0f && deltaY < 0)? deltaYModifier * deltaY : rb2D.velocity.y;
+                float Y = (/*rb2D.velocity.y > 0.0f &&*/ deltaY < 0)? deltaYModifier * deltaY : rb2D.velocity.y;
                 rb2D.velocity = new Vector2(deltaXModifier * deltaX * moveSpeed, Y);
             }
             else //normal movement
