@@ -269,45 +269,45 @@ public class CrystallineLocomotion : HostLocomotion
             angle += 360f;
         }
 
-        float maxAngle = 180f;
-        float minAngle = 0f;
-        Vector3 up = transform.up;
-        Vector3 right = transform.right;
-        if (isClimbing)
-        {
-            if (wallCheckerL.isGrounded)
-            {
-                maxAngle -= 90f;
-                minAngle -= 90f;
-                up = transform.right;
-                right = -transform.up;
-            }
-            else if(wallCheckerR.isGrounded)
-            {
-                maxAngle += 90f;
-                minAngle += 90f;
-                up = -transform.right;
-                right = transform.up;
-            }
-            else
-            {
-                maxAngle += 180f;
-                minAngle += 180f;
-                up = -up;
-                right = -right;
-            }
-        }
-        if (Vector3.Cross(right, target - transform.position).z < 0f)
-        {
-            if (Vector3.Cross(up, target - transform.position).z < 0)
-            {
-                angle = minAngle;
-            }
-            else
-            {
-                angle = maxAngle;
-            }
-        }
+        //float maxAngle = 180f;
+        //float minAngle = 0f;
+        //Vector3 up = transform.up;
+        //Vector3 right = transform.right;
+        //if (isClimbing)
+        //{
+        //    if (wallCheckerL.isGrounded)
+        //    {
+        //        maxAngle -= 90f;
+        //        minAngle -= 90f;
+        //        up = transform.right;
+        //        right = -transform.up;
+        //    }
+        //    else if(wallCheckerR.isGrounded)
+        //    {
+        //        maxAngle += 90f;
+        //        minAngle += 90f;
+        //        up = -transform.right;
+        //        right = transform.up;
+        //    }
+        //    else
+        //    {
+        //        maxAngle += 180f;
+        //        minAngle += 180f;
+        //        up = -up;
+        //        right = -right;
+        //    }
+        //}
+        //if (Vector3.Cross(right, target - transform.position).z < 0f)
+        //{
+        //    if (Vector3.Cross(up, target - transform.position).z < 0)
+        //    {
+        //        angle = minAngle;
+        //    }
+        //    else
+        //    {
+        //        angle = maxAngle;
+        //    }
+        //}
         graphics.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
