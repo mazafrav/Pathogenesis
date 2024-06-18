@@ -213,6 +213,7 @@ MonoBehaviour:
   wallCheckerR: {fileID: 8446539187592977575}
   wallCheckerL: {fileID: 108558911027437596}
   ceilChecker: {fileID: 8564348911658675326}
+  directionClimb: 2
 --- !u!1 &49632745737564221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,3 +1608,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3357233cbf8d14b992362e9effb234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
