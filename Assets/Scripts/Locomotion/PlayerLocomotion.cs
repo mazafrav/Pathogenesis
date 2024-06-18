@@ -8,6 +8,8 @@ public class PlayerLocomotion : HostLocomotion
     private float jumpOffset = 0.5f;
     private bool isJumping = false;
 
+    private float originalMoveSpeed;
+
     [SerializeField]
     public Animator animator;
     
@@ -25,6 +27,8 @@ public class PlayerLocomotion : HostLocomotion
         gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2);
         rb2D.gravityScale = g / Physics2D.gravity.y;
+
+        originalMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -86,8 +90,9 @@ public class PlayerLocomotion : HostLocomotion
         rb2D.velocity = new Vector2(deltaX * moveSpeed, deltaY * moveSpeed);
     }
 
-    public void EnableFreeMovement()
+    public void EnableFreeMovement(float speedModifier = 1.0f)
     {
+        moveSpeed *= speedModifier;
         rb2D.gravityScale = 0.0f;
         animator.SetBool("IsInFreeMovement", true);
         isJumping = false;
@@ -96,6 +101,7 @@ public class PlayerLocomotion : HostLocomotion
 
     public void DisableFreeMovement()
     {
+        moveSpeed = originalMoveSpeed;
         rb2D.gravityScale = gravityScale;
         animator.SetBool("IsInFreeMovement", false);
     }

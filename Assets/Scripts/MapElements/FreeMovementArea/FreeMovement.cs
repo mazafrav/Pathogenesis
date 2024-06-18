@@ -11,8 +11,10 @@ public class FreeMovement : MonoBehaviour
     [SerializeField] private bool applyThrust = false;
     [SerializeField] private bool applyThrustOverTheFloor = false;
     [SerializeField] private float thrust = 20.0f;
-
     [SerializeField] private float time = 1.0f;
+    [Header("Player speed modifier")]
+    [SerializeField] float speedModifier = 0.8f;
+
     private bool hasDisabledControls = false;
     private float currentTime = 0.0f;
 
@@ -43,7 +45,7 @@ public class FreeMovement : MonoBehaviour
         PlayerController playerController = collision.GetComponentInParent<PlayerController>();
         if (playerLocomotion && playerController && playerController.GetPlayerBody().gameObject.activeSelf)
         {
-            playerLocomotion.EnableFreeMovement();
+            playerLocomotion.EnableFreeMovement(speedModifier);
 
             if (canBlockBounciness)
             {
