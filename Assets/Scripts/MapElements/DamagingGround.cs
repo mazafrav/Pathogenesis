@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class DamagingGround : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private DamageControl damageControl;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        damageControl = GetComponent<DamageControl>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy")) //Damage an enemy
-        {
-            other.GetComponent<DamageControl>().Damage(other);
-        }
-        else if (other.CompareTag("Player")) //Damage a player
-        {
-            other.GetComponentInParent<DamageControl>().Damage(other);
-        }
+        //if (other.CompareTag("Enemy")) //Damage an enemy
+        //{
+        //    other.GetComponent<DamageControl>().Damage(other);
+        //}
+        //else if (other.CompareTag("Player")) //Damage a player
+        //{
+        //    other.GetComponentInParent<DamageControl>().Damage(other);
+        //}
+
+        damageControl.Damage(other);
+
     }
 }
