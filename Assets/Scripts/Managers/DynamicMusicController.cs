@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class DynamicMusicController : MonoBehaviour
 {
+    // 0 = MainMenu; 1 = Virus;  2 = PauseMenu;  3 = Photonic;  4 = Electric;  5 = Crystalline
     public AudioMixerSnapshot[] tracks = new AudioMixerSnapshot[5];
     [SerializeField]
     private int selectionIndex = 0;
