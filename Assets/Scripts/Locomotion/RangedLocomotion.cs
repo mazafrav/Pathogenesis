@@ -7,7 +7,7 @@ public class RangedLocomotion : HostLocomotion
     [Header("Attack")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject shootOrigin;
-    [SerializeField] private ParticleSystem chargeShotVFX;
+    [SerializeField] public ParticleSystem chargeShotVFX;
     //private GroundChecker groundChecker;
     private float shootCooldown, windUp;
     public float shootCDTimer = 0.0f, windUpTimer = 0.0f;

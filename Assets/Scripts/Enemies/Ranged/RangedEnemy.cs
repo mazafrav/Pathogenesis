@@ -224,6 +224,7 @@ public class RangedEnemy : Enemy
 
     private IEnumerator AimRoutine()
     {
+        locomotion.GetComponent<RangedLocomotion>().chargeShotVFX.Play();
         isAiming = true;
         canShoot = false;
         timeToShootTimer = timeToShoot;
@@ -239,6 +240,7 @@ public class RangedEnemy : Enemy
     {
         //canShoot = false;
         isAiming = false;
+        locomotion.GetComponent<RangedLocomotion>().chargeShotVFX.Stop();
         yield return new WaitForSeconds(cd);
         canShoot = true;
     }
