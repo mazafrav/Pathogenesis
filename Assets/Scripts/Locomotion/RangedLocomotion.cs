@@ -6,7 +6,8 @@ public class RangedLocomotion : HostLocomotion
 {
     [Header("Attack")]
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject shootOrigin;    
+    [SerializeField] private GameObject shootOrigin;
+    [SerializeField] private ParticleSystem chargeShotVFX;
     //private GroundChecker groundChecker;
     private float shootCooldown, windUp;
     public float shootCDTimer = 0.0f, windUpTimer = 0.0f;
@@ -75,6 +76,8 @@ public class RangedLocomotion : HostLocomotion
     {
         if (!IsAttackReady()) { return; }
 
+        chargeShotVFX.Play();
+
         if (GetComponentInParent<PlayerController>() != null )
         {
             windUpTimer = windUp;
@@ -105,12 +108,14 @@ public class RangedLocomotion : HostLocomotion
 
     public override void ResetAttack()
     {
+        chargeShotVFX.Stop();
         shootCDTimer = 0.0f;
         windUpTimer = 0.0f;
     }
 
     private void Shoot(Vector3 target, float cooldown = -1.0f)
     {
+        chargeShotVFX.Stop();
         GameObject bullet = Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.Euler(0, 0, 0));
         Vector3 direction = shootingComponent.transform.up;       
         // float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
