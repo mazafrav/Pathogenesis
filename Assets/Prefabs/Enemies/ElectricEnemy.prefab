@@ -154,15 +154,15 @@ MonoBehaviour:
   groundChecker: {fileID: 848258949734884959}
   electricShockGameObject: {fileID: 5068238459060251847}
   electricShockRangeGameObject: {fileID: 6911789383419822696}
-  electricShockRange: 5
+  electricShockRange: 7
   cooldown: 1
   windUp: 0.2
   shockDuration: 1.2
   spriteRenderer: {fileID: 7863156932767443082}
   colorWhileWindUp: {r: 0.4901961, g: 0.56078434, b: 0.91372555, a: 1}
   colorWhileCooldown: {r: 0.5568628, g: 0.9254902, b: 1, a: 1}
-  deltaXModifier: 0.5
-  deltaYModifier: 1.2
+  deltaXModifier: 1.2
+  deltaYModifier: 2
 --- !u!114 &3733743548789898051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   graphics: {fileID: 7863156932767443082}
   weaponGraphics: {fileID: 0}
   cameraShakeIntensity: 0
-  possessionEffectTime: 0.7
+  possessionEffectTime: 1.5
   zoomValue: 1
   controllerVibrationIntestity: 0.1
 --- !u!114 &4330372733500021139
