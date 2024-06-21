@@ -22,6 +22,8 @@ public class HostAbsorption : Interactable
     [SerializeField]
     private float controllerVibrationIntestity = 0.01f;
     private float originalZoom;
+    [SerializeField]
+    private ParticleSystem absortionParticles;
 
     private float possessionTimer = 0.0f;
 
@@ -148,6 +150,8 @@ public class HostAbsorption : Interactable
             gameObject.transform.parent = playerController.transform;
             playerController.DisablePlayerBody();
             //graphics.color = possessingColor;
+
+            ParticleSystem absortionVFX = Instantiate(absortionParticles, this.gameObject.transform.position, Quaternion.identity);
 
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
