@@ -44,6 +44,7 @@ Transform:
   - {fileID: 3385108820397603274}
   - {fileID: 8875280482900557516}
   - {fileID: 1844683939903603654}
+  - {fileID: 2179201277242435789}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &9031583807859813762
@@ -196,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possessingParameters: {fileID: 11400000, guid: 987c079cdc7c41d46aa6e546ed531868, type: 2}
-  moveSpeed: 2
+  moveSpeed: 1.2
   jumpHeight: 2
   jumpDistance: 3
   coyoteTime: 0.1
@@ -1430,7 +1431,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2179201277242435789}
   - {fileID: 4497440696837443961}
   - {fileID: 1136644953377256132}
   m_Father: {fileID: 5614215624366767450}
@@ -1528,12 +1528,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7671121710633874073}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3535523218091891979}
+  m_Father: {fileID: 5614215624366767450}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &3556566158146171896
 SpriteRenderer:

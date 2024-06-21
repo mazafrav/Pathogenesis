@@ -89,18 +89,22 @@ public class CrystallineLocomotion : HostLocomotion
         {
             isClimbing = true;
             rb2D.gravityScale = 0;
-            if (ceilChecker.isGrounded)
-            {
-                directionClimb = AdhesionDirection.N;
-            }
-            else if (wallCheckerL.isGrounded)
-            {
-                directionClimb = AdhesionDirection.E;
-            }
-            else if (wallCheckerR.isGrounded) 
-            {
-                directionClimb = AdhesionDirection.W;
-            }
+        }
+
+        if (ceilChecker.isGrounded)
+        {
+            directionClimb = AdhesionDirection.N;
+        }
+        else if (wallCheckerL.isGrounded)
+        {
+            directionClimb = AdhesionDirection.E;
+        }
+        else if (wallCheckerR.isGrounded)
+        {
+            directionClimb = AdhesionDirection.W;
+        } else
+        {
+            directionClimb = AdhesionDirection.S;
         }
 
         if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
