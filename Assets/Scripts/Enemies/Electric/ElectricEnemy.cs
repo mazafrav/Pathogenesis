@@ -35,8 +35,8 @@ public class ElectricEnemy : Enemy
 
             RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, direction, electricLocomotion.ElectricShockRange);
             for (int i = 0; i < raycastHit2D.Length; i++)
-            {
-                if (raycastHit2D[i].collider.gameObject == shockRange.personInRange)
+            {                                                                          //Electric enemies dont attack electric enemies
+                if (raycastHit2D[i].collider.gameObject == shockRange.personInRange && shockRange.personInRange.GetComponent<ElectricEnemy>() == null)
                 {
                     isSeeingTarget = true;
                     Debug.DrawRay(transform.position, direction * raycastHit2D[i].distance, Color.red);
