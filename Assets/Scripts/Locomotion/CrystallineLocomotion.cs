@@ -1,4 +1,3 @@
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -50,11 +49,14 @@ public class CrystallineLocomotion : HostLocomotion
     private CrystalineEnemy enemyIA;
     private bool flipRot = true;
 
+    private AudioSource audioSource;
+
     public AdhesionDirection directionClimb = AdhesionDirection.S;
 
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         playerController = GameManager.Instance.GetPlayerController();
         absorption = GetComponent<HostAbsorption>();
 
@@ -186,6 +188,8 @@ public class CrystallineLocomotion : HostLocomotion
     {
         if (IsAttackReady())
         {
+            ////audioSource.pitch = Random.Range(0.8f, 1.2f);
+            audioSource.Play();
             currentWindUpTime = windUp;
             //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
