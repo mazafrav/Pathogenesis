@@ -27,7 +27,7 @@ public class FotoReceptor : MonoBehaviour
         {
             foreach (var element in activatableElement)
             {
-                element.GetComponent<IActivatableElement>().Open();
+                element.GetComponent<IActivatableElement>().Activate();
             }
         }
     }
