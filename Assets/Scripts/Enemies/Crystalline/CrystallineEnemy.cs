@@ -62,8 +62,8 @@ public class CrystalineEnemy : Enemy
 
                 RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, direction, detectionRange);
                 for (int i = 0; i < raycastHit2D.Length; i++)
-                {
-                    if (raycastHit2D[i].collider.gameObject == range.personInRange)
+                {                                                                     //Crystalline enemies dont attack crystalline enemies
+                    if (raycastHit2D[i].collider.gameObject == range.personInRange && range.personInRange.GetComponent<CrystalineEnemy>() == null)
                     {
                         isSeeingTarget = true;
                         Debug.DrawRay(transform.position, direction * raycastHit2D[i].distance, Color.red);
