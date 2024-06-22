@@ -21,12 +21,13 @@ public class HostAbsorption : Interactable
     private float zoomValue = 0.0f;
     [SerializeField]
     private float controllerVibrationIntestity = 0.01f;
-    private float originalZoom;
     [SerializeField]
     private ParticleSystem absortionParticles;
 
+    private float originalZoom;
     private float possessionTimer = 0.0f;
-
+    private float currentTimeToZoomIn = 0.0f;
+    private float currentTimeToZoomOut = 0.0f;
 
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
@@ -57,9 +58,20 @@ public class HostAbsorption : Interactable
             ChangeColor(Color.Lerp(graphics.color, possessingColor, 1 - possessionTimer / possessionEffectTime));
             ChangePossessionMaterial(Mathf.Clamp(1 - possessionTimer / possessionEffectTime, 0f, 1f));
 
-            if  (zoomValue > 0f)
+            if (zoomValue > 0f)
             {
-                Zoom(Mathf.Lerp(originalZoom, zoomValue, Mathf.Clamp(1 - possessionTimer / possessionEffectTime + 0.25f, 0f, 1f)));
+                if (currentTimeToZoomIn > 0.0f) //Zoom in
+                {
+                    currentTimeToZoomIn = Math.Max(currentTimeToZoomIn - Time.deltaTime, 0.0f);
+                  
+                    Zoom(Mathf.Lerp(originalZoom, zoomValue, Mathf.Clamp(1 - currentTimeToZoomIn / (possessionEffectTime/2.0f), 0f, 1f)));
+                }
+                else if (currentTimeToZoomIn <= 0.0f && currentTimeToZoomOut > 0.0f) //Zoom out
+                {
+                    currentTimeToZoomOut = Math.Max(currentTimeToZoomOut - Time.deltaTime, 0.0f);
+                                     
+                    Zoom(Mathf.Lerp(zoomValue, originalZoom, Mathf.Clamp(1 - currentTimeToZoomOut / (possessionEffectTime / 2.0f), 0f, 1f)));
+                }
             }
 
             Gamepad gamepad = Gamepad.current;
@@ -74,12 +86,7 @@ public class HostAbsorption : Interactable
             if (doOnce)
             {
                 playerController.isPossessing = false;
-
-                if (zoomValue > 0f)
-                {
-                    Zoom(originalZoom);
-                }
-
+        
                 Gamepad gamepad = Gamepad.current;
                 if (gamepad != null)
                 {
@@ -88,7 +95,8 @@ public class HostAbsorption : Interactable
                 //CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
                 //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = false;
                 doOnce = false;
-            }
+            } 
+           
         }
     }
 
@@ -165,8 +173,6 @@ public class HostAbsorption : Interactable
                 }
             }
 
-           
-
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
             if (rangedEnemy != null)
             {
@@ -177,6 +183,8 @@ public class HostAbsorption : Interactable
                 rangedEnemy.SetAimBehaviour(true);
             }
             possessionTimer = possessionEffectTime;
+            currentTimeToZoomIn = possessionEffectTime/2.0f;
+            currentTimeToZoomOut = possessionEffectTime/2.0f;
             doOnce = true;
             //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
 
@@ -188,6 +196,7 @@ public class HostAbsorption : Interactable
                 }
                 zoomValue = Mathf.Clamp(originalZoom - zoomValue, 1 , 20);
             }
+
             enemyBehaviour.enabled = false;
         }
 
