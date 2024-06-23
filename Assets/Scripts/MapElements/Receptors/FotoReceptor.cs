@@ -28,6 +28,7 @@ public class FotoReceptor : MonoBehaviour
             foreach (var element in activatableElement)
             {
                 element.GetComponent<IActivatableElement>().Activate();
+                GetComponentInParent<Animator>().Play("FotoReceptorDeactAnim");
             }
         }
     }
