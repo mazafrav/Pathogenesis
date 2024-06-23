@@ -12,7 +12,17 @@ public class PlayerLocomotion : HostLocomotion
 
     [SerializeField]
     public Animator animator;
-    
+
+    [Header("SFX")]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip movementLoopClip;
+    [SerializeField]
+    private AudioClip FMAMoveLoopClip;
+    [SerializeField]
+    private AudioClip jumpClip;
+    [SerializeField]
+    private AudioClip landClip;  
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +39,10 @@ public class PlayerLocomotion : HostLocomotion
         rb2D.gravityScale = g / Physics2D.gravity.y;
 
         originalMoveSpeed = moveSpeed;
+
+        audioSource = GetComponent<AudioSource>();
+        //audioSource.loop = true;
+        audioSource.clip = movementLoopClip;
     }
 
     // Update is called once per frame
@@ -53,6 +67,25 @@ public class PlayerLocomotion : HostLocomotion
         {
             coyoteTimeCounter -= Time.deltaTime;
         }
+
+        if (rb2D.velocity.x != 0)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
+        }
     }
 
     public override void Jump(float deltaX = 0)
@@ -65,6 +98,8 @@ public class PlayerLocomotion : HostLocomotion
             rb2D.gravityScale = g / Physics2D.gravity.y;
             animator.SetBool("Grounded", false);
             animator.SetBool("Jumping", true);
+
+            audioSource.PlayOneShot(jumpClip);
         }
     }
 
@@ -92,6 +127,7 @@ public class PlayerLocomotion : HostLocomotion
 
     public void EnableFreeMovement(float speedModifier = 1.0f)
     {
+        audioSource.clip = FMAMoveLoopClip;
         moveSpeed *= speedModifier;
         rb2D.gravityScale = 0.0f;
         animator.SetBool("IsInFreeMovement", true);
@@ -101,6 +137,7 @@ public class PlayerLocomotion : HostLocomotion
 
     public void DisableFreeMovement()
     {
+        audioSource.clip = movementLoopClip;
         moveSpeed = originalMoveSpeed;
         rb2D.gravityScale = gravityScale;
         animator.SetBool("IsInFreeMovement", false);

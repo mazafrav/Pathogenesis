@@ -34,8 +34,6 @@ public class PlayerController : MonoBehaviour
     private bool doOnce = false;
     PlayerInputActions playerInputActions;
 
-    int counter = 0;
-
     void Start()
     {
         playerInputActions = new PlayerInputActions();
@@ -140,9 +138,6 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance.canPlayerProcessInput)
         {
-            //counter++;
-            //Debug.Log(counter);
-            //locomotion.Jump(deltaX);
             inputBuffer.Enqueue("jump");
             Invoke("RemoveAction", inputBufferTime);
         }

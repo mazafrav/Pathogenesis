@@ -33,6 +33,7 @@ public class MovingBlock : MonoBehaviour, IActivatableElement
                     respawnValues.TryGetValue(i, out Vector3 pos);
                     if (Vector3.Distance(pos, pointClose.position) > Vector3.Distance(pos, pointOpen.position))
                     {
+                        isOpened = true;
                         nextPosition = pointOpen.position;
                     }
                     else
