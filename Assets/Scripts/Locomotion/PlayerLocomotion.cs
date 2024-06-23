@@ -23,7 +23,8 @@ public class PlayerLocomotion : HostLocomotion
     [SerializeField]
     private AudioClip landClip;  
 
-    private AudioSource audioSource;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource oneShotsSource;
 
     // Start is called before the first frame update
     void Start()
@@ -100,7 +101,7 @@ public class PlayerLocomotion : HostLocomotion
             animator.SetBool("Grounded", false);
             animator.SetBool("Jumping", true);
 
-            audioSource.PlayOneShot(jumpClip);
+            oneShotsSource.PlayOneShot(jumpClip);
         }
     }
 
