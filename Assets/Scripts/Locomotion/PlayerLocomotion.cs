@@ -14,7 +14,6 @@ public class PlayerLocomotion : HostLocomotion
     public Animator animator;
 
     [Header("SFX")]
-    private AudioSource audioSource;
     [SerializeField]
     private AudioClip movementLoopClip;
     [SerializeField]
@@ -23,6 +22,8 @@ public class PlayerLocomotion : HostLocomotion
     private AudioClip jumpClip;
     [SerializeField]
     private AudioClip landClip;  
+
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
