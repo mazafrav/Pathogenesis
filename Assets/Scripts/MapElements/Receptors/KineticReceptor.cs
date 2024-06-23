@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class KineticReceptor : MonoBehaviour
@@ -8,6 +9,8 @@ public class KineticReceptor : MonoBehaviour
     public GameObject activatableElement;
     [SerializeField]
     public float timeToDeactivate = 0f;
+    [SerializeField]
+    public ParticleSystem destructionVFX;
     private IActivatableElement activatableInterface;
 
     // Start is called before the first frame update
@@ -19,6 +22,9 @@ public class KineticReceptor : MonoBehaviour
 
     public void Stabbed()
     {
-        activatableInterface.Open();
+        activatableInterface.Activate();
+        ParticleSystem bulletVFX = Instantiate(destructionVFX, this.gameObject.transform.position, Quaternion.identity);
+        bulletVFX.Play();
+        Destroy(this.gameObject);
     }
 }

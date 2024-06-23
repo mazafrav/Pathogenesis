@@ -20,5 +20,6 @@ public class ElectroReceptor : MonoBehaviour
     public void ElectroShock()
     {
         activatableInterface.Activate();
+        GetComponentInParent<Animator>().Play("ElectroReceptorDeactAnim");
     }
 }
