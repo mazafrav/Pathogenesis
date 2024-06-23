@@ -23,12 +23,14 @@ public class GameManager : MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
 
     private DynamicMusicController musicController;
-    private PlayerController playerController;
-    private PlayerLocomotion playerLocomotion;
 
     private GameObject levelEventSystem;
     private int pausedMusicSelection = 1;
     private float processInputTimer = 0.0f;
+
+    private List<GameObject> gameObjectsToRespawn = new List<GameObject>();
+    private Dictionary<int, Vector3> respawnValues = new Dictionary<int, Vector3>();
+    private Vector3 playerRespawnPosition = Vector3.zero;
 
     public bool isPaused { get; set; } = false;
     public bool canPlayerProcessInput { get; set; } = true;
@@ -176,5 +178,69 @@ public class GameManager : MonoBehaviour
     public void SetMusicSelectionIndex(int index)
     {
         musicController.SetSelectionIndex(index);
+    }
+
+    public List<GameObject> GetGameObjectsToRespawn()
+    {
+        return gameObjectsToRespawn;
+    }
+
+    public void AddGameObjectToRespawn(GameObject go)
+    {
+        if (gameObjectsToRespawn.Contains(go))
+        {
+            return;
+        }
+        gameObjectsToRespawn.Add(go);
+    }
+
+    public void AddGameObjectToRespawn(List<GameObject> list)
+    {
+        gameObjectsToRespawn = list;
+    }
+
+    public void ResetGameObjectsToRespawn()
+    {
+        gameObjectsToRespawn.Clear();
+    }
+
+    public Dictionary<int,Vector3> GetRespawnValues()
+    {
+        return respawnValues;
+    }
+    public void AddRespawnValue(int go, Vector3 position)
+    {
+        if (respawnValues.ContainsKey(go))
+        {
+            return;
+        }
+        respawnValues.Add(go,position);
+    }
+
+    public void ResetRespawnValues()
+    {
+        respawnValues.Clear();
+    }
+
+    public void ResetPlayerRespawnPosition()
+    {
+        playerRespawnPosition = Vector3.zero;
+    }
+
+    public Vector3 GetPlayerRespawnPosition()
+    {
+        return playerRespawnPosition;
+    }
+
+    public void SetPlayerRespawnPosition(Vector3 position)
+    {
+        playerRespawnPosition = position;
+    }
+
+    public void ClearRespawn()
+    {
+        ResetGameObjectsToRespawn();
+        ResetRespawnValues();
+        ResetPlayerRespawnPosition();
     }
 }

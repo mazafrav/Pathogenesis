@@ -30,6 +30,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1.0f;
         GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         SceneManager.LoadScene("MainMenu");
+
+        GameManager.Instance.ClearRespawn();
         //SceneManager.UnloadSceneAsync("Pause")
     }
 

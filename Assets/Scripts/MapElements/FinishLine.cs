@@ -21,6 +21,8 @@ public class FinishLine : MonoBehaviour
             }
             GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
             levelLoader.StartLoadingLevel(SceneToLoad);
+
+            GameManager.Instance.ClearRespawn();
         }
     }
 }

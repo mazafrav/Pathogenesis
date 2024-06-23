@@ -37,7 +37,7 @@ public class DamageControl : MonoBehaviour
         if (collider.gameObject.CompareTag("Player") && !wasPossessing)
         {
             GameManager.Instance.GetPlayerController().PlayerBodyDeath();
-            GameManager.Instance.GetLevelLoader().RestartLevel();
+            GameManager.Instance.GetLevelLoader().CheckRespawn();
         }
         else if (collider.GetComponent<Enemy>() != null)
         {

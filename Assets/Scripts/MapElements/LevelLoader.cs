@@ -15,6 +15,27 @@ public class LevelLoader : MonoBehaviour
     private void Start()
     {
         currentTimeToResetLevel = timeToResetLevel;
+
+        Dictionary<int, Vector3> respawnValues = GameManager.Instance.GetRespawnValues();
+        if (respawnValues.Count > 0)
+        {
+            List<GameObject> gameObjectsToRespawn = GameObject.Find("RespawnLoader").GetComponent<SaveGameObjectForRespawn>().gameObjectsToSave;
+
+            for (int i = 0; i < gameObjectsToRespawn.Count; i++)
+            {
+                if (gameObjectsToRespawn[i] != null && !respawnValues.ContainsKey(i))
+                {
+                    Destroy(gameObjectsToRespawn[i]);
+                }
+            }
+
+            foreach (KeyValuePair<int, Vector3> entry in respawnValues)
+            {
+                gameObjectsToRespawn[entry.Key].transform.position = entry.Value;
+            }
+
+            GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
+        }
     }
 
     private void Update()
@@ -42,6 +63,24 @@ public class LevelLoader : MonoBehaviour
         GameManager.Instance.SetMusicSelectionIndex(1);
         GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         StartLoadingLevel(SceneManager.GetActiveScene().buildIndex);
+
+
+        GameManager.Instance.ClearRespawn();
+    }
+
+    public void CheckRespawn()
+    {
+        if (GameManager.Instance.GetRespawnValues().Count > 0)
+        {
+            GameManager.Instance.SetMusicSelectionIndex(1);
+            GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
+            StartLoadingLevel(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            RestartLevel();
+        }
+
     }
 
     IEnumerator LoadLevel(int level)
