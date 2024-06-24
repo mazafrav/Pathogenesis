@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 330155262}
   - component: {fileID: 330155261}
   m_Layer: 5
-  m_Name: NewButton
+  m_Name: NewGameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -874,8 +874,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 942175964}
-  - {fileID: 330155260}
   - {fileID: 1722216947}
+  - {fileID: 330155260}
   - {fileID: 1661032048}
   - {fileID: 1317810994}
   m_Father: {fileID: 1751164445}
@@ -3341,6 +3341,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 439304764}
   continueMenu: {fileID: 657906551}
+  continueButton: {fileID: 1722216946}
+  playButton: {fileID: 154857256}
 --- !u!114 &1751164447
 MonoBehaviour:
   m_ObjectHideFlags: 0
