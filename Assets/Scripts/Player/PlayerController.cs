@@ -81,7 +81,6 @@ public class PlayerController : MonoBehaviour
             // INPUT BUFFER ANALYSIS
             if (inputBuffer.Count > 0)
             {
-                Debug.Log(inputBuffer.Count);
                 switch(inputBuffer.Peek())
                 {
                     case "jump":

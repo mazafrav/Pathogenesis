@@ -7,11 +7,15 @@ public class PlayerLocomotion : HostLocomotion
     private float g = 1.0f, velocityY = 1.0f, gravityScale = 0f;
     private float jumpOffset = 0.5f;
     private bool isJumping = false;
+    private float heightJumped = 0f;
+    private float originalY = 0f;
 
     private float originalMoveSpeed;
 
     [SerializeField]
     public Animator animator;
+    [SerializeField]
+    private GameObject playerBody;
 
     [Header("SFX")]
     [SerializeField]
@@ -25,6 +29,8 @@ public class PlayerLocomotion : HostLocomotion
 
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioSource oneShotsSource;
+
+    [SerializeField] private float distanceToFallToPlayLandClip = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -63,11 +69,23 @@ public class PlayerLocomotion : HostLocomotion
         if (groundChecker.isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
-
+            originalY = playerBody.transform.position.y;
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+
+            if (rb2D.gravityScale > 0.0f)
+            {
+                float yDiff = Mathf.Abs(playerBody.transform.position.y - originalY);
+                heightJumped = Mathf.Max(heightJumped, yDiff);
+            }
+        }
+
+        if (heightJumped >= distanceToFallToPlayLandClip && groundChecker.isGrounded)
+        {
+            heightJumped = 0f;
+            oneShotsSource.PlayOneShot(landClip);
         }
 
         if (rb2D.velocity.x != 0)
@@ -88,6 +106,7 @@ public class PlayerLocomotion : HostLocomotion
         {
             audioSource.Stop();
         }
+        
 
         if (GameManager.Instance.isPaused)
         {
@@ -106,6 +125,7 @@ public class PlayerLocomotion : HostLocomotion
             rb2D.gravityScale = g / Physics2D.gravity.y;
             animator.SetBool("Grounded", false);
             animator.SetBool("Jumping", true);
+            heightJumped = 0f;
 
             oneShotsSource.PlayOneShot(jumpClip);
         }
@@ -136,6 +156,7 @@ public class PlayerLocomotion : HostLocomotion
     public void EnableFreeMovement(float speedModifier = 1.0f)
     {
         audioSource.clip = FMAMoveLoopClip;
+        heightJumped = 0f;
         moveSpeed *= speedModifier;
         rb2D.gravityScale = 0.0f;
         animator.SetBool("IsInFreeMovement", true);
