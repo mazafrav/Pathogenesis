@@ -88,6 +88,12 @@ public class PlayerLocomotion : HostLocomotion
         {
             audioSource.Stop();
         }
+
+        if (GameManager.Instance.isPaused)
+        {
+            audioSource.Stop();
+            oneShotsSource.Stop();
+        }
     }
 
     public override void Jump(float deltaX = 0)
