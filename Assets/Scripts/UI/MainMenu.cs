@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
+    public GameObject continueMenu;
     private GameObject eventSystem;
 
     private void Start()
@@ -20,6 +21,14 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.Instance.SetLastLevelPlayed(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Continue()
+    {
+        Time.timeScale = 1.0f;
+        int scene = PlayerPrefs.GetInt("LastLevel", SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(scene);
     }
 
     public void QuitGame()
@@ -39,7 +48,16 @@ public class MainMenu : MonoBehaviour
     {
         if (SceneManager.sceneCount == 1)
         {
-            mainMenu.SetActive(true);
+            if (PlayerPrefs.GetInt("LastLevel", 0) <= 1)
+            {
+                mainMenu.SetActive(true);
+                continueMenu.SetActive(false);
+            }
+            else
+            {
+                mainMenu.SetActive(false);
+                continueMenu.SetActive(true);
+            }
         }
     }
 }

@@ -243,4 +243,10 @@ public class GameManager : MonoBehaviour
         ResetRespawnValues();
         ResetPlayerRespawnPosition();
     }
+
+    public void SetLastLevelPlayed(int index)
+    {
+        PlayerPrefs.SetInt("LastLevel", index);
+        PlayerPrefs.Save();
+    }
 }
