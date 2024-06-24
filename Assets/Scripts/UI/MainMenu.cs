@@ -11,10 +11,21 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject continueMenu;
     private GameObject eventSystem;
-
+    [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject playButton;
     private void Start()
     {
         eventSystem = GameObject.FindGameObjectWithTag("EventSystemMainMenu");
+
+        if (PlayerPrefs.GetInt("LastLevel", 0) <= 1 )
+        {
+            eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = playButton;
+        }
+        else
+        {
+            eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = continueButton;
+        }
+
     }
 
     public void PlayGame()
