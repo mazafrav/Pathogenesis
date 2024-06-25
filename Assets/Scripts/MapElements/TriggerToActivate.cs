@@ -20,7 +20,7 @@ public class TriggerToActivate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
 
             foreach (GameObject element in itemsToActivate)
