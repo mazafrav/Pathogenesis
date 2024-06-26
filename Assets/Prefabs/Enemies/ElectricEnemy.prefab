@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possessingParameters: {fileID: 11400000, guid: 4f78a542c06850d4f9a705ed5dce52f2, type: 2}
-  moveSpeed: 1.2
+  moveSpeed: 1.5
   jumpHeight: 2
   jumpDistance: 8
   coyoteTime: 0.1
@@ -158,10 +158,10 @@ MonoBehaviour:
   followGameObject: {fileID: 6911789383419822696}
   attackGameObject: {fileID: 2849769192153137201}
   followRange: 5
-  attackRange: 3.5
-  shockRange: 2
+  attackRange: 3
+  shockRange: 1.5
   cooldown: 0.2
-  windUp: 0.2
+  windUp: 0.7
   shockDuration: 0.15
   spriteRenderer: {fileID: 7863156932767443082}
   colorWhileWindUp: {r: 0.4901961, g: 0.56078434, b: 0.91372555, a: 1}
