@@ -11,7 +11,7 @@ public class RespawnCheckpoint : MonoBehaviour
         {
             Debug.Log("SIIIIIIIUUUUUU");
             isActive = false;
-            List<GameObject> gameObjectsToRespawn = GameObject.Find("RespawnLoader").GetComponent<SaveGameObjectForRespawn>().gameObjectsToSave;
+            List<GameObject> gameObjectsToRespawn = GameManager.Instance.GetComponentInChildren<SaveGameObjectForRespawn>().gameObjectsToSave;
 
 
             // Reset respawn values when you reach a nearer checkpoint
