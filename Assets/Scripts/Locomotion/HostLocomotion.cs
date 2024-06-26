@@ -30,6 +30,9 @@ public abstract class HostLocomotion : MonoBehaviour
     private DamageControl damageControl = null;
     private Collider2D hostCollider;
 
+    private AudioSource audioSource;
+    private AudioSource oneShotSource;
+
     public Rigidbody2D rb2D { protected set; get; } = null;
 
     public abstract void Jump(float deltaX);
@@ -62,4 +65,13 @@ public abstract class HostLocomotion : MonoBehaviour
         jumpHeight = possessingParameters.jumpHeight;
         jumpDistance = possessingParameters.jumpDistance;
     }
+
+    private void Awake()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        oneShotSource = gameObject.AddComponent<AudioSource>();
+    }
+
+    public AudioSource GetAudioSource() { return audioSource; }
+    public AudioSource GetOneShotSource() { return oneShotSource; }
 }

@@ -27,9 +27,6 @@ public class PlayerLocomotion : HostLocomotion
     [SerializeField]
     private AudioClip landClip;  
 
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioSource oneShotsSource;
-
     [SerializeField] private float distanceToFallToPlayLandClip = 2f;
 
     // Start is called before the first frame update
@@ -47,10 +44,8 @@ public class PlayerLocomotion : HostLocomotion
         rb2D.gravityScale = g / Physics2D.gravity.y;
 
         originalMoveSpeed = moveSpeed;
-
-        audioSource = GetComponent<AudioSource>();
         //audioSource.loop = true;
-        audioSource.clip = movementLoopClip;
+        GetAudioSource().clip = movementLoopClip;
     }
 
     // Update is called once per frame
@@ -85,33 +80,33 @@ public class PlayerLocomotion : HostLocomotion
         if (heightJumped >= distanceToFallToPlayLandClip && groundChecker.isGrounded)
         {
             heightJumped = 0f;
-            oneShotsSource.PlayOneShot(landClip);
+            GetOneShotSource().PlayOneShot(landClip);
         }
 
         if (rb2D.velocity.x != 0)
         {
-            if (!audioSource.isPlaying)
+            if (!GetAudioSource().isPlaying)
             {
-                audioSource.Play();
+                GetAudioSource().Play();
             }
         }
         else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
         {
-            if (!audioSource.isPlaying)
+            if (!GetAudioSource().isPlaying)
             {
-                audioSource.Play();
+                GetAudioSource().Play();
             }
         }
         else
         {
-            audioSource.Stop();
+            GetAudioSource().Stop();
         }
         
 
         if (GameManager.Instance.isPaused)
         {
-            audioSource.Stop();
-            oneShotsSource.Stop();
+            GetAudioSource().Stop();
+            GetOneShotSource().Stop();
         }
     }
 
@@ -127,7 +122,7 @@ public class PlayerLocomotion : HostLocomotion
             animator.SetBool("Jumping", true);
             heightJumped = 0f;
 
-            oneShotsSource.PlayOneShot(jumpClip);
+            GetOneShotSource().PlayOneShot(jumpClip);
         }
     }
 
@@ -155,7 +150,7 @@ public class PlayerLocomotion : HostLocomotion
 
     public void EnableFreeMovement(float speedModifier = 1.0f)
     {
-        audioSource.clip = FMAMoveLoopClip;
+        GetAudioSource().clip = FMAMoveLoopClip;
         heightJumped = 0f;
         moveSpeed *= speedModifier;
         rb2D.gravityScale = 0.0f;
@@ -166,7 +161,7 @@ public class PlayerLocomotion : HostLocomotion
 
     public void DisableFreeMovement()
     {
-        audioSource.clip = movementLoopClip;
+        GetAudioSource().clip = movementLoopClip;
         moveSpeed = originalMoveSpeed;
         rb2D.gravityScale = gravityScale;
         animator.SetBool("IsInFreeMovement", false);
