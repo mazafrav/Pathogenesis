@@ -135,8 +135,6 @@ MonoBehaviour:
   - {fileID: 0}
   deathEffect: {fileID: 4784911079922076189, guid: a063e00af1890904d94930b404a16f5c, type: 3}
   stoppingDistance: 1.5
-  followRange: {fileID: 7476986461620708609}
-  attackRange: {fileID: 7749481991774258200}
 --- !u!114 &1275196306852582045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a6852fc1b6a714c873670db64a5a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: {fileID: 7476986461620708609}
+  followRange: {fileID: 4683580698423776492}
   interactionCollider: {fileID: 4264372909937117561}
   filter:
     useTriggers: 1
@@ -679,7 +677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1211465411575666524}
   - component: {fileID: 690731694537946825}
-  - component: {fileID: 7476986461620708609}
+  - component: {fileID: 4683580698423776492}
   m_Layer: 12
   m_Name: FollowRange
   m_TagString: Untagged
@@ -737,7 +735,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &7476986461620708609
+--- !u!114 &4683580698423776492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -746,7 +744,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6911789383419822696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 166f2d7c0298ef848a3c5dcaebfb02de, type: 3}
+  m_Script: {fileID: 11500000, guid: e2fa6f55597f8e246949e4da985200bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7264111225845142074

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ElectricShock : MonoBehaviour
 {
     [SerializeField]
-    ElectricShockRange range;
+    private ElectricFollowRange followRange;
     [SerializeField]
     private Collider2D interactionCollider;
     [SerializeField]
@@ -25,9 +25,10 @@ public class ElectricShock : MonoBehaviour
     private void Update()
     {
         interactionCollider.OverlapCollider(filter, collidedObjects);
+
         foreach (var o in collidedObjects)
         {
-            if (o.gameObject == range.personInRange)
+            if (o.gameObject == followRange.chosenTarget)
             {             
                damageControl.Damage(o);
             }   
