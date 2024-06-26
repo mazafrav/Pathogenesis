@@ -62,7 +62,6 @@ public class ElectricEnemy : Enemy
         if (isSeeingTarget) //We are seeing the target
         {
             isPatrolling = false;
-            //locomotion.Attack();
         }
         else //We are not seeing the target
         {

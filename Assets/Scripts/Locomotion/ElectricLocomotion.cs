@@ -25,8 +25,6 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private float shockDuration = 1.0f;
 
-    private ElectricAttackRange attackRangeChecker = null;
-
     [Header("Feedback")]
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -76,8 +74,6 @@ public class ElectricLocomotion : HostLocomotion
         followGameObject.transform.localScale = new Vector3(2*followRange, 2*followRange, followGameObject.transform.localScale.z);
         shockGameObject.transform.localScale = new Vector3(2*shockRange, 2*shockRange, shockGameObject.transform.localScale.z);
         attackGameObject.transform.localScale = new Vector3(2*attackRange, 2*attackRange, attackGameObject.transform.localScale.z);
-
-        attackRangeChecker = attackGameObject.GetComponent<ElectricAttackRange>();
     }
 
     void Update()
@@ -107,6 +103,7 @@ public class ElectricLocomotion : HostLocomotion
             }
         }
 
+        //Only when we are possessed the shock is deactivated after x time
         if (transform.parent!=null && shockGameObject.activeSelf)
         {
             currentShockDuration = Mathf.Max(currentShockDuration - Time.deltaTime, 0f);
@@ -163,25 +160,33 @@ public class ElectricLocomotion : HostLocomotion
 
     public void DeactivateShock()
     {
-       
-        if(transform.parent != null) //Is possessed
+        shockGameObject.SetActive(false);
+        if (hasAttacked)
         {
             currentShockDuration = shockDuration;
             currentCooldownTime = cooldown;
             currentWindUpTime = 0f;
-            shockGameObject.SetActive(false);
+            hasAttacked = false;
         }
-        else
-        {
 
-            if (hasAttacked)
-            {
-                currentCooldownTime = cooldown;
-                currentWindUpTime = 0f;
-                hasAttacked = false;
-            }          
-                shockGameObject.SetActive(false);
-        }
+        //if(transform.parent != null) //Is possessed
+        //{
+        //    currentShockDuration = shockDuration;
+        //    currentCooldownTime = cooldown;
+        //    currentWindUpTime = 0f;
+        //    shockGameObject.SetActive(false);
+        //}
+        //else
+        //{
+
+        //    if (hasAttacked)
+        //    {
+        //        currentCooldownTime = cooldown;
+        //        currentWindUpTime = 0f;
+        //        hasAttacked = false;
+        //    }          
+        //        shockGameObject.SetActive(false);
+        //}
 
         Color currentColor = GetCurrentColor();
         ChangeSpritesColor(currentColor);
@@ -197,8 +202,7 @@ public class ElectricLocomotion : HostLocomotion
         currentCooldownTime = 0f;
         currentWindUpTime = 0f;
         ChangeSpritesColor(GetCurrentColor());
-        shockGameObject.SetActive(false);
-        followGameObject.SetActive(false);
+        shockGameObject.SetActive(false);      
         attackGameObject.SetActive(false);  
     }
 

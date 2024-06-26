@@ -160,7 +160,7 @@ MonoBehaviour:
   followGameObject: {fileID: 6911789383419822696}
   attackGameObject: {fileID: 2849769192153137201}
   followRange: 5
-  attackRange: 4
+  attackRange: 3.5
   shockRange: 2
   cooldown: 0.2
   windUp: 0.2
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 690731694537946825}
   - component: {fileID: 7476986461620708609}
   m_Layer: 12
-  m_Name: ElectricShockRange
+  m_Name: FollowRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

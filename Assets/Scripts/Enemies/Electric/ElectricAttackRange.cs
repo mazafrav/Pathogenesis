@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class ElectricAttackRange : MonoBehaviour
 {
-
-    HostLocomotion locomotion;
-    ElectricEnemy electricEnemy;
-
     [SerializeField]
     private Collider2D interactionCollider;
     [SerializeField]
@@ -15,9 +11,8 @@ public class ElectricAttackRange : MonoBehaviour
 
     private List<Collider2D> collidedObjects = new List<Collider2D>(1);
 
-    public bool isPlayerInAttackRange { get; private set; }
-
-    public bool IsSeeingTraget() { return electricEnemy.ISeeingTarget(); }
+    private HostLocomotion locomotion;
+    private ElectricEnemy electricEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -30,25 +25,23 @@ public class ElectricAttackRange : MonoBehaviour
     void Update()
     {
         interactionCollider.OverlapCollider(filter, collidedObjects);
-        collidedObjects.RemoveAll(obj => !obj.gameObject.CompareTag("Player") && !obj.gameObject.CompareTag("Enemy"));
-        collidedObjects.RemoveAt(0);
+        collidedObjects.RemoveAll(obj => !obj.gameObject.CompareTag("Player") && !obj.gameObject.CompareTag("Enemy"));//We elimante objects that are not the player or enemies
+        collidedObjects.RemoveAt(0); // We eliminate the Electric enemy
 
-        if(collidedObjects.Count <= 0)
+        if(collidedObjects.Count <= 0) //We dont have any organism, we deactivate the shock
         {
             ElectricLocomotion d = (ElectricLocomotion)locomotion;
             d.DeactivateShock();
         }
         else
         {
-
-            foreach (Collider2D obj in collidedObjects)
+            foreach (Collider2D obj in collidedObjects) //We activate the shock
             {
-                if (collidedObjects.Count > 0 && electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")))
+                if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")))
                 {
                     locomotion.Attack();
                 }           
             }
         }
-
     }
 }
