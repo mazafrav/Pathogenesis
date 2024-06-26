@@ -34,6 +34,12 @@ public class LevelLoader : MonoBehaviour
                 gameObjectsToRespawn[entry.Key].transform.position = entry.Value;
             }
 
+            //GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
+
+        }
+
+        if (GameManager.Instance.GetPlayerRespawnPosition() != Vector3.zero)
+        {
             GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
         }
     }
@@ -70,7 +76,7 @@ public class LevelLoader : MonoBehaviour
 
     public void CheckRespawn()
     {
-        if (GameManager.Instance.GetRespawnValues().Count > 0)
+        if (GameManager.Instance.GetRespawnValues().Count > 0 || GameManager.Instance.GetPlayerRespawnPosition() != Vector3.zero)
         {
             GameManager.Instance.SetMusicSelectionIndex(1);
             GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
