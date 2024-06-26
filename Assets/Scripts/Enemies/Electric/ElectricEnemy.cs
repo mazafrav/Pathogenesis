@@ -11,32 +11,37 @@ public class ElectricEnemy : Enemy
     [SerializeField]
     private float stoppingDistance = 10.0f;
 
-    private ElectricShockRange shockRange = null;
+    [Header("Movement")]
+    [SerializeField]
+    private ElectricShockRange followRange = null;
+    [SerializeField]
+    private ElectricAttackRange attackRange = null;
 
     private Vector2 direction = Vector2.zero;
-    private bool isSeeingTarget = false, isPatrolling = true;
+    private bool isSeeingTarget = false, isPatrolling = true, canAttackTarget = false;
     
+    public bool ISeeingTarget() { return isSeeingTarget; }
+
     private ElectricLocomotion electricLocomotion;
 
 
     void Start()
     {
         electricLocomotion = (ElectricLocomotion)locomotion;
-        shockRange = GetComponentInChildren<ElectricShockRange>();
-        shockRange.transform.localScale = new Vector3(electricLocomotion.ElectricShockRange, electricLocomotion.ElectricShockRange, shockRange.transform.localScale.z);
+        Physics2D.queriesStartInColliders = false;
     }
 
     void Update()
     {
 
-        if (shockRange.personInRange) //We check if we see the target in range (player or other enemies)
+        if (followRange.personInRange) //We check if we see the target in the follow range (player or other enemies)
         {
-            direction = (shockRange.personInRange.transform.position - transform.position).normalized;
+            direction = (followRange.personInRange.transform.position - transform.position).normalized;
 
-            RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, direction, electricLocomotion.ElectricShockRange);
+            RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, direction, 2*electricLocomotion.FollowRange);
             for (int i = 0; i < raycastHit2D.Length; i++)
             {                                                                          //Electric enemies dont attack electric enemies
-                if (raycastHit2D[i].collider.gameObject == shockRange.personInRange && shockRange.personInRange.GetComponent<ElectricEnemy>() == null)
+                if (raycastHit2D[i].collider.gameObject == followRange.personInRange && followRange.personInRange.GetComponent<ElectricEnemy>() == null)
                 {
                     isSeeingTarget = true;
                     Debug.DrawRay(transform.position, direction * raycastHit2D[i].distance, Color.red);
@@ -54,20 +59,16 @@ public class ElectricEnemy : Enemy
             isSeeingTarget = false;
         }
 
-
-
         if (isSeeingTarget) //We are seeing the target
         {
-            //isSeeingPlayer = true;
             isPatrolling = false;
-            locomotion.Attack();
+            //locomotion.Attack();
         }
         else //We are not seeing the target
         {
             isPatrolling = true;
             isSeeingTarget = false;
-            //locomotion.ResetAttack();
-        }
+        }     
     }
 
     private void FixedUpdate()
@@ -80,9 +81,9 @@ public class ElectricEnemy : Enemy
             }
          
         }
-        else if (isSeeingTarget && shockRange.personInRange)
+        else if (isSeeingTarget && followRange.personInRange)
         {
-            float dis = Vector2.Distance(shockRange.personInRange.transform.position, transform.position);
+            float dis = Vector2.Distance(followRange.personInRange.transform.position, transform.position);
             if (dis > stoppingDistance)
             {
                 locomotion.Move(direction.x);
