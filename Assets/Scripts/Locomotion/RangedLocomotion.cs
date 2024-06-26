@@ -19,6 +19,10 @@ public class RangedLocomotion : HostLocomotion
     public Color colorWhileWindUp, colorWhileCooldown;
     private HostAbsorption absorption;
 
+    [Header("SFX")]
+    [SerializeField]
+    private AudioClip shotClip;
+
 
     private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
 
@@ -116,6 +120,7 @@ public class RangedLocomotion : HostLocomotion
     private void Shoot(Vector3 target, float cooldown = -1.0f)
     {
         chargeShotVFX.Stop();
+        GetOneShotSource().PlayOneShot(shotClip);
         GameObject bullet = Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.Euler(0, 0, 0));
         Vector3 direction = shootingComponent.transform.up;       
         // float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;

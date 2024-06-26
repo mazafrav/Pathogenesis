@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     public GameObject owner;
     [SerializeField]
     public ParticleSystem BulletVFX;
+    [SerializeField]
+    private AudioClip bulletHitClip;
 
     private bool isReflected = false;
     // Start is called before the first frame update
@@ -78,6 +80,11 @@ public class Bullet : MonoBehaviour
     {
         ParticleSystem bulletVFX = Instantiate(BulletVFX, this.gameObject.transform.position, Quaternion.identity);
         bulletVFX.Play();
+        HostLocomotion ownerLocomotion = owner.GetComponentInParent<HostLocomotion>();
+        if(ownerLocomotion != null)
+        {
+            ownerLocomotion.GetOneShotSource().PlayOneShot(bulletHitClip);
+        }
         Destroy(this.gameObject);
     }
 

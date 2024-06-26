@@ -34,6 +34,7 @@ public class HostAbsorption : Interactable
     private PlayerLocomotion playerLocomotion;
     private Enemy enemyBehaviour;
     public Color possessingColor { get; private set; }
+    [SerializeField] private AudioClip possessionClip;
 
     private bool doOnce = false;
 
@@ -183,6 +184,7 @@ public class HostAbsorption : Interactable
                 rangedEnemy.SetAimBehaviour(true);
             }
             possessionTimer = possessionEffectTime;
+            hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
             currentTimeToZoomIn = possessionEffectTime/2.0f;
             currentTimeToZoomOut = possessionEffectTime/2.0f;
             doOnce = true;

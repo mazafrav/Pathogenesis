@@ -124,6 +124,7 @@ MonoBehaviour:
   defaultColor: {r: 0, g: 0, b: 0, a: 0}
   colorWhileWindUp: {r: 1, g: 0.72544694, b: 0.015686274, a: 1}
   colorWhileCooldown: {r: 1, g: 0.90007496, b: 0.062745094, a: 1}
+  shotClip: {fileID: 8300000, guid: f0175b6588b6c0a46bcf240e796e1710, type: 3}
 --- !u!114 &3714384544568055674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
   zoomValue: 0
   controllerVibrationIntestity: 0.1
   absortionParticles: {fileID: 3343275468964738342, guid: d8c8f8e1cbfce63438a0565e6d7d088a, type: 3}
+  possessionClip: {fileID: 8300000, guid: 69ded90d25a5a774c9054027434afe62, type: 3}
 --- !u!114 &6805146684784495755
 MonoBehaviour:
   m_ObjectHideFlags: 0
