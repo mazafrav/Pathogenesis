@@ -23,16 +23,16 @@ public class ElectricFollowRange : MonoBehaviour
     {
         if (targets.Count > 0)
         {
-            foreach(GameObject g in targets)
+            foreach(GameObject target in targets)
             {
-                electricEnemy.direction = (g.transform.position - transform.position).normalized;
+                electricEnemy.direction = (target.transform.position - transform.position).normalized;
 
                 RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, electricEnemy.direction, 2 * electricLocomotion.FollowRange);
                 for (int i = 0; i < raycastHit2D.Length; i++)
                 {                                                   //Electric enemies dont attack electric enemies
-                    if (raycastHit2D[i].collider.gameObject == g && g.GetComponent<ElectricEnemy>() == null)
+                    if (raycastHit2D[i].collider.gameObject == target && target.GetComponent<ElectricEnemy>() == null)
                     {
-                        chosenTarget = g;
+                        chosenTarget = target;
                         Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
                         break;
                     }

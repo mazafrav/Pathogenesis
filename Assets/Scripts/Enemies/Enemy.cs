@@ -6,15 +6,18 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     protected HostLocomotion locomotion;
+    [Header("Movement")]
     [SerializeField]
     protected Transform[] wayPoints;
+    [SerializeField]
+    private float minDistanceToWaypoint = 0.3f;
+    [Header("VFX")]
     [SerializeField]
     private ParticleSystem deathEffect;
 
     protected float movementDirection = 0;
 
     private int currentWayPointIndex = 0;
-    private float minDistanceToWaypoint = 0.3f;
 
     public void DestroyEnemy()
     {
