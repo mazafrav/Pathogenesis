@@ -1,23 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class StartCutscene : MonoBehaviour
 {
     [SerializeField]
-    public Animator camAnim;
     public static bool isCutscenePlaying = false;
+    [SerializeField] PlayableDirector director;
+
+    private void Awake()
+    {
+        director.stopped += DirectorStopped;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            camAnim.SetBool("Cutscene1", true);
-            Invoke(nameof(StopCutscene), 3f);
+            director.Play();
         }
     }
 
-    void StopCutscene()
+    private void DirectorStopped(PlayableDirector obj)
     {
-        camAnim.SetBool("Cutscene1", false);
+        GameManager.Instance.GetLevelLoader().StartLoadingLevel(0);
     }
 }
