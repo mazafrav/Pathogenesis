@@ -22,8 +22,8 @@ public class ElectricLocomotion : HostLocomotion
     private float cooldown = 1.0f;
     [SerializeField]
     private float windUp = 0.5f;
-    [SerializeField]
-    private float shockDuration = 1.0f;
+    //[SerializeField]
+    //private float shockDuration = 1.0f;
 
     [Header("Feedback")]
     [SerializeField]
@@ -64,7 +64,7 @@ public class ElectricLocomotion : HostLocomotion
 
         defaultColor = spriteRenderer.color;
 
-        currentShockDuration = shockDuration;
+        //currentShockDuration = shockDuration;
         jumpDistance += jumpOffset;
         jumpHeight += jumpOffset;
         rb2D = GetComponent<Rigidbody2D>();
@@ -108,14 +108,14 @@ public class ElectricLocomotion : HostLocomotion
         }
 
         //Only when we are possessed the shock is deactivated after x time
-        if (transform.parent!=null && shockGameObject.activeSelf)
-        {
-            currentShockDuration = Mathf.Max(currentShockDuration - Time.deltaTime, 0f);
-            if (currentShockDuration <= 0f)
-            {
-                DeactivateShock();
-            }
-        }
+        //if (transform.parent!=null && shockGameObject.activeSelf)
+        //{
+        //    currentShockDuration = Mathf.Max(currentShockDuration - Time.deltaTime, 0f);
+        //    if (currentShockDuration <= 0f)
+        //    {
+        //        DeactivateShock();
+        //    }
+        //}
     }
 
     public override void Jump(float deltaX)
@@ -154,7 +154,7 @@ public class ElectricLocomotion : HostLocomotion
         if(!IsAttackReady() || shockGameObject.activeSelf) return;
         currentWindUpTime = windUp;
         hasAttacked = true;
-        currentShockDuration = shockDuration;
+        //currentShockDuration = shockDuration;
     }
 
     private void ActivateShock()
@@ -162,13 +162,17 @@ public class ElectricLocomotion : HostLocomotion
         shockGameObject.SetActive(true);
         moveSpeed *= speedModifier;
     }
-
+    public override void DeactivateAttack()
+    {
+        base.DeactivateAttack();
+        DeactivateShock();
+    }
     public void DeactivateShock()
     {
         shockGameObject.SetActive(false);
         if (hasAttacked)
         {
-            currentShockDuration = shockDuration;
+            //currentShockDuration = shockDuration;
             currentCooldownTime = cooldown;
             currentWindUpTime = 0f;
             hasAttacked = false;
