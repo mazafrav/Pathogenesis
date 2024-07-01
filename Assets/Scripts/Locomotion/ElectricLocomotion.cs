@@ -36,7 +36,10 @@ public class ElectricLocomotion : HostLocomotion
     private float deltaXModifier = 0.5f;
     [SerializeField]
     private float deltaYModifier = 1.2f;
+    [SerializeField]
+    private float speedModifier = 1.0f;
 
+    private float originalMoveSpeed;
 
     private Color defaultColor;
 
@@ -54,6 +57,7 @@ public class ElectricLocomotion : HostLocomotion
 
     void Start()
     {
+        originalMoveSpeed = moveSpeed;
         playerController = GameManager.Instance.GetPlayerController();
 
         absorption = GetComponent<HostAbsorption>();
@@ -156,6 +160,7 @@ public class ElectricLocomotion : HostLocomotion
     private void ActivateShock()
     {
         shockGameObject.SetActive(true);
+        moveSpeed *= speedModifier;
     }
 
     public void DeactivateShock()
@@ -167,6 +172,7 @@ public class ElectricLocomotion : HostLocomotion
             currentCooldownTime = cooldown;
             currentWindUpTime = 0f;
             hasAttacked = false;
+            moveSpeed = originalMoveSpeed;
         }
 
         //if(transform.parent != null) //Is possessed
