@@ -78,6 +78,21 @@ public class PlayerController : MonoBehaviour
                 doOnce = true;
             }
 
+            ElectricLocomotion electricLocomotion = GetComponentInChildren<ElectricLocomotion>();
+            if(electricLocomotion)
+            {
+                if(Gamepad.current.rightShoulder.isPressed || Input.GetMouseButton(0))
+                {
+                    locomotion.Attack(mousePos);
+                    Debug.Log("Atcando");
+                }
+                else if (!Gamepad.current.rightShoulder.isPressed || !Input.GetMouseButton(0))
+                {
+                    locomotion.DeactivateAttack();
+                }
+            }
+
+
             // INPUT BUFFER ANALYSIS
             if (inputBuffer.Count > 0)
             {
@@ -92,8 +107,8 @@ public class PlayerController : MonoBehaviour
                         break;
                     case "attack":
                         if (locomotion.IsAttackReady())
-                        {
-                            locomotion.Attack(mousePos);
+                        {                        
+                            locomotion.Attack(mousePos);                           
                             inputBuffer.Dequeue();
                         }
                         break;

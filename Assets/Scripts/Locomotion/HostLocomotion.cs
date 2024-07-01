@@ -43,7 +43,10 @@ public abstract class HostLocomotion : MonoBehaviour
     public abstract void ResetAttack();
 
     public abstract void Aim(Vector3 target = default);
+    public virtual void DeactivateAttack()
+    {
 
+    }
     public virtual void Unpossess()
     {
         if (this.GetType() != typeof(PlayerLocomotion))
