@@ -81,12 +81,12 @@ public class PlayerController : MonoBehaviour
             ElectricLocomotion electricLocomotion = GetComponentInChildren<ElectricLocomotion>();
             if(electricLocomotion)
             {
-                if(Gamepad.current.rightShoulder.isPressed || Input.GetMouseButton(0))
+                if((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
                 {
                     locomotion.Attack(mousePos);
                     Debug.Log("Atcando");
                 }
-                else if (!Gamepad.current.rightShoulder.isPressed || !Input.GetMouseButton(0))
+                else if ((GameManager.Instance.IsThereAGamepadConnected && !Gamepad.current.rightShoulder.isPressed) || !Input.GetMouseButton(0))
                 {
                     locomotion.DeactivateAttack();
                 }

@@ -10,15 +10,37 @@ public class ElectroReceptor : MonoBehaviour
     [SerializeField]
     public float timeToDeactivate = 0f;
 
+    [SerializeField]
+    private float timeToBeActivatedAgain = 0.4f;
+
+    private float currentTimeToBeActivatedAgain = 0.1f;
+    public bool isActive { get; private set; } = false;
+
     // Start is called before the first frame update
     private void Start()
     {
+        currentTimeToBeActivatedAgain = timeToBeActivatedAgain;
         activatableInterface = activatableElement.GetComponent<IActivatableElement>();
         if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
     }
 
+    private void Update()
+    {
+        if (isActive)
+        {
+            currentTimeToBeActivatedAgain -= Time.deltaTime;
+            if (currentTimeToBeActivatedAgain <= 0f)
+            {
+                isActive = false;
+                currentTimeToBeActivatedAgain = timeToBeActivatedAgain;
+            }
+        }
+    }
+
     public void ElectroShock()
     {
+        currentTimeToBeActivatedAgain = timeToBeActivatedAgain;
+        isActive = true;
         activatableInterface.Activate();
         GetComponentInParent<Animator>().Play("ElectroReceptorDeactAnim");
     }
