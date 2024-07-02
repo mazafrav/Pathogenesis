@@ -173,8 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56566e5f73e3b640ab917061f06c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathClip: {fileID: 8300000, guid: 754ccff173796bc48be7263acaedcc0c, type: 3}
   locomotion: {fileID: 6721288742054024510}
   wayPoints: []
+  minDistanceToWaypoint: 0.3
   deathEffect: {fileID: 4784911079922076189, guid: b4344960ac42eea4ab2aa538001ceabd, type: 3}
   currentRangedTarget: {fileID: 0}
   closeTargets: []
@@ -1631,6 +1633,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3535523218091891979}
     m_Modifications:
+    - target: {fileID: 3564519412311829384, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
+      propertyPath: deflectClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1df478053e5e2104f85dfb2ac930dfef, type: 3}
     - target: {fileID: 6611270407329851219, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

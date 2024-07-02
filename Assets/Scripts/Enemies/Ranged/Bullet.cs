@@ -40,6 +40,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.GetComponent<Reflect>() != null)
         {
+            collision.gameObject.GetComponent<Reflect>().PlayDeflectClip();
             Vector2 rot = Vector2.Reflect(transform.up, collision.gameObject.transform.right);
             transform.up = rot;
             HostLocomotion ownerLocomotion = collision.gameObject.GetComponentInParent<HostLocomotion>();
