@@ -241,6 +241,7 @@ public class ElectricLocomotion : HostLocomotion
     public override void SetPossessingParameters()
     {
         base.SetPossessingParameters();
+        originalMoveSpeed = moveSpeed;
 
         ElectricEnemyPossessingParameters electricPossessingParameters = (ElectricEnemyPossessingParameters)possessingParameters;
 
@@ -251,8 +252,8 @@ public class ElectricLocomotion : HostLocomotion
         cooldown = electricPossessingParameters.cooldown;
         windUp = electricPossessingParameters.windUp;
         //shockDuration = electricPossessingParameters.shockDuration;
-        followRange = electricPossessingParameters.electricShockRange;
-        followGameObject.transform.localScale = new Vector3(followRange, followRange, shockGameObject.transform.localScale.z);
+        //followRange = electricPossessingParameters.electricFollowRange;
+        //followGameObject.transform.localScale = new Vector3(followRange, followRange, shockGameObject.transform.localScale.z);
 
         GameManager.Instance.SetMusicSelectionIndex(4);
     }
