@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56566e5f73e3b640ab917061f06c7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathClip: {fileID: 8300000, guid: 754ccff173796bc48be7263acaedcc0c, type: 3}
   locomotion: {fileID: 6721288742054024510}
   wayPoints: []
   minDistanceToWaypoint: 0.3
@@ -1676,6 +1675,10 @@ PrefabInstance:
     - target: {fileID: 6611270407329851219, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370322636225327055, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.59
       objectReference: {fileID: 0}
     - target: {fileID: 8393706193660190047, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_Name
