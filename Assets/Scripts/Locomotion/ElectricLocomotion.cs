@@ -30,6 +30,8 @@ public class ElectricLocomotion : HostLocomotion
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private Color colorWhileWindUp, colorWhileCooldown;
+    [SerializeField]
+    private AudioClip electricShockClip;
 
     [Header("Movement")]
     [SerializeField]
@@ -78,6 +80,9 @@ public class ElectricLocomotion : HostLocomotion
         followGameObject.transform.localScale = new Vector3(2*followRange, 2*followRange, followGameObject.transform.localScale.z);
         shockGameObject.transform.localScale = new Vector3(2*shockRange, 2*shockRange, shockGameObject.transform.localScale.z);
         attackGameObject.transform.localScale = new Vector3(2*attackRange, 2*attackRange, attackGameObject.transform.localScale.z);
+
+        GetAudioSource().clip = electricShockClip;
+        GetAudioSource().loop = true;
     }
 
     void Update()
@@ -161,6 +166,11 @@ public class ElectricLocomotion : HostLocomotion
     {
         shockGameObject.SetActive(true);
         moveSpeed *= speedModifier;
+
+        if (!GetAudioSource().isPlaying)
+        {
+            GetAudioSource().Play();
+        }
     }
     public override void DeactivateAttack()
     {
@@ -170,6 +180,12 @@ public class ElectricLocomotion : HostLocomotion
     public void DeactivateShock()
     {
         shockGameObject.SetActive(false);
+
+        if (GetAudioSource().isPlaying)
+        {
+            GetAudioSource().Stop();
+        }
+
         if (hasAttacked)
         {
             //currentShockDuration = shockDuration;
