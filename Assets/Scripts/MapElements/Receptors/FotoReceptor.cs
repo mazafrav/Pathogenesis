@@ -10,6 +10,9 @@ public class FotoReceptor : MonoBehaviour
     public GameObject[] activatableElement;
     [SerializeField]
     public float timeToDeactivate = 0f;
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip activateClip;
 
     // Start is called before the first frame update
     private void Start()
@@ -19,12 +22,16 @@ public class FotoReceptor : MonoBehaviour
             IActivatableElement activatableInterface = element.GetComponent<IActivatableElement>();
             if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
         }
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.pitch += 0.5f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "FotoBullet")
         {
+            audioSource.PlayOneShot(activateClip);
             foreach (var element in activatableElement)
             {
                 element.GetComponent<IActivatableElement>().Activate();
