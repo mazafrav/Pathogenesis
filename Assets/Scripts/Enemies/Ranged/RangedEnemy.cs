@@ -44,6 +44,10 @@ public class RangedEnemy : Enemy
 
     void Update()
     {
+        foreach (GameObject obj in rangedEnemyDetection.allTargetsInRange)
+        {
+            Debug.Log("En rango: " +  obj.name);
+        }
         // if(targetPosition != null)
         // {
         //     locomotion.Aim(targetPosition);
@@ -69,7 +73,7 @@ public class RangedEnemy : Enemy
         }
 
         // Patrolling behaviour. This means the Ranged Enemy hasn't found any target to shoot
-        if (enablePatrolling)
+        if (enablePatrolling && !isAiming)
         {
             rb.constraints = RigidbodyConstraints2D.None;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -123,7 +127,7 @@ public class RangedEnemy : Enemy
                 RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized, detectionRange);
                 for (int i = 0; i < raycastHit2D.Length; i++)
                 {
-                    if (raycastHit2D[i].collider.CompareTag("TileMap") &&
+                    if ((raycastHit2D[i].collider.CompareTag("TileMap") || raycastHit2D[i].collider.CompareTag("MapElement")) &&
                         (Vector2.Distance(raycastHit2D[i].point, transform.position) < Vector2.Distance(rangedEnemyDetection.targetInRange.transform.position, transform.position)))
                     {
                         isSeeing = false;
@@ -170,11 +174,22 @@ public class RangedEnemy : Enemy
                         result = target;
                         break;
                     }
-                    else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap"))
+                    else if (raycastHit2D[i].collider.gameObject.GetComponentInParent<CrystallineLocomotion>() != null)
+                    {
+                        enablePatrolling = false;
+                        result = raycastHit2D[i].collider.gameObject.GetComponentInParent<CrystallineLocomotion>().gameObject;
+                        break;
+                    }
+                    else if ((raycastHit2D[i].collider.CompareTag("TileMap") || raycastHit2D[i].collider.CompareTag("MapElement")))
                     {
                         enablePatrolling = true;
                         break;
                     }
+                }
+
+                if (result != null)
+                {
+                    break;
                 }
             }
         }
