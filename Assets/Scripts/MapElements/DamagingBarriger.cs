@@ -8,9 +8,15 @@ public class DamagingBarriger : MonoBehaviour
 
     private DamageControl damageControl;
 
+    [SerializeField]
+    private AudioClip damageClip;
+    private AudioSource audioSource;
+
     private void Start()
     {
         damageControl= GetComponent<DamageControl>();
+        audioSource = GetComponent<AudioSource>();
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,6 +29,11 @@ public class DamagingBarriger : MonoBehaviour
         //{
         //    velocityEnter = other.gameObject.GetComponent<Rigidbody2D>().velocity;
         //}
+
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        {
+            audioSource.PlayOneShot(damageClip);
+        }
 
         damageControl.Damage(other);
     }

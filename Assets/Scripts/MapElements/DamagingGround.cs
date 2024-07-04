@@ -5,10 +5,14 @@ using UnityEngine;
 public class DamagingGround : MonoBehaviour
 {
     private DamageControl damageControl;
+    [SerializeField]
+    private AudioClip damageClip;
+    private AudioSource audioSource;
 
     private void Start()
     {
         damageControl = GetComponent<DamageControl>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,6 +25,11 @@ public class DamagingGround : MonoBehaviour
         //{
         //    other.GetComponentInParent<DamageControl>().Damage(other);
         //}
+
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        {
+            audioSource.PlayOneShot(damageClip);
+        }
 
         damageControl.Damage(other);
 
