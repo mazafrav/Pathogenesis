@@ -36,7 +36,7 @@ public class ElectricFollowRange : MonoBehaviour
                         Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
                         break;
                     }
-                    else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap"))
+                    else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap") || raycastHit2D[i].collider.gameObject.CompareTag("MapElement"))
                     {
                         chosenTarget = null;
                         break;
