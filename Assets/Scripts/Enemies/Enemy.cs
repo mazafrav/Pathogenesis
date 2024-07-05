@@ -45,4 +45,8 @@ public class Enemy : MonoBehaviour
         }
    }
 
+    public Transform[] GetWayPoints() { return wayPoints; }
+    public void SetWayPoints(Transform[] _waypoints) { wayPoints = _waypoints; }
+
+
 }
