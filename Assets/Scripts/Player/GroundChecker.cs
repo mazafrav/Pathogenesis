@@ -16,13 +16,11 @@ public class GroundChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /**
-        if (collision.gameObject.tag == "TileMap")
+        if (collision.gameObject.tag == "TileMap" || collision.gameObject.tag == "MapElement")
         {
-            isGrounded = true;
+            groundCount++;
         }
-        **/
-        groundCount++;
+
         isGrounded = groundCount > 0;
         if (isGrounded)
         {
@@ -33,13 +31,11 @@ public class GroundChecker : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        /**
-        if (collision.gameObject.tag == "TileMap")
+        if (collision.gameObject.tag == "TileMap" || collision.gameObject.tag == "MapElement")
         {
-            isGrounded = false;
+            groundCount = Mathf.Max(groundCount - 1, 0);           
         }
-        **/
-        groundCount = Mathf.Max(groundCount - 1, 0);
+
         isGrounded = groundCount > 0;
         if (!isGrounded)
         {
