@@ -21,12 +21,14 @@ public class CrystalineEnemy : Enemy
 
     public float timeToCancelAggro = 1.5f;
 
-
+    private CrystallineLocomotion crystallineLocomotion;
     private bool isSeeingTarget = false;
     private Vector3 direction;
 
     void Start()
     {
+        crystallineLocomotion = GetComponent<CrystallineLocomotion>();
+
         closeTargets = new List<GameObject>();
         range.transform.localScale = new Vector3(detectionRange * 2.0f, detectionRange * 2.0f, range.transform.localScale.z);
         photonicRange.transform.localScale = new Vector3(photonicDetectionRange * 2.0f, photonicDetectionRange * 2.0f, 
@@ -82,6 +84,8 @@ public class CrystalineEnemy : Enemy
         {
             if (range.personInRange)
             {
+                crystallineLocomotion.SetMoveSpeed(chaseSpeed);
+
                 if (Vector3.Distance(transform.position, range.personInRange.transform.position) <= stabRange)
                 {
                     locomotion.Attack();

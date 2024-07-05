@@ -204,6 +204,8 @@ public class RangedEnemy : Enemy
     {
         if (isSeeing)
         {
+            locomotion.SetMoveSpeed(chaseSpeed);
+
             // If Ranged is seeing the target, start aiming
             if (canShoot)
             {

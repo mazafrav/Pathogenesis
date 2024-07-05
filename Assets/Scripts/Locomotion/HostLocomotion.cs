@@ -27,6 +27,8 @@ public abstract class HostLocomotion : MonoBehaviour
     [SerializeField]
     public GroundChecker groundChecker;
 
+    protected float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
+
     private DamageControl damageControl = null;
     private Collider2D hostCollider;
 
@@ -77,4 +79,12 @@ public abstract class HostLocomotion : MonoBehaviour
 
     public AudioSource GetAudioSource() { return audioSource; }
     public AudioSource GetOneShotSource() { return oneShotSource; }
+
+    public void SetMoveSpeed(float newSpeed) 
+    {
+        moveSpeed = newSpeed; 
+        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+        rb2D.gravityScale = g / Physics2D.gravity.y;
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
+    }
 }

@@ -10,6 +10,12 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected Transform[] wayPoints;
     [SerializeField]
+    protected float chaseSpeed = 3.0f;
+    [SerializeField]
+    protected float patrolSpeed = 3.0f;
+
+
+    [SerializeField]
     private float minDistanceToWaypoint = 0.3f;
     [Header("VFX")]
     [SerializeField]
@@ -27,6 +33,7 @@ public class Enemy : MonoBehaviour
 
    virtual protected void Patrol()
    {
+        locomotion.SetMoveSpeed(patrolSpeed);
         Vector2 dirToWaypoint = (wayPoints[currentWayPointIndex].position - transform.position).normalized;
         movementDirection = dirToWaypoint.x;
         float distanceToWayPoint = (transform.position - wayPoints[currentWayPointIndex].position).magnitude;

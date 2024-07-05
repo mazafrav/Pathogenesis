@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerLocomotion : HostLocomotion
 {
-    private float g = 1.0f, velocityY = 1.0f, gravityScale = 0f;
-    private float jumpOffset = 0.5f;
+    private float gravityScale = 0f;
+
     private bool isJumping = false;
     private float heightJumped = 0f;
     private float originalY = 0f;

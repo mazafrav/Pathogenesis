@@ -23,9 +23,6 @@ public class RangedLocomotion : HostLocomotion
     [SerializeField]
     private AudioClip shotClip;
 
-
-    private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
-
     // Start is called before the first frame update
     void Start()
     {

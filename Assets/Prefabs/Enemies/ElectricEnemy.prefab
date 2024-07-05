@@ -133,6 +133,8 @@ MonoBehaviour:
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
+  chaseSpeed: 2.6
+  patrolSpeed: 2
   minDistanceToWaypoint: 0.3
   deathEffect: {fileID: 4784911079922076189, guid: a063e00af1890904d94930b404a16f5c, type: 3}
   stoppingDistance: 1.5
@@ -169,7 +171,7 @@ MonoBehaviour:
   electricShockClip: {fileID: 8300000, guid: 59808dccb62b111498cd51229f1748b4, type: 3}
   deltaXModifier: 1.5
   deltaYModifier: 3
-  speedModifier: 0.8
+  speedModifier: 0.7
 --- !u!114 &3733743548789898051
 MonoBehaviour:
   m_ObjectHideFlags: 0

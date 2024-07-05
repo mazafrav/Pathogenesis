@@ -84,9 +84,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1409d6c8e3eaa947b3e397d7422a3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathClip: {fileID: 8300000, guid: 754ccff173796bc48be7263acaedcc0c, type: 3}
   locomotion: {fileID: 2843505179004484964}
   wayPoints: []
+  chaseSpeed: 2.3
+  patrolSpeed: 2
   minDistanceToWaypoint: 0.3
   deathEffect: {fileID: 4784911079922076189, guid: a2b475ddab912154bb2dac7b34e55fd8, type: 3}
   graphics: {fileID: 6336304723267710215}

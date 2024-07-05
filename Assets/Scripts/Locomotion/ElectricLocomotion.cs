@@ -45,7 +45,6 @@ public class ElectricLocomotion : HostLocomotion
 
     private Color defaultColor;
 
-    private float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentShockDuration = 0.0f;
 
     private PlayerController playerController;

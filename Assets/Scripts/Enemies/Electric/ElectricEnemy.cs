@@ -11,14 +11,16 @@ public class ElectricEnemy : Enemy
     private float stoppingDistance = 10.0f;
 
     private ElectricFollowRange followRange = null;
+    private ElectricLocomotion electricLocomotion = null;
 
-    public Vector2 direction { get; set; } = Vector2.zero;
     private bool isSeeingTarget = false, isPatrolling = true, canAttackTarget = false;
     
+    public Vector2 direction { get; set; } = Vector2.zero;
     public bool ISeeingTarget() { return isSeeingTarget; }
 
     void Start()
     {
+        electricLocomotion = GetComponent<ElectricLocomotion>();
         followRange = GetComponentInChildren<ElectricFollowRange>();
         Physics2D.queriesStartInColliders = false;
     }
@@ -27,6 +29,7 @@ public class ElectricEnemy : Enemy
     {
         if (followRange.chosenTarget) //We are seeing the target
         {
+            electricLocomotion.SetMoveSpeed(chaseSpeed);
             isSeeingTarget = true;
             isPatrolling = false;
         }
