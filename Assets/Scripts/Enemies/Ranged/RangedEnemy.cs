@@ -189,6 +189,7 @@ public class RangedEnemy : Enemy
 
                 if (result != null)
                 {
+                    CheckIfDetected(result);
                     break;
                 }
             }

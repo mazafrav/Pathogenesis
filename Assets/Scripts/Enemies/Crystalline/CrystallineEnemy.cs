@@ -43,6 +43,7 @@ public class CrystalineEnemy : Enemy
             UpdateTarget();
             if (currentRangedTarget != null)
             {
+                CheckIfDetected(currentRangedTarget);
                 UpdateOrientation(currentRangedTarget.transform.position);
             }
             else
@@ -95,6 +96,8 @@ public class CrystalineEnemy : Enemy
                     locomotion.Move(direction.x, direction.y);
                 }
                 UpdateOrientation(range.personInRange.transform.position);
+
+                CheckIfDetected(range.personInRange);
             }
 
             else

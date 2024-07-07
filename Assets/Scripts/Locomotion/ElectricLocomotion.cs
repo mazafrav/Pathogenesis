@@ -82,6 +82,8 @@ public class ElectricLocomotion : HostLocomotion
 
         GetAudioSource().clip = electricShockClip;
         GetAudioSource().loop = true;
+
+        GetOneShotSource().pitch -= 0.5f;
     }
 
     void Update()

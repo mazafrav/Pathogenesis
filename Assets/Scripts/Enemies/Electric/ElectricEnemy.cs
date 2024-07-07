@@ -29,6 +29,7 @@ public class ElectricEnemy : Enemy
     {
         if (followRange.chosenTarget) //We are seeing the target
         {
+            CheckIfDetected(followRange.chosenTarget);
             electricLocomotion.SetMoveSpeed(chaseSpeed);
             isSeeingTarget = true;
             isPatrolling = false;

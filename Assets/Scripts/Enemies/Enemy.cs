@@ -25,6 +25,11 @@ public class Enemy : MonoBehaviour
 
     private int currentWayPointIndex = 0;
 
+    [Header("SFX")]
+    [SerializeField]
+    private AudioClip detectClip;
+    private List<GameObject> organismsDetected = new List<GameObject>();
+
     public void DestroyEnemy()
     {
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
@@ -48,5 +53,15 @@ public class Enemy : MonoBehaviour
     public Transform[] GetWayPoints() { return wayPoints; }
     public void SetWayPoints(Transform[] _waypoints) { wayPoints = _waypoints; }
 
+    public void CheckIfDetected (GameObject organism)
+    {
+        if (organismsDetected.Contains(organism))
+        {
+            return;
+        }
+
+        organismsDetected.Add(organism);
+        GetComponent<HostLocomotion>().GetOneShotSource().PlayOneShot(detectClip);
+    }
 
 }

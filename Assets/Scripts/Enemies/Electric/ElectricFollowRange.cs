@@ -32,7 +32,7 @@ public class ElectricFollowRange : MonoBehaviour
                 {                                                   //Electric enemies dont attack electric enemies
                     if (raycastHit2D[i].collider.gameObject == target && target.GetComponent<ElectricEnemy>() == null)
                     {
-                        chosenTarget = target;
+                        chosenTarget = target;                     
                         Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
                         break;
                     }

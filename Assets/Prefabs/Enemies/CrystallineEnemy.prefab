@@ -179,6 +179,7 @@ MonoBehaviour:
   patrolSpeed: 1.2
   minDistanceToWaypoint: 0.3
   deathEffect: {fileID: 4784911079922076189, guid: b4344960ac42eea4ab2aa538001ceabd, type: 3}
+  detectClip: {fileID: 8300000, guid: 2122c987452adc3488334f9577cb3c8d, type: 3}
   currentRangedTarget: {fileID: 0}
   closeTargets: []
   range: {fileID: 6513760127648393129}
@@ -1474,7 +1475,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b891284bb9ec15a428234c9012dc6ffb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
