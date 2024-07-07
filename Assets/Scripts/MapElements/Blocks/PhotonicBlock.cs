@@ -70,17 +70,11 @@ public class PhotonicBlock : MonoBehaviour, IActivatableElement
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, movingSpeed * Time.deltaTime);
 
-        if (audioSource.isPlaying)
-        {
-            if (transform.position == nextPosition)
-            {
-                audioSource.Stop();
-            }
-        }
-        else if (transform.position != nextPosition)
+        if (!audioSource.isPlaying && transform.position != nextPosition)
         {
             audioSource.Play();
         }
+
     }
     
     public void Activate()

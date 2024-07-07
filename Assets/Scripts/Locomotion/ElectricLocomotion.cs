@@ -113,6 +113,16 @@ public class ElectricLocomotion : HostLocomotion
             }
         }
 
+        if (GameManager.Instance.isPaused)
+        {
+            GetAudioSource().Stop();
+            GetOneShotSource().Stop();
+        }
+        else if (shockGameObject.activeSelf && !GetAudioSource().isPlaying)
+        {
+            GetAudioSource().Play();
+        }
+
         //Only when we are possessed the shock is deactivated after x time
         //if (transform.parent!=null && shockGameObject.activeSelf)
         //{
