@@ -8,11 +8,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject continueMenu;
-    private GameObject eventSystem;
+    [SerializeField]
+    private GameObject mainMenu;
+    [SerializeField]
+    private GameObject mainMenuWithContinue;
+    [SerializeField]
+    private GameObject continueMenu;
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject playButton;
+
+    private GameObject eventSystem;
+
+
     private void Start()
     {
         eventSystem = GameObject.FindGameObjectWithTag("EventSystemMainMenu");
@@ -49,7 +56,15 @@ public class MainMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        mainMenu.SetActive(false);
+        if (PlayerPrefs.GetInt("LastLevel", 0) <= 1)
+        {
+            mainMenu.SetActive(false);
+        }
+        else
+        {
+            mainMenuWithContinue.SetActive(false);
+        }
+
         eventSystem.gameObject.GetComponent<EventSystem>().enabled = false;
         eventSystem.gameObject.GetComponent<InputSystemUIInputModule>().enabled = false;
         SceneManager.LoadScene("SettingsMenu", LoadSceneMode.Additive);
