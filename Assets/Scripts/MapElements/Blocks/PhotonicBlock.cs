@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PhotonicBlock : MonoBehaviour, IActivatableElement
@@ -69,8 +70,8 @@ public class PhotonicBlock : MonoBehaviour, IActivatableElement
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, movingSpeed * Time.deltaTime);
-
-        if (!audioSource.isPlaying && transform.position != nextPosition)
+       
+        if (!audioSource.isPlaying && (transform.position - nextPosition).sqrMagnitude > 0.01f) //transform.position != nextPosition    
         {
             audioSource.Play();
         }

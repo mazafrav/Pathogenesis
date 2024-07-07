@@ -69,7 +69,7 @@ public class KineticBlock : MonoBehaviour, IActivatableElement
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, movingSpeed * Time.deltaTime);
 
-        if (!audioSource.isPlaying && transform.position != nextPosition)
+        if (!audioSource.isPlaying && (transform.position - nextPosition).sqrMagnitude > 0.01f) //transform.position != nextPosition
         {
             audioSource.Play();
         }
