@@ -12,6 +12,10 @@ public class PhotonicBlock : MonoBehaviour, IActivatableElement
     public Animator animator;
     public bool isOpened = false;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip movingClip;
+
     private Vector3 nextPosition = Vector3.zero;
 
     // Start is called before the first frame update
@@ -54,12 +58,29 @@ public class PhotonicBlock : MonoBehaviour, IActivatableElement
             //nextPosition = pointOpen.position;
             //movingSpeed *= 200f;
         }
+
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.pitch += 0.5f;
+        audioSource.clip = movingClip;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, movingSpeed * Time.deltaTime);
+
+        if (audioSource.isPlaying)
+        {
+            if (transform.position == nextPosition)
+            {
+                audioSource.Stop();
+            }
+        }
+        else if (transform.position != nextPosition)
+        {
+            audioSource.Play();
+        }
     }
     
     public void Activate()

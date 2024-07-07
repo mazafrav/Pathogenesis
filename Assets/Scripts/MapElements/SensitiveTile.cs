@@ -17,6 +17,10 @@ public class SensitiveTile : MonoBehaviour
     private Vector2 velocityEnter = Vector2.zero;
     private IActivatableElement[] activatableInterfaces;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip activateClip;
+
     private void Start()
     {
         /*
@@ -31,6 +35,9 @@ public class SensitiveTile : MonoBehaviour
             activatableInterfaces[index] = objectActivable.GetComponent<IActivatableElement>();
         }
         */
+
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -56,6 +63,7 @@ public class SensitiveTile : MonoBehaviour
     private void ActivateActivables()
     {
         animator.Play("SensitiveTileActivated");
+        audioSource.PlayOneShot(activateClip);
         for (var index = 0; index < activatableElements.Length; index++)
         {
             activatableElements[index].GetComponent<IActivatableElement>().Activate();
