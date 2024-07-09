@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class LevelIntroNodriza : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class LevelIntroNodriza : MonoBehaviour
             TimeToLoadNextScene -= Time.deltaTime;
             if ( TimeToLoadNextScene < 0 )
             {
-                GameManager.Instance.GetLevelLoader().StartLoadingLevel(1);
+                GameManager.Instance.GetLevelLoader().StartLoadingLevel(SceneManager.GetActiveScene().buildIndex + 1);
             }
         } 
         else
