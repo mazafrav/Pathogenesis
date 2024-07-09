@@ -11,7 +11,7 @@ public class LevelIntroNodriza : MonoBehaviour
     [SerializeField] float TimeToLoadNextScene = 5f;
     
     private Animator animator;
-    private bool doOnce = true;
+    private bool doOnce = false;
     private bool pressedX = false;
     // Start is called before the first frame update
     void Start()
@@ -23,10 +23,10 @@ public class LevelIntroNodriza : MonoBehaviour
     void Update()
     {
         
-        if (pressedX )
+        if (pressedX)
         {
             TimeToLoadNextScene -= Time.deltaTime;
-            if ( TimeToLoadNextScene < 0 )
+            if (TimeToLoadNextScene <= 0)
             {
                 GameManager.Instance.GetLevelLoader().StartLoadingLevel(SceneManager.GetActiveScene().buildIndex + 1);
             }
@@ -36,8 +36,9 @@ public class LevelIntroNodriza : MonoBehaviour
             TimeToActivateText -= Time.deltaTime;
         }
 
-        if (TimeToActivateText < 0 )
+        if (TimeToActivateText <= 0)
         {
+            doOnce = true;
             text.ActivateText();
         }
         if (doOnce)
