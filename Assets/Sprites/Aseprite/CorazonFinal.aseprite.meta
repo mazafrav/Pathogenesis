@@ -1,0 +1,699 @@
+fileFormatVersion: 2
+guid: e7666849194ad224caa692257027cb4e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: CorazonFinal_Frame_0
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 102
+      y: 4
+      width: 107
+      height: 125
+    spriteID: af2ab0d9deabfc24fafcf36fdb10b0d3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 102, y: 4}
+  - name: CorazonFinal_Frame_1
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 102
+      y: 137
+      width: 107
+      height: 125
+    spriteID: d5f68803bffa3df489938dc3ab5f579c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 102, y: 137}
+  - name: CorazonFinal_Frame_2
+    originalName: 
+    pivot: {x: 0.5045872, y: -0.27731094}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 4
+      width: 109
+      height: 119
+    spriteID: 22adb569cef64254a8b7fb7839b00703
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 4}
+  - name: CorazonFinal_Frame_3
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 102
+      y: 270
+      width: 107
+      height: 125
+    spriteID: 8ae40c15249c2e1448e261626675e4eb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 102, y: 270}
+  - name: CorazonFinal_Frame_4
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 102
+      y: 403
+      width: 107
+      height: 125
+    spriteID: e58aa2bbcd78af541a1b50ed56dec668
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 102, y: 403}
+  - name: CorazonFinal_Frame_5
+    originalName: 
+    pivot: {x: 0.5045872, y: -0.27731094}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 131
+      width: 109
+      height: 119
+    spriteID: 8423f02819f32e94f86411331acbf462
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 131}
+  - name: CorazonFinal_Frame_6
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 102
+      y: 536
+      width: 107
+      height: 125
+    spriteID: ba0e7633f63a2144892e1ac7d97f5be0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 102, y: 536}
+  - name: CorazonFinal_Frame_7
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 102
+      y: 669
+      width: 107
+      height: 125
+    spriteID: 2a3df1826b32b544888a79929ec68289
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 102, y: 669}
+  - name: CorazonFinal_Frame_8
+    originalName: 
+    pivot: {x: 0.5045872, y: -0.27731094}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 258
+      width: 109
+      height: 119
+    spriteID: 3dc44a1b22117a54487e1795d5f44221
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 258}
+  - name: CorazonFinal_Frame_9
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 102
+      y: 802
+      width: 107
+      height: 125
+    spriteID: 5c1125966685c1241b536e9a9b506191
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 102, y: 802}
+  - name: CorazonFinal_Frame_10
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 217
+      y: 4
+      width: 107
+      height: 125
+    spriteID: 74aef19afa53fc340bff9ee2b8f34efc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 217, y: 4}
+  - name: CorazonFinal_Frame_11
+    originalName: 
+    pivot: {x: 0.5045872, y: -0.27731094}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 385
+      width: 109
+      height: 119
+    spriteID: 81ebff4ac93f4e34d8a291117a1a153d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 385}
+  - name: CorazonFinal_Frame_12
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 217
+      y: 137
+      width: 107
+      height: 125
+    spriteID: e87e292025f75a544ad269627cd26fb5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 217, y: 137}
+  - name: CorazonFinal_Frame_13
+    originalName: 
+    pivot: {x: 0.5046729, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 217
+      y: 270
+      width: 107
+      height: 125
+    spriteID: 4a55aebaadab19246b2c04ad2107cea2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 217, y: 270}
+  - name: CorazonFinal_Frame_14
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 512
+      width: 90
+      height: 125
+    spriteID: f2165505558c91b448813cb70b8dfa37
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 512}
+  - name: CorazonFinal_Frame_15
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 645
+      width: 90
+      height: 125
+    spriteID: 09503a3add5713c4496f4225c61f9be8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 645}
+  - name: CorazonFinal_Frame_16
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 332
+      y: 778
+      width: 90
+      height: 125
+    spriteID: 30f96733ac50ab64fa9c4ee7aa61717c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 332, y: 778}
+  - name: CorazonFinal_Frame_17
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.013157896}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 166
+      width: 90
+      height: 152
+    spriteID: a3f235c426b2d494fb8a4cc7f977d8d1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 166}
+  - name: CorazonFinal_Frame_18
+    originalName: 
+    pivot: {x: 0.51111114, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 90
+      height: 154
+    spriteID: 381369e0722533b4bbe89ec62f9d2279
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: CorazonFinal_Frame_19
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.23200001}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 217
+      y: 403
+      width: 90
+      height: 125
+    spriteID: dc7c17cb2e7bcd2428e72511bbbccedf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 217, y: 403}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1456991336
+    name: CorazonFinal
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: CorazonFinal_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: af2ab0d9deabfc24fafcf36fdb10b0d3
+    - name: CorazonFinal_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: d5f68803bffa3df489938dc3ab5f579c
+    - name: CorazonFinal_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 5
+        y: 33
+        width: 109
+        height: 119
+      spriteId: 22adb569cef64254a8b7fb7839b00703
+    - name: CorazonFinal_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: 8ae40c15249c2e1448e261626675e4eb
+    - name: CorazonFinal_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: e58aa2bbcd78af541a1b50ed56dec668
+    - name: CorazonFinal_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 5
+        y: 33
+        width: 109
+        height: 119
+      spriteId: 8423f02819f32e94f86411331acbf462
+    - name: CorazonFinal_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: ba0e7633f63a2144892e1ac7d97f5be0
+    - name: CorazonFinal_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: 2a3df1826b32b544888a79929ec68289
+    - name: CorazonFinal_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 5
+        y: 33
+        width: 109
+        height: 119
+      spriteId: 3dc44a1b22117a54487e1795d5f44221
+    - name: CorazonFinal_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: 5c1125966685c1241b536e9a9b506191
+    - name: CorazonFinal_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: 74aef19afa53fc340bff9ee2b8f34efc
+    - name: CorazonFinal_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 5
+        y: 33
+        width: 109
+        height: 119
+      spriteId: 81ebff4ac93f4e34d8a291117a1a153d
+    - name: CorazonFinal_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: e87e292025f75a544ad269627cd26fb5
+    - name: CorazonFinal_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 6
+        y: 29
+        width: 107
+        height: 125
+      spriteId: 4a55aebaadab19246b2c04ad2107cea2
+    - name: CorazonFinal_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 14
+        y: 29
+        width: 90
+        height: 125
+      spriteId: f2165505558c91b448813cb70b8dfa37
+    - name: CorazonFinal_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 14
+        y: 29
+        width: 90
+        height: 125
+      spriteId: 09503a3add5713c4496f4225c61f9be8
+    - name: CorazonFinal_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 14
+        y: 29
+        width: 90
+        height: 125
+      spriteId: 30f96733ac50ab64fa9c4ee7aa61717c
+    - name: CorazonFinal_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 14
+        y: 2
+        width: 90
+        height: 152
+      spriteId: a3f235c426b2d494fb8a4cc7f977d8d1
+    - name: CorazonFinal_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 14
+        y: 0
+        width: 90
+        height: 154
+      spriteId: 381369e0722533b4bbe89ec62f9d2279
+    - name: CorazonFinal_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 14
+        y: 29
+        width: 90
+        height: 125
+      spriteId: dc7c17cb2e7bcd2428e72511bbbccedf
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 120, y: 160}
