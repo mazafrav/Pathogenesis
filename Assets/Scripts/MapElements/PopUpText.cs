@@ -6,23 +6,23 @@ using UnityEngine;
 public class PopUpText : MonoBehaviour
 {
     [SerializeField]
-    public float lerpSpeed = 1.0f;
+    protected float lerpSpeed = 1.0f;
     [SerializeField]
-    private TextMeshProUGUI popUpText;
-    private Color newColor;
+    protected TextMeshProUGUI popUpText;
+    protected Color newColor;
 
     // Update is called once per frame
-    private void Start()
+    protected virtual void Start()
     {
         newColor = popUpText.color;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         popUpText.color = Color.Lerp(popUpText.color, newColor, lerpSpeed*Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {

@@ -11,8 +11,11 @@ using UnityEngine.InputSystem.UI;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
+    public enum GamepadType { Dualshock, XboxController };
+
     [SerializeField]
     private GameObject player;
 
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused { get; set; } = false;
     public bool canPlayerProcessInput { get; set; } = true;
     public bool IsThereAGamepadConnected {  get; private set; }
-
+    public GamepadType gamepadType { get; private set; }
     public static GameManager Instance { get; private set; }
 
     private void Awake()
@@ -61,22 +64,22 @@ public class GameManager : MonoBehaviour
     {
         //We check if there is a gamepad connected
         IsThereAGamepadConnected = Gamepad.all.Count > 0;
-        
-        //if(IsThereAGamepadConnected)
-        //{
-        //    if(Gamepad.current is DualShockGamepad)
-        //    {
-        //        Debug.Log("DualShock connected");
-        //    }
-        //    else if(Gamepad.current is XInputController) 
-        //    {
-        //        Debug.Log("XBOX gamepad connected");
-        //    }
-        //}
-       
+
+        if (IsThereAGamepadConnected)
+        {
+            if (Gamepad.current is DualShockGamepad)
+            {
+                gamepadType = GamepadType.Dualshock;
+            }
+            else if (Gamepad.current is XInputController)
+            {
+                gamepadType = GamepadType.XboxController;
+            }
+        }
+
 
         //We add a delay to the player input when we resume the game from the pause menu
-        if(processInputTimer > 0)
+        if (processInputTimer > 0)
         {
             processInputTimer -= Time.deltaTime;
 
