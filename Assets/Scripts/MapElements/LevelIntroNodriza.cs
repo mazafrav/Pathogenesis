@@ -11,7 +11,7 @@ public class LevelIntroNodriza : MonoBehaviour
     [SerializeField] float TimeToLoadNextScene = 5f;
     
     private Animator animator;
-    private bool doOnce = false;
+    private bool doOnce = true;
     private bool pressedX = false;
     // Start is called before the first frame update
     void Start()
@@ -38,7 +38,6 @@ public class LevelIntroNodriza : MonoBehaviour
 
         if (TimeToActivateText <= 0)
         {
-            doOnce = true;
             text.ActivateText();
         }
         if (doOnce)
