@@ -29,4 +29,14 @@ public class PopUpText : MonoBehaviour
             newColor.a = 1.0f;
         }
     }
+
+    public void ActivateText()
+    {
+        newColor.a = 1.0f;
+    }
+
+    public void DeactivateText()
+    {
+        newColor.a = 0f;
+    }
 }
