@@ -17,6 +17,8 @@ public class RangedLocomotion : HostLocomotion
     public Color defaultColor;
     [SerializeField]
     public Color colorWhileWindUp, colorWhileCooldown;
+    [SerializeField]
+    private SpriteRenderer weaponSprite;
     private HostAbsorption absorption;
 
     [Header("SFX")]
@@ -138,6 +140,7 @@ public class RangedLocomotion : HostLocomotion
     public void ChangeSpritesColor(Color newColor)
     {
         spriteRenderer.color = newColor;
+        weaponSprite.color = newColor;
     }
     public Color GetCurrentColor() { return transform.parent != null ? absorption.possessingColor : defaultColor; }
 

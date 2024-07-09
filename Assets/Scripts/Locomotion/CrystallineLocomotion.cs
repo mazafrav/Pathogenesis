@@ -29,6 +29,8 @@ public class CrystallineLocomotion : HostLocomotion
     [SerializeField]
     private SpriteRenderer spriteRenderer;
     [SerializeField]
+    private SpriteRenderer mirrorSpriteRenderer;
+    [SerializeField]
     private Color colorWhileWindUp, colorWhileCooldown;
 
     private Color defaultColor;
@@ -246,6 +248,7 @@ public class CrystallineLocomotion : HostLocomotion
     private void ChangeSpritesColor(Color newColor)
     {
         spriteRenderer.color = newColor;
+        mirrorSpriteRenderer.color = newColor;
     }
 
     public override void Aim(Vector3 target = default)

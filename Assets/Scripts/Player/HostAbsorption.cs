@@ -2,6 +2,7 @@ using Cinemachine;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.Rendering.DebugUI;
 
 public class HostAbsorption : Interactable
 {
@@ -207,16 +208,24 @@ public class HostAbsorption : Interactable
     private void ChangeColor(Color color)
     {
         graphics.color = color;
-        RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
-        if (rangedEnemy != null)
+        if (weaponGraphics)
         {
             weaponGraphics.color = color;
         }
+        //RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
+        //if (rangedEnemy != null)
+        //{
+        //    weaponGraphics.color = color;
+        //}
     }
 
     private void ChangePossessionMaterial(float value)
     {
         graphics.material.SetFloat("_Progress", value);
+        if(weaponGraphics && GetComponent<RangedEnemy>() == null)
+        {
+            weaponGraphics.material.SetFloat("_Progress", value);
+        }
         //RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
         //if (rangedEnemy != null)
         //{

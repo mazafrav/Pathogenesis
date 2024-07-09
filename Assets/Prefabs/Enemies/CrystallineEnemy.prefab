@@ -215,6 +215,7 @@ MonoBehaviour:
   windUp: 0.2
   stabDuration: 0.3
   spriteRenderer: {fileID: 5905917215000478002}
+  mirrorSpriteRenderer: {fileID: 8601716645142450873}
   colorWhileWindUp: {r: 0.6830188, g: 0.16882162, b: 0.6147412, a: 1}
   colorWhileCooldown: {r: 0.493589, g: 0.22465642, b: 0.5245282, a: 1}
   wallCheckerR: {fileID: 8446539187592977575}
@@ -1635,6 +1636,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3535523218091891979}
     m_Modifications:
+    - target: {fileID: 1336023878070494355, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891284bb9ec15a428234c9012dc6ffb, type: 2}
     - target: {fileID: 3564519412311829384, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: deflectClip
       value: 
