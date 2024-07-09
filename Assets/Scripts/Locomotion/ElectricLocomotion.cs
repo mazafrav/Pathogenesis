@@ -169,12 +169,13 @@ public class ElectricLocomotion : HostLocomotion
     {
         if(!IsAttackReady() || shockGameObject.activeSelf) return;
         currentWindUpTime = windUp;
-        hasAttacked = true;
+        //hasAttacked = true;
         //currentShockDuration = shockDuration;
     }
 
     private void ActivateShock()
     {
+        hasAttacked = true;
         shockGameObject.SetActive(true);
         moveSpeed *= speedModifier;
 
@@ -204,6 +205,8 @@ public class ElectricLocomotion : HostLocomotion
             currentWindUpTime = 0f;
             hasAttacked = false;
             moveSpeed = originalMoveSpeed;
+            Color currentColor = GetCurrentColor();
+            ChangeSpritesColor(currentColor);
         }
 
         //if(transform.parent != null) //Is possessed
@@ -225,8 +228,7 @@ public class ElectricLocomotion : HostLocomotion
         //        shockGameObject.SetActive(false);
         //}
 
-        Color currentColor = GetCurrentColor();
-        ChangeSpritesColor(currentColor);
+
     }
 
     public override bool IsAttackReady()
