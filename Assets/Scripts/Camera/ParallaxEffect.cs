@@ -7,24 +7,35 @@ public class ParallaxEffect : MonoBehaviour
     [SerializeField] public float parallaxAmount;
     [SerializeField] public Camera mainCamera;
 
-    private float startingPos;
-    private float lengthOfSprite;
+    private float startingPosX;
+    private float startingPosY;
+    private float lengthOfSpriteX;
+    private float lengthOfSpriteY;
     // Start is called before the first frame update
     void Start()
     {
-        startingPos = transform.position.x;
-        lengthOfSprite = GetComponent<SpriteRenderer>().bounds.size.x;
+        startingPosX = transform.position.x;
+        startingPosY = transform.position.y;
+
+        lengthOfSpriteX = GetComponent<SpriteRenderer>().bounds.size.x;
+        lengthOfSpriteY = GetComponent<SpriteRenderer>().bounds.size.y;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        float temp = (mainCamera.transform.position.x * (1 - parallaxAmount));
-        float dist = (mainCamera.transform.position.x * parallaxAmount);
+        float tempX = (mainCamera.transform.position.x * (1 - parallaxAmount));
+        float distX = (mainCamera.transform.position.x * parallaxAmount);
 
-        transform.position = new Vector3(startingPos + dist, transform.position.y, transform.position.z);
+        float tempY = (mainCamera.transform.position.y * (1 - parallaxAmount));
+        float distY = (mainCamera.transform.position.y * parallaxAmount);
 
-        if (temp > startingPos + lengthOfSprite / 2) startingPos += lengthOfSprite;
-        else if (temp < startingPos - lengthOfSprite / 2) startingPos -= lengthOfSprite;
+        transform.position = new Vector3(startingPosX + distX, startingPosY + distY, transform.position.z);
+
+        if (tempX > startingPosX + lengthOfSpriteX / 2) startingPosX += lengthOfSpriteX;
+        else if (tempX < startingPosX - lengthOfSpriteX / 2) startingPosX -= lengthOfSpriteX;
+
+        if (tempY > startingPosY + lengthOfSpriteY / 2) startingPosY += lengthOfSpriteY;
+        else if (tempY < startingPosY - lengthOfSpriteY / 2) startingPosY -= lengthOfSpriteY;
     }
 }
