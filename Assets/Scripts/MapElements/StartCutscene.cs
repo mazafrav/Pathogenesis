@@ -31,6 +31,7 @@ public class StartCutscene : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            GameManager.Instance.SetMusicSelectionIndex(6);
             director.Play();
         }
     }
