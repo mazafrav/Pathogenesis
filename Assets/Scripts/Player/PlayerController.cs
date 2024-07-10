@@ -159,15 +159,21 @@ public class PlayerController : MonoBehaviour
 
     private void JumpButtomUp(InputAction.CallbackContext context)
     {
-        locomotion.JumpButtonUp();
-        //inputBuffer.Enqueue("jumpUp");
+        if (GameManager.Instance.canPlayerProcessInput)
+        {
+            locomotion.JumpButtonUp();
+            //inputBuffer.Enqueue("jumpUp");
+        }
     }
 
     private void Attack(InputAction.CallbackContext context)
     {
-        //locomotion.Attack(mousePos);
-        inputBuffer.Enqueue("attack");
-        Invoke("RemoveAction", inputBufferTime);
+        if (GameManager.Instance.canPlayerProcessInput)
+        {
+            //locomotion.Attack(mousePos);
+            inputBuffer.Enqueue("attack");
+            Invoke("RemoveAction", inputBufferTime);
+        }
     }
 
     private void PauseMenu(InputAction.CallbackContext context)
