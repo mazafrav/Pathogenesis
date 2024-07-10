@@ -11,6 +11,8 @@ public class PopUpText : MonoBehaviour
     protected TextMeshProUGUI popUpText;
     [SerializeField]
     private float delay = 0.0f;
+    [SerializeField]
+    private bool ActivateOnlyPosessing = false;
 
     protected Color newColor;
     protected Color newColorSprite;
@@ -48,7 +50,7 @@ public class PopUpText : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if ((other.CompareTag("Player") && !ActivateOnlyPosessing) || other.CompareTag("Enemy"))
         {
             timerStart = true;
             newColor.a = 1.0f;
