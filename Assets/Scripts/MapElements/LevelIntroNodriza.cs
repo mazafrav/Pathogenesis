@@ -59,7 +59,7 @@ public class LevelIntroNodriza : MonoBehaviour
         }
         if (doOnce)
         {
-            if (Gamepad.current != null && Time.timeSinceLevelLoad >= 2 && Gamepad.current.buttonSouth.isPressed)
+            if (Gamepad.current != null && Time.timeSinceLevelLoad >= 1 && Gamepad.current.buttonSouth.isPressed)
             {
                 doOnce = false;
                 PressedX();
