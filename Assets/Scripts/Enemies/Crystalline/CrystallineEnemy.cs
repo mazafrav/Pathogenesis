@@ -130,6 +130,8 @@ public class CrystalineEnemy : Enemy
             float distanceToClosestRangedTarget = float.PositiveInfinity;
             GameObject closestTarget = null;
             float distanceToClosestTarget = float.PositiveInfinity;
+
+            
             for (int i = closeTargets.Count - 1; i >= 0; i--)
             {
                 GameObject target = closeTargets[i];
@@ -152,8 +154,26 @@ public class CrystalineEnemy : Enemy
                 }
                 if (closestRangedTarget == null || dist < distanceToClosestRangedTarget)
                 {
-                    closestRangedTarget = target;
-                    distanceToClosestRangedTarget = dist;
+                    if (target != null)
+                    {
+                        RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (target.transform.position - transform.position).normalized, photonicDetectionRange);
+
+
+                        for (int j = 0; j < raycastHit2D.Length; j++)
+                        {
+                            if (raycastHit2D[j].collider.gameObject == target)
+                            {
+                                closestRangedTarget = target;
+                                distanceToClosestRangedTarget = dist;
+                                break;
+                            }
+
+                            if ((raycastHit2D[j].collider.CompareTag("TileMap") || raycastHit2D[j].collider.CompareTag("MapElement")))
+                            {
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             currentRangedTarget = closestRangedTarget;
