@@ -9,10 +9,15 @@ public class PopUpText : MonoBehaviour
     protected float lerpSpeed = 1.0f;
     [SerializeField]
     protected TextMeshProUGUI popUpText;
+    [SerializeField]
+    private float delay = 0.0f;
+
     protected Color newColor;
     protected Color newColorSprite;
 
     private SpriteRenderer sprite;
+
+    private bool timerStart = false;
 
     // Update is called once per frame
     protected virtual void Start()
@@ -28,10 +33,16 @@ public class PopUpText : MonoBehaviour
 
     protected virtual void Update()
     {
-        popUpText.color = Color.Lerp(popUpText.color, newColor, lerpSpeed*Time.deltaTime);
-        if (sprite != null )
+        if (timerStart) { delay -= Time.deltaTime; }
+
+        if (delay <= 0.0f)
         {
-            sprite.color = Color.Lerp(sprite.color, newColorSprite, lerpSpeed * Time.deltaTime);
+            timerStart = false;
+            popUpText.color = Color.Lerp(popUpText.color, newColor, lerpSpeed * Time.deltaTime);
+            if (sprite != null)
+            {
+                sprite.color = Color.Lerp(sprite.color, newColorSprite, lerpSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -39,6 +50,7 @@ public class PopUpText : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
+            timerStart = true;
             newColor.a = 1.0f;
             if (sprite != null)
             {
@@ -49,6 +61,7 @@ public class PopUpText : MonoBehaviour
 
     public void ActivateText()
     {
+        timerStart = true;
         newColor.a = 1.0f;
         if (sprite != null)
         {
