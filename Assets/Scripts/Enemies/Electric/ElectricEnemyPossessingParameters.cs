@@ -6,5 +6,6 @@ public class ElectricEnemyPossessingParameters : PossessingParameters
     //public float electricFollowRange;
     public float cooldown;
     public float windUp;
+    public float shockRemainingTime;
     //public float shockDuration;
 }

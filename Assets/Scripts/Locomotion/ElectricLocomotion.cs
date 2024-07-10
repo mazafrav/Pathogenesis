@@ -22,6 +22,8 @@ public class ElectricLocomotion : HostLocomotion
     private float cooldown = 1.0f;
     [SerializeField]
     private float windUp = 0.5f;
+    [SerializeField]
+    private float shockRemainingTime = 0.3f;
     //[SerializeField]
     //private float shockDuration = 1.0f;
 
@@ -49,12 +51,15 @@ public class ElectricLocomotion : HostLocomotion
 
     private PlayerController playerController;
 
+    public float currentRemainingShockTime { get; set; } = 0.0f;
+    public bool inAttackRange { get; set; } = false;
+
     private HostAbsorption absorption;
     private bool hasAttacked = false;
     public float FollowRange { get { return followRange; } }
     public float AttackRange { get { return attackRange; } }
 
-
+    public float ShockRemainingTime() => shockRemainingTime;
 
     void Start()
     {
@@ -175,6 +180,8 @@ public class ElectricLocomotion : HostLocomotion
 
     private void ActivateShock()
     {
+        currentRemainingShockTime = shockRemainingTime;
+        inAttackRange = true;
         hasAttacked = true;
         shockGameObject.SetActive(true);
         moveSpeed *= speedModifier;
@@ -280,6 +287,7 @@ public class ElectricLocomotion : HostLocomotion
 
         cooldown = electricPossessingParameters.cooldown;
         windUp = electricPossessingParameters.windUp;
+        shockRemainingTime = electricPossessingParameters.shockRemainingTime;
         //shockDuration = electricPossessingParameters.shockDuration;
         //followRange = electricPossessingParameters.electricFollowRange;
         //followGameObject.transform.localScale = new Vector3(followRange, followRange, shockGameObject.transform.localScale.z);

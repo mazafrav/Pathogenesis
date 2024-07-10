@@ -223,7 +223,7 @@ public class RangedEnemy : Enemy
         else
         {
             enablePatrolling = true;
-            Debug.Log("Enabled patroll");
+            //Debug.Log("Enabled patroll");
 
         }
         return result;

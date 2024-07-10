@@ -78,17 +78,24 @@ public class PlayerController : MonoBehaviour
                 doOnce = true;
             }
 
+            //Attacking with electric enemy
             ElectricLocomotion electricLocomotion = GetComponentInChildren<ElectricLocomotion>();
             if(electricLocomotion)
             {
                 if((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
                 {
                     locomotion.Attack(mousePos);
-                    //Debug.Log("Atcando");
                 }
-                else if ((GameManager.Instance.IsThereAGamepadConnected && !Gamepad.current.rightShoulder.isPressed) || !Input.GetMouseButton(0))
+                else if (electricLocomotion.inAttackRange && electricLocomotion.currentRemainingShockTime > 0.0f && (GameManager.Instance.IsThereAGamepadConnected && !Gamepad.current.rightShoulder.isPressed) || !Input.GetMouseButton(0))
                 {
-                    locomotion.DeactivateAttack();
+                    //We wait a bit to deactivate the shock
+                    electricLocomotion.currentRemainingShockTime -= Time.deltaTime;
+
+                    if (electricLocomotion.currentRemainingShockTime <= 0.0f)
+                    {
+                        locomotion.DeactivateAttack();
+                        electricLocomotion.inAttackRange =false;
+                    }
                 }
             }
 

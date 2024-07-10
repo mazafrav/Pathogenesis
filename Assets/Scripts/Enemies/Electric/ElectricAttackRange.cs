@@ -13,11 +13,13 @@ public class ElectricAttackRange : MonoBehaviour
 
     private HostLocomotion locomotion;
     private ElectricEnemy electricEnemy;
+    private ElectricLocomotion electricLocomotion;
 
     // Start is called before the first frame update
     void Start()
     {
         locomotion = GetComponentInParent<HostLocomotion>();
+        electricLocomotion = (ElectricLocomotion)locomotion;
         electricEnemy = GetComponentInParent<ElectricEnemy>();
     }
 
@@ -30,8 +32,17 @@ public class ElectricAttackRange : MonoBehaviour
 
         if(collidedObjects.Count <= 0) //We dont have any organism, we deactivate the shock
         {
-            ElectricLocomotion d = (ElectricLocomotion)locomotion;
-            d.DeactivateShock();
+            if (electricLocomotion.inAttackRange && electricLocomotion.currentRemainingShockTime > 0.0f)
+            {
+                //We wait a bit to deactivate the electric shock
+                electricLocomotion.currentRemainingShockTime -= Time.deltaTime;
+                Debug.Log(electricLocomotion.currentRemainingShockTime);
+                if (electricLocomotion.currentRemainingShockTime <= 0.0f)
+                {
+                    electricLocomotion.DeactivateShock();
+                    electricLocomotion.inAttackRange = false;
+                }
+            }
         }
         else
         {
@@ -39,6 +50,7 @@ public class ElectricAttackRange : MonoBehaviour
             {
                 if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")))
                 {
+                    electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
                     locomotion.Attack();
                 }           
             }
