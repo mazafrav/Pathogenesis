@@ -24,6 +24,11 @@ public class HostAbsorption : Interactable
     private float controllerVibrationIntestity = 0.01f;
     [SerializeField]
     private ParticleSystem absortionParticles;
+    [SerializeField]
+    private Color possessColor = new Color(0.6696f, 0.7624f, 0.7981f);
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip possessionClip;
 
     private float originalZoom;
     private float possessionTimer = 0.0f;
@@ -34,14 +39,13 @@ public class HostAbsorption : Interactable
     private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
     private Enemy enemyBehaviour;
-    public Color possessingColor { get; private set; }
-    [SerializeField] private AudioClip possessionClip;
 
     private bool doOnce = false;
 
+    public Color possessingColor => possessColor;
+
     void Start()
     {
-        possessingColor = new Color(0.6696f, 0.7624f, 0.7981f);
         hostLocomotion = GetComponent<HostLocomotion>();
         playerController = GameManager.Instance.GetPlayerController();
         playerLocomotion = GameManager.Instance.GetPlayerLocomotion();
