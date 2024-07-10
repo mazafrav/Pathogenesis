@@ -130,7 +130,7 @@ public class RangedEnemy : Enemy
 
                 RaycastHit2D[] raycastHit2D = Physics2D.CircleCastAll(
                     transform.position,
-                    0.75f,
+                    0.15f,
                     (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized,
                     detectionRange,
                     ~detectionIgnoreLayerMask
@@ -139,11 +139,11 @@ public class RangedEnemy : Enemy
 
                 for (int i = 0; i < raycastHit2D.Length; i++)
                 {
+                    if (raycastHit2D[i].collider.CompareTag("MapElement")) Debug.LogWarning("MapElement: " + raycastHit2D[i].collider.gameObject.name);
                     if ((raycastHit2D[i].collider.CompareTag("TileMap") || raycastHit2D[i].collider.CompareTag("MapElement")) &&
                         (Vector2.Distance(raycastHit2D[i].point, transform.position) < Vector2.Distance(rangedEnemyDetection.targetInRange.transform.position, transform.position)))
                     {
                         isSeeing = false;
-                        Debug.Log("Cancelling, hit: " + raycastHit2D[i].collider.gameObject.name);
                         break;
                     }
                     else if (raycastHit2D[i].collider.gameObject == rangedEnemyDetection.targetInRange)
@@ -151,6 +151,10 @@ public class RangedEnemy : Enemy
                         Debug.DrawRay(shootDetection.transform.position, (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized * (raycastHit2D[i].distance + 2f), Color.red);
                         isSeeing = true;
                         break;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Ignoring: " + raycastHit2D[i].collider.gameObject.name);
                     }
                 }
 
@@ -181,7 +185,7 @@ public class RangedEnemy : Enemy
                 // RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (target.transform.position - transform.position).normalized, detectionRange);
                 RaycastHit2D[] raycastHit2D = Physics2D.CircleCastAll(
                     transform.position,
-                    0.75f,
+                    0.15f,
                     (target.transform.position - transform.position).normalized,
                     detectionRange,
                     ~detectionIgnoreLayerMask
