@@ -28,20 +28,44 @@ public class ControlsPopUpText : PopUpText
     {
         base.Update();
 
+
         if (gameManager.IsThereAGamepadConnected)
         {
+            
             if(gameManager.gamepadType == GameManager.GamepadType.Dualshock)
             {
                 popUpText.text = dualshockButton;
+
+                if (delay <= 0.0f)
+                {
+                    if (controlSprite != null)
+                    {
+                        controlSprite.enabled = true;
+                        controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
+                    }
+                }
             }
             else if(gameManager.gamepadType == GameManager.GamepadType.XboxController)
             {
                 popUpText.text = xboxButton;
+
+                if (delay <= 0.0f)
+                {
+                    if (controlSprite != null)
+                    {
+                        controlSprite.enabled = true;
+                        controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
+                    }
+                }
             }
         }
         else
         {
             popUpText.text = keyboardMouseButton;
+            if (controlSprite != null)
+            {
+                controlSprite.enabled = false;
+            }
         }
     }
 
