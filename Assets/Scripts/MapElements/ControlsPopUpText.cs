@@ -14,6 +14,9 @@ public class ControlsPopUpText : PopUpText
     [SerializeField]
     private string keyboardMouseButton;
 
+    [SerializeField]
+    bool showImage = false;
+
     GameManager gameManager;
 
     // Update is called once per frame
@@ -64,7 +67,16 @@ public class ControlsPopUpText : PopUpText
             popUpText.text = keyboardMouseButton;
             if (controlSprite != null)
             {
-                controlSprite.enabled = false;
+                if (!showImage)
+                {
+                    controlSprite.enabled = false;
+                }
+                else
+                {
+                    controlSprite.enabled = true;
+                }
+
+
             }
         }
     }

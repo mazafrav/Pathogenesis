@@ -41,10 +41,6 @@ public class PopUpText : MonoBehaviour
         {
             timerStart = false;
             popUpText.color = Color.Lerp(popUpText.color, newColor, lerpSpeed * Time.deltaTime);
-            //if (controlsSprite != null)
-            //{
-            //    controlsSprite.color = Color.Lerp(controlsSprite.color, newColorSprite, lerpSpeed * Time.deltaTime);
-            //}
         }
     }
 
