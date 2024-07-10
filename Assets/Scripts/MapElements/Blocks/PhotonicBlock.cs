@@ -75,6 +75,10 @@ public class PhotonicBlock : MonoBehaviour, IActivatableElement
         {
             audioSource.Play();
         }
+        if (audioSource.isPlaying && transform.position == nextPosition)
+        {
+            audioSource.Stop();
+        }
 
     }
     
