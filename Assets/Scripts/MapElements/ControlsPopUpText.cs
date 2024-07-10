@@ -74,6 +74,7 @@ public class ControlsPopUpText : PopUpText
                 else
                 {
                     controlSprite.enabled = true;
+                    controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
                 }
 
 
