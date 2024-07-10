@@ -22,11 +22,11 @@ public class ShootingComponent : MonoBehaviour
     {
         // if(!bisActive) return;
 
-        if (enemyIA.enabled || (!enemyIA.enabled && !GameManager.Instance.IsThereAGamepadConnected)) //The ranged enemy AI is active or is disabled with no gamepads connected
+        if (enemyIA.enabled || (!enemyIA.enabled && !GameManager.Instance.IsThereAGamepadConnected && !GameManager.Instance.GetPlayerController().isPossessing)) //The ranged enemy AI is active or is disabled with no gamepads connected
         {
             transform.up = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         }
-        else if (GameManager.Instance.IsThereAGamepadConnected)
+        else if (GameManager.Instance.IsThereAGamepadConnected && !GameManager.Instance.GetPlayerController().isPossessing)
         {
             if ((target.x > deadZone || target.x < -deadZone) || (target.y > deadZone || target.y < -deadZone))
             {
