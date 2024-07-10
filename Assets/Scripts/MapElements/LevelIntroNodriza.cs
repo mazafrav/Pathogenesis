@@ -12,11 +12,22 @@ public class LevelIntroNodriza : MonoBehaviour
     
     private Animator animator;
     private bool doOnce = true;
+    private bool audioDoOnce = true;
     private bool pressedX = false;
+
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip heartBeatClip;
+    [SerializeField]
+    private AudioClip burstClip;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = heartBeatClip;
+        audioSource.loop = true;
+        StartCoroutine(PlayHeartBeatDelayed(0.25f));
     }
 
     // Update is called once per frame
@@ -25,6 +36,12 @@ public class LevelIntroNodriza : MonoBehaviour
         
         if (pressedX)
         {
+            if (audioSource.isPlaying && audioDoOnce)
+            {
+                audioDoOnce = false;
+                audioSource.Stop();
+                audioSource.PlayOneShot(burstClip);
+            }
             TimeToLoadNextScene -= Time.deltaTime;
             if (TimeToLoadNextScene <= 0)
             {
@@ -61,5 +78,11 @@ public class LevelIntroNodriza : MonoBehaviour
         pressedX = true;
         text.DeactivateText();
         animator.Play("VirusBurst");
+    }
+
+    IEnumerator PlayHeartBeatDelayed (float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        audioSource.Play();
     }
 }
