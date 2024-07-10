@@ -9,7 +9,7 @@ public class RespawnCheckpoint : MonoBehaviour
     {
         if (isActive && collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("SIIIIIIIUUUUUU");
+            //Debug.Log("SIIIIIIIUUUUUU");
             isActive = false;
             List<GameObject> gameObjectsToRespawn = GameManager.Instance.GetComponentInChildren<SaveGameObjectForRespawn>().gameObjectsToSave;
 
