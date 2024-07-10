@@ -10,14 +10,14 @@ public class PopUpText : MonoBehaviour
     [SerializeField]
     protected TextMeshProUGUI popUpText;
     [SerializeField]
-    private float delay = 0.0f;
+    protected float delay = 0.0f;
     [SerializeField]
     private bool ActivateOnlyPosessing = false;
 
     protected Color newColor;
-    protected Color newColorSprite;
+    protected Color newColorControlSprite;
 
-    private SpriteRenderer sprite;
+    protected SpriteRenderer controlSprite;
 
     private bool timerStart = false;
 
@@ -25,10 +25,10 @@ public class PopUpText : MonoBehaviour
     protected virtual void Start()
     {
         newColor = popUpText.color;
-        sprite = GetComponentInChildren<SpriteRenderer>();
-        if (sprite != null)
+        controlSprite = GetComponentInChildren<SpriteRenderer>();
+        if (controlSprite != null)
         {
-            newColorSprite = sprite.color;
+            newColorControlSprite = controlSprite.color;
         }
 
     }
@@ -41,10 +41,10 @@ public class PopUpText : MonoBehaviour
         {
             timerStart = false;
             popUpText.color = Color.Lerp(popUpText.color, newColor, lerpSpeed * Time.deltaTime);
-            if (sprite != null)
-            {
-                sprite.color = Color.Lerp(sprite.color, newColorSprite, lerpSpeed * Time.deltaTime);
-            }
+            //if (controlsSprite != null)
+            //{
+            //    controlsSprite.color = Color.Lerp(controlsSprite.color, newColorSprite, lerpSpeed * Time.deltaTime);
+            //}
         }
     }
 
@@ -54,9 +54,9 @@ public class PopUpText : MonoBehaviour
         {
             timerStart = true;
             newColor.a = 1.0f;
-            if (sprite != null)
+            if (controlSprite != null)
             {
-                newColorSprite.a = 1.0f;
+                newColorControlSprite.a = 1.0f;
             }
         }
     }
@@ -65,18 +65,18 @@ public class PopUpText : MonoBehaviour
     {
         timerStart = true;
         newColor.a = 1.0f;
-        if (sprite != null)
+        if (controlSprite != null)
         {
-            newColorSprite.a = 1.0f;
+            newColorControlSprite.a = 1.0f;
         }
     }
 
     public void DeactivateText()
     {
         newColor.a = 0f;
-        if (sprite != null)
+        if (controlSprite != null)
         {
-            newColorSprite.a = 0f;
+            newColorControlSprite.a = 0f;
         }
     }
 }
