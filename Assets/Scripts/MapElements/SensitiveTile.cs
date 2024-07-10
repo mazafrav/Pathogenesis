@@ -60,7 +60,7 @@ public class SensitiveTile : MonoBehaviour
         }
     }
 
-    private void ActivateActivables()
+    public void ActivateActivables()
     {
         animator.Play("SensitiveTileActivated");
         audioSource.PlayOneShot(activateClip);
