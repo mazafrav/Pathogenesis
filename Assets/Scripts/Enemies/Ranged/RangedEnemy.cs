@@ -25,6 +25,8 @@ public class RangedEnemy : Enemy
     private bool canShoot = true;
     [SerializeField]
     public ShootingComponent shootingComponent;
+    [SerializeField]
+    private LayerMask detectionIgnoreLayerMask;
 
     [SerializeField]
     private RangedEnemyDetection rangedEnemyDetection;
@@ -46,7 +48,7 @@ public class RangedEnemy : Enemy
     {
         foreach (GameObject obj in rangedEnemyDetection.allTargetsInRange)
         {
-            Debug.Log("En rango: " +  obj.name);
+            Debug.Log("En rango: " + obj.name);
         }
         // if(targetPosition != null)
         // {
@@ -92,11 +94,11 @@ public class RangedEnemy : Enemy
                 //}
                 //locomotion.Move(movementDirection);
                 Patrol();
-                if(movementDirection > 0)
+                if (movementDirection > 0)
                 {
                     graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
                 }
-                else if(movementDirection < 0)
+                else if (movementDirection < 0)
                 {
                     graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
                 }
@@ -104,7 +106,7 @@ public class RangedEnemy : Enemy
 
             // Search target selects the closest visible target and stops the patrolling behaviour
             rangedEnemyDetection.targetInRange = SearchTarget();
-            
+
         }
 
         // Shooting behaviour. Target is not null
@@ -118,34 +120,45 @@ public class RangedEnemy : Enemy
             if (!rangedEnemyDetection.allTargetsInRange.Contains(rangedEnemyDetection.targetInRange))
             {
                 // We search once again for its closest visible target. If there is none, patrolling behaviour is restored.
-                rangedEnemyDetection.targetInRange = SearchTarget();          
+                rangedEnemyDetection.targetInRange = SearchTarget();
             }
             else
             {
                 // We check if there is any obstacle between the ranged enemy and its target.
                 // We do this by seeing if there is any tile map closer to the enemy than its target.
-                RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized, detectionRange);
+                // RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized, detectionRange);
+
+                RaycastHit2D[] raycastHit2D = Physics2D.CircleCastAll(
+                    transform.position,
+                    0.75f,
+                    (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized,
+                    detectionRange,
+                    ~detectionIgnoreLayerMask
+                    );
+
+
                 for (int i = 0; i < raycastHit2D.Length; i++)
                 {
                     if ((raycastHit2D[i].collider.CompareTag("TileMap") || raycastHit2D[i].collider.CompareTag("MapElement")) &&
                         (Vector2.Distance(raycastHit2D[i].point, transform.position) < Vector2.Distance(rangedEnemyDetection.targetInRange.transform.position, transform.position)))
                     {
                         isSeeing = false;
+                        Debug.Log("Cancelling, hit: " + raycastHit2D[i].collider.gameObject.name);
                         break;
                     }
                     else if (raycastHit2D[i].collider.gameObject == rangedEnemyDetection.targetInRange)
                     {
-                        Debug.DrawRay(transform.position, (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized * raycastHit2D[i].distance, Color.red);
+                        Debug.DrawRay(shootDetection.transform.position, (rangedEnemyDetection.targetInRange.transform.position - transform.position).normalized * (raycastHit2D[i].distance + 2f), Color.red);
                         isSeeing = true;
-                        
+                        break;
                     }
                 }
 
                 // If target is visible, start aiming and shoot.
                 // If it's not, look for another target. If there is none, enable patrolling once again.
                 CheckTargetIsVisible();
-                
-            }           
+
+            }
         }
     }
 
@@ -165,7 +178,16 @@ public class RangedEnemy : Enemy
             // Check if Ranged can aim any of the possible targets
             foreach (var target in rangedEnemyDetection.allTargetsInRange)
             {
-                RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (target.transform.position - transform.position).normalized, detectionRange);
+                // RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, (target.transform.position - transform.position).normalized, detectionRange);
+                RaycastHit2D[] raycastHit2D = Physics2D.CircleCastAll(
+                    transform.position,
+                    0.75f,
+                    (target.transform.position - transform.position).normalized,
+                    detectionRange,
+                    ~detectionIgnoreLayerMask
+                    );
+
+
                 for (int i = 0; i < raycastHit2D.Length; i++)
                 {
                     if (raycastHit2D[i].collider.gameObject == target)
@@ -186,9 +208,9 @@ public class RangedEnemy : Enemy
                         break;
                     }
                 }
-
                 if (result != null)
                 {
+                    Debug.Log("Searching: " + result.name);
                     CheckIfDetected(result);
                     break;
                 }
@@ -197,6 +219,8 @@ public class RangedEnemy : Enemy
         else
         {
             enablePatrolling = true;
+            Debug.Log("Enabled patroll");
+
         }
         return result;
     }
@@ -252,7 +276,7 @@ public class RangedEnemy : Enemy
         locomotion.Attack(targetPosition);
         StartCoroutine(ShootingCooldownRoutine(shootingCooldown));
     }
-    
+
 
     private IEnumerator ShootingCooldownRoutine(float cd)
     {
@@ -265,7 +289,7 @@ public class RangedEnemy : Enemy
 
     // Used for when possessing
     public void ResetRigidbodyConstraints()
-    {       
+    {
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }

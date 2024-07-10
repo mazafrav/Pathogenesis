@@ -100,6 +100,9 @@ MonoBehaviour:
   shootingCooldown: 1.5
   playerShootingCooldown: 1
   shootingComponent: {fileID: 3053358784906759610}
+  detectionIgnoreLayerMask:
+    serializedVersion: 2
+    m_Bits: 15862
   rangedEnemyDetection: {fileID: 4616672319838726419}
 --- !u!114 &2843505179004484964
 MonoBehaviour:
@@ -994,7 +997,7 @@ Transform:
   m_GameObject: {fileID: 7212329797493683486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.489, z: 0}
+  m_LocalPosition: {x: 0, y: 1.192, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
