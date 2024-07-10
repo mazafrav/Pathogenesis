@@ -73,6 +73,10 @@ public class KineticBlock : MonoBehaviour, IActivatableElement
         {
             audioSource.Play();
         }
+        if (audioSource.isPlaying && transform.position == nextPosition)
+        {
+            audioSource.Stop();
+        }
     }
     
     public void Activate()
