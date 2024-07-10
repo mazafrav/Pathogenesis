@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
                 if((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
                 {
                     locomotion.Attack(mousePos);
-                    Debug.Log("Atcando");
+                    //Debug.Log("Atcando");
                 }
                 else if ((GameManager.Instance.IsThereAGamepadConnected && !Gamepad.current.rightShoulder.isPressed) || !Input.GetMouseButton(0))
                 {
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
     private void PauseMenu(InputAction.CallbackContext context)
     {
-        Debug.Log("Pausa");
+        //Debug.Log("Pausa");
 
         bool isSettingsOn = false;
         for (int i = 0; i < SceneManager.sceneCount; i++)
