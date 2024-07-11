@@ -29,11 +29,20 @@ public class ElectricFollowRange : MonoBehaviour
 
                 RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, electricEnemy.direction, 2 * electricLocomotion.FollowRange);
                 for (int i = 0; i < raycastHit2D.Length; i++)
-                {                                                   //Electric enemies dont attack electric enemies
-                    if (raycastHit2D[i].collider.gameObject == target && target.GetComponent<ElectricEnemy>() == null)
+                {                                                  
+                    if (raycastHit2D[i].collider.gameObject == target)
                     {
-                        chosenTarget = target;                     
-                        Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
+                        if (electricEnemy.enabled && target.GetComponent<ElectricEnemy>() == null) //Electric enemies dont attack other electric enemies
+                        {
+                            chosenTarget = target;                     
+                            Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
+                        }
+                        else if(!electricEnemy.enabled) // If we posses an electric enemy we can attack other electric enemies
+                        {
+                            chosenTarget = target;
+                            Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
+                        }
+
                         break;
                     }
                     else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap") || raycastHit2D[i].collider.gameObject.CompareTag("MapElement"))
