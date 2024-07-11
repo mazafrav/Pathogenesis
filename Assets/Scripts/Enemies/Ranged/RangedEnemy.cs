@@ -46,10 +46,10 @@ public class RangedEnemy : Enemy
 
     void Update()
     {
-        foreach (GameObject obj in rangedEnemyDetection.allTargetsInRange)
-        {
-            Debug.Log("En rango: " + obj.name);
-        }
+        //foreach (GameObject obj in rangedEnemyDetection.allTargetsInRange)
+        //{
+        //    Debug.Log("En rango: " + obj.name);
+        //}
         // if(targetPosition != null)
         // {
         //     locomotion.Aim(targetPosition);
@@ -214,7 +214,7 @@ public class RangedEnemy : Enemy
                 }
                 if (result != null)
                 {
-                    Debug.Log("Searching: " + result.name);
+                    //Debug.Log("Searching: " + result.name);
                     CheckIfDetected(result);
                     break;
                 }
