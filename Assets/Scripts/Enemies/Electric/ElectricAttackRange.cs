@@ -36,7 +36,7 @@ public class ElectricAttackRange : MonoBehaviour
             {
                 //We wait a bit to deactivate the electric shock
                 electricLocomotion.currentRemainingShockTime -= Time.deltaTime;
-                Debug.Log(electricLocomotion.currentRemainingShockTime);
+                //Debug.Log(electricLocomotion.currentRemainingShockTime);
                 if (electricLocomotion.currentRemainingShockTime <= 0.0f)
                 {
                     electricLocomotion.DeactivateShock();
