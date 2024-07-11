@@ -51,6 +51,7 @@ public class StartCutscene : MonoBehaviour
         absortionRangeVfx.SetVector3("Direction", (virus.transform.position - evilVirus.transform.position).normalized);
         absortionRangeVfx.Play();
         //TODO: QUITAR CONTROLES
+        GameManager.Instance.SetMusicSelectionIndex(7);
     }
 
     public void StartVFX2()

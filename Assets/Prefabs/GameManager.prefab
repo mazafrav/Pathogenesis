@@ -168,6 +168,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6281676964004372731, guid: 4c5c4eeb786a33b449e6fd19626ca259, type: 3}
+      propertyPath: tracks.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281676964004372731, guid: 4c5c4eeb786a33b449e6fd19626ca259, type: 3}
       propertyPath: tracks.Array.data[1]
       value: 
       objectReference: {fileID: -9171541996276959818, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
@@ -179,6 +183,14 @@ PrefabInstance:
       propertyPath: tracks.Array.data[5]
       value: 
       objectReference: {fileID: 5740394307820088388, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
+    - target: {fileID: 6281676964004372731, guid: 4c5c4eeb786a33b449e6fd19626ca259, type: 3}
+      propertyPath: tracks.Array.data[6]
+      value: 
+      objectReference: {fileID: 5390753156490458618, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
+    - target: {fileID: 6281676964004372731, guid: 4c5c4eeb786a33b449e6fd19626ca259, type: 3}
+      propertyPath: tracks.Array.data[7]
+      value: 
+      objectReference: {fileID: 8301040822500353435, guid: bdcf0b2f0c3ab9243bf640f3d8a7efe6, type: 2}
     - target: {fileID: 8596581463218678695, guid: 4c5c4eeb786a33b449e6fd19626ca259, type: 3}
       propertyPath: m_Name
       value: LevelMusic
