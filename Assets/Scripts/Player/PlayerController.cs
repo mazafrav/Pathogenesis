@@ -246,4 +246,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public GameObject GetPlayerBody() { return playerBody; }
+
+    public PlayerInputActions GetPlayerIAs() { return playerInputActions; }
 }

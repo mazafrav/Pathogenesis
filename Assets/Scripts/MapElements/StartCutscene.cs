@@ -52,6 +52,7 @@ public class StartCutscene : MonoBehaviour
         absortionRangeVfx.Play();
         //TODO: QUITAR CONTROLES
         GameManager.Instance.SetMusicSelectionIndex(7);
+        GameManager.Instance.GetPlayerController().GetPlayerIAs().Disable();
     }
 
     public void StartVFX2()
@@ -67,6 +68,8 @@ public class StartCutscene : MonoBehaviour
 
     public void EndCutscene()
     {
+        GameManager.Instance.GetPlayerController().GetPlayerIAs().Enable();
+        GameManager.Instance.SetMusicSelectionIndex(0);
         GameManager.Instance.GetLevelLoader().StartLoadingLevel(0);
     }
 }
