@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectricAttackRange : MonoBehaviour
+public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
 {
     [SerializeField]
     private Collider2D interactionCollider;
@@ -28,7 +28,7 @@ public class ElectricAttackRange : MonoBehaviour
     {
         interactionCollider.OverlapCollider(filter, collidedObjects);
         collidedObjects.RemoveAll(obj => !obj.gameObject.CompareTag("Player") && !obj.gameObject.CompareTag("Enemy"));//We elimante objects that are not the player or enemies
-        collidedObjects.RemoveAt(0); // We eliminate the Electric enemy
+        collidedObjects.RemoveAll(obj=>obj.GetComponent<ElectricEnemy>()); // We eliminate Electric enemies because we dont want to attack them
 
         if(collidedObjects.Count <= 0) //We dont have any organism, we deactivate the shock
         {
@@ -48,7 +48,7 @@ public class ElectricAttackRange : MonoBehaviour
         {
             foreach (Collider2D obj in collidedObjects) //We activate the shock
             {
-                if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")))
+                if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")) && obj.GetComponent<ElectricEnemy>() == null)
                 {
                     electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
                     locomotion.Attack();
