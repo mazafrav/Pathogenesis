@@ -23,6 +23,11 @@ public class ElectricFollowRange : MonoBehaviour
     {
         if (targets.Count > 0)
         {
+            if (electricEnemy.enabled) // With active AI we don want to target other electric enemies
+            {
+                targets.RemoveAll(o => o.GetComponent<ElectricEnemy>());
+            }
+
             foreach(GameObject target in targets)
             {
                 electricEnemy.direction = (target.transform.position - transform.position).normalized;
