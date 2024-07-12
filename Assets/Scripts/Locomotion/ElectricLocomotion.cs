@@ -249,7 +249,8 @@ public class ElectricLocomotion : HostLocomotion
         currentWindUpTime = 0f;
         ChangeSpritesColor(GetCurrentColor());
         shockGameObject.SetActive(false);      
-        attackGameObject.SetActive(false);  
+        attackGameObject.SetActive(false); 
+        followGameObject.SetActive(false);
     }
 
     public bool IsWindingUp()

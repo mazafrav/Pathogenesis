@@ -23,10 +23,10 @@ public class ElectricFollowRange : MonoBehaviour
     {
         if (targets.Count > 0)
         {
-            if (electricEnemy.enabled) // With active AI we don want to target other electric enemies
-            {
-                targets.RemoveAll(o => o.GetComponent<ElectricEnemy>());
-            }
+            //if (electricEnemy.enabled) // With active AI we don want to target other electric enemies
+            //{
+            //    targets.RemoveAll(o => o.GetComponent<ElectricEnemy>());
+            //}
 
             foreach(GameObject target in targets)
             {
@@ -37,16 +37,16 @@ public class ElectricFollowRange : MonoBehaviour
                 {                                                  
                     if (raycastHit2D[i].collider.gameObject == target)
                     {
-                        if (electricEnemy.enabled && target.GetComponent<ElectricEnemy>() == null) //Electric enemies dont attack other electric enemies
-                        {
-                            chosenTarget = target;                     
-                            Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
-                        }
-                        else if(!electricEnemy.enabled) // If we posses an electric enemy we can attack other electric enemies
-                        {
-                            chosenTarget = target;
-                            Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
-                        }
+                        chosenTarget = target;                     
+                        Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
+                        //if (electricEnemy.enabled && target.GetComponent<ElectricEnemy>() == null) //Electric enemies dont attack other electric enemies
+                        //{
+                        //}
+                        //else if(!electricEnemy.enabled) // If we posses an electric enemy we can attack other electric enemies
+                        //{
+                        //    chosenTarget = target;
+                        //    Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
+                        //}
 
                         break;
                     }
@@ -68,7 +68,7 @@ public class ElectricFollowRange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy")) && !targets.Contains(collision.gameObject))
+        if ((collision.gameObject.CompareTag("Player") || (collision.gameObject.CompareTag("Enemy") && collision.GetComponent<ElectricEnemy>() == null)) && !targets.Contains(collision.gameObject))
         {
             targets.Add(collision.gameObject);
         }

@@ -28,7 +28,8 @@ public class ElectricShock : MonoBehaviour
 
         foreach (var o in collidedObjects)
         {
-            if (o.gameObject == followRange.chosenTarget)
+                //Attack whe AI                                                                     //Attack when is possessed
+            if ((followRange.gameObject.activeSelf && o.gameObject == followRange.chosenTarget) || (!followRange.gameObject.activeSelf && o.gameObject.GetComponent<Enemy>() && o.gameObject != damageControl.gameObject))
             {             
                damageControl.Damage(o);
             }   
