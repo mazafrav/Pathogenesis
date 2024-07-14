@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
         Destroy(gameObject);
     }
