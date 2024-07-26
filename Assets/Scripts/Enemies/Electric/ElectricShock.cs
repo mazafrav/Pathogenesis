@@ -27,21 +27,31 @@ public class ElectricShock : MonoBehaviour
         interactionCollider.OverlapCollider(filter, collidedObjects);
 
         foreach (var o in collidedObjects)
-        {
-                //Attack whe AI                                                                     //Attack when is possessed
-            if ((followRange.gameObject.activeSelf && o.gameObject == followRange.chosenTarget) || (!followRange.gameObject.activeSelf && o.gameObject.GetComponent<Enemy>() && o.gameObject != damageControl.gameObject))
-            {             
-               damageControl.Damage(o);
-            }   
+        {                                                                             
+            if (followRange.gameObject.activeSelf) //Attack when is controlled by AI   
+            {
+                List<GameObject> visibleTragets = followRange.VisibleTargetsInRange();
+                for (int i = 0; visibleTragets.Count > i; i++)
+                {
+                    if(o.gameObject == visibleTragets[i])
+                    {
+                        damageControl.Damage(o);
+                    }
+                }
+            }
+            else if (!followRange.gameObject.activeSelf && o.gameObject.GetComponent<Enemy>() && o.gameObject != damageControl.gameObject) //Attack when is possessed
+            {
+                damageControl.Damage(o);
+            }
             else if (o.gameObject.GetComponent<ElectroReceptor>() != null)
             {
                 ElectroReceptor electroReceptor = o.gameObject.GetComponent<ElectroReceptor>();
-                if(!electroReceptor.isActive)
+                if (!electroReceptor.isActive)
                 {
                     electroReceptor.ElectroShock();
                 }
             }
-            else if(o.gameObject.GetComponent<CrystalBlock>() != null)
+            else if (o.gameObject.GetComponent<CrystalBlock>() != null)
             {
                 o.gameObject.GetComponent<CrystalBlock>().DestroyCrystalBlock();
             }

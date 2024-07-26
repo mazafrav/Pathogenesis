@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ElectricFollowRange : MonoBehaviour
 {
-    private List<GameObject> targets = new List<GameObject>();
+    private List<GameObject> targets = new List<GameObject>(); //Targets in range which can or cant be visibles
+    private List<GameObject> visibleTargets = new List<GameObject>(); //Targets in range which are visibles
 
     private ElectricEnemy electricEnemy;
     private ElectricLocomotion electricLocomotion;
-
-    public GameObject chosenTarget { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -22,46 +22,45 @@ public class ElectricFollowRange : MonoBehaviour
     void Update()
     {
         if (targets.Count > 0)
-        {
-            //if (electricEnemy.enabled) // With active AI we don want to target other electric enemies
-            //{
-            //    targets.RemoveAll(o => o.GetComponent<ElectricEnemy>());
-            //}
-
+        {           
             foreach(GameObject target in targets)
             {
+                Vector2 rayDirection = (target.transform.position - transform.position).normalized;
+                List<RaycastHit2D> raycastHit2D = Physics2D.RaycastAll(transform.position, rayDirection, 2 * electricLocomotion.FollowRange).ToList();
+
+                //An organism is in range but we cant see him
+                if(raycastHit2D.Count > 0 && (raycastHit2D[0].collider.gameObject.CompareTag("TileMap") || raycastHit2D[0].collider.gameObject.CompareTag("MapElement")))
+                {
+                    visibleTargets.Remove(target);
+                    continue;
+                }
+
+                //At this point we have all visible targets in range
                 electricEnemy.direction = (target.transform.position - transform.position).normalized;
 
-                RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, electricEnemy.direction, 2 * electricLocomotion.FollowRange);
-                for (int i = 0; i < raycastHit2D.Length; i++)
+                for (int i = 0; i < raycastHit2D.Count; i++)
                 {                                                  
-                    if (raycastHit2D[i].collider.gameObject == target)
-                    {
-                        chosenTarget = target;                     
-                        Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
-                        //if (electricEnemy.enabled && target.GetComponent<ElectricEnemy>() == null) //Electric enemies dont attack other electric enemies
-                        //{
-                        //}
-                        //else if(!electricEnemy.enabled) // If we posses an electric enemy we can attack other electric enemies
-                        //{
-                        //    chosenTarget = target;
-                        //    Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
-                        //}
+                    if (raycastHit2D[i].collider.gameObject == target && !visibleTargets.Contains(target))
+                    {          
+                        //Debug.DrawRay(transform.position, electricEnemy.direction * raycastHit2D[i].distance, Color.red);
+                        visibleTargets.Add(target);                      
+                    }                
+                }           
+            }
 
-                        break;
-                    }
-                    else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap") || raycastHit2D[i].collider.gameObject.CompareTag("MapElement"))
-                    {
-                        chosenTarget = null;
-                        break;
-                    }
-                }
+            if (visibleTargets.Count <= 0) 
+            {
+                electricEnemy.SetIsSeeingTarget(false);
+            }
+            else
+            {
+                electricEnemy.SetIsSeeingTarget(true);
             }
 
         }
         else
         {
-            chosenTarget = null;
+            electricEnemy.SetIsSeeingTarget(false);
         }
                   
     }
@@ -79,8 +78,10 @@ public class ElectricFollowRange : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             targets.Remove(collision.gameObject);
+            visibleTargets.Remove(collision.gameObject);
         }
     }
 
     public List<GameObject> TargetsInRange() { return targets; }
+    public List<GameObject> VisibleTargetsInRange() { return visibleTargets; }
 }
