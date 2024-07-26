@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
 
     public void CheckIfDetected (GameObject organism)
     {
+        organismsDetected.RemoveAll(obj => obj == null); //Remove null elements
         if (organismsDetected.Contains(organism))
         {
             return;
