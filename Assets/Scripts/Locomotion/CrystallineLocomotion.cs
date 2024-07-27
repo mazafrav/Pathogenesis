@@ -187,7 +187,7 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void Attack(Vector3 target = default)
     {
-        if (IsAttackReady())
+        if (IsAttackReady() && crystallineStab.CanStab())
         {
             ////audioSource.pitch = Random.Range(0.8f, 1.2f);
             GetOneShotSource().PlayOneShot(stabClip);
