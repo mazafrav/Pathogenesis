@@ -14,8 +14,8 @@ public class ControlsPopUpText : PopUpText
     [SerializeField]
     private string keyboardMouseButton;
 
-    [SerializeField]
-    bool showImage = false;
+    //[SerializeField]
+    //bool showImage = false;
 
     GameManager gameManager;
 
@@ -34,51 +34,57 @@ public class ControlsPopUpText : PopUpText
 
         if (gameManager.IsThereAGamepadConnected)
         {
-            
-            if(gameManager.gamepadType == GameManager.GamepadType.Dualshock)
+            if (controlSprite != null)
+            {
+                controlSprite.enabled = true;
+            }
+
+            if (gameManager.gamepadType == GameManager.GamepadType.Dualshock)
             {
                 popUpText.text = dualshockButton;
 
-                if (delay <= 0.0f)
-                {
-                    if (controlSprite != null)
-                    {
-                        controlSprite.enabled = true;
-                        controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
-                    }
-                }
+                //if (delay <= 0.0f)
+                //{
+                //    if (controlSprite != null)
+                //    {
+                //        controlSprite.enabled = true;
+                //        controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
+                //    }
+                //}
             }
             else if(gameManager.gamepadType == GameManager.GamepadType.XboxController)
             {
                 popUpText.text = xboxButton;
 
-                if (delay <= 0.0f)
-                {
-                    if (controlSprite != null)
-                    {
-                        controlSprite.enabled = true;
-                        controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
-                    }
-                }
+                //if (delay <= 0.0f)
+                //{
+                //    if (controlSprite != null)
+                //    {
+                //        controlSprite.enabled = true;
+                //        controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
+                //    }
+                //}
             }
         }
         else
         {
             popUpText.text = keyboardMouseButton;
-            if (controlSprite != null)
-            {
-                if (!showImage)
-                {
-                    controlSprite.enabled = false;
-                }
-                else
-                {
-                    controlSprite.enabled = true;
-                    controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
-                }
-
-
+            if (controlSprite != null) 
+            { 
+                controlSprite.enabled = false; 
             }
+            //if (controlSprite != null)
+            //{
+            //    if (!showImage)
+            //    {
+            //        controlSprite.enabled = false;
+            //    }
+            //    else
+            //    {
+            //        controlSprite.enabled = true;
+            //        controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
+            //    }
+            //}
         }
     }
 

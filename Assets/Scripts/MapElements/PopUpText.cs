@@ -40,7 +40,13 @@ public class PopUpText : MonoBehaviour
         if (delay <= 0.0f)
         {
             timerStart = false;
+            //Make visible the text
             popUpText.color = Color.Lerp(popUpText.color, newColor, lerpSpeed * Time.deltaTime);
+            //Make visible the image
+            if (controlSprite != null && controlSprite.enabled)
+            {
+                controlSprite.color = Color.Lerp(controlSprite.color, newColorControlSprite, lerpSpeed * Time.deltaTime);
+            }
         }
     }
 
