@@ -44,6 +44,7 @@ Transform:
   - {fileID: 3271844721524176812}
   - {fileID: 5503873487803078698}
   - {fileID: 3007157426014071022}
+  - {fileID: 7139545234308654688}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4093538651059435458
@@ -174,6 +175,8 @@ MonoBehaviour:
   deltaXModifier: 1.2
   deltaYModifier: 2.8
   speedModifier: 0.7
+  ligthSource: {fileID: 8478901972570562192}
+  possessedLightSource: {fileID: 4540841480417087518}
 --- !u!114 &3733743548789898051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,4 +1080,80 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1257555295173879290, guid: 2646ecdb6ceb389498a34319668319ae, type: 3}
   m_PrefabInstance: {fileID: 4091566852726000916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8478901972570562192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5576360361102300036, guid: 2646ecdb6ceb389498a34319668319ae, type: 3}
+  m_PrefabInstance: {fileID: 4091566852726000916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8243691167058543514
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 20109762620599441}
+    m_Modifications:
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576360361102300036, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_Name
+      value: PlayerElecLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576360361102300036, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+--- !u!1 &4540841480417087518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5576360361102300036, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+  m_PrefabInstance: {fileID: 8243691167058543514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7139545234308654688 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1257555295173879290, guid: 4051f5b966aa8d64ea4f3b26255c397a, type: 3}
+  m_PrefabInstance: {fileID: 8243691167058543514}
   m_PrefabAsset: {fileID: 0}

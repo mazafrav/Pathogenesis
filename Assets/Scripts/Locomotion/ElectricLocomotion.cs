@@ -43,6 +43,10 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private float speedModifier = 1.0f;
 
+    [Header("Lights")]
+    [SerializeField] GameObject ligthSource;
+    [SerializeField] GameObject possessedLightSource;
+
     private float originalMoveSpeed;
 
     private Color defaultColor;
@@ -294,6 +298,10 @@ public class ElectricLocomotion : HostLocomotion
         //followGameObject.transform.localScale = new Vector3(followRange, followRange, shockGameObject.transform.localScale.z);
 
         GameManager.Instance.SetMusicSelectionIndex(4);
+
+        //change light source
+        ligthSource.SetActive(false);
+        possessedLightSource.SetActive(true);
     }
 
     //public float GetShockDuration()

@@ -56,6 +56,10 @@ public class CrystallineLocomotion : HostLocomotion
     [SerializeField]
     private AudioClip stabClip;
 
+    [Header("Lights")]
+    [SerializeField] GameObject ligthSource;
+    [SerializeField] GameObject possessedLightSource;
+
     void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
@@ -336,5 +340,9 @@ public class CrystallineLocomotion : HostLocomotion
         stabDuration = crystallinePossessingParameters.stabDuration;
 
         GameManager.Instance.SetMusicSelectionIndex(5);
+
+        //change light source
+        ligthSource.SetActive(false);
+        possessedLightSource.SetActive(true);
     }
 }

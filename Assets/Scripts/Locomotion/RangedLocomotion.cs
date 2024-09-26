@@ -25,6 +25,10 @@ public class RangedLocomotion : HostLocomotion
     [SerializeField]
     private AudioClip shotClip;
 
+    [Header("Lights")]
+    [SerializeField] GameObject ligthSource;
+    [SerializeField] GameObject possessedLightSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -163,6 +167,10 @@ public class RangedLocomotion : HostLocomotion
         shootCooldown = rangedPossessingParameters.shootCooldown;
 
         GameManager.Instance.SetMusicSelectionIndex(3);
+
+        //change light source
+        ligthSource.SetActive(false);
+        possessedLightSource.SetActive(true);
 
     }
 }
