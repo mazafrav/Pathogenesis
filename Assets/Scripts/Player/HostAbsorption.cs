@@ -64,6 +64,7 @@ public class HostAbsorption : Interactable
             ChangeColor(Color.Lerp(graphics.color, possessingColor, 1 - possessionTimer / possessionEffectTime));
             ChangePossessionMaterial(Mathf.Clamp(1 - possessionTimer / possessionEffectTime, 0f, 1f));
 
+            /*
             if (zoomValue > 0f)
             {
                 if (currentTimeToZoomIn > 0.0f) //Zoom in
@@ -79,6 +80,7 @@ public class HostAbsorption : Interactable
                     Zoom(Mathf.Lerp(zoomValue, originalZoom, Mathf.Clamp(1 - currentTimeToZoomOut / (possessionEffectTime / 2.0f), 0f, 1f)));
                 }
             }
+            */
 
             Gamepad gamepad = Gamepad.current;
             if (gamepad != null)
@@ -170,13 +172,8 @@ public class HostAbsorption : Interactable
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
             {
-                cinemachineVirtualCamera.Follow = hostLocomotion.transform;
-
-                CameraShake cameraShake = cinemachineVirtualCamera.GetComponent<CameraShake>();
-                if(cameraShake)
-                {
-                    cameraShake.ShakeCamera(cameraShakeIntensity, possessionEffectTime);
-                }
+                cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>().setNewFollow(hostLocomotion.transform);
+                cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>().StartPossessionEffect(possessionEffectTime);
             }
 
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
@@ -190,11 +187,14 @@ public class HostAbsorption : Interactable
             }
             possessionTimer = possessionEffectTime;
             hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
+            /*
             currentTimeToZoomIn = possessionEffectTime/2.0f;
             currentTimeToZoomOut = possessionEffectTime/2.0f;
+            */
             doOnce = true;
             //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
 
+            /*
             if (zoomValue > 0.0f) // Transformation of a natural zoom value chosen by arrobaManu to a practical zoom value
             {
                 if (cinemachineVirtualCamera)
@@ -203,6 +203,8 @@ public class HostAbsorption : Interactable
                 }
                 zoomValue = Mathf.Clamp(originalZoom - zoomValue, 1 , 20);
             }
+            */
+            
 
             enemyBehaviour.enabled = false;
         }

@@ -114,6 +114,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public GameObject GetPlayer()
+    { return player; }
+
     public PlayerController GetPlayerController()
     {
         return player.GetComponent<PlayerController>();
