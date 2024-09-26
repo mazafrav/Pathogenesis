@@ -26,6 +26,8 @@ public class HostAbsorption : Interactable
     private ParticleSystem absortionParticles;
     [SerializeField]
     private Color possessColor = new Color(0.6696f, 0.7624f, 0.7981f);
+    [SerializeField]
+    private ParticleSystem possessParticles;
 
     [Header("SFX")]
     [SerializeField] private AudioClip possessionClip;
@@ -168,7 +170,7 @@ public class HostAbsorption : Interactable
             //graphics.color = possessingColor;
 
             ParticleSystem absortionVFX = Instantiate(absortionParticles, this.gameObject.transform.position, Quaternion.identity);
-
+            ParticleSystem particlesVFX = Instantiate(possessParticles, this.gameObject.transform.position, Quaternion.identity);
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
             {
