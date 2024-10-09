@@ -15,8 +15,8 @@ public class ThrustBlocking : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
-    private void Update()
-    {
+    private void FixedUpdate()
+    {      
         if (isOnThrustBlocking && GameManager.Instance.GetPlayerController().GetDeltaY() < 0.0f)
         {      
             GameManager.Instance.GetPlayerController().GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(0, 1) * blockingThrust, ForceMode2D.Impulse);         
