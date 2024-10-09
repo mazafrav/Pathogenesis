@@ -9,6 +9,7 @@ public class FreeMovement : MonoBehaviour
     [SerializeField] private GameObject[] blockingBounciness;
     [Header("Thrust")]
     [SerializeField] private bool applyThrust = false;
+    [SerializeField] private GameObject[] thrustBlockings;
     [SerializeField] private bool applyThrustOverTheFloor = false;
     [SerializeField] private float thrust = 20.0f;
     [SerializeField] private float time = 1.0f;
@@ -22,21 +23,22 @@ public class FreeMovement : MonoBehaviour
     {
         currentTime = time;
         ActivateBlockingBounciness(false);
+        ActivateThrustBlocking(applyThrust);
     }
 
     private void Update()
     {
-        if (hasDisabledControls)
-        {
-            currentTime -= Time.deltaTime;
-        }
-        if (currentTime <= 0.0f)
-        {
-            currentTime = time;
-            hasDisabledControls = false;
-            PlayerController playerController = GameManager.Instance.GetPlayerController();
-            playerController.enabled = true;
-        }
+        //if (hasDisabledControls)
+        //{
+        //    currentTime -= Time.deltaTime;
+        //}
+        //if (currentTime <= 0.0f)
+        //{
+        //    currentTime = time;
+        //    hasDisabledControls = false;
+        //    PlayerController playerController = GameManager.Instance.GetPlayerController();
+        //    playerController.enabled = true;
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,6 +54,10 @@ public class FreeMovement : MonoBehaviour
                 ActivateBlockingBounciness(false);
             }
 
+            if (applyThrust)
+            {
+                ActivateThrustBlocking(false);
+            }
         }
     }
 
@@ -64,12 +70,17 @@ public class FreeMovement : MonoBehaviour
             playerLocomotion.DisableFreeMovement();
 
             ApplyThrust(playerController, collision);
-            
+            Debug.Log("fuerza");
             //We block the bouncines that happen when the player goes from bottom to up
             if (canBlockBounciness && playerController.GetDeltaY() > 0.0f)
             {
                 ActivateBlockingBounciness(true);
-            }         
+            }
+
+            if (applyThrust && playerController.GetDeltaY() > 0.0f)
+            {
+                ActivateThrustBlocking(true);
+            }
         }
     }
 
@@ -84,27 +95,21 @@ public class FreeMovement : MonoBehaviour
         }
     }
 
+    private void ActivateThrustBlocking(bool isActive)
+    {
+        foreach (GameObject obj in thrustBlockings)
+        {
+            obj.SetActive(isActive);
+            obj.GetComponent<BoxCollider2D>().enabled = isActive;
+            obj.GetComponent<ThrustBlocking>().enabled = isActive;
+        }
+    }
+
     private void ApplyThrust(PlayerController playerController, Collider2D collision)
     {
-        if (applyThrust)
+        if (applyThrust && GetComponentInChildren<ThrustTrigger>().CanThrust)
         {
-            Vector2 dir = new Vector2(playerController.GetDeltaX(), playerController.GetDeltaY());
-            if (dir.x > 0.0f || dir.x < 0.0f)
-            {
-                playerController.enabled = false;
-                playerController.HasDisabledControls = true;
-            }
-            collision.GetComponent<Rigidbody2D>().AddForce(dir * thrust, ForceMode2D.Impulse);
-        }
-        else if (applyThrustOverTheFloor)
-        {
-            Vector2 dir = new Vector2(playerController.GetDeltaX(), playerController.GetDeltaY());
-            if (dir.x > 0.0f || dir.x < 0.0f)
-            {
-                playerController.enabled = false;
-                hasDisabledControls = true;
-            }
-            collision.GetComponent<Rigidbody2D>().AddForce(dir * thrust, ForceMode2D.Impulse);
+            collision.GetComponent<Rigidbody2D>().AddForce(new Vector3(0,1) * thrust, ForceMode2D.Impulse);
         }
     }
 }
