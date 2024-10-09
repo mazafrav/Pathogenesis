@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ThrustTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] blockingThrusts;
-
     public bool CanThrust { get; set; } = false;
 
     // Start is called before the first frame update

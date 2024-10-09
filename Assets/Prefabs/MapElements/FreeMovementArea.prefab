@@ -141,6 +141,8 @@ MonoBehaviour:
   blockingBounciness:
   - {fileID: 1497288495188407417}
   applyThrust: 0
+  thrustBlockings:
+  - {fileID: 5365817666525315020}
   applyThrustOverTheFloor: 0
   thrust: 20
   time: 1
@@ -409,4 +411,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8f1cc48ba8cc44186601c9e587187c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockingThrusts: []
