@@ -47,8 +47,8 @@ public class HorizontalThrust : MonoBehaviour
             hasDisabledControls = true;
         }
         //playerLocomotion.EnableFreeMovement();
-        //collision.GetComponent<Rigidbody2D>().velocity = new Vector2(thrust, 0);
-        collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(thrust, 0), ForceMode2D.Impulse);
+        //collision.GetComponent<Rigidbody2D>().velocity = transform.right * thrust;
+        collision.GetComponent<Rigidbody2D>().AddForce(transform.right * thrust, ForceMode2D.Impulse);
     }
 
 #if UNITY_EDITOR
@@ -63,8 +63,19 @@ public class HorizontalThrust : MonoBehaviour
 
             float arrowLineLenght = 0.3f;
             Vector3 startPos = transform.position + transform.right * lineLenght;
-            Gizmos.DrawLine(startPos, startPos + new Vector3(-1, 1) * arrowLineLenght);
-            Gizmos.DrawLine(startPos, startPos + new Vector3(-1, -1) * arrowLineLenght);
+
+            if(transform.rotation.eulerAngles.z == 180.0f)
+            {
+
+                Gizmos.DrawLine(startPos, startPos + new Vector3(1, 1) * arrowLineLenght);
+                Gizmos.DrawLine(startPos, startPos + new Vector3(1, -1) * arrowLineLenght);
+            }
+            else
+            {
+                Gizmos.DrawLine(startPos, startPos + new Vector3(-1, 1) * arrowLineLenght);
+                Gizmos.DrawLine(startPos, startPos + new Vector3(-1, -1) * arrowLineLenght);
+            }
+
         }
     }
 #endif
