@@ -7,7 +7,7 @@ public class VerticalThrust : MonoBehaviour
 {
     [SerializeField] private float thrust = 20.0f;
     [SerializeField] private GameObject thrustBlocking;
-
+    [SerializeField]private bool showArrowGizmo = true;
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,12 +36,21 @@ public class VerticalThrust : MonoBehaviour
         thrustBlocking.GetComponent<ThrustBlocking>().enabled = isActive;        
     }
 
-
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        if (showArrowGizmo)
+        {
+            Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(transform.position, transform.position + transform.up * 2.0f);
+            float lineLenght = 2.0f;
+            Gizmos.DrawLine(transform.position, transform.position + transform.up * lineLenght);
 
+            float arrowLineLenght = 0.3f;
+            Vector3 startPos = transform.position + transform.up * lineLenght;
+            Gizmos.DrawLine(startPos, startPos + new Vector3(1,-1) * arrowLineLenght);    
+            Gizmos.DrawLine(startPos, startPos + new Vector3(-1,-1) * arrowLineLenght);       
+        }
     }
+#endif
 }
