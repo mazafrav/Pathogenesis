@@ -148,8 +148,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 44
+      x: 76
+      y: 4
       width: 64
       height: 32
     spriteID: d3ae75e9fc14c71418b354e53acc95d1
@@ -160,7 +160,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 44}
+    uvTransform: {x: 76, y: 4}
   - name: ejectingConductos_Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -168,8 +168,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 84
+      x: 148
+      y: 4
       width: 64
       height: 32
     spriteID: 8ddbb437bdd65204f8b7012941ea65af
@@ -180,7 +180,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 84}
+    uvTransform: {x: 148, y: 4}
   - name: ejectingConductos_Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -189,7 +189,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 124
+      y: 44
       width: 64
       height: 32
     spriteID: aa3b5aaf1f558c746a7fd514db77e6e3
@@ -200,7 +200,87 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 124}
+    uvTransform: {x: 4, y: 44}
+  - name: ejectingConductos_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 44
+      width: 64
+      height: 32
+    spriteID: 77bf9a610ea38e246b66585600360288
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 44}
+  - name: ejectingConductos_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 148
+      y: 44
+      width: 64
+      height: 32
+    spriteID: 1e736e3be7b0a5e4e92881e80868f100
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 148, y: 44}
+  - name: ejectingConductos_Frame_6
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 84
+      width: 64
+      height: 32
+    spriteID: 6edba3dabfd35ad4db257551e46cd5bf
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 84}
+  - name: ejectingConductos_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 84
+      width: 64
+      height: 32
+    spriteID: ad6cc01324d587a42bd8c104cedf9dfd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 84}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -242,6 +322,38 @@ ScriptedImporter:
         width: 64
         height: 32
       spriteId: aa3b5aaf1f558c746a7fd514db77e6e3
+    - name: ejectingConductos_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 0
+        y: 0
+        width: 64
+        height: 32
+      spriteId: 77bf9a610ea38e246b66585600360288
+    - name: ejectingConductos_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 0
+        y: 0
+        width: 64
+        height: 32
+      spriteId: 1e736e3be7b0a5e4e92881e80868f100
+    - name: ejectingConductos_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 0
+        y: 0
+        width: 64
+        height: 32
+      spriteId: 6edba3dabfd35ad4db257551e46cd5bf
+    - name: ejectingConductos_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 0
+        y: 0
+        width: 64
+        height: 32
+      spriteId: ad6cc01324d587a42bd8c104cedf9dfd
     linkedCells: []
     parentIndex: -1
   platformSettings: []
