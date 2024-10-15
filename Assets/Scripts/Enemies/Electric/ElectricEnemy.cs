@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ElectricEnemy : Enemy
 {
+    public static event Action OnAttackSameSpecie;
+
     private ElectricFollowRange followRange = null;
     private ElectricLocomotion electricLocomotion = null;
 
@@ -15,10 +19,13 @@ public class ElectricEnemy : Enemy
 
     void Start()
     {
+        OnAttackSameSpecie += AllowAttackSameSpecie;
+
         electricLocomotion = GetComponent<ElectricLocomotion>();
         followRange = GetComponentInChildren<ElectricFollowRange>();
         Physics2D.queriesStartInColliders = false;
     }
+   
 
     void Update()
     {
@@ -52,5 +59,31 @@ public class ElectricEnemy : Enemy
         {
             locomotion.Move(direction.x);
         }
+    }
+
+    public override void DestroyEnemy()
+    {
+        ElectricEnemy possessedEnemy = GameManager.Instance.GetPlayerLocomotion().GetComponentInChildren<ElectricEnemy>();
+
+        //If the player is possessing an electric enemy we notify the others electric enemies
+        if (possessedEnemy)
+        {
+            possessedEnemy.transform.position += new Vector3(0.01f,0.0f,0.0f); //We need to move it a bit so OnTriggerStay is executed in ElectricFollowRange.cs
+
+            OnAttackSameSpecie?.Invoke();
+        }
+
+        base.DestroyEnemy();
+    }
+
+    private void OnDisable()
+    {
+        OnAttackSameSpecie -= AllowAttackSameSpecie;
+        Debug.Log("Deshabilitado");
+    }
+
+    private void AllowAttackSameSpecie()
+    {
+        CanAttackSameSpecie = true;
     }
 }

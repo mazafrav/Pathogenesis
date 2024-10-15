@@ -30,7 +30,9 @@ public class Enemy : MonoBehaviour
     private AudioClip detectClip;
     private List<GameObject> organismsDetected = new List<GameObject>();
 
-    public void DestroyEnemy()
+    public bool CanAttackSameSpecie { get; set; } = false;
+
+    virtual public void DestroyEnemy()
     {
         GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);

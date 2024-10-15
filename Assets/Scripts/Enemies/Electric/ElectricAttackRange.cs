@@ -28,9 +28,13 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
     {
         interactionCollider.OverlapCollider(filter, collidedObjects);
         collidedObjects.RemoveAll(obj => !obj.gameObject.CompareTag("Player") && !obj.gameObject.CompareTag("Enemy"));//We elimante objects that are not the player or enemies
-        collidedObjects.RemoveAll(obj=>obj.GetComponent<ElectricEnemy>()); // We eliminate Electric enemies because we dont want to attack them
+        if (!electricEnemy.CanAttackSameSpecie)
+        {
+            collidedObjects.RemoveAll(obj => obj.GetComponent<ElectricEnemy>()); // We eliminate Electric enemies because we dont want to attack them
+        }
+        collidedObjects.Remove(electricEnemy.GetComponent<Collider2D>()); //I remove myself
 
-        if(collidedObjects.Count <= 0) //We dont have any organism, we deactivate the shock
+        if (collidedObjects.Count <= 0) //We dont have any organism, we deactivate the shock
         {
             if (electricLocomotion.inAttackRange && electricLocomotion.currentRemainingShockTime > 0.0f)
             {
@@ -48,7 +52,12 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
         {
             foreach (Collider2D obj in collidedObjects) //We activate the shock
             {
-                if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")) && obj.GetComponent<ElectricEnemy>() == null)
+                if (electricEnemy.CanAttackSameSpecie && electricEnemy.ISeeingTarget() && obj.transform.parent != null) //Possessed electric enemy
+                {
+                    electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
+                    locomotion.Attack();
+                }
+                else if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")) && obj.GetComponent<ElectricEnemy>() == null) //Other enemies except electric
                 {
                     electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
                     locomotion.Attack();
