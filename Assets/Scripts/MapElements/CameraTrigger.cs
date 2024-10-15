@@ -15,17 +15,21 @@ public class CameraTrigger : MonoBehaviour
     [SerializeField] float CameraOffsetX;
     [SerializeField] bool ChangeDeadZoneX = false;
     [SerializeField] float CameraDeadZoneX;
+    [SerializeField] bool ChangeOrthoSize = false;
+    [SerializeField] float CameraOrthoSize;
     [SerializeField] float speed = 0.4f;
 
     private float baseOffsetY;
     private float baseDeadZoneY;
     private float baseOffsetX;
     private float baseDeadZoneX;
+    private float baseOrthoSize;
 
     private float targetOffsetY;
     private float targetDeadZoneY;
     private float targetOffsetX;
     private float targetDeadZoneX;
+    private float targetOrthoSize;
 
     private CinemachineVirtualCamera camera;
     // Start is called before the first frame update
@@ -40,6 +44,8 @@ public class CameraTrigger : MonoBehaviour
         targetOffsetX = baseOffsetX;
         baseDeadZoneX = camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneWidth;
         targetDeadZoneX = baseDeadZoneX;
+        baseOrthoSize = camera.m_Lens.OrthographicSize;
+        targetOrthoSize = baseOrthoSize;
     }
 
     // Update is called once per frame
@@ -65,6 +71,11 @@ public class CameraTrigger : MonoBehaviour
             float lerpedOffset = Mathf.Lerp(camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY, targetOffsetX, speed * Time.deltaTime);
             camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = lerpedOffset;
         }
+        if (ChangeOrthoSize)
+        {
+            float lerpedOrthoSize = Mathf.Lerp(camera.m_Lens.OrthographicSize, targetOrthoSize, speed * Time.deltaTime);
+            camera.m_Lens.OrthographicSize = lerpedOrthoSize;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -86,6 +97,10 @@ public class CameraTrigger : MonoBehaviour
             if (ChangeOffsetX)
             {
                 targetOffsetX = CameraOffsetX;
+            }
+            if (ChangeOrthoSize)
+            {
+                targetOrthoSize = CameraOrthoSize;
             }
         }
     }
@@ -109,6 +124,10 @@ public class CameraTrigger : MonoBehaviour
             if (ChangeOffsetX)
             {
                 targetOffsetX = baseOffsetX;
+            }
+            if (ChangeOrthoSize)
+            {
+                targetOrthoSize = baseOrthoSize;
             }
         }
     }
