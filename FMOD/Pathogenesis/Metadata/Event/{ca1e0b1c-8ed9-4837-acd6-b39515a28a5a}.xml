@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{ca1e0b1c-8ed9-4837-acd6-b39515a28a5a}">
 		<property name="name">
-			<value>Player_Land</value>
+			<value>Player Land</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{de56a321-0e19-488c-aa1a-659f3a110055}</destination>
+			<destination>{b43fec51-f824-4a78-94d0-863ee3ac6cec}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{ababce54-aaca-40b3-aa82-6643c494c5e5}</destination>
@@ -92,6 +92,9 @@
 		<property name="length">
 			<value>0.25</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{6b73ef06-1c54-4d02-9920-d18d5e05513d}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{340d28d5-45d6-48b2-b0b6-f493fbca02a7}</destination>
 		</relationship>
@@ -117,6 +120,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{94e36851-f292-48bc-bb88-8364fe0fbaf4}" />
 	<object class="MixerBusFader" id="{9d562d25-8a97-4ac3-8cd0-1be8d879591d}" />
+	<object class="RandomizerModulator" id="{6b73ef06-1c54-4d02-9920-d18d5e05513d}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>2.5</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{88466ad9-c863-49f5-80d2-f8b5c3a4764f}">
 		<relationship name="effects">
 			<destination>{9e5dbdaf-670b-476b-8e12-6d78d58a2e1e}</destination>
