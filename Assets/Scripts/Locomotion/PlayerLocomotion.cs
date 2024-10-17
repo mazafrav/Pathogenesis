@@ -126,6 +126,8 @@ public class PlayerLocomotion : HostLocomotion
         }
     }
 
+    public override void JumpCancel() { }
+
     public override void Move(float deltaX, float deltaY)
     {
         if(!rb2D)

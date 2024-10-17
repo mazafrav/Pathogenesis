@@ -25,6 +25,10 @@ public class CrystallineLocomotion : HostLocomotion
     [SerializeField]
     private float stabDuration = 0.5f;
 
+    [Header("Grappling Gun")]
+    [SerializeField]
+    private GrapplingHook grapplingHook;
+
     [Header("Feedback")]
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -146,28 +150,12 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void Jump(float deltaY)
     {
-        return;
-        // if (IsWindingUp() && IsCooldownFinished())
-        // {
-        //     rb2D.velocity = new Vector2(0.0f, rb2D.velocity.y);
-        // }
-        // else
-        // {
-        //     if (!isClimbing && (wallCheckerL.isGrounded || wallCheckerR.isGrounded))
-        //     {
-        //         isClimbing = true;
-        //         rb2D.gravityScale = 0f;
-        //     }
-        //     if (isClimbing)
-        //     {
-        //         rb2D.velocity = new Vector2(rb2D.velocity.x, deltaY * moveSpeed);
-        //     }
-        // }
-        // if (currentWindUpTime > 0f) return;
-        // if (groundChecker.isGrounded)
-        // {
-        //     rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
-        // }
+        grapplingHook.LaunchGrapple();
+    }
+
+    public override void JumpCancel()
+    {
+        grapplingHook.DismantleGrapple();
     }
 
     public override void Move(float deltaX, float deltaY = 0f)

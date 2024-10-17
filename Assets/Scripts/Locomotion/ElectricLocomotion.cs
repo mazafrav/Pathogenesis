@@ -151,6 +151,7 @@ public class ElectricLocomotion : HostLocomotion
             rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
         }
     }
+    public override void JumpCancel() { }
 
     public override void Move(float deltaX, float deltaY = 0f)
     {

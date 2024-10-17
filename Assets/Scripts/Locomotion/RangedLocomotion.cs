@@ -109,6 +109,8 @@ public class RangedLocomotion : HostLocomotion
         }
     }
 
+    public override void JumpCancel() { }
+
     public override void Move(float deltaX, float deltaY = 0)
     {
         rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);

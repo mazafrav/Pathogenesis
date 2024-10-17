@@ -38,7 +38,8 @@ public abstract class HostLocomotion : MonoBehaviour
     public Rigidbody2D rb2D { protected set; get; } = null;
 
     public abstract void Jump(float deltaX);
-    public void JumpButtonUp() { coyoteTimeCounter = 0; }
+    public abstract void JumpCancel();
+    public void JumpButtonUp() { coyoteTimeCounter = 0; JumpCancel();  }
     public abstract void Move(float deltaX, float deltaY=0);
     public abstract void Attack(Vector3 target = default);
     public abstract bool IsAttackReady();
