@@ -9,12 +9,12 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private GameObject aimPoint;
     [SerializeField] private SliderJoint2D grappleJoint;
+    [SerializeField] private float ropeLauchSpeed = 5f;
     [SerializeField] private LineRenderer rope;
 
-    private Vector3 grapplePoint;
-
-
-    private bool isGrappling = false;
+    private Vector2 grapplePoint;
+    private Vector2 ropePoint;
+    private bool grappled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,32 +28,54 @@ public class GrapplingHook : MonoBehaviour
     {
         if (rope.enabled)
         {
-            rope.SetPosition(1, transform.position);
+            if (!grappled)
+            {
+                ropePoint = Vector2.Lerp(ropePoint, aimPoint.transform.position, Time.deltaTime * ropeLauchSpeed);
+                rope.SetPosition(1, transform.position);
+                rope.SetPosition(0, ropePoint);
+
+                Vector2 direction = ropePoint - (Vector2)transform.position;
+                float distance = Vector2.Distance(transform.position, ropePoint);
+                if (distance < grappleDistance)
+                {
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, distance, grappleLayer);
+                    if (hit.collider != null)
+                    {
+                        grapplePoint = hit.point;
+                        grappleJoint.connectedAnchor = grapplePoint;
+                        grappleJoint.enabled = true;
+
+                        grappled = true;
+                    }
+                } 
+                else
+                {
+                    DismantleGrapple();
+                }
+            } 
+            else
+            {
+                rope.SetPosition(1, transform.position);
+                rope.SetPosition(0, ropePoint);
+            }
         }
     }
 
     public void LaunchGrapple()
     {
-        isGrappling = true;
-        Vector2 direction = aimPoint.transform.position - transform.position;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, grappleDistance, grappleLayer);
-        if (hit.collider != null)
-        {
-            grapplePoint = hit.point;
-            grapplePoint.z = 0f;
-            grappleJoint.connectedAnchor = grapplePoint;
-            grappleJoint.enabled = true;
-            //grappleJoint.distance = 0.2f;
-
-            rope.SetPosition(0, grapplePoint);
-            rope.SetPosition(1, transform.position);
-            rope.enabled = true;
-        }
+        grappled = false;
+        ropePoint = transform.position;
+        rope.SetPosition(1, transform.position);
+        rope.SetPosition(0, ropePoint);
+        rope.enabled = true;
     }
 
     public void DismantleGrapple()
     {
-        grappleJoint.enabled=false;
-        rope.enabled=false;
+        grappleJoint.enabled = false;
+        rope.enabled = false;
+        grappled = false;
     }
+
+
 }
