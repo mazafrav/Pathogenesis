@@ -407,19 +407,19 @@ PrefabInstance:
       objectReference: {fileID: 2110463092}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000019073486
+      value: 0.000002861023
       objectReference: {fileID: 0}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.6004357
+      value: -4.660438
       objectReference: {fileID: 0}
     - target: {fileID: 7723080395241092619, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.75
+      value: -11.88
       objectReference: {fileID: 0}
     - target: {fileID: 7723080395241092619, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.04
+      value: 10.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -646,7 +646,7 @@ Transform:
   m_GameObject: {fileID: 497394416}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.1, y: -1.76, z: -0.049059495}
+  m_LocalPosition: {x: -11.1, y: -0.2, z: -0.049059495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -827,7 +827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.34
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 20109762620599441, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_LocalPosition.z
@@ -870,6 +870,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: propulsionTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: planningGravity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: propulsionHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275196306852582045, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: shockRemainingTime
       value: 0.4
       objectReference: {fileID: 0}
@@ -896,11 +908,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.74
+      value: -0.87
       objectReference: {fileID: 0}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.15
+      value: 8.21
       objectReference: {fileID: 0}
     - target: {fileID: 3352753978018443518, guid: 5926a486247fdf24988fed8effdb0884, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1035,7 +1047,7 @@ Transform:
   m_GameObject: {fileID: 1740334260}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.9956, y: -3.1888, z: 0}
+  m_LocalPosition: {x: 21.9956, y: -1.08, z: 0}
   m_LocalScale: {x: 400, y: 1.092032, z: 1.1697}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1163,7 +1175,7 @@ Transform:
   m_GameObject: {fileID: 1744680685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.68, y: -1.7199998, z: -0.049059495}
+  m_LocalPosition: {x: -4.68, y: -0.15999985, z: -0.049059495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1220,6 +1232,10 @@ PrefabInstance:
     - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_Name
       value: ElectricEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: wayPoints.Array.size
@@ -1354,6 +1370,10 @@ PrefabInstance:
     - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: m_Name
       value: ElectricEnemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178318046228212809, guid: aa48d90f86369134db41420e5b009588, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6099004757991992690, guid: aa48d90f86369134db41420e5b009588, type: 3}
       propertyPath: wayPoints.Array.size

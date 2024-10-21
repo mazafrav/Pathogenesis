@@ -175,4 +175,12 @@ public class RangedLocomotion : HostLocomotion
         possessedLightSource.SetActive(true);
 
     }
+
+    public override void SetMoveSpeed(float newSpeed)
+    {
+        base.SetMoveSpeed(newSpeed);
+        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+        rb2D.gravityScale = g / Physics2D.gravity.y;
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
+    }
 }
