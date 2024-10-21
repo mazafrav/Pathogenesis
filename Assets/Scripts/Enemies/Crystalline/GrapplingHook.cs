@@ -41,11 +41,18 @@ public class GrapplingHook : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, distance, grappleLayer);
                     if (hit.collider != null)
                     {
-                        grapplePoint = hit.point;
-                        grappleJoint.connectedAnchor = grapplePoint;
-                        grappleJoint.enabled = true;
+                        if (hit.collider.gameObject.CompareTag("Grappable"))
+                        {
+                            grapplePoint = hit.point;
+                            grappleJoint.connectedAnchor = grapplePoint;
+                            grappleJoint.enabled = true;
 
-                        grappled = true;
+                            grappled = true;
+                        }
+                        else
+                        {
+                            DismantleGrapple();
+                        }
                     }
                 } 
                 else
