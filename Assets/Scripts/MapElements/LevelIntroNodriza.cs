@@ -15,18 +15,16 @@ public class LevelIntroNodriza : MonoBehaviour
     private bool audioDoOnce = true;
     private bool pressedX = false;
 
-    private AudioSource audioSource;
+    private FMODUnity.StudioEventEmitter emitter;
     [SerializeField]
-    private AudioClip heartBeatClip;
-    [SerializeField]
-    private AudioClip burstClip;
+    private string burstEventPath = "event:/SFX/Cinematics/Intro Burst Sequence";
+    private FMOD.Studio.EventInstance burstEventInstance;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = heartBeatClip;
-        audioSource.loop = true;
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        burstEventInstance = FMODUnity.RuntimeManager.CreateInstance(burstEventPath);
         StartCoroutine(PlayHeartBeatDelayed(0.25f));
     }
 
@@ -36,11 +34,11 @@ public class LevelIntroNodriza : MonoBehaviour
         
         if (pressedX)
         {
-            if (audioSource.isPlaying && audioDoOnce)
+            if (emitter.IsPlaying() && audioDoOnce)
             {
-                audioDoOnce = false;
-                audioSource.Stop();
-                audioSource.PlayOneShot(burstClip);
+                //audioDoOnce = false;
+                emitter.Stop();
+                burstEventInstance.start();
             }
             TimeToLoadNextScene -= Time.deltaTime;
             if (TimeToLoadNextScene <= 0)
@@ -83,6 +81,6 @@ public class LevelIntroNodriza : MonoBehaviour
     IEnumerator PlayHeartBeatDelayed (float delay)
     {
         yield return new WaitForSeconds(delay);
-        audioSource.Play();
+        emitter.Play();
     }
 }

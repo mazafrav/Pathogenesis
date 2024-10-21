@@ -27,8 +27,17 @@ public class Enemy : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField]
-    private AudioClip detectClip;
+    private string detectEventPath;
+    [SerializeField]
+    private float pitch;
+
+    private FMOD.Studio.EventInstance detectEventInstance;
     private List<GameObject> organismsDetected = new List<GameObject>();
+
+    private void Awake()
+    {
+        detectEventInstance = FMODUnity.RuntimeManager.CreateInstance(detectEventPath);
+    }
 
     public void DestroyEnemy()
     {
@@ -63,7 +72,9 @@ public class Enemy : MonoBehaviour
         }
 
         organismsDetected.Add(organism);
-        GetComponent<HostLocomotion>().GetOneShotSource().PlayOneShot(detectClip);
+        detectEventInstance.getPitch(out float originalPitch);
+        detectEventInstance.setPitch(originalPitch + pitch);
+        detectEventInstance.start();
     }
 
 }

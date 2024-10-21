@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -89,10 +88,10 @@ public class ElectricLocomotion : HostLocomotion
         shockGameObject.transform.localScale = new Vector3(2*shockRange, 2*shockRange, shockGameObject.transform.localScale.z);
         attackGameObject.transform.localScale = new Vector3(2*attackRange, 2*attackRange, attackGameObject.transform.localScale.z);
 
-        GetAudioSource().clip = electricShockClip;
-        GetAudioSource().loop = true;
+        //GetAudioSource().clip = electricShockClip;
+        //GetAudioSource().loop = true;
 
-        GetOneShotSource().pitch -= 0.5f;
+        //GetOneShotSource().pitch -= 0.5f;
     }
 
     void Update()
@@ -122,15 +121,15 @@ public class ElectricLocomotion : HostLocomotion
             }
         }
 
-        if (GameManager.Instance.isPaused)
-        {
-            GetAudioSource().Stop();
-            GetOneShotSource().Stop();
-        }
-        else if (shockGameObject.activeSelf && !GetAudioSource().isPlaying)
-        {
-            GetAudioSource().Play();
-        }
+        //if (GameManager.Instance.isPaused)
+        //{
+        //    GetAudioSource().Stop();
+        //    GetOneShotSource().Stop();
+        //}
+        //else if (shockGameObject.activeSelf && attackEventInstance.pla)
+        //{
+        //    GetAudioSource().Play();
+        //}
 
         //Only when we are possessed the shock is deactivated after x time
         //if (transform.parent!=null && shockGameObject.activeSelf)
@@ -190,10 +189,10 @@ public class ElectricLocomotion : HostLocomotion
         shockGameObject.SetActive(true);
         moveSpeed *= speedModifier;
 
-        if (!GetAudioSource().isPlaying)
-        {
-            GetAudioSource().Play();
-        }
+        //if (!GetAudioSource().isPlaying)
+        //{
+        //    GetAudioSource().Play();
+        //}
     }
     public override void DeactivateAttack()
     {
@@ -204,10 +203,10 @@ public class ElectricLocomotion : HostLocomotion
     {
         shockGameObject.SetActive(false);
 
-        if (GetAudioSource().isPlaying)
-        {
-            GetAudioSource().Stop();
-        }
+        //if (GetAudioSource().isPlaying)
+        //{
+        //    GetAudioSource().Stop();
+        //}
 
         if (hasAttacked)
         {

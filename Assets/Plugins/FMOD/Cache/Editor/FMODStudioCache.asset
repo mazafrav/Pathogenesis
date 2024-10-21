@@ -69,10 +69,58 @@ MonoBehaviour:
   Path: FMOD/Pathogenesis/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638646778430284677
+  lastModified: 638650667461629001
   FileSizes:
   - Name: Desktop
-    Value: 2282
+    Value: 2604
+  Exists: 1
+--- !u!114 &-7802305111034501211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient/Absorption
+  m_EditorClassIdentifier: 
+  Name: Absorption
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3051758542
+    data2: 2620000633
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-7362064778441885091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient/Creature1
+  m_EditorClassIdentifier: 
+  Name: Creature1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1052913177
+    data2: 2728339369
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &-7110509524401205666
 MonoBehaviour:
@@ -202,6 +250,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1250
+--- !u!114 &-5765299626473076790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient/Danger
+  m_EditorClassIdentifier: 
+  Name: Danger
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2937446943
+    data2: 1760322080
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-5579262616770449989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +328,39 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-5234111787837094955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Ambient
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Ambient
+  Guid:
+    Data1: -1862095193
+    Data2: 1185116876
+    Data3: -972382830
+    Data4: -229056774
+  Banks:
+  - {fileID: 7053348623547641545}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4286595207623231517}
+  - {fileID: -7802305111034501211}
+  - {fileID: -7362064778441885091}
+  - {fileID: -5765299626473076790}
+  - {fileID: -960256638683768122}
+  - {fileID: -2310919453965249706}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 32000
 --- !u!114 &-5202077924921434252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,10 +376,10 @@ MonoBehaviour:
   Path: FMOD/Pathogenesis/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638646778430514239
+  lastModified: 638650667462067535
   FileSizes:
   - Name: Desktop
-    Value: 557088
+    Value: 557056
   Exists: 1
 --- !u!114 &-5140320058740557746
 MonoBehaviour:
@@ -330,6 +435,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 218
+--- !u!114 &-4286595207623231517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient/Creature2
+  m_EditorClassIdentifier: 
+  Name: Creature2
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 927806583
+    data2: 2393834581
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-3635277007727231099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +486,54 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &-2310919453965249706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient/Ambient
+  m_EditorClassIdentifier: 
+  Name: Ambient
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1103154342
+    data2: 1273889340
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-960256638683768122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambient/Creature3
+  m_EditorClassIdentifier: 
+  Name: Creature3
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2774969396
+    data2: 2808843614
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-839283256391380316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,12 +658,13 @@ MonoBehaviour:
   - {fileID: -7089018521696873299}
   - {fileID: -5991369802831427259}
   - {fileID: 889031082076964894}
+  - {fileID: -5234111787837094955}
   EditorParameters: []
   MasterBanks:
   - {fileID: 32054422551261306}
   StringsBanks:
   - {fileID: -7890353177108919966}
-  cacheTime: 638646778430514239
+  cacheTime: 638650667462067535
   cacheVersion: 131620
 --- !u!114 &32054422551261306
 MonoBehaviour:
@@ -766,10 +944,10 @@ MonoBehaviour:
   Path: FMOD/Pathogenesis/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638646207685534147
+  lastModified: 638650667462037635
   FileSizes:
   - Name: Desktop
-    Value: 494
+    Value: 5223328
   Exists: 1
 --- !u!114 &7600204631889281791
 MonoBehaviour:

@@ -49,7 +49,7 @@ public class RangedLocomotion : HostLocomotion
         rb2D.gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
-        GetOneShotSource().pitch += 0.5f;
+        //GetOneShotSource().pitch += 0.5f;
     }
 
     // Update is called once per frame
@@ -124,9 +124,13 @@ public class RangedLocomotion : HostLocomotion
     private void Shoot(Vector3 target, float cooldown = -1.0f)
     {
         chargeShotVFX.Stop();
-        GetOneShotSource().pitch -= 0.5f;
-        GetOneShotSource().PlayOneShot(shotClip);
-        GetOneShotSource().pitch += 0.5f;
+
+        //GetOneShotSource().pitch -= 0.5f;
+        //GetOneShotSource().PlayOneShot(shotClip);
+        //GetOneShotSource().pitch += 0.5f;
+
+        attackEventInstance.start();
+
         GameObject bullet = Instantiate(bulletPrefab, shootOrigin.transform.position, Quaternion.Euler(0, 0, 0));
         Vector3 direction = shootingComponent.transform.up;       
         // float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;

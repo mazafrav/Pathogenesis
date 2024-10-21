@@ -582,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possessingParameters: {fileID: 0}
+  locomotionEventNames: {fileID: 11400000, guid: ca1a7077baa4e1245a00353291bfd7b7, type: 2}
   moveSpeed: 5.5
   jumpHeight: 1.8
   jumpDistance: 1.8
@@ -590,10 +591,6 @@ MonoBehaviour:
   groundChecker: {fileID: 130100337902420687}
   animator: {fileID: 6737278433806530578}
   playerBody: {fileID: 1021976914963050282}
-  movementLoopClip: {fileID: 8300000, guid: f39bd152304d7694e9033910be178f73, type: 3}
-  FMAMoveLoopClip: {fileID: 8300000, guid: 6696c5427fff01f479e60eba66bec9c1, type: 3}
-  jumpClip: {fileID: 8300000, guid: 3a86bad656c971b42909c878b45d59dd, type: 3}
-  landClip: {fileID: 8300000, guid: 326bea17927de65408de3496cc247970, type: 3}
   distanceToFallToPlayLandClip: 2
 --- !u!114 &6875837856013089499
 MonoBehaviour:

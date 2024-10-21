@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 3499569912808795079}
   - component: {fileID: 8394758077807741849}
   - component: {fileID: 927278539162559414}
+  - component: {fileID: -8056442659961137435}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: FotoBullet
@@ -328,6 +329,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invencibilityTime: 0.5
+--- !u!114 &-8056442659961137435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539472987443507277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1909483201
+      Data2: 1237010316
+      Data3: 658164891
+      Data4: 1771330849
+    Path: event:/SFX/Enemies/Photogenic Shot Impact
+  Event: 
+  EventPlayTrigger: 2
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5091966961765699147
 GameObject:
   m_ObjectHideFlags: 0
