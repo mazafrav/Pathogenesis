@@ -11,7 +11,11 @@ public class ElectroReceptor : MonoBehaviour
     private float timeToActivate = 2f;
 
     [SerializeField]
-    private float lingeringTimeShock = 0.15f;
+    private float lingeringTimeShock = 0.1f;
+
+    [SerializeField]
+    private float cooldownTime = 0.3f;
+
 
     [SerializeField]
     private AudioClip activateClip;
@@ -19,7 +23,8 @@ public class ElectroReceptor : MonoBehaviour
     enum Stage { IDLE, STAGE_1, STAGE_2 };
     private Stage stage = Stage.IDLE;
     private float currentTime = 0.0f;
-    public bool isActive { get; private set; } = false;
+    private float currentCooldownTime = 0.0f;
+    public bool onCooldown { get; private set; } = false;
     public bool isReceivingShock { get; private set; } = false;
     private IEnumerator lingeringTimer;
     private AudioSource audioSource;
@@ -37,31 +42,42 @@ public class ElectroReceptor : MonoBehaviour
 
     private void Update()
     {
-        if (isReceivingShock)
+        if (!onCooldown)
         {
-            currentTime += Time.deltaTime;
-            if (currentTime > timeToActivate)
+            if (isReceivingShock)
             {
-                activatableInterface.Activate();
-                //VFX ACTIVATION
+                currentTime += Time.deltaTime;
+                if (currentTime > timeToActivate)
+                {
+                    activatableInterface.Activate();
+                    //VFX ACTIVATION
+                    stage = Stage.IDLE;
+                    currentTime = 0.0f;
+                    isReceivingShock = false;
+                    StopCoroutine(lingeringTimer);
+                    onCooldown = true;
+                    currentCooldownTime = cooldownTime;
+
+                }
+                else if (currentTime > timeToActivate / 2 && currentTime <= timeToActivate)
+                {
+                    stage = Stage.STAGE_2;
+                }
+                else if (currentTime > 0 && currentTime <= timeToActivate / 2)
+                {
+                    stage = Stage.STAGE_1;
+                }
+            }
+            else
+            {
                 stage = Stage.IDLE;
                 currentTime = 0.0f;
-                isReceivingShock = false;
-                StopCoroutine(lingeringTimer);
             }
-            else if (currentTime > timeToActivate / 2 && currentTime <= timeToActivate)
-            {
-                stage = Stage.STAGE_2;
-            }
-            else if (currentTime > 0 && currentTime <= timeToActivate / 2)
-            {
-                stage = Stage.STAGE_1;
-            }
-        } 
+        }
         else
         {
-            stage = Stage.IDLE;
-            currentTime = 0.0f;
+            currentCooldownTime -= Time.deltaTime;
+            if (currentCooldownTime < 0) { onCooldown = false; }
         }
 
         AnimatorStateInfo animatorStateInfo = GetComponentInParent<Animator>().GetCurrentAnimatorStateInfo(0);

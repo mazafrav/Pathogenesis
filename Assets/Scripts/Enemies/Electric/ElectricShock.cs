@@ -45,11 +45,7 @@ public class ElectricShock : MonoBehaviour
             }
             else if (o.gameObject.GetComponent<ElectroReceptor>() != null)
             {
-                ElectroReceptor electroReceptor = o.gameObject.GetComponent<ElectroReceptor>();
-                if (!electroReceptor.isActive)
-                {
-                    electroReceptor.ElectroShock();
-                }
+                o.gameObject.GetComponent<ElectroReceptor>().ElectroShock();
             }
             else if (o.gameObject.GetComponent<CrystalBlock>() != null)
             {
