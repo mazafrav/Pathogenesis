@@ -95,5 +95,7 @@ fmod_editor.log
 #Ignore FMOD cache files
 *.fobj
 *.pdc
-**/*cache/
+**/.user/
+**/.unsaved/
+**/.cache/
 **/[Cc]ache/
