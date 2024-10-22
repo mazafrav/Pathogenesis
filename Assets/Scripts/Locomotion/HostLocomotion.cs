@@ -8,6 +8,13 @@ public abstract class HostLocomotion : MonoBehaviour
     [SerializeField]
     protected PossessingParameters possessingParameters;
 
+    public LocomotionEventNames locomotionEventNames;
+
+    protected FMOD.Studio.EventInstance jumpEventInstance;
+    protected FMOD.Studio.EventInstance landEventInstance;
+    protected FMOD.Studio.EventInstance attackEventInstance;
+
+
     [Header("Movement")]
     [SerializeField]
     protected float moveSpeed = 5.0f;
@@ -32,10 +39,17 @@ public abstract class HostLocomotion : MonoBehaviour
     private DamageControl damageControl = null;
     private Collider2D hostCollider;
 
-    private AudioSource audioSource;
-    private AudioSource oneShotSource;
-
     public Rigidbody2D rb2D { protected set; get; } = null;
+
+    private void Awake()
+    {
+        if (locomotionEventNames.JumpEventName != "")
+            jumpEventInstance = FMODUnity.RuntimeManager.CreateInstance(locomotionEventNames.GenericEventsPath + locomotionEventNames.JumpEventName);
+        if (locomotionEventNames.LandEventName != "")
+            landEventInstance = FMODUnity.RuntimeManager.CreateInstance(locomotionEventNames.GenericEventsPath + locomotionEventNames.LandEventName);
+        if (locomotionEventNames.AttackEventName != "")
+            attackEventInstance = FMODUnity.RuntimeManager.CreateInstance(locomotionEventNames.GenericEventsPath + locomotionEventNames.AttackEventName);
+    }
 
     public abstract void Jump(float deltaX);
     public abstract void JumpCancel();
@@ -72,14 +86,6 @@ public abstract class HostLocomotion : MonoBehaviour
         jumpDistance = possessingParameters.jumpDistance;
     }
 
-    private void Awake()
-    {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        oneShotSource = gameObject.AddComponent<AudioSource>();
-    }
-
-    public AudioSource GetAudioSource() { return audioSource; }
-    public AudioSource GetOneShotSource() { return oneShotSource; }
 
     public virtual void SetMoveSpeed(float newSpeed) 
     {

@@ -56,9 +56,9 @@ public class CrystallineLocomotion : HostLocomotion
 
     public AdhesionDirection directionClimb = AdhesionDirection.S;
 
-    [Header("SFX")]
-    [SerializeField]
-    private AudioClip stabClip;
+    //[Header("SFX")]
+    //[SerializeField]
+    //private AudioClip stabClip;
 
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
@@ -182,7 +182,9 @@ public class CrystallineLocomotion : HostLocomotion
         if (IsAttackReady() && crystallineStab.CanStab())
         {
             ////audioSource.pitch = Random.Range(0.8f, 1.2f);
-            GetOneShotSource().PlayOneShot(stabClip);
+            ///
+           //GetOneShotSource().PlayOneShot(stabClip);
+
             currentWindUpTime = windUp;
             //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
@@ -196,6 +198,7 @@ public class CrystallineLocomotion : HostLocomotion
 
     private void ActivateStab()
     {
+        attackEventInstance.start();
         crystallineStab.isDamageActive = true;
     }
 

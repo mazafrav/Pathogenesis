@@ -17,9 +17,12 @@ public class ElectricShock : MonoBehaviour
 
     private DamageControl damageControl;
 
+    private FMODUnity.StudioEventEmitter emitter;
+
     private void Awake()
     {
         damageControl = GetComponentInParent<DamageControl>();
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     private void Update()
@@ -51,6 +54,18 @@ public class ElectricShock : MonoBehaviour
             {
                 o.gameObject.GetComponent<CrystalBlock>().DestroyCrystalBlock();
             }
-        }       
+        }
+
+        if (GameManager.Instance.isPaused)
+        {
+            emitter.Stop();
+        }
+        else
+        {
+            if (!emitter.IsPlaying())
+            {
+                emitter.Play();
+            }
+        }
     }   
 }

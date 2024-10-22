@@ -129,7 +129,8 @@ MonoBehaviour:
   patrolSpeed: 2
   minDistanceToWaypoint: 0.3
   deathEffect: {fileID: 4784911079922076189, guid: a063e00af1890904d94930b404a16f5c, type: 3}
-  detectClip: {fileID: 8300000, guid: 2122c987452adc3488334f9577cb3c8d, type: 3}
+  detectEventPath: event:/SFX/Enemies/Enemy Detect
+  pitch: -0.5
 --- !u!114 &1275196306852582045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possessingParameters: {fileID: 11400000, guid: 4f78a542c06850d4f9a705ed5dce52f2, type: 2}
+  locomotionEventNames: {fileID: 11400000, guid: 1eccc5d72057ef942adbc8b51b28745d, type: 2}
   moveSpeed: 2
   jumpHeight: 2
   jumpDistance: 8
@@ -211,7 +213,7 @@ MonoBehaviour:
   absortionParticles: {fileID: 3343275468964738342, guid: d8c8f8e1cbfce63438a0565e6d7d088a, type: 3}
   possessColor: {r: 0.8862745, g: 0.8862745, b: 0.8862745, a: 1}
   possessParticles: {fileID: 3343275468964738342, guid: 32568aafc63da6e4ebc7269e0bbc3fda, type: 3}
-  possessionClip: {fileID: 8300000, guid: 69ded90d25a5a774c9054027434afe62, type: 3}
+  possessionEventPath: event:/SFX/Player/Player Enemy Possession
 --- !u!114 &4330372733500021139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +426,7 @@ GameObject:
   - component: {fileID: 5908865715002722968}
   - component: {fileID: 3957729136246110855}
   - component: {fileID: 1882041497586794894}
+  - component: {fileID: 2518968643122666867}
   m_Layer: 12
   m_Name: ElectricShock
   m_TagString: Untagged
@@ -582,6 +585,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2518968643122666867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5068238459060251847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 676930273
+      Data2: 1304105337
+      Data3: -1238000724
+      Data4: 1867403664
+    Path: event:/SFX/Enemies/Electric Field Loop
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6911789383419822696
 GameObject:
   m_ObjectHideFlags: 0

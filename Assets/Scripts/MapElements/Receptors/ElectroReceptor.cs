@@ -17,8 +17,8 @@ public class ElectroReceptor : MonoBehaviour
     private float cooldownTime = 0.3f;
 
 
-    [SerializeField]
-    private AudioClip activateClip;
+    private FMODUnity.StudioEventEmitter emitter;
+    [SerializeField] private float pitch = -0.5f;
 
     enum Stage { IDLE, STAGE_1, STAGE_2 };
     private Stage stage = Stage.IDLE;
@@ -36,8 +36,8 @@ public class ElectroReceptor : MonoBehaviour
         //currentTimeToBeActivatedAgain = timeToBeActivatedAgain;
         activatableInterface = activatableElement.GetComponent<IActivatableElement>();
         if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
-        audioSource = GetComponent<AudioSource>();
-        audioSource.pitch -= 0.5f;
+        
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     private void Update()
@@ -104,6 +104,10 @@ public class ElectroReceptor : MonoBehaviour
         if (lingeringTimer != null) { StopCoroutine(lingeringTimer); }
         
         isReceivingShock = true;
+
+        // emitter.Play();
+        // emitter.EventInstance.getPitch(out float originalPitch);
+        // emitter.EventInstance.setPitch(originalPitch + pitch);
        
         // reset lingering timer
         lingeringTimer = LingeringShockTimer();

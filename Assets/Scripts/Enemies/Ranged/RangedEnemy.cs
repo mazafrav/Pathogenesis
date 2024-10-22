@@ -154,7 +154,7 @@ public class RangedEnemy : Enemy
                     }
                     else
                     {
-                        Debug.LogWarning("Ignoring: " + raycastHit2D[i].collider.gameObject.name);
+                        //Debug.LogWarning("Ignoring: " + raycastHit2D[i].collider.gameObject.name);
                     }
                 }
 

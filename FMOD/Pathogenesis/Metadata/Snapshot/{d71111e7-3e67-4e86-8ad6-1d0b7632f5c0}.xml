@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="Snapshot" id="{d71111e7-3e67-4e86-8ad6-1d0b7632f5c0}">
+		<property name="name">
+			<value>Music_AllMute</value>
+		</property>
+		<relationship name="mixer">
+			<destination>{25ab9bf3-6fd8-4f33-a173-b42682f05604}</destination>
+		</relationship>
+		<relationship name="automatableProperties">
+			<destination>{5dd4cd78-7894-49aa-b356-77f1ee8fcfd9}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{675d0b01-b88f-4d9b-b502-5fceb73dde91}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{7d980f17-0213-4676-a230-46895bc6b0c5}</destination>
+		</relationship>
+		<relationship name="snapshotMasterTrack">
+			<destination>{49a29dbe-8c41-4746-aae5-464effec04a7}</destination>
+		</relationship>
+		<relationship name="snapshotProperties">
+			<destination>{712bb148-caca-40fd-ab21-63bf9e7482e3}</destination>
+		</relationship>
+		<relationship name="snapshotTracks">
+			<destination>{9ed8f1a3-b443-4768-954f-9704e77f45d9}</destination>
+		</relationship>
+	</object>
+	<object class="EventAutomatableProperties" id="{5dd4cd78-7894-49aa-b356-77f1ee8fcfd9}" />
+	<object class="MarkerTrack" id="{675d0b01-b88f-4d9b-b502-5fceb73dde91}" />
+	<object class="Timeline" id="{7d980f17-0213-4676-a230-46895bc6b0c5}" />
+	<object class="SnapshotMasterTrack" id="{49a29dbe-8c41-4746-aae5-464effec04a7}" />
+	<object class="SnapshotProperty" id="{712bb148-caca-40fd-ab21-63bf9e7482e3}">
+		<property name="propertyName">
+			<value>volume</value>
+		</property>
+		<property name="value">
+			<value>-80</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{55b1dec0-c79b-43c8-9cf0-f1367ba16991}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotTrack" id="{9ed8f1a3-b443-4768-954f-9704e77f45d9}">
+		<relationship name="mixerStrip">
+			<destination>{55b1dec0-c79b-43c8-9cf0-f1367ba16991}</destination>
+		</relationship>
+	</object>
+</objects>
