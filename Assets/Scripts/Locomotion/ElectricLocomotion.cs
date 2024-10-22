@@ -100,7 +100,7 @@ public class ElectricLocomotion : HostLocomotion
         shockGameObject.SetActive(false);
 
         followGameObject.transform.localScale = new Vector3(2*followRange, 2*followRange, followGameObject.transform.localScale.z);
-        shockGameObject.transform.localScale = new Vector3(2*shockRange, 2*shockRange, shockGameObject.transform.localScale.z);
+        shockGameObject.transform.localScale = new Vector3(0.25f, 2*shockRange, shockGameObject.transform.localScale.z);
         attackGameObject.transform.localScale = new Vector3(2*attackRange, 2*attackRange, attackGameObject.transform.localScale.z);
 
         GetAudioSource().clip = electricShockClip;
@@ -225,8 +225,7 @@ public class ElectricLocomotion : HostLocomotion
         //    rb2D.velocity = new Vector2(0.0f, rb2D.velocity.y);
         //}
         //else
-        //{  
-        Debug.Log(deltaY);
+        //{       
         //when is jumping and possessed we apply a modifier to the X and Y direction
         if (!groundChecker.isGrounded && transform.parent != null)
         {

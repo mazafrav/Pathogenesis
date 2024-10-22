@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Collections.AllocatorManager;
 
 public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
 {
+    [SerializeField]
+    private Transform electricShockPivot;
+
     [SerializeField]
     private Collider2D interactionCollider;
     [SerializeField]
@@ -54,15 +58,24 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
             {
                 if (electricEnemy.CanAttackSameSpecie && electricEnemy.ISeeingTarget() && obj.transform.parent != null) //Possessed electric enemy
                 {
-                    electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
-                    locomotion.Attack();
+                    Attack(obj.transform);
                 }
                 else if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")) && obj.GetComponent<ElectricEnemy>() == null) //Other enemies except electric
                 {
-                    electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
-                    locomotion.Attack();
-                }           
+                    Attack(obj.transform);
+                }
             }
         }
+    }
+
+
+    void Attack(Transform target)
+    {
+        Vector3 targetDir = (target.position - transform.position).normalized;
+        float angle = Mathf.Atan2(targetDir.x, targetDir.y) * Mathf.Rad2Deg;
+        electricShockPivot.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
+
+        electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
+        locomotion.Attack();
     }
 }

@@ -187,6 +187,14 @@ public class HostAbsorption : Interactable
                 rangedEnemy.ResetRigidbodyConstraints();
                 rangedEnemy.SetAimBehaviour(true);
             }
+
+            ElectricEnemy electricEnemy = GetComponent<ElectricEnemy>();
+            if (electricEnemy != null)
+            {
+                playerController.shootingComponent = electricEnemy.GetShootingComponent();
+            }
+
+
             possessionTimer = possessionEffectTime;
             hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
             /*

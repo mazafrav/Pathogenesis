@@ -38,7 +38,7 @@ Transform:
   - {fileID: 4438798296613065076}
   - {fileID: 8503028135084343556}
   - {fileID: 8374404390177284197}
-  - {fileID: 8401174071438189601}
+  - {fileID: 1855887428825222088}
   - {fileID: 1211465411575666524}
   - {fileID: 2337050040235871623}
   - {fileID: 5503873487803078698}
@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97abf5b77b80fee43b4f3885fd97497e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  electricShockPivot: {fileID: 1855887428825222088}
   interactionCollider: {fileID: 6527189340981775668}
   filter:
     useTriggers: 1
@@ -428,7 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8401174071438189601}
   - component: {fileID: 8569173746458405968}
-  - component: {fileID: 4264372909937117561}
+  - component: {fileID: 5908865715002722968}
   - component: {fileID: 3957729136246110855}
   - component: {fileID: 1882041497586794894}
   m_Layer: 12
@@ -446,12 +447,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5068238459060251847}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.7, z: 0}
+  m_LocalScale: {x: 0.9087, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 20109762620599441}
+  m_Father: {fileID: 1855887428825222088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8569173746458405968
 SpriteRenderer:
@@ -505,8 +506,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4264372909937117561
-CircleCollider2D:
+--- !u!70 &5908865715002722968
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -538,8 +539,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
+  m_Size: {x: 2, y: 2}
+  m_Direction: 0
 --- !u!114 &3957729136246110855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followRange: {fileID: 4683580698423776492}
-  interactionCollider: {fileID: 4264372909937117561}
+  interactionCollider: {fileID: 5908865715002722968}
   filter:
     useTriggers: 1
     useLayerMask: 0
@@ -842,6 +843,53 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!1 &8389456455600806521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855887428825222088}
+  - component: {fileID: 1569136562867972909}
+  m_Layer: 3
+  m_Name: ElectricShockPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1855887428825222088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8389456455600806521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8401174071438189601}
+  m_Father: {fileID: 20109762620599441}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1569136562867972909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8389456455600806521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621b44d07760304418fb4a4a20632a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadZone: 0.5
+  bisActive: 1
 --- !u!1 &8600302745253390337
 GameObject:
   m_ObjectHideFlags: 0

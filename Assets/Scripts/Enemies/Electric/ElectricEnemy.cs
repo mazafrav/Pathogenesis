@@ -12,15 +12,20 @@ public class ElectricEnemy : Enemy
     private ElectricLocomotion electricLocomotion = null;
 
     private bool isSeeingTarget = false, isPatrolling = true;
-    
+
+    private ShootingComponent shootingComponent;
+
     public Vector2 direction { get; set; } = Vector2.zero;
     public bool ISeeingTarget() { return isSeeingTarget; }
     public void SetIsSeeingTarget(bool _isSeeingTarget) { isSeeingTarget = _isSeeingTarget; }
+
+    public ShootingComponent GetShootingComponent() { return shootingComponent; }
 
     void Start()
     {
         OnAttackSameSpecie += AllowAttackSameSpecie;
 
+        shootingComponent = GetComponentInChildren<ShootingComponent>();
         electricLocomotion = GetComponent<ElectricLocomotion>();
         followRange = GetComponentInChildren<ElectricFollowRange>();
         Physics2D.queriesStartInColliders = false;
@@ -79,7 +84,6 @@ public class ElectricEnemy : Enemy
     private void OnDisable()
     {
         OnAttackSameSpecie -= AllowAttackSameSpecie;
-        Debug.Log("Deshabilitado");
     }
 
     private void AllowAttackSameSpecie()
