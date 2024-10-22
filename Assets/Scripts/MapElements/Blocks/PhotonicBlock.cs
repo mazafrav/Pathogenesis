@@ -11,11 +11,13 @@ public class PhotonicBlock : MonoBehaviour, IActivatableElement
     public float movingSpeed = 3.0f;
     [SerializeField]
     public Animator animator;
+
+    [SerializeField]
+    private float pitch = -0.5f;
     public bool isOpened = false;
 
-    private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip movingClip;
+    private FMODUnity.StudioEventEmitter emitter;
+
 
     private Vector3 nextPosition = Vector3.zero;
 
@@ -60,24 +62,24 @@ public class PhotonicBlock : MonoBehaviour, IActivatableElement
             //movingSpeed *= 200f;
         }
 
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
 
-        audioSource = GetComponent<AudioSource>();
-        audioSource.pitch += 0.5f;
-        audioSource.clip = movingClip;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, movingSpeed * Time.deltaTime);
-       
-        if (!audioSource.isPlaying && (transform.position - nextPosition).sqrMagnitude > 0.01f) //transform.position != nextPosition    
+
+        if (!emitter.IsPlaying() && (transform.position - nextPosition).sqrMagnitude > 0.01f) //transform.position != nextPosition
         {
-            audioSource.Play();
+            emitter.Play();
+            emitter.EventInstance.getPitch(out float ogPitch);
+            emitter.EventInstance.setPitch(ogPitch + pitch);
         }
-        if (audioSource.isPlaying && transform.position == nextPosition)
+        if (emitter.IsPlaying() && transform.position == nextPosition)
         {
-            audioSource.Stop();
+            emitter.Stop();
         }
 
     }

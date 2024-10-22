@@ -72,9 +72,9 @@ public class Enemy : MonoBehaviour
         }
 
         organismsDetected.Add(organism);
+        detectEventInstance.start();
         detectEventInstance.getPitch(out float originalPitch);
         detectEventInstance.setPitch(originalPitch + pitch);
-        detectEventInstance.start();
     }
 
 }

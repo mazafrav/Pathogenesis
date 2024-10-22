@@ -16,9 +16,8 @@ public class ElectroReceptor : MonoBehaviour
     private float currentTimeToBeActivatedAgain = 0.1f;
     public bool isActive { get; private set; } = false;
 
-    private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip activateClip;
+    private FMODUnity.StudioEventEmitter emitter;
+    [SerializeField] private float pitch = -0.5f;
 
     // Start is called before the first frame update
     private void Start()
@@ -26,8 +25,8 @@ public class ElectroReceptor : MonoBehaviour
         currentTimeToBeActivatedAgain = timeToBeActivatedAgain;
         activatableInterface = activatableElement.GetComponent<IActivatableElement>();
         if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
-        audioSource = GetComponent<AudioSource>();
-        audioSource.pitch -= 0.5f;
+        
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     private void Update()
@@ -48,7 +47,9 @@ public class ElectroReceptor : MonoBehaviour
         currentTimeToBeActivatedAgain = timeToBeActivatedAgain;
         isActive = true;
         activatableInterface.Activate();
-        audioSource.PlayOneShot(activateClip);
+        emitter.Play();
+        emitter.EventInstance.getPitch(out float originalPitch);
+        emitter.EventInstance.setPitch(originalPitch + pitch);
         GetComponentInParent<Animator>().Play("ElectroReceptorDeactAnim");
     }
 }

@@ -96,11 +96,10 @@ public class PlayerLocomotion : HostLocomotion
         }
 
 
-        //if (GameManager.Instance.isPaused)
-        //{
-        //    GetAudioSource().Stop();
-        //    GetOneShotSource().Stop();
-        //}
+        if (GameManager.Instance.isPaused)
+        {
+            emitter.Stop();
+        }
     }
 
     public override void Jump(float deltaX = 0)
