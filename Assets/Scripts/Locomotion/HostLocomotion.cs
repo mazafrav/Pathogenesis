@@ -52,7 +52,8 @@ public abstract class HostLocomotion : MonoBehaviour
     }
 
     public abstract void Jump(float deltaX);
-    public void JumpButtonUp() { coyoteTimeCounter = 0; }
+    public abstract void JumpCancel();
+    public void JumpButtonUp() { coyoteTimeCounter = 0; JumpCancel();  }
     public abstract void Move(float deltaX, float deltaY=0);
     public abstract void Attack(Vector3 target = default);
     public abstract bool IsAttackReady();
@@ -85,11 +86,9 @@ public abstract class HostLocomotion : MonoBehaviour
         jumpDistance = possessingParameters.jumpDistance;
     }
 
-    public void SetMoveSpeed(float newSpeed) 
+
+    public virtual void SetMoveSpeed(float newSpeed) 
     {
-        moveSpeed = newSpeed; 
-        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-        rb2D.gravityScale = g / Physics2D.gravity.y;
-        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
+        moveSpeed = newSpeed;       
     }
 }

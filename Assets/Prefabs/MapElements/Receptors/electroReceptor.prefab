@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 52239fd64373870488099cb9fba1d251, type: 3}
+  m_Sprite: {fileID: -558335362, guid: 0a4910978149b244f973dd4eb1133525, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,8 +136,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activatableElement: {fileID: 0}
-  timeToDeactivate: 0
-  timeToBeActivatedAgain: 0.4
+  timeToActivate: 1
+  lingeringTimeShock: 0.1
+  cooldownTime: 0.3
   activateClip: {fileID: 8300000, guid: b9571db7d4731bc4e9a28c35820727f4, type: 3}
 --- !u!95 &8225193837037947966
 Animator:

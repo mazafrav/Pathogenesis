@@ -25,6 +25,11 @@ public class ElectricFollowRange : MonoBehaviour
         {           
             foreach(GameObject target in targets)
             {
+                if (target == null) 
+                { 
+                    continue; 
+                }
+
                 Vector2 rayDirection = (target.transform.position - transform.position).normalized;
                 List<RaycastHit2D> raycastHit2D = Physics2D.RaycastAll(transform.position, rayDirection, 2 * electricLocomotion.FollowRange).ToList();
 
@@ -67,7 +72,19 @@ public class ElectricFollowRange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.CompareTag("Player") || (collision.gameObject.CompareTag("Enemy") && collision.GetComponent<ElectricEnemy>() == null)) && !targets.Contains(collision.gameObject))
+        if(electricEnemy.CanAttackSameSpecie && collision.transform.parent != null && !targets.Contains(collision.gameObject)) //Possessed electric enemy
+        {
+            targets.Add(collision.gameObject);
+        } 
+        else if ((collision.gameObject.CompareTag("Player") || (collision.gameObject.CompareTag("Enemy") && collision.GetComponent<ElectricEnemy>() == null)) && !targets.Contains(collision.gameObject)) //Other enemies except electric
+        {
+            targets.Add(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (electricEnemy.CanAttackSameSpecie && collision.transform.parent != null && !targets.Contains(collision.gameObject)) //Possessed electric enemy
         {
             targets.Add(collision.gameObject);
         }

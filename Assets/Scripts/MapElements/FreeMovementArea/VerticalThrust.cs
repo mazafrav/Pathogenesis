@@ -8,6 +8,7 @@ public class VerticalThrust : MonoBehaviour
     [SerializeField] private float thrust = 20.0f;
     [SerializeField] private GameObject thrustBlocking;
     [SerializeField]private bool showArrowGizmo = true;
+    [SerializeField] private ParticleSystem thurstVFX;
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,6 +22,8 @@ public class VerticalThrust : MonoBehaviour
         {
             playerLocomotion.DisableFreeMovement();
             rb.AddForce(new Vector3(0, 1) * thrust, ForceMode2D.Impulse);
+            GetComponentInParent<Animator>().Play("FMAT_Thurst");
+            if (thurstVFX) { thurstVFX.Play(); };
         }
     }
 

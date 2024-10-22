@@ -38,8 +38,9 @@ public class Enemy : MonoBehaviour
     {
         detectEventInstance = FMODUnity.RuntimeManager.CreateInstance(detectEventPath);
     }
+    public bool CanAttackSameSpecie { get; set; } = false;
 
-    public void DestroyEnemy()
+    virtual public void DestroyEnemy()
     {
         GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
