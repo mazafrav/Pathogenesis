@@ -101,7 +101,7 @@ public class ElectricLocomotion : HostLocomotion
         shockGameObject.SetActive(false);
 
         followGameObject.transform.localScale = new Vector3(2*followRange, 2*followRange, followGameObject.transform.localScale.z);
-        shockGameObject.transform.localScale = new Vector3(0.25f, 2*shockRange, shockGameObject.transform.localScale.z);
+        //shockGameObject.transform.localScale = new Vector3(0.25f, 2*shockRange, shockGameObject.transform.localScale.z);
         attackGameObject.transform.localScale = new Vector3(2*attackRange, 2*attackRange, attackGameObject.transform.localScale.z);
 
         GetAudioSource().clip = electricShockClip;
@@ -220,9 +220,11 @@ public class ElectricLocomotion : HostLocomotion
     }
     public override void JumpCancel() 
     {
+        /*
         isPlanning = true;
         isPropulsing = false;
         jumpParticles.Stop();
+        */
     }
 
     public override void Move(float deltaX, float deltaY = 0f)

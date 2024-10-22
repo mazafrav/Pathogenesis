@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 20109762620599441}
   - component: {fileID: 4093538651059435458}
-  - component: {fileID: 5281546555838893824}
+  - component: {fileID: 7143472315532474589}
   - component: {fileID: 6099004757991992690}
   - component: {fileID: 1275196306852582045}
   - component: {fileID: 3733743548789898051}
@@ -74,8 +74,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &5281546555838893824
-BoxCollider2D:
+--- !u!70 &7143472315532474589
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,19 +106,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.007512927, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.111148, y: 0.95}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.0000000024351365, y: 0.020427408}
+  m_Size: {x: 2.2854357, y: 1.460637}
+  m_Direction: 1
 --- !u!114 &6099004757991992690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,9 +165,9 @@ MonoBehaviour:
   deltaXModifier: 1.2
   deltaYModifier: 2.8
   speedModifier: 0.7
-  propulsionHeight: 2
-  propulsionTime: 0.5
-  planningGravity: 0.1
+  propulsionHeight: 1.6
+  propulsionTime: 0.2
+  planningGravity: 0.2
   jumpParticles: {fileID: 1142215920660990658}
   ligthSource: {fileID: 8478901972570562192}
   possessedLightSource: {fileID: 4540841480417087518}
@@ -451,8 +441,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.7, z: 0}
-  m_LocalScale: {x: 0.9087, y: 3, z: 3}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1855887428825222088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -496,9 +486,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c9652fe1f4fc991409d941ee84fa5214, type: 3}
-  m_Color: {r: 0.7885935, g: 0.759434, b: 1, a: 0.5019608}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: e8e078c5e5b7e0a43998a0c8e427efdd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -540,8 +530,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2, y: 2}
+  m_Offset: {x: 0, y: -0.5}
+  m_Size: {x: 0.47185135, y: 2.8821025}
   m_Direction: 0
 --- !u!114 &3957729136246110855
 MonoBehaviour:
@@ -579,7 +569,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5068238459060251847}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 96516d5d3c9ad6d4b8e3ade0a6302c8f, type: 2}
   m_CullingMode: 0
