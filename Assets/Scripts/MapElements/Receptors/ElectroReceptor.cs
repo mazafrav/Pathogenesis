@@ -48,6 +48,7 @@ public class ElectroReceptor : MonoBehaviour
             {
                 currentTime += Time.deltaTime;
                 if (currentTime > timeToActivate)
+                // time of activation completed: activate element, reset state and start cooldown
                 {
                     activatableInterface.Activate();
                     //VFX ACTIVATION
@@ -70,6 +71,7 @@ public class ElectroReceptor : MonoBehaviour
             }
             else
             {
+                // if not receiving shock, reset state
                 stage = Stage.IDLE;
                 currentTime = 0.0f;
             }
@@ -80,6 +82,7 @@ public class ElectroReceptor : MonoBehaviour
             if (currentCooldownTime < 0) { onCooldown = false; }
         }
 
+        //Checks current state and sets animation if necessary
         AnimatorStateInfo animatorStateInfo = GetComponentInParent<Animator>().GetCurrentAnimatorStateInfo(0);
         if (stage == Stage.IDLE && !animatorStateInfo.IsName("ElectroReceptor-Idle"))
         {
@@ -97,14 +100,19 @@ public class ElectroReceptor : MonoBehaviour
 
     public void ElectroShock()
     {
+        // if lingering timer is active, kill it
         if (lingeringTimer != null) { StopCoroutine(lingeringTimer); }
+        
         isReceivingShock = true;
+       
+        // reset lingering timer
         lingeringTimer = LingeringShockTimer();
         StartCoroutine(lingeringTimer);
     }
 
     public IEnumerator LingeringShockTimer()
     {
+        //after lingerTimeShock seconds, sets isReceving shock to false
         yield return new WaitForSeconds(lingeringTimeShock);
         isReceivingShock = false;
     }
