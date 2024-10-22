@@ -48,6 +48,7 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField] private float propulsionHeight = 2.0f;
     [SerializeField] private float propulsionTime = 1.0f;
     [SerializeField] private float planningGravity = 0.1f;
+    [SerializeField] private ParticleSystem jumpParticles;
 
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
@@ -159,9 +160,14 @@ public class ElectricLocomotion : HostLocomotion
         //Calculating new enemy position while jumping
         if (isPropulsing)
         {
+            if (!jumpParticles.isPlaying) 
+            {  
+                jumpParticles.Play();
+            }
             if (transform.position.y > startPosition.y + propulsionHeight) //Has reached the requiered height
             {
                 isPropulsing = false;
+                jumpParticles.Stop();
                 isPlanning = true;
             }
             else
@@ -215,7 +221,8 @@ public class ElectricLocomotion : HostLocomotion
     public override void JumpCancel() 
     {
         isPlanning = true;
-        isPropulsing = false;       
+        isPropulsing = false;
+        jumpParticles.Stop();
     }
 
     public override void Move(float deltaX, float deltaY = 0f)
