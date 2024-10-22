@@ -69,10 +69,10 @@ MonoBehaviour:
   Path: FMOD/Pathogenesis/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638650667461629001
+  lastModified: 638651944489280117
   FileSizes:
   - Name: Desktop
-    Value: 2604
+    Value: 2584
   Exists: 1
 --- !u!114 &-7802305111034501211
 MonoBehaviour:
@@ -137,7 +137,7 @@ MonoBehaviour:
   Path: FMOD/Pathogenesis/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638646207685583987
+  lastModified: 638651944531125566
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -376,10 +376,10 @@ MonoBehaviour:
   Path: FMOD/Pathogenesis/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638650667462067535
+  lastModified: 638651944531045832
   FileSizes:
   - Name: Desktop
-    Value: 557056
+    Value: 558752
   Exists: 1
 --- !u!114 &-5140320058740557746
 MonoBehaviour:
@@ -588,6 +588,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1125
+--- !u!114 &-431965233805697212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Player Movement Loop/Terrain
+  m_EditorClassIdentifier: 
+  Name: Terrain
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4115055632
+    data2: 1466248021
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Normal
+  - FMA
+  Exists: 1
 --- !u!114 &-49093138112906966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +669,6 @@ MonoBehaviour:
   - {fileID: -5140320058740557746}
   - {fileID: 1543190275753389145}
   - {fileID: -6803169702643314241}
-  - {fileID: 1057799748885945723}
   - {fileID: -8413429190495027887}
   - {fileID: 2725074042649306762}
   - {fileID: -3635277007727231099}
@@ -653,18 +678,19 @@ MonoBehaviour:
   - {fileID: 6792602251924428351}
   - {fileID: 3319867024994325942}
   - {fileID: -8420968207652452878}
-  - {fileID: 5456756601406661560}
   - {fileID: -631544450676617704}
   - {fileID: -7089018521696873299}
   - {fileID: -5991369802831427259}
   - {fileID: 889031082076964894}
   - {fileID: -5234111787837094955}
-  EditorParameters: []
+  - {fileID: 6161443714545854835}
+  EditorParameters:
+  - {fileID: 7121353641767979000}
   MasterBanks:
   - {fileID: 32054422551261306}
   StringsBanks:
   - {fileID: -7890353177108919966}
-  cacheTime: 638650667462067535
+  cacheTime: 638651944531125566
   cacheVersion: 131620
 --- !u!114 &32054422551261306
 MonoBehaviour:
@@ -681,10 +707,10 @@ MonoBehaviour:
   Path: FMOD/Pathogenesis/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638646207685524180
+  lastModified: 638651944489270151
   FileSizes:
   - Name: Desktop
-    Value: 4162
+    Value: 4362
   Exists: 1
 --- !u!114 &889031082076964894
 MonoBehaviour:
@@ -713,33 +739,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
---- !u!114 &1057799748885945723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/Player Movement FMA Loop
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/Player Movement FMA Loop
-  Guid:
-    Data1: 874165585
-    Data2: 1228841567
-    Data3: 236542896
-    Data4: 1536460086
-  Banks:
-  - {fileID: -5202077924921434252}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4125
 --- !u!114 &1543190275753389145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,7 +874,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 295
---- !u!114 &5456756601406661560
+--- !u!114 &6161443714545854835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -885,9 +884,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/Player Movement Normal Loop
+  m_Name: event:/SFX/Player/Player Movement Loop
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/Player Movement Normal Loop
+  Path: event:/SFX/Player/Player Movement Loop
   Guid:
     Data1: -171500067
     Data2: 1308849377
@@ -898,7 +897,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: -431965233805697212}
   MinDistance: 1
   MaxDistance: 20
   Length: 10000
@@ -944,10 +944,36 @@ MonoBehaviour:
   Path: FMOD/Pathogenesis/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638650667462037635
+  lastModified: 638651944524251356
   FileSizes:
   - Name: Desktop
     Value: 5223328
+  Exists: 1
+--- !u!114 &7121353641767979000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Terrain
+  m_EditorClassIdentifier: 
+  Name: Terrain
+  StudioPath: parameter:/Terrain
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 4115055632
+    data2: 1466248021
+  Type: 2
+  IsGlobal: 1
+  Labels:
+  - Normal
+  - FMA
   Exists: 1
 --- !u!114 &7600204631889281791
 MonoBehaviour:

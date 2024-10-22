@@ -17,6 +17,8 @@ public class PlayerLocomotion : HostLocomotion
     [SerializeField]
     private GameObject playerBody;
 
+    private FMODUnity.StudioEventEmitter emitter;
+
     [SerializeField] private float distanceToFallToPlayLandClip = 2f;
 
 
@@ -35,6 +37,7 @@ public class PlayerLocomotion : HostLocomotion
         rb2D.gravityScale = g / Physics2D.gravity.y;
 
         originalMoveSpeed = moveSpeed;
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
         //audioSource.loop = true;
 }
 
@@ -73,25 +76,25 @@ public class PlayerLocomotion : HostLocomotion
             landEventInstance.start();
         }
 
-        //if (rb2D.velocity.x != 0)
-        //{
-        //    if (!GetAudioSource().isPlaying)
-        //    {
-        //        GetAudioSource().Play();
-        //    }
-        //}
-        //else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
-        //{
-        //    if (!GetAudioSource().isPlaying)
-        //    {
-        //        GetAudioSource().Play();
-        //    }
-        //}
-        //else
-        //{
-        //    GetAudioSource().Stop();
-        //}
-        
+        if (rb2D.velocity.x != 0)
+        {
+            if (!emitter.IsPlaying())
+            {
+                emitter.Play();
+            }
+        }
+        else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
+        {
+            if (!emitter.IsPlaying())
+            {
+                emitter.Play();
+            }
+        }
+        else
+        {
+            emitter.Stop();
+        }
+
 
         //if (GameManager.Instance.isPaused)
         //{
@@ -141,6 +144,9 @@ public class PlayerLocomotion : HostLocomotion
     public void EnableFreeMovement(float speedModifier = 1.0f)
     {
         //GetAudioSource().clip = FMAMoveLoopClip;
+        //emitter.EventInstance.setParameterByName("Terrain", 1);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 1);
+
         heightJumped = 0f;
         moveSpeed *= speedModifier;
         rb2D.gravityScale = 0.0f;
@@ -152,6 +158,9 @@ public class PlayerLocomotion : HostLocomotion
     public void DisableFreeMovement()
     {
         //GetAudioSource().clip = movementLoopClip;
+        //emitter.EventInstance.setParameterByName("Terrain", 0);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 0);
+
         moveSpeed = originalMoveSpeed;
         rb2D.gravityScale = gravityScale;
         animator.SetBool("IsInFreeMovement", false);
