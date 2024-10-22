@@ -174,8 +174,10 @@ public class HostAbsorption : Interactable
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
             {
-                cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>().setNewFollow(hostLocomotion.transform);
-                cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>().StartPossessionEffect(possessionEffectTime);
+                CameraSwitchManagement cameraSwitchManagement = cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>();
+
+                cameraSwitchManagement?.setNewFollow(hostLocomotion.transform);
+                cameraSwitchManagement?.StartPossessionEffect(possessionEffectTime);
             }
 
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
