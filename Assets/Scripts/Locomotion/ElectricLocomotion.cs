@@ -39,8 +39,8 @@ public class ElectricLocomotion : HostLocomotion
     [Header("Movement")]
     [SerializeField]
     private float deltaXModifier = 0.5f;
-    [SerializeField]
-    private float deltaYModifier = 1.2f;
+    //[SerializeField]
+    //private float deltaYModifier = 1.2f;
     [SerializeField]
     private float speedModifier = 1.0f;
 
@@ -54,10 +54,10 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField] GameObject ligthSource;
     [SerializeField] GameObject possessedLightSource;
 
-
-   private float newYPosition = 0;
-   private Vector3 startPosition;
-   private bool isPropulsing = false, isPlanning = false;
+    private float currentPlanningGravity = 0.1f;
+    private float newYPosition = 0.0f;
+    private Vector3 startPosition = Vector3.zero;
+    private bool isPropulsing = false, isPlanning = false;
 
     private float originalMoveSpeed;
 
@@ -180,7 +180,10 @@ public class ElectricLocomotion : HostLocomotion
         //Change gravity while planning
         if (!isPropulsing && isPlanning && rb2D.velocity.y < 0f)
         {
-            rb2D.gravityScale = planningGravity; //(playerController.GetDeltaY() < 0)?rb2D.gravityScale = 0.7f:rb2D.gravityScale = planningGravity;
+            currentPlanningGravity = planningGravity + Mathf.Abs(playerController.GetDeltaY());
+            Mathf.Clamp(currentPlanningGravity, planningGravity, 1.0f);
+            Debug.Log(currentPlanningGravity);
+            rb2D.gravityScale = currentPlanningGravity; 
         }
         else if(groundChecker.isGrounded) //Reached the floor, he is not planning
         {
@@ -235,11 +238,10 @@ public class ElectricLocomotion : HostLocomotion
         //}
         //else
         //{       
-        //when is jumping and possessed we apply a modifier to the X and Y direction
+        //when is jumping and possessed we apply a modifier to the X
         if (!groundChecker.isGrounded && transform.parent != null)
-        {
-            float Y = (deltaY < 0) ? deltaYModifier * deltaY : rb2D.velocity.y;
-            rb2D.velocity = new Vector2(deltaXModifier * deltaX * moveSpeed, Y);
+        {           
+            rb2D.velocity = new Vector2(deltaXModifier * deltaX * moveSpeed, rb2D.velocity.y);          
         }
         else //normal movement
         {
