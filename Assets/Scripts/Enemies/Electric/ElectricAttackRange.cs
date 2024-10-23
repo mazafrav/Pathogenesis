@@ -6,6 +6,9 @@ using static Unity.Collections.AllocatorManager;
 public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
 {
     [SerializeField]
+    private ElectricFollowRange electricFollowRange;
+
+    [SerializeField]
     private Transform electricShockPivot;
 
     [SerializeField]
@@ -38,7 +41,7 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
         }
         collidedObjects.Remove(electricEnemy.GetComponent<Collider2D>()); //I remove myself
 
-        if (collidedObjects.Count <= 0) //We dont have any organism, we deactivate the shock
+        if (collidedObjects.Count <= 0 || electricFollowRange.VisibleTargetsInRange().Count <= 0) //We dont have any organism, we deactivate the shock
         {
             if (electricLocomotion.inAttackRange && electricLocomotion.currentRemainingShockTime > 0.0f)
             {
@@ -60,7 +63,7 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
                 {
                     Attack(obj.transform);
                 }
-                else if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")) && obj.GetComponent<ElectricEnemy>() == null) //Other enemies except electric
+                else if (electricEnemy.ISeeingTarget() && electricFollowRange.VisibleTargetsInRange().Contains(obj.gameObject) && obj.GetComponent<ElectricEnemy>() == null) //Other enemies except electric
                 {
                     Attack(obj.transform);
                 }

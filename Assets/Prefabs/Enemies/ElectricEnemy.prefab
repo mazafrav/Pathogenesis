@@ -165,7 +165,6 @@ MonoBehaviour:
   colorWhileCooldown: {r: 0.5568628, g: 0.9254902, b: 1, a: 1}
   electricShockClip: {fileID: 8300000, guid: 59808dccb62b111498cd51229f1748b4, type: 3}
   deltaXModifier: 1.2
-  deltaYModifier: 2.8
   speedModifier: 0.7
   propulsionHeight: 1.6
   propulsionTime: 0.2
@@ -307,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97abf5b77b80fee43b4f3885fd97497e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  electricFollowRange: {fileID: 4683580698423776492}
   electricShockPivot: {fileID: 1855887428825222088}
   interactionCollider: {fileID: 6527189340981775668}
   filter:
