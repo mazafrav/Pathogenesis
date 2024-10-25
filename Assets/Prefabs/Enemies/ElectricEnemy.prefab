@@ -106,8 +106,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000000024351365, y: 0.020427408}
-  m_Size: {x: 2.2854357, y: 1.460637}
+  m_Offset: {x: 0.0000020289933, y: 0.02042717}
+  m_Size: {x: 1.776813, y: 1.1449476}
   m_Direction: 1
 --- !u!114 &6099004757991992690
 MonoBehaviour:
@@ -166,9 +166,9 @@ MonoBehaviour:
   electricShockClip: {fileID: 8300000, guid: 59808dccb62b111498cd51229f1748b4, type: 3}
   deltaXModifier: 1.2
   speedModifier: 0.7
-  propulsionHeight: 1.6
-  propulsionTime: 0.2
-  planningGravity: 0.2
+  propulsionHeight: 1.8
+  propulsionTime: 0.25
+  planningGravity: 0.15
   jumpParticles: {fileID: 1142215920660990658}
   ligthSource: {fileID: 8478901972570562192}
   possessedLightSource: {fileID: 4540841480417087518}
@@ -490,12 +490,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: e8e078c5e5b7e0a43998a0c8e427efdd, type: 3}
+  m_Sprite: {fileID: -141839956, guid: e8e078c5e5b7e0a43998a0c8e427efdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -572,7 +572,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5068238459060251847}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 96516d5d3c9ad6d4b8e3ade0a6302c8f, type: 2}
   m_CullingMode: 0
@@ -724,7 +724,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.018, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 20109762620599441}

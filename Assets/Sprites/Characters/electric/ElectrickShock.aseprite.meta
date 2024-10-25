@@ -123,16 +123,116 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: ElectrickShock
     originalName: 
-    pivot: {x: 0.53333336, y: 0}
+    pivot: {x: 0.3, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 29
+      y: 70
+      width: 10
+      height: 28
+    spriteID: 43c23f39546692f49a7933f29c6aadb0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: 70}
+  - name: ElectrickShock_Frame_1
+    originalName: 
+    pivot: {x: 0.5714286, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 53
+      y: 4
+      width: 14
+      height: 56
+    spriteID: bf0544a77542b2e4c8e7c8e89021033f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 53, y: 4}
+  - name: ElectrickShock_Frame_2
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 68
+      width: 15
+      height: 56
+    spriteID: 537f3fa54112afa4c905453d82494ea6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 68}
+  - name: ElectrickShock_Frame_3
+    originalName: 
+    pivot: {x: 0.4615385, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 75
+      y: 4
+      width: 13
+      height: 57
+    spriteID: 12dfb6ad97ef16c45adee96ec9e16c8b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 75, y: 4}
+  - name: ElectrickShock_Frame_4
+    originalName: 
+    pivot: {x: 0.5625, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 29
+      y: 4
+      width: 16
+      height: 58
+    spriteID: 53ee42708c8cf2244a469173209f47bb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 29, y: 4}
+  - name: ElectrickShock_Frame_5
+    originalName: 
+    pivot: {x: 0.4117647, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 15
-      height: 57
-    spriteID: 43c23f39546692f49a7933f29c6aadb0
+      width: 17
+      height: 56
+    spriteID: 1458d92263c9d2b429293026e748ccc9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,14 +250,54 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: ElectrickShock
+    - name: ElectrickShock_Frame_0
       frameIndex: 0
+      cellRect:
+        x: 13
+        y: 0
+        width: 10
+        height: 28
+      spriteId: 43c23f39546692f49a7933f29c6aadb0
+    - name: ElectrickShock_Frame_1
+      frameIndex: 1
       cellRect:
         x: 8
         y: 0
+        width: 14
+        height: 56
+      spriteId: bf0544a77542b2e4c8e7c8e89021033f
+    - name: ElectrickShock_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 7
+        y: 0
         width: 15
+        height: 56
+      spriteId: 537f3fa54112afa4c905453d82494ea6
+    - name: ElectrickShock_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 10
+        y: 0
+        width: 13
         height: 57
-      spriteId: 43c23f39546692f49a7933f29c6aadb0
+      spriteId: 12dfb6ad97ef16c45adee96ec9e16c8b
+    - name: ElectrickShock_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 7
+        y: 0
+        width: 16
+        height: 58
+      spriteId: 53ee42708c8cf2244a469173209f47bb
+    - name: ElectrickShock_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 9
+        y: 0
+        width: 17
+        height: 56
+      spriteId: 1458d92263c9d2b429293026e748ccc9
     linkedCells: []
     parentIndex: -1
   platformSettings: []
