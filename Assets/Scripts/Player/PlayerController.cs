@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 switch(inputBuffer.Peek())
                 {
                     case "jump":
-                        if (locomotion.groundChecker.isGrounded)
+                        if (locomotion.CanJump())
                         {
                             locomotion.Jump(deltaX);
                             inputBuffer.Dequeue();

@@ -32,7 +32,7 @@ public abstract class HostLocomotion : MonoBehaviour
     protected float jumpBufferCounter;
 
     [SerializeField]
-    public GroundChecker groundChecker;
+    protected GroundChecker groundChecker;
 
     protected float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
 
@@ -90,5 +90,10 @@ public abstract class HostLocomotion : MonoBehaviour
     public virtual void SetMoveSpeed(float newSpeed) 
     {
         moveSpeed = newSpeed;       
+    }
+
+    public virtual bool CanJump()
+    {
+        return groundChecker.isGrounded; 
     }
 }
