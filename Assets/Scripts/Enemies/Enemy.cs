@@ -78,4 +78,9 @@ public class Enemy : MonoBehaviour
         detectEventInstance.setPitch(originalPitch + pitch);
     }
 
+    protected void AllowAttackSameSpecies()
+    {
+        CanAttackSameSpecie = true;
+    }
+
 }
