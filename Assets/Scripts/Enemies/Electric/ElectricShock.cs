@@ -25,6 +25,11 @@ public class ElectricShock : MonoBehaviour
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
+    private void OnEnable()
+    {
+        GetComponent<Animator>().Play("ElectricShock-Buildup");
+    }
+
     private void Update()
     {
         interactionCollider.OverlapCollider(filter, collidedObjects);

@@ -8,11 +8,15 @@ public class RangedEnemyDetection : MonoBehaviour
     public GameObject targetInRange { get; set; }
     public List<GameObject> allTargetsInRange;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if ((collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy")) && !allTargetsInRange.Contains(collision.gameObject))
         {
             if (collision.gameObject.GetComponent<RangedLocomotion>() == null)
+            {
+                allTargetsInRange.Add(collision.gameObject);
+            }
+            else if (GetComponentInParent<RangedEnemy>().CanAttackSameSpecie && collision.gameObject.GetComponentInParent<PlayerController>() != null)
             {
                 allTargetsInRange.Add(collision.gameObject);
             }

@@ -181,7 +181,7 @@ public class ElectricLocomotion : HostLocomotion
         {
             currentPlanningGravity = planningGravity + Mathf.Abs(playerController.GetDeltaY());
             Mathf.Clamp(currentPlanningGravity, planningGravity, 1.0f);
-            Debug.Log(currentPlanningGravity);
+            
             rb2D.gravityScale = currentPlanningGravity; 
         }
         else if(groundChecker.isGrounded) //Reached the floor, he is not planning

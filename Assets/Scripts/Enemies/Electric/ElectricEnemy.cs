@@ -23,7 +23,7 @@ public class ElectricEnemy : Enemy
 
     void Start()
     {
-        OnAttackSameSpecie += AllowAttackSameSpecie;
+        OnAttackSameSpecie += AllowAttackSameSpecies;
 
         shootingComponent = GetComponentInChildren<ShootingComponent>();
         electricLocomotion = GetComponent<ElectricLocomotion>();
@@ -83,11 +83,8 @@ public class ElectricEnemy : Enemy
 
     private void OnDisable()
     {
-        OnAttackSameSpecie -= AllowAttackSameSpecie;
+        OnAttackSameSpecie -= AllowAttackSameSpecies;
     }
 
-    private void AllowAttackSameSpecie()
-    {
-        CanAttackSameSpecie = true;
-    }
+
 }
