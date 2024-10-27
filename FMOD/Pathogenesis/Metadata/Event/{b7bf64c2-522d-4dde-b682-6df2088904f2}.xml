@@ -5,7 +5,7 @@
 			<value>Player Enemy Possession</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{b43fec51-f824-4a78-94d0-863ee3ac6cec}</destination>
@@ -90,13 +90,16 @@
 	<object class="MixerBusPanner" id="{edf0f44a-1a31-4777-956b-4b66b54300e6}" />
 	<object class="SingleSound" id="{310f63dd-aafb-477a-96bf-013645eb9668}">
 		<property name="length">
-			<value>1.5833333333333333</value>
+			<value>2.9151041666666666</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{0e7bb5b4-de22-434d-b6bd-b3613afc02a4}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{a88dfe21-35f4-469a-bb7b-fc90297d8edd}">
+		<property name="volume">
+			<value>-1</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
