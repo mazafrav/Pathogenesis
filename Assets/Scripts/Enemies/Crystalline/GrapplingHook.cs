@@ -14,7 +14,10 @@ public class GrapplingHook : MonoBehaviour
 
     private Vector2 grapplePoint;
     private Vector2 ropePoint;
-    private bool grappled = false;
+
+    private bool launching = false; // the organism is launching the grapple
+    private bool grappling = false; // the organism is grappling to a surface
+    private bool retracting = false; // the organism is retracting the grapple
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,7 @@ public class GrapplingHook : MonoBehaviour
     {
         if (rope.enabled)
         {
-            if (!grappled)
+            if ( launching )
             {
                 ropePoint = Vector2.Lerp(ropePoint, aimPoint.transform.position, Time.deltaTime * ropeLauchSpeed);
                 rope.SetPosition(1, transform.position);
@@ -47,42 +50,72 @@ public class GrapplingHook : MonoBehaviour
                             grappleJoint.connectedAnchor = grapplePoint;
                             grappleJoint.enabled = true;
 
-                            grappled = true;
+                            launching = false;
+                            grappling = true;
                         }
                         else
                         {
-                            DismantleGrapple();
+                            launching = false;
+                            retracting = true;
                         }
                     }
                 } 
                 else
                 {
-                    DismantleGrapple();
+                    launching = false;
+                    retracting = true;
                 }
             } 
-            else
+            else if (grappling)
             {
                 rope.SetPosition(1, transform.position);
                 rope.SetPosition(0, ropePoint);
+            }
+            else if ( retracting )
+            {
+                ropePoint = Vector2.Lerp(ropePoint, transform.position, Time.deltaTime * ropeLauchSpeed * 2);
+                rope.SetPosition(1, transform.position);
+                rope.SetPosition(0, ropePoint);
+                if (Vector2.Distance(transform.position, ropePoint) < 0.5f)
+                {
+                    DismantleGrapple();
+                }
             }
         }
     }
 
     public void LaunchGrapple()
     {
-        grappled = false;
-        ropePoint = transform.position;
-        rope.SetPosition(1, transform.position);
-        rope.SetPosition(0, ropePoint);
-        rope.enabled = true;
+        if (!grappling && !launching)
+        {
+            ropePoint = transform.position;
+            rope.SetPosition(1, transform.position);
+            rope.SetPosition(0, ropePoint);
+            rope.enabled = true;
+            launching = true;
+        }
     }
 
     public void DismantleGrapple()
     {
         grappleJoint.enabled = false;
         rope.enabled = false;
-        grappled = false;
+        grappling = false;
+        launching = false;
+        retracting = false;
     }
 
+    public void CancelGrapple()
+    {
+        if (launching)
+        {
+            launching = false;
+            retracting = true;
+        }
+        else if (grappling)
+        {
+            DismantleGrapple();
+        }
+    }
 
 }

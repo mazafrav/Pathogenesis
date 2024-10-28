@@ -155,7 +155,7 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void JumpCancel()
     {
-        grapplingHook.DismantleGrapple();
+        grapplingHook.CancelGrapple();
     }
 
     public override void Move(float deltaX, float deltaY = 0f)
