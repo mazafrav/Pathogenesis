@@ -23,19 +23,19 @@ public class PlayerController : MonoBehaviour
 
     private float deltaX = 0.0f, deltaY = 0.0f;
 
-    public ShootingComponent shootingComponent;
+    public ShootingComponent shootingComponent { get; set; } = null;
     public HostAbsorption AbsorbableHostInRange { get; private set; } = null;
 
     public bool HasDisabledControls { get; set; } = false;
     private Vector3 mousePos;
 
-    Queue<string> inputBuffer;
+    private Queue<string> inputBuffer;
     [SerializeField]
     private float inputBufferTime = 0.5f;
 
-    public bool isPossessing = false;
+    public bool isPossessing { get; set; } = false;
     private bool doOnce = false;
-    PlayerInputActions playerInputActions;
+    private PlayerInputActions playerInputActions;
 
     void Start()
     {
