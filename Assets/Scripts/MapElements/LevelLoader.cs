@@ -9,12 +9,12 @@ public class LevelLoader : MonoBehaviour
     [SerializeField]
     public float transitionTime = 0.7f;
    
-    private float timeToResetLevel = 1.0f;
-    private float currentTimeToResetLevel = 0.0f;
+    //private float timeToResetLevel = 1.0f;
+    //private float currentTimeToResetLevel = 0.0f;
 
     private void Start()
     {
-        currentTimeToResetLevel = timeToResetLevel;
+        //currentTimeToResetLevel = timeToResetLevel;
 
         Dictionary<int, Vector3> respawnValues = GameManager.Instance.GetRespawnValues();
         if (respawnValues.Count > 0)
@@ -47,16 +47,16 @@ public class LevelLoader : MonoBehaviour
     private void Update()
     {
         //We reset the level when pressing a key for X seconds
-        if(Input.GetKey(KeyCode.R) && currentTimeToResetLevel > 0.0f)
-        {
-            currentTimeToResetLevel -= Time.deltaTime;
-        }
+        //if(Input.GetKey(KeyCode.R) && currentTimeToResetLevel > 0.0f)
+        //{
+        //    currentTimeToResetLevel -= Time.deltaTime;
+        //}
 
-        if(currentTimeToResetLevel <= 0.0f)
-        {
-            RestartLevel();
-            currentTimeToResetLevel = timeToResetLevel;
-        }
+        //if(currentTimeToResetLevel <= 0.0f)
+        //{
+        //    RestartLevel();
+        //    currentTimeToResetLevel = timeToResetLevel;
+        //}
     }
 
     public void StartLoadingLevel(int level)
@@ -68,6 +68,7 @@ public class LevelLoader : MonoBehaviour
     {
         GameManager.Instance.SetMusicSelectionIndex(1);
         GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
+        GameManager.Instance.GetPlayerController().GetPlayerIAs().Disable();
         StartLoadingLevel(SceneManager.GetActiveScene().buildIndex);
 
 

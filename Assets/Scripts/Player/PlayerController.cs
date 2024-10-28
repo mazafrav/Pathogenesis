@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     public HostLocomotion locomotion;
+    [SerializeField]
+    private float initialTimeWithDisabledInput = 0.7f;
+
     private float deltaX = 0.0f, deltaY = 0.0f;
 
     public ShootingComponent shootingComponent;
@@ -37,13 +40,15 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
+        playerInputActions.Player.Disable();
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Jump.canceled += JumpButtomUp;
         playerInputActions.Player.Attack.performed += Attack;
         playerInputActions.Player.PauseMenu.performed += PauseMenu;
 
         inputBuffer = new Queue<string>(5);
+
+        StartCoroutine(EnableInput());
     }
 
     public float GetDeltaX() { return deltaX; }
@@ -80,9 +85,9 @@ public class PlayerController : MonoBehaviour
 
             //Attacking with electric enemy
             ElectricLocomotion electricLocomotion = GetComponentInChildren<ElectricLocomotion>();
-            if(electricLocomotion)
+            if (electricLocomotion)
             {
-                if((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
+                if ((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
                 {
                     locomotion.Attack(mousePos);
                 }
@@ -94,7 +99,7 @@ public class PlayerController : MonoBehaviour
                     if (electricLocomotion.currentRemainingShockTime <= 0.0f)
                     {
                         locomotion.DeactivateAttack();
-                        electricLocomotion.inAttackRange =false;
+                        electricLocomotion.inAttackRange = false;
                     }
                 }
             }
@@ -103,7 +108,7 @@ public class PlayerController : MonoBehaviour
             // INPUT BUFFER ANALYSIS
             if (inputBuffer.Count > 0)
             {
-                switch(inputBuffer.Peek())
+                switch (inputBuffer.Peek())
                 {
                     case "jump":
                         if (locomotion.CanJump())
@@ -114,8 +119,8 @@ public class PlayerController : MonoBehaviour
                         break;
                     case "attack":
                         if (locomotion.IsAttackReady())
-                        {                        
-                            locomotion.Attack(mousePos);                           
+                        {
+                            locomotion.Attack(mousePos);
                             inputBuffer.Dequeue();
                         }
                         break;
@@ -130,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
         mousePos = GameManager.Instance.IsThereAGamepadConnected ? playerInputActions.Player.Aim.ReadValue<Vector2>() : Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if(shootingComponent)
+        if (shootingComponent)
         {
             shootingComponent.Aim(mousePos);
         }
@@ -197,7 +202,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         if (!isSettingsOn)
-        {         
+        {
             GameManager.Instance.PauseGame();
         }
     }
@@ -248,4 +253,10 @@ public class PlayerController : MonoBehaviour
     public GameObject GetPlayerBody() { return playerBody; }
 
     public PlayerInputActions GetPlayerIAs() { return playerInputActions; }
+
+    private IEnumerator EnableInput()
+    {
+        yield return new WaitForSeconds(initialTimeWithDisabledInput); 
+        playerInputActions.Enable();
+    } 
 }
