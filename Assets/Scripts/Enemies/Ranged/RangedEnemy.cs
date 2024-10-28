@@ -118,7 +118,10 @@ public class RangedEnemy : Enemy
         else
         {
             //rb.constraints = RigidbodyConstraints2D.FreezePosition;
-            locomotion.Move(0);
+            if (locomotion.groundChecker.isGrounded)
+            {
+                locomotion.Move(0);
+            }
 
             // When a possible target leaves the ranged enemy's detection area, it's removed from the "allTargetsInRange" array.
             // Hence, we need to check if its current target has left its detection area.

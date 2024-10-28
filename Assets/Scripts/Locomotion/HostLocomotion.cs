@@ -32,7 +32,7 @@ public abstract class HostLocomotion : MonoBehaviour
     protected float jumpBufferCounter;
 
     [SerializeField]
-    protected GroundChecker groundChecker;
+    public GroundChecker groundChecker;
 
     protected float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
 
