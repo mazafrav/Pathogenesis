@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class CrystalineEnemy : Enemy
 {
+
+    public static event Action OnAttackSameSpecies;
+
     public GameObject currentRangedTarget = null;
     public List<GameObject> closeTargets;
 
@@ -27,6 +30,9 @@ public class CrystalineEnemy : Enemy
 
     void Start()
     {
+        OnAttackSameSpecies += AllowAttackSameSpecies;
+
+
         crystallineLocomotion = GetComponent<CrystallineLocomotion>();
 
         closeTargets = new List<GameObject>();
@@ -65,12 +71,16 @@ public class CrystalineEnemy : Enemy
 
                 RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(transform.position, direction, detectionRange);
                 for (int i = 0; i < raycastHit2D.Length; i++)
-                {                                                                     //Crystalline enemies dont attack crystalline enemies
-                    if (raycastHit2D[i].collider.gameObject == range.personInRange && range.personInRange.GetComponent<CrystalineEnemy>() == null)
+                {                                                                     
+                    if (raycastHit2D[i].collider.gameObject == range.personInRange)
                     {
-                        isSeeingTarget = true;
-                        Debug.DrawRay(transform.position, direction * raycastHit2D[i].distance, Color.red);
-                        break;
+                        //Crystalline enemies dont attack crystalline enemies, unless a possessed one kills another one
+                        if (range.personInRange.GetComponent<CrystalineEnemy>() == null || CanAttackSameSpecie)  
+                        {
+                            isSeeingTarget = true;
+                            Debug.DrawRay(transform.position, direction * raycastHit2D[i].distance, Color.red);
+                            break;
+                        }
                     }
                     else if (raycastHit2D[i].collider.gameObject.CompareTag("TileMap"))
                     {
@@ -184,6 +194,26 @@ public class CrystalineEnemy : Enemy
     private void UpdateOrientation(Vector3 position)
     {
         locomotion.Aim(position);
+    }
+
+    public override void DestroyEnemy()
+    {
+        CrystallineLocomotion possessedEnemy = GameManager.Instance.GetPlayerLocomotion().GetComponentInChildren<CrystallineLocomotion>();
+
+        //If the player is possessing an electric enemy we notify the others electric enemies
+        if (possessedEnemy)
+        {
+            OnAttackSameSpecies?.Invoke();
+            possessedEnemy.transform.position += new Vector3(0.01f, 0.0f, 0.0f);
+        }
+
+        base.DestroyEnemy();
+    }
+
+
+    private void OnDisable()
+    {
+        OnAttackSameSpecies -= AllowAttackSameSpecies;
     }
 
 }

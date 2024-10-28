@@ -30,9 +30,9 @@ public class ElectricShockRange : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
+        if(personInRange == null && collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             if (cancelAggroTimer > 0f)
             {
