@@ -338,6 +338,9 @@
 		<property name="commandType">
 			<value>3</value>
 		</property>
+		<property name="targetValue">
+			<value>0.14499999582767487</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{ae305014-d30c-43be-9fd5-bd01d768737e}</destination>
 		</relationship>
@@ -2512,7 +2515,7 @@
 	<object class="MixerBusFader" id="{27946ffa-fac2-484e-84a4-90e83e772e16}" />
 	<object class="GainEffect" id="{f1fdbd31-c6ee-4234-b996-1882ed3ac7a7}">
 		<property name="gain">
-			<value>1.5</value>
+			<value>3</value>
 		</property>
 	</object>
 	<object class="AutomationCurve" id="{fa1108ec-9501-4d6a-8003-c8372e5733c4}">
@@ -3706,10 +3709,10 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-55</value>
+			<value>-53.3333321</value>
 		</property>
 		<property name="curveShape">
-			<value>-0.183250248</value>
+			<value>-0.238418907</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{b8dcbab5-1c22-4a8b-a844-0e097f48d33e}">
@@ -3717,7 +3720,7 @@
 			<value>0.9844632768361582</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>0.5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{d544fdfd-968c-4baa-8122-afe2e2dd65a3}">

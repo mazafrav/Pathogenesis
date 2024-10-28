@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{6dc0ff3f-d4ff-42f9-ac9f-f5564861d02a}">
 		<property name="name">
-			<value>Creature3</value>
+			<value>Electric</value>
 		</property>
 		<relationship name="folder">
 			<destination>{c9153d5e-7e6a-43e0-aac7-f535e9e93240}</destination>
@@ -12,6 +12,9 @@
 		</relationship>
 	</object>
 	<object class="GameParameter" id="{23b57376-974d-4f5f-aadb-61e4f71c6cbe}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
 		<property name="initialValue">
 			<value>0</value>
 		</property>
@@ -23,6 +26,9 @@
 		</property>
 		<property name="seekSpeedAsymmetric">
 			<value>true</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
 		</property>
 	</object>
 </objects>
