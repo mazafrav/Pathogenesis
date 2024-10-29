@@ -24,6 +24,8 @@ public class ElectricLocomotion : HostLocomotion
     private float windUp = 0.5f;
     [SerializeField]
     private float shockRemainingTime = 0.3f;
+    [SerializeField]
+    private ParticleSystem electricShockVFX;
     //[SerializeField]
     //private float shockDuration = 1.0f;
 
@@ -265,6 +267,7 @@ public class ElectricLocomotion : HostLocomotion
         hasAttacked = true;
         shockGameObject.SetActive(true);
         moveSpeed *= speedModifier;
+        electricShockVFX.Play();
 
         //if (!GetAudioSource().isPlaying)
         //{
@@ -275,6 +278,7 @@ public class ElectricLocomotion : HostLocomotion
     {
         base.DeactivateAttack();
         DeactivateShock();
+        electricShockVFX.Stop();
     }
     public void DeactivateShock()
     {
