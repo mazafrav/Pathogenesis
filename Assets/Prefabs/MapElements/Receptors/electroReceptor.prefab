@@ -139,9 +139,9 @@ MonoBehaviour:
   timeToActivate: 1
   lingeringTimeShock: 0.1
   cooldownTime: 0.3
-  activateClip: {fileID: 8300000, guid: b9571db7d4731bc4e9a28c35820727f4, type: 3}
+  pitch: -0.5
   activationProjectilePrefab: {fileID: 611185172726488819, guid: e0245a22fccd7e04895262cec63480a3, type: 3}
-  timeToActivate: 0.5
+  timeToActivateBlock: 0.5
 --- !u!95 &8225193837037947966
 Animator:
   serializedVersion: 5
