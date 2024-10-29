@@ -11,9 +11,6 @@ public class KineticReceptor : MonoBehaviour
     [SerializeField]
     public ParticleSystem destructionVFX;
     private IActivatableElement activatableInterface;
-    private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip activateClip;
 
     [SerializeField]
     private ReceptorActivationProjectile activationProjectilePrefab; 
@@ -23,14 +20,18 @@ public class KineticReceptor : MonoBehaviour
     private CircleCollider2D circleCollider;
     private SpriteRenderer spriteRenderer;
 
+    private FMODUnity.StudioEventEmitter emitter;
+    [SerializeField] private float pitch = 0f;
+
     // Start is called before the first frame update
     private void Start()
     {
         activatableInterface = activatableElement.GetComponent<IActivatableElement>();
         if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
-        audioSource = GetComponent<AudioSource>();
         circleCollider = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     public void Stabbed()
@@ -40,10 +41,15 @@ public class KineticReceptor : MonoBehaviour
         StartCoroutine(activateBlock(activatableElement));
 
         ParticleSystem bulletVFX = Instantiate(destructionVFX, this.gameObject.transform.position, Quaternion.identity);
-        audioSource.PlayOneShot(activateClip);
         bulletVFX.Play();
+
+        emitter.Play();
+        emitter.EventInstance.getPitch(out float originalPitch);
+        emitter.EventInstance.setPitch(originalPitch + pitch);
+
         circleCollider.enabled = false;
         spriteRenderer.enabled = false;
+        emitter.EventDescription.getLength(out int length);
         Destroy(this.gameObject, 2f);
     }
 

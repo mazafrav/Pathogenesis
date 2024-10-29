@@ -27,10 +27,20 @@ public class Enemy : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField]
-    private AudioClip detectClip;
+    private string detectEventPath;
+    [SerializeField]
+    private float pitch;
+
+    private FMOD.Studio.EventInstance detectEventInstance;
     private List<GameObject> organismsDetected = new List<GameObject>();
 
-    public void DestroyEnemy()
+    private void Awake()
+    {
+        detectEventInstance = FMODUnity.RuntimeManager.CreateInstance(detectEventPath);
+    }
+    public bool CanAttackSameSpecie { get; set; } = false;
+
+    virtual public void DestroyEnemy()
     {
         GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
@@ -63,7 +73,14 @@ public class Enemy : MonoBehaviour
         }
 
         organismsDetected.Add(organism);
-        GetComponent<HostLocomotion>().GetOneShotSource().PlayOneShot(detectClip);
+        detectEventInstance.start();
+        detectEventInstance.getPitch(out float originalPitch);
+        detectEventInstance.setPitch(originalPitch + pitch);
+    }
+
+    protected void AllowAttackSameSpecies()
+    {
+        CanAttackSameSpecie = true;
     }
 
 }

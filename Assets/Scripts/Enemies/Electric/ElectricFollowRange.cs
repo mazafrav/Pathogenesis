@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ElectricFollowRange : MonoBehaviour
@@ -16,6 +17,7 @@ public class ElectricFollowRange : MonoBehaviour
     {
         electricEnemy = GetComponentInParent<ElectricEnemy>();
         electricLocomotion = GetComponentInParent<ElectricLocomotion>();
+        Physics2D.queriesStartInColliders = false;
     }
 
     // Update is called once per frame
@@ -25,19 +27,25 @@ public class ElectricFollowRange : MonoBehaviour
         {           
             foreach(GameObject target in targets)
             {
-                Vector2 rayDirection = (target.transform.position - transform.position).normalized;
-                List<RaycastHit2D> raycastHit2D = Physics2D.RaycastAll(transform.position, rayDirection, 2 * electricLocomotion.FollowRange).ToList();
+                if (target == null) 
+                { 
+                    continue; 
+                }
 
+                Vector2 rayDirection = (target.transform.position - transform.position).normalized;
+                List<RaycastHit2D> raycastHit2D = Physics2D.RaycastAll(transform.position, rayDirection, 2 * electricLocomotion.FollowRange).ToList();            
+
+                raycastHit2D.RemoveAll(obj => !obj.collider.gameObject.CompareTag("Player") && !obj.collider.gameObject.CompareTag("Enemy") && !obj.collider.gameObject.CompareTag("TileMap") && !obj.collider.gameObject.CompareTag("MapElement"));
                 //An organism is in range but we cant see him
-                if(raycastHit2D.Count > 0 && (raycastHit2D[0].collider.gameObject.CompareTag("TileMap") || raycastHit2D[0].collider.gameObject.CompareTag("MapElement")))
+                if (raycastHit2D.Count > 0 && (raycastHit2D[0].collider.gameObject.CompareTag("TileMap") || raycastHit2D[0].collider.gameObject.CompareTag("MapElement")))
                 {
                     visibleTargets.Remove(target);
                     continue;
                 }
-
+           
                 //At this point we have all visible targets in range
                 electricEnemy.direction = (target.transform.position - transform.position).normalized;
-
+             
                 for (int i = 0; i < raycastHit2D.Count; i++)
                 {                                                  
                     if (raycastHit2D[i].collider.gameObject == target && !visibleTargets.Contains(target))
@@ -62,12 +70,25 @@ public class ElectricFollowRange : MonoBehaviour
         {
             electricEnemy.SetIsSeeingTarget(false);
         }
-                  
+              
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.CompareTag("Player") || (collision.gameObject.CompareTag("Enemy") && collision.GetComponent<ElectricEnemy>() == null)) && !targets.Contains(collision.gameObject))
+        if(electricEnemy.CanAttackSameSpecie && collision.transform.parent != null && !targets.Contains(collision.gameObject)) //Possessed electric enemy
+        {
+            targets.Add(collision.gameObject);
+        } 
+        else if ((collision.gameObject.CompareTag("Player") || (collision.gameObject.CompareTag("Enemy") && collision.GetComponent<ElectricEnemy>() == null)) && !targets.Contains(collision.gameObject)) //Other enemies except electric
+        {
+            targets.Add(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (electricEnemy.CanAttackSameSpecie && collision.transform.parent != null && !targets.Contains(collision.gameObject)) //Possessed electric enemy
         {
             targets.Add(collision.gameObject);
         }

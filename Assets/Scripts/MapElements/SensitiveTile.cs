@@ -17,9 +17,7 @@ public class SensitiveTile : MonoBehaviour
     private Vector2 velocityEnter = Vector2.zero;
     private IActivatableElement[] activatableInterfaces;
 
-    private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip activateClip;
+    private FMODUnity.StudioEventEmitter emitter;
 
     [SerializeField]
     private ReceptorActivationProjectile activationProjectilePrefab; 
@@ -41,7 +39,7 @@ public class SensitiveTile : MonoBehaviour
         }
         */
 
-        audioSource = GetComponent<AudioSource>();
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
 
     }
 
@@ -68,7 +66,7 @@ public class SensitiveTile : MonoBehaviour
     public void ActivateActivables()
     {
         animator.Play("SensitiveTileActivated");
-        audioSource.PlayOneShot(activateClip);
+        emitter.Play();
         for (var index = 0; index < activatableElements.Length; index++)
         {
             ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;

@@ -8,6 +8,13 @@ public abstract class HostLocomotion : MonoBehaviour
     [SerializeField]
     protected PossessingParameters possessingParameters;
 
+    public LocomotionEventNames locomotionEventNames;
+
+    protected FMOD.Studio.EventInstance jumpEventInstance;
+    protected FMOD.Studio.EventInstance landEventInstance;
+    protected FMOD.Studio.EventInstance attackEventInstance;
+
+
     [Header("Movement")]
     [SerializeField]
     protected float moveSpeed = 5.0f;
@@ -32,13 +39,21 @@ public abstract class HostLocomotion : MonoBehaviour
     private DamageControl damageControl = null;
     private Collider2D hostCollider;
 
-    private AudioSource audioSource;
-    private AudioSource oneShotSource;
-
     public Rigidbody2D rb2D { protected set; get; } = null;
 
+    private void Awake()
+    {
+        if (locomotionEventNames.JumpEventName != "")
+            jumpEventInstance = FMODUnity.RuntimeManager.CreateInstance(locomotionEventNames.GenericEventsPath + locomotionEventNames.JumpEventName);
+        if (locomotionEventNames.LandEventName != "")
+            landEventInstance = FMODUnity.RuntimeManager.CreateInstance(locomotionEventNames.GenericEventsPath + locomotionEventNames.LandEventName);
+        if (locomotionEventNames.AttackEventName != "")
+            attackEventInstance = FMODUnity.RuntimeManager.CreateInstance(locomotionEventNames.GenericEventsPath + locomotionEventNames.AttackEventName);
+    }
+
     public abstract void Jump(float deltaX);
-    public void JumpButtonUp() { coyoteTimeCounter = 0; }
+    public abstract void JumpCancel();
+    public void JumpButtonUp() { coyoteTimeCounter = 0; JumpCancel();  }
     public abstract void Move(float deltaX, float deltaY=0);
     public abstract void Attack(Vector3 target = default);
     public abstract bool IsAttackReady();
@@ -71,20 +86,14 @@ public abstract class HostLocomotion : MonoBehaviour
         jumpDistance = possessingParameters.jumpDistance;
     }
 
-    private void Awake()
+
+    public virtual void SetMoveSpeed(float newSpeed) 
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        oneShotSource = gameObject.AddComponent<AudioSource>();
+        moveSpeed = newSpeed;       
     }
 
-    public AudioSource GetAudioSource() { return audioSource; }
-    public AudioSource GetOneShotSource() { return oneShotSource; }
-
-    public void SetMoveSpeed(float newSpeed) 
+    public virtual bool CanJump()
     {
-        moveSpeed = newSpeed; 
-        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-        rb2D.gravityScale = g / Physics2D.gravity.y;
-        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
+        return groundChecker.isGrounded; 
     }
 }

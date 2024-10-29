@@ -25,6 +25,10 @@ public class CrystallineLocomotion : HostLocomotion
     [SerializeField]
     private float stabDuration = 0.5f;
 
+    [Header("Grappling Gun")]
+    [SerializeField]
+    private GrapplingHook grapplingHook;
+
     [Header("Feedback")]
     [SerializeField]
     private SpriteRenderer spriteRenderer;
@@ -52,9 +56,9 @@ public class CrystallineLocomotion : HostLocomotion
 
     public AdhesionDirection directionClimb = AdhesionDirection.S;
 
-    [Header("SFX")]
-    [SerializeField]
-    private AudioClip stabClip;
+    //[Header("SFX")]
+    //[SerializeField]
+    //private AudioClip stabClip;
 
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
@@ -146,28 +150,12 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void Jump(float deltaY)
     {
-        return;
-        // if (IsWindingUp() && IsCooldownFinished())
-        // {
-        //     rb2D.velocity = new Vector2(0.0f, rb2D.velocity.y);
-        // }
-        // else
-        // {
-        //     if (!isClimbing && (wallCheckerL.isGrounded || wallCheckerR.isGrounded))
-        //     {
-        //         isClimbing = true;
-        //         rb2D.gravityScale = 0f;
-        //     }
-        //     if (isClimbing)
-        //     {
-        //         rb2D.velocity = new Vector2(rb2D.velocity.x, deltaY * moveSpeed);
-        //     }
-        // }
-        // if (currentWindUpTime > 0f) return;
-        // if (groundChecker.isGrounded)
-        // {
-        //     rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
-        // }
+        grapplingHook.LaunchGrapple();
+    }
+
+    public override void JumpCancel()
+    {
+        grapplingHook.CancelGrapple();
     }
 
     public override void Move(float deltaX, float deltaY = 0f)
@@ -194,7 +182,9 @@ public class CrystallineLocomotion : HostLocomotion
         if (IsAttackReady() && crystallineStab.CanStab())
         {
             ////audioSource.pitch = Random.Range(0.8f, 1.2f);
-            GetOneShotSource().PlayOneShot(stabClip);
+            ///
+           //GetOneShotSource().PlayOneShot(stabClip);
+
             currentWindUpTime = windUp;
             //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
@@ -208,6 +198,7 @@ public class CrystallineLocomotion : HostLocomotion
 
     private void ActivateStab()
     {
+        attackEventInstance.start();
         crystallineStab.isDamageActive = true;
     }
 
@@ -344,5 +335,18 @@ public class CrystallineLocomotion : HostLocomotion
         //change light source
         ligthSource.SetActive(false);
         possessedLightSource.SetActive(true);
+    }
+
+    public override void SetMoveSpeed(float newSpeed)
+    {
+        base.SetMoveSpeed(newSpeed);
+        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
+        rb2D.gravityScale = g / Physics2D.gravity.y;
+        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
+    }
+
+    public override bool CanJump()
+    {
+        return groundChecker.isGrounded || ceilChecker.isGrounded || wallCheckerL.isGrounded || wallCheckerR.isGrounded;
     }
 }

@@ -17,17 +17,10 @@ public class PlayerLocomotion : HostLocomotion
     [SerializeField]
     private GameObject playerBody;
 
-    [Header("SFX")]
-    [SerializeField]
-    private AudioClip movementLoopClip;
-    [SerializeField]
-    private AudioClip FMAMoveLoopClip;
-    [SerializeField]
-    private AudioClip jumpClip;
-    [SerializeField]
-    private AudioClip landClip;  
+    private FMODUnity.StudioEventEmitter emitter;
 
     [SerializeField] private float distanceToFallToPlayLandClip = 2f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +37,9 @@ public class PlayerLocomotion : HostLocomotion
         rb2D.gravityScale = g / Physics2D.gravity.y;
 
         originalMoveSpeed = moveSpeed;
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
         //audioSource.loop = true;
-        GetAudioSource().clip = movementLoopClip;
-    }
+}
 
     // Update is called once per frame
     void FixedUpdate()
@@ -80,33 +73,32 @@ public class PlayerLocomotion : HostLocomotion
         if (heightJumped >= distanceToFallToPlayLandClip && groundChecker.isGrounded)
         {
             heightJumped = 0f;
-            GetOneShotSource().PlayOneShot(landClip);
+            landEventInstance.start();
         }
 
         if (rb2D.velocity.x != 0)
         {
-            if (!GetAudioSource().isPlaying)
+            if (!emitter.IsPlaying())
             {
-                GetAudioSource().Play();
+                emitter.Play();
             }
         }
         else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
         {
-            if (!GetAudioSource().isPlaying)
+            if (!emitter.IsPlaying())
             {
-                GetAudioSource().Play();
+                emitter.Play();
             }
         }
         else
         {
-            GetAudioSource().Stop();
+            emitter.Stop();
         }
-        
+
 
         if (GameManager.Instance.isPaused)
         {
-            GetAudioSource().Stop();
-            GetOneShotSource().Stop();
+            emitter.Stop();
         }
     }
 
@@ -122,9 +114,11 @@ public class PlayerLocomotion : HostLocomotion
             animator.SetBool("Jumping", true);
             heightJumped = 0f;
 
-            GetOneShotSource().PlayOneShot(jumpClip);
+            jumpEventInstance.start();
         }
     }
+
+    public override void JumpCancel() { }
 
     public override void Move(float deltaX, float deltaY)
     {
@@ -150,7 +144,10 @@ public class PlayerLocomotion : HostLocomotion
 
     public void EnableFreeMovement(float speedModifier = 1.0f)
     {
-        GetAudioSource().clip = FMAMoveLoopClip;
+        //GetAudioSource().clip = FMAMoveLoopClip;
+        //emitter.EventInstance.setParameterByName("Terrain", 1);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 1);
+
         heightJumped = 0f;
         moveSpeed *= speedModifier;
         rb2D.gravityScale = 0.0f;
@@ -161,7 +158,10 @@ public class PlayerLocomotion : HostLocomotion
 
     public void DisableFreeMovement()
     {
-        GetAudioSource().clip = movementLoopClip;
+        //GetAudioSource().clip = movementLoopClip;
+        //emitter.EventInstance.setParameterByName("Terrain", 0);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 0);
+
         moveSpeed = originalMoveSpeed;
         rb2D.gravityScale = gravityScale;
         animator.SetBool("IsInFreeMovement", false);

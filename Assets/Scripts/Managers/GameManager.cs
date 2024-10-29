@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
         }
         if (virtualCamera == null)
         {
-            virtualCamera = GameObject.FindObjectOfType<CinemachineVirtualCamera>();
+            virtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInParent<CinemachineVirtualCamera>();
         }
         if (levelEventSystem == null)
         {

@@ -12,9 +12,7 @@ public class MovingBlock : MonoBehaviour, IActivatableElement
     public Animator animator;
     public bool isOpened = false;
 
-    private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip movingClip;
+    private FMODUnity.StudioEventEmitter emitter;
 
     private Vector3 nextPosition = Vector3.zero;
 
@@ -60,8 +58,7 @@ public class MovingBlock : MonoBehaviour, IActivatableElement
             //movingSpeed *= 200f;
         }
 
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = movingClip;
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     // Update is called once per frame
@@ -69,13 +66,13 @@ public class MovingBlock : MonoBehaviour, IActivatableElement
     {
         transform.position = Vector3.MoveTowards(transform.position, nextPosition, movingSpeed * Time.deltaTime);
 
-        if (!audioSource.isPlaying && (transform.position - nextPosition).sqrMagnitude > 0.01f) //transform.position != nextPosition
+        if (!emitter.IsPlaying() && (transform.position - nextPosition).sqrMagnitude > 0.01f) //transform.position != nextPosition
         {
-            audioSource.Play();
+            emitter.Play();
         }
-        if (audioSource.isPlaying && transform.position == nextPosition)
+        if (emitter.IsPlaying() && transform.position == nextPosition)
         {
-            audioSource.Stop();
+            emitter.Stop();
         }
     }
     

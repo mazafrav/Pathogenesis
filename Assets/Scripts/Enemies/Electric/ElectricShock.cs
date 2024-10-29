@@ -17,9 +17,17 @@ public class ElectricShock : MonoBehaviour
 
     private DamageControl damageControl;
 
+    private FMODUnity.StudioEventEmitter emitter;
+
     private void Awake()
     {
         damageControl = GetComponentInParent<DamageControl>();
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+    }
+
+    private void OnEnable()
+    {
+        GetComponent<Animator>().Play("ElectricShock-Buildup");
     }
 
     private void Update()
@@ -45,16 +53,24 @@ public class ElectricShock : MonoBehaviour
             }
             else if (o.gameObject.GetComponent<ElectroReceptor>() != null)
             {
-                ElectroReceptor electroReceptor = o.gameObject.GetComponent<ElectroReceptor>();
-                if (!electroReceptor.isActive)
-                {
-                    electroReceptor.ElectroShock();
-                }
+                o.gameObject.GetComponent<ElectroReceptor>().ElectroShock();
             }
             else if (o.gameObject.GetComponent<CrystalBlock>() != null)
             {
                 o.gameObject.GetComponent<CrystalBlock>().DestroyCrystalBlock();
             }
-        }       
+        }
+
+        if (GameManager.Instance.isPaused)
+        {
+            emitter.Stop();
+        }
+        else
+        {
+            if (!emitter.IsPlaying())
+            {
+                emitter.Play();
+            }
+        }
     }   
 }

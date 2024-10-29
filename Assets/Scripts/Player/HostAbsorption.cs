@@ -30,7 +30,9 @@ public class HostAbsorption : Interactable
     private ParticleSystem possessParticles;
 
     [Header("SFX")]
-    [SerializeField] private AudioClip possessionClip;
+    [SerializeField] 
+    private string possessionEventPath = "event:/SFX/Player/Player Enemy Possession";
+    private FMOD.Studio.EventInstance possessionEventInstance;
 
     private float originalZoom;
     private float possessionTimer = 0.0f;
@@ -53,6 +55,7 @@ public class HostAbsorption : Interactable
         playerLocomotion = GameManager.Instance.GetPlayerLocomotion();
         enemyBehaviour = GetComponent<Enemy>();
         Physics2D.queriesStartInColliders = false;
+        possessionEventInstance = FMODUnity.RuntimeManager.CreateInstance(possessionEventPath);
     }
 
     protected override void Update()
@@ -174,8 +177,10 @@ public class HostAbsorption : Interactable
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
             {
-                cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>().setNewFollow(hostLocomotion.transform);
-                cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>().StartPossessionEffect(possessionEffectTime);
+                CameraSwitchManagement cameraSwitchManagement = cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>();
+
+                cameraSwitchManagement?.setNewFollow(hostLocomotion.transform);
+                cameraSwitchManagement?.StartPossessionEffect(possessionEffectTime);
             }
 
             RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
@@ -187,8 +192,20 @@ public class HostAbsorption : Interactable
                 rangedEnemy.ResetRigidbodyConstraints();
                 rangedEnemy.SetAimBehaviour(true);
             }
+
+            ElectricEnemy electricEnemy = GetComponent<ElectricEnemy>();
+            if (electricEnemy != null)
+            {
+                playerController.shootingComponent = electricEnemy.GetShootingComponent();
+            }
+
+
             possessionTimer = possessionEffectTime;
-            hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
+
+            //hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
+
+            possessionEventInstance.start();
+
             /*
             currentTimeToZoomIn = possessionEffectTime/2.0f;
             currentTimeToZoomOut = possessionEffectTime/2.0f;

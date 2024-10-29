@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Collections.AllocatorManager;
 
 public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
 {
+    [SerializeField]
+    private ElectricFollowRange electricFollowRange;
+
+    [SerializeField]
+    private Transform electricShockPivot;
+
     [SerializeField]
     private Collider2D interactionCollider;
     [SerializeField]
@@ -28,9 +35,13 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
     {
         interactionCollider.OverlapCollider(filter, collidedObjects);
         collidedObjects.RemoveAll(obj => !obj.gameObject.CompareTag("Player") && !obj.gameObject.CompareTag("Enemy"));//We elimante objects that are not the player or enemies
-        collidedObjects.RemoveAll(obj=>obj.GetComponent<ElectricEnemy>()); // We eliminate Electric enemies because we dont want to attack them
+        if (!electricEnemy.CanAttackSameSpecie)
+        {
+            collidedObjects.RemoveAll(obj => obj.GetComponent<ElectricEnemy>()); // We eliminate Electric enemies because we dont want to attack them
+        }
+        collidedObjects.Remove(electricEnemy.GetComponent<Collider2D>()); //I remove myself
 
-        if(collidedObjects.Count <= 0) //We dont have any organism, we deactivate the shock
+        if (collidedObjects.Count <= 0 || electricFollowRange.VisibleTargetsInRange().Count <= 0) //We dont have any organism, we deactivate the shock
         {
             if (electricLocomotion.inAttackRange && electricLocomotion.currentRemainingShockTime > 0.0f)
             {
@@ -48,12 +59,26 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
         {
             foreach (Collider2D obj in collidedObjects) //We activate the shock
             {
-                if (electricEnemy.ISeeingTarget() && (obj.gameObject.CompareTag("Player") || obj.gameObject.CompareTag("Enemy")) && obj.GetComponent<ElectricEnemy>() == null)
+                if (electricEnemy.CanAttackSameSpecie && electricEnemy.ISeeingTarget() && obj.transform.parent != null) //Possessed electric enemy
                 {
-                    electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
-                    locomotion.Attack();
-                }           
+                    Attack(obj.transform);
+                }
+                else if (electricEnemy.ISeeingTarget() && electricFollowRange.VisibleTargetsInRange().Contains(obj.gameObject) && obj.GetComponent<ElectricEnemy>() == null) //Other enemies except electric
+                {
+                    Attack(obj.transform);
+                }
             }
         }
+    }
+
+
+    void Attack(Transform target)
+    {
+        Vector3 targetDir = (target.position - transform.position).normalized;
+        float angle = Mathf.Atan2(targetDir.x, targetDir.y) * Mathf.Rad2Deg;
+        electricShockPivot.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
+
+        electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
+        locomotion.Attack();
     }
 }

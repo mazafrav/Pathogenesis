@@ -9,20 +9,20 @@ public class ShootingComponent : MonoBehaviour
     private float deadZone = 0.5f;
 
     private bool flipRot = true;
-    public bool bisActive = true;
+    public bool bisActive { get; set; } = true;
 
-    RangedEnemy enemyIA;
+    private Enemy enemyIA;
 
     private void Start()
     {
-        enemyIA = GetComponentInParent<RangedEnemy>();
+        enemyIA = GetComponentInParent<Enemy>();
     }
 
     public void Aim(Vector2 target)
     {
         // if(!bisActive) return;
 
-        if (enemyIA.enabled || (!enemyIA.enabled && !GameManager.Instance.IsThereAGamepadConnected && !GameManager.Instance.GetPlayerController().isPossessing)) //The ranged enemy AI is active or is disabled with no gamepads connected
+        if (enemyIA.enabled || (!enemyIA.enabled && !GameManager.Instance.IsThereAGamepadConnected && !GameManager.Instance.GetPlayerController().isPossessing)) //The enemy AI is active or is disabled with no gamepads connected
         {
             transform.up = new Vector2(target.x - transform.position.x, target.y - transform.position.y);
         }

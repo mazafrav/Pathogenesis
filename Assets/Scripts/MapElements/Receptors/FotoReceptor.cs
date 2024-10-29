@@ -18,6 +18,9 @@ public class FotoReceptor : MonoBehaviour
     [SerializeField]
     private float timeToActivate = 1.5f;
 
+    private FMODUnity.StudioEventEmitter emitter;
+    [SerializeField] private float pitch = 0.5f;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -27,15 +30,18 @@ public class FotoReceptor : MonoBehaviour
             if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
         }
 
-        audioSource = GetComponent<AudioSource>();
-        audioSource.pitch += 0.5f;
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "FotoBullet")
         {
-            audioSource.PlayOneShot(activateClip);
+
+            emitter.Play();
+            emitter.EventInstance.getPitch(out float originalPitch);
+            emitter.EventInstance.setPitch(originalPitch + pitch);
+
             foreach (var element in activatableElement)
             {
                 ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;

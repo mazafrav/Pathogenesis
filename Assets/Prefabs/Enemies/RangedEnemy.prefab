@@ -92,7 +92,8 @@ MonoBehaviour:
   patrolSpeed: 2
   minDistanceToWaypoint: 0.3
   deathEffect: {fileID: 4784911079922076189, guid: a2b475ddab912154bb2dac7b34e55fd8, type: 3}
-  detectClip: {fileID: 8300000, guid: 2122c987452adc3488334f9577cb3c8d, type: 3}
+  detectEventPath: event:/SFX/Enemies/Enemy Detect
+  pitch: 0.5
   graphics: {fileID: 6336304723267710215}
   detectionRange: 8
   shootDetection: {fileID: 7212329797493683486}
@@ -119,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possessingParameters: {fileID: 11400000, guid: b5806cabaa478d34bb440d0911268ef8, type: 2}
+  locomotionEventNames: {fileID: 11400000, guid: 7650b3ae806221c44ae068afdf1c8ce1, type: 2}
   moveSpeed: 2
   jumpHeight: 4
   jumpDistance: 4
@@ -177,7 +179,7 @@ MonoBehaviour:
   absortionParticles: {fileID: 3343275468964738342, guid: d8c8f8e1cbfce63438a0565e6d7d088a, type: 3}
   possessColor: {r: 0.8862745, g: 0.8862745, b: 0.8862745, a: 1}
   possessParticles: {fileID: 3343275468964738342, guid: 32568aafc63da6e4ebc7269e0bbc3fda, type: 3}
-  possessionClip: {fileID: 8300000, guid: 69ded90d25a5a774c9054027434afe62, type: 3}
+  possessionEventPath: event:/SFX/Player/Player Enemy Possession
 --- !u!114 &6805146684784495755
 MonoBehaviour:
   m_ObjectHideFlags: 0

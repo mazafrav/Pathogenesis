@@ -6,14 +6,20 @@ public class Reflect : MonoBehaviour
 {
     [Header("SFX")]
     [SerializeField]
-    private AudioClip deflectClip;
+    private string deflectEventName = "Crystalline Deflect";
+
+    private string deflectEventPath;
 
     private HostLocomotion locomotion;
+
+    private FMOD.Studio.EventInstance deflectEventInstance;
 
     // Start is called before the first frame update
     void Start()
     {
         locomotion = GetComponentInParent<HostLocomotion>();
+        deflectEventPath = locomotion.locomotionEventNames.GenericEventsPath + deflectEventName;
+        deflectEventInstance = FMODUnity.RuntimeManager.CreateInstance(deflectEventPath);
     }
 
     // Update is called once per frame
@@ -24,6 +30,6 @@ public class Reflect : MonoBehaviour
 
     public void PlayDeflectClip()
     {
-        locomotion.GetOneShotSource().PlayOneShot(deflectClip);
+         deflectEventInstance.start();
     }
 }
