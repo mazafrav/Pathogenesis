@@ -20,6 +20,12 @@ public class ElectroReceptor : MonoBehaviour
     [SerializeField]
     private AudioClip activateClip;
 
+    [SerializeField]
+    private ReceptorActivationProjectile activationProjectilePrefab; 
+
+    [SerializeField]
+    private float timeToActivate = 1.5f;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -43,12 +49,22 @@ public class ElectroReceptor : MonoBehaviour
         }
     }
 
+    private IEnumerator activateBlock(GameObject target)
+    {
+        yield return new WaitForSeconds(timeToActivate);
+        target.GetComponent<IActivatableElement>()?.Activate();
+    }
+
     public void ElectroShock()
     {
         currentTimeToBeActivatedAgain = timeToBeActivatedAgain;
         isActive = true;
-        activatableInterface.Activate();
         audioSource.PlayOneShot(activateClip);
+
+        ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;
+        activationProjectile.Initialize(activatableElement, timeToActivate);
+        StartCoroutine(activateBlock(activatableElement));
+        
         GetComponentInParent<Animator>().Play("ElectroReceptorDeactAnim");
     }
 }

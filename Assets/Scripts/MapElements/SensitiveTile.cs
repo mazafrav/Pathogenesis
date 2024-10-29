@@ -21,6 +21,11 @@ public class SensitiveTile : MonoBehaviour
     [SerializeField]
     private AudioClip activateClip;
 
+    [SerializeField]
+    private ReceptorActivationProjectile activationProjectilePrefab; 
+    [SerializeField]
+    private float timeToActivate = 1.5f;
+
     private void Start()
     {
         /*
@@ -66,8 +71,16 @@ public class SensitiveTile : MonoBehaviour
         audioSource.PlayOneShot(activateClip);
         for (var index = 0; index < activatableElements.Length; index++)
         {
-            activatableElements[index].GetComponent<IActivatableElement>().Activate();
+            ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;
+            activationProjectile.Initialize(activatableElements[index], timeToActivate);
+            StartCoroutine(activateBlock(activatableElements[index]));
         }
+    }
+
+    private IEnumerator activateBlock(GameObject target)
+    {
+        yield return new WaitForSeconds(timeToActivate);
+        target.GetComponent<IActivatableElement>()?.Activate();
     }
 
 }

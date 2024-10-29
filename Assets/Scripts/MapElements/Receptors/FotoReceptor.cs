@@ -15,6 +15,8 @@ public class FotoReceptor : MonoBehaviour
     private AudioClip activateClip;
     [SerializeField]
     private ReceptorActivationProjectile activationProjectilePrefab; 
+    [SerializeField]
+    private float timeToActivate = 1.5f;
 
     // Start is called before the first frame update
     private void Start()
@@ -37,9 +39,16 @@ public class FotoReceptor : MonoBehaviour
             foreach (var element in activatableElement)
             {
                 ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;
-                activationProjectile.SetTarget(element);
+                activationProjectile.Initialize(element, timeToActivate);
+                StartCoroutine(activateBlock(element));
                 GetComponentInParent<Animator>().Play("FotoReceptorDeactAnim");
             }
         }
+    }
+
+    private IEnumerator activateBlock(GameObject target)
+    {
+        yield return new WaitForSeconds(timeToActivate);
+        target.GetComponent<IActivatableElement>()?.Activate();
     }
 }
