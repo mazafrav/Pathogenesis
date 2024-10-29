@@ -12,6 +12,11 @@ public class KineticReceptor : MonoBehaviour
     public ParticleSystem destructionVFX;
     private IActivatableElement activatableInterface;
 
+    [SerializeField]
+    private ReceptorActivationProjectile activationProjectilePrefab; 
+    [SerializeField]
+    private float timeToActivate = 1.5f;
+
     private CircleCollider2D circleCollider;
     private SpriteRenderer spriteRenderer;
 
@@ -31,7 +36,10 @@ public class KineticReceptor : MonoBehaviour
 
     public void Stabbed()
     {
-        activatableInterface.Activate();
+        ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;
+        activationProjectile.Initialize(activatableElement, timeToActivate);
+        StartCoroutine(activateBlock(activatableElement));
+
         ParticleSystem bulletVFX = Instantiate(destructionVFX, this.gameObject.transform.position, Quaternion.identity);
         bulletVFX.Play();
 
@@ -42,7 +50,12 @@ public class KineticReceptor : MonoBehaviour
         circleCollider.enabled = false;
         spriteRenderer.enabled = false;
         emitter.EventDescription.getLength(out int length);
-        Debug.Log("Length: " + length);
-        Destroy(this.gameObject, length);
+        Destroy(this.gameObject, 2f);
+    }
+
+    private IEnumerator activateBlock(GameObject target)
+    {
+        yield return new WaitForSeconds(timeToActivate);
+        target.GetComponent<IActivatableElement>()?.Activate();
     }
 }

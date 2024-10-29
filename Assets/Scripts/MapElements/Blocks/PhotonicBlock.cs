@@ -109,4 +109,10 @@ public class PhotonicBlock : MonoBehaviour, IActivatableElement
         animator.Play("PhotonicBlockActivation");
         nextPosition = pointClose.position;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log(other.name);
+    }
+
 }

@@ -10,6 +10,13 @@ public class FotoReceptor : MonoBehaviour
     public GameObject[] activatableElement;
     [SerializeField]
     public float timeToDeactivate = 0f;
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip activateClip;
+    [SerializeField]
+    private ReceptorActivationProjectile activationProjectilePrefab; 
+    [SerializeField]
+    private float timeToActivate = 1.5f;
 
     private FMODUnity.StudioEventEmitter emitter;
     [SerializeField] private float pitch = 0.5f;
@@ -37,9 +44,17 @@ public class FotoReceptor : MonoBehaviour
 
             foreach (var element in activatableElement)
             {
-                element.GetComponent<IActivatableElement>().Activate();
+                ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;
+                activationProjectile.Initialize(element, timeToActivate);
+                StartCoroutine(activateBlock(element));
                 GetComponentInParent<Animator>().Play("FotoReceptorDeactAnim");
             }
         }
+    }
+
+    private IEnumerator activateBlock(GameObject target)
+    {
+        yield return new WaitForSeconds(timeToActivate);
+        target.GetComponent<IActivatableElement>()?.Activate();
     }
 }

@@ -29,6 +29,12 @@ public class ElectroReceptor : MonoBehaviour
     private IEnumerator lingeringTimer;
     private AudioSource audioSource;
 
+    [SerializeField]
+    private ReceptorActivationProjectile activationProjectilePrefab; 
+
+    [SerializeField]
+    private float timeToActivateBlock = 1.5f;
+
     private IActivatableElement activatableInterface;
     // Start is called before the first frame update
     private void Start()
@@ -50,7 +56,9 @@ public class ElectroReceptor : MonoBehaviour
                 if (currentTime > timeToActivate)
                 // time of activation completed: activate element, reset state and start cooldown
                 {
-                    activatableInterface.Activate();
+                    ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;
+                    activationProjectile.Initialize(activatableElement, timeToActivateBlock);
+                    StartCoroutine(activateBlock(activatableElement));
                     //VFX ACTIVATION
                     stage = Stage.IDLE;
                     currentTime = 0.0f;
@@ -96,6 +104,12 @@ public class ElectroReceptor : MonoBehaviour
         {
             GetComponentInParent<Animator>().Play("ElectroReceptor-Stage2");
         }
+    }
+
+    private IEnumerator activateBlock(GameObject target)
+    {
+        yield return new WaitForSeconds(timeToActivateBlock);
+        target.GetComponent<IActivatableElement>()?.Activate();
     }
 
     public void ElectroShock()
