@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -59,6 +60,8 @@ public class CrystallineLocomotion : HostLocomotion
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
     [SerializeField] GameObject possessedLightSource;
+
+    public GrapplingHook GetGrapplingHook() => grapplingHook;
 
     void Start()
     {
@@ -347,5 +350,6 @@ public class CrystallineLocomotion : HostLocomotion
         return groundChecker.isGrounded || ceilChecker.isGrounded || wallCheckerL.isGrounded || wallCheckerR.isGrounded;
     }
 
+   
   
 }
