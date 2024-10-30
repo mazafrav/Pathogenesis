@@ -186,4 +186,9 @@ public class PlayerLocomotion : HostLocomotion
     {
         return;
     }
+
+    public override void CancelAttack()
+    {
+        return;
+    }
 }

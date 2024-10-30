@@ -56,6 +56,7 @@ public abstract class HostLocomotion : MonoBehaviour
     public void JumpButtonUp() { coyoteTimeCounter = 0; JumpCancel();  }
     public abstract void Move(float deltaX, float deltaY=0);
     public abstract void Attack(Vector3 target = default);
+    public abstract void CancelAttack();
     public abstract bool IsAttackReady();
     public abstract void ResetAttack();
 

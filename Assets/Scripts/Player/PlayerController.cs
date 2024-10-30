@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Jump.canceled += JumpButtomUp;
         playerInputActions.Player.Attack.performed += Attack;
+        playerInputActions.Player.Attack.canceled += CancelAttack;
         playerInputActions.Player.PauseMenu.performed += PauseMenu;
 
         inputBuffer = new Queue<string>(5);
@@ -149,6 +150,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Jump.performed -= Jump;
         playerInputActions.Player.Jump.canceled -= JumpButtomUp;
         playerInputActions.Player.Attack.performed -= Attack;
+        playerInputActions.Player.Attack.performed -= CancelAttack;
         playerInputActions.Player.PauseMenu.performed -= PauseMenu;
     }
 
@@ -185,6 +187,14 @@ public class PlayerController : MonoBehaviour
             //locomotion.Attack(mousePos);
             inputBuffer.Enqueue("attack");
             Invoke("RemoveAction", inputBufferTime);
+        }
+    }
+
+    private void CancelAttack(InputAction.CallbackContext context)
+    {
+        if (GameManager.Instance.canPlayerProcessInput)
+        {
+            locomotion.CancelAttack();
         }
     }
 

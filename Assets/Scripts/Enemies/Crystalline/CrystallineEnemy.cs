@@ -97,14 +97,15 @@ public class CrystalineEnemy : Enemy
             {
                 crystallineLocomotion.SetMoveSpeed(chaseSpeed);
 
-                if (Vector3.Distance(transform.position, range.personInRange.transform.position) <= stabRange)
-                {
-                    locomotion.Attack();
-                }
-                else
-                {
+                //AI dont attack
+                //if (Vector3.Distance(transform.position, range.personInRange.transform.position) <= stabRange)
+                //{
+                //    locomotion.Attack();
+                //}
+                //else
+                //{
                     locomotion.Move(direction.x, direction.y);
-                }
+                //}
                 UpdateOrientation(range.personInRange.transform.position);
 
                 CheckIfDetected(range.personInRange);

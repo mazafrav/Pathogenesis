@@ -384,6 +384,11 @@ public class ElectricLocomotion : HostLocomotion
         possessedLightSource.SetActive(true);
     }
 
+    public override void CancelAttack()
+    {
+        
+    }
+
     //public float GetShockDuration()
     //{
     //    return shockDuration;

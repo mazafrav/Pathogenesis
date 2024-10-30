@@ -187,4 +187,9 @@ public class RangedLocomotion : HostLocomotion
         rb2D.gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
     }
+
+    public override void CancelAttack()
+    {
+        
+    }
 }

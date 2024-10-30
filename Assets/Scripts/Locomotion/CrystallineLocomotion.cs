@@ -56,10 +56,6 @@ public class CrystallineLocomotion : HostLocomotion
 
     public AdhesionDirection directionClimb = AdhesionDirection.S;
 
-    //[Header("SFX")]
-    //[SerializeField]
-    //private AudioClip stabClip;
-
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
     [SerializeField] GameObject possessedLightSource;
@@ -118,44 +114,43 @@ public class CrystallineLocomotion : HostLocomotion
             directionClimb = AdhesionDirection.S;
         }
 
-        if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
-        {
-            currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
+        //Wind up and cooldown timers
+        //if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
+        //{
+        //    currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
 
-            ChangeSpritesColor(Color.Lerp(GetCurrentColor(), colorWhileWindUp, 1.0f - currentWindUpTime));
-            if (currentWindUpTime <= 0f)
-            {
-                ActivateStab();
-            }
-        }
-        else if (crystallineStab.isDamageActive)
-        {
-            currentStabDuration = Mathf.Max(currentStabDuration - Time.deltaTime, 0f);
-            crystallineStab.MoveStab(1 - Mathf.Abs(1 - 2 * (currentStabDuration / stabDuration)));
-            if (currentStabDuration <= 0f)
-            {
-                DeactivateStab();
-            }
-        }
-        else if (!crystallineStab.isDamageActive && currentCooldownTime > 0f)
-        {
-            currentCooldownTime = Mathf.Max(currentCooldownTime - Time.deltaTime, 0f);
-            //We only apply cooldown feedback when the player is controlling the electric enemy
-            if (playerController && playerController.locomotion.GetType() == this.GetType())
-            {
-                ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - currentCooldownTime));
-            }
-        }
+        //    ChangeSpritesColor(Color.Lerp(GetCurrentColor(), colorWhileWindUp, 1.0f - currentWindUpTime));
+        //    if (currentWindUpTime <= 0f)
+        //    {
+        //        ActivateStab();
+        //    }
+        //}
+        //else if (crystallineStab.isDamageActive)
+        //{
+        //    currentStabDuration = Mathf.Max(currentStabDuration - Time.deltaTime, 0f);
+        //    crystallineStab.MoveStab(1 - Mathf.Abs(1 - 2 * (currentStabDuration / stabDuration)));
+        //    if (currentStabDuration <= 0f)
+        //    {
+        //        DeactivateStab();
+        //    }
+        //}
+        //else if (!crystallineStab.isDamageActive && currentCooldownTime > 0f)
+        //{
+        //    currentCooldownTime = Mathf.Max(currentCooldownTime - Time.deltaTime, 0f);
+        //    //We only apply cooldown feedback when the player is controlling the electric enemy
+        //    if (playerController && playerController.locomotion.GetType() == this.GetType())
+        //    {
+        //        ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - currentCooldownTime));
+        //    }
+        //}
     }
 
     public override void Jump(float deltaY)
-    {
-        grapplingHook.LaunchGrapple();
+    {       
     }
 
     public override void JumpCancel()
     {
-        grapplingHook.CancelGrapple();
     }
 
     public override void Move(float deltaX, float deltaY = 0f)
@@ -179,15 +174,17 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void Attack(Vector3 target = default)
     {
-        if (IsAttackReady() && crystallineStab.CanStab())
-        {
-            ////audioSource.pitch = Random.Range(0.8f, 1.2f);
-            ///
-           //GetOneShotSource().PlayOneShot(stabClip);
+        //if (IsAttackReady() && crystallineStab.CanStab())
+        //{
+        //    currentWindUpTime = windUp;
+        //    //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+        //}
+        grapplingHook.LaunchGrapple();
+    }
 
-            currentWindUpTime = windUp;
-            //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-        }
+    public override void CancelAttack()
+    {
+        grapplingHook.CancelGrapple();
     }
 
     float AngleBetweenPoints(Vector2 a, Vector2 b)
@@ -349,4 +346,6 @@ public class CrystallineLocomotion : HostLocomotion
     {
         return groundChecker.isGrounded || ceilChecker.isGrounded || wallCheckerL.isGrounded || wallCheckerR.isGrounded;
     }
+
+  
 }
