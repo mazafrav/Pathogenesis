@@ -15,9 +15,9 @@ public class GrapplingHook : MonoBehaviour
     private Vector2 grapplePoint;
     private Vector2 ropePoint;
 
-    private bool launching = false; // the organism is launching the grapple
-    private bool grappling = false; // the organism is grappling to a surface
-    private bool retracting = false; // the organism is retracting the grapple
+    private bool launching = false; // the organism is launching the grapple, it moves to aiming point
+    private bool grappling = false; // the organism is grappling to a surface, the organism moves to the grapple point
+    private bool retracting = false; // the organism is retracting the grapple, it goes back to organism
 
     // Start is called before the first frame update
     void Start()
@@ -33,25 +33,40 @@ public class GrapplingHook : MonoBehaviour
         {
             if ( launching )
             {
+                // Update grapple hook position, lerp from starting point to aim point
                 ropePoint = Vector2.Lerp(ropePoint, aimPoint.transform.position, Time.deltaTime * ropeLauchSpeed);
                 rope.SetPosition(1, transform.position);
                 rope.SetPosition(0, ropePoint);
 
+                // Calculate current length of grapple
                 Vector2 direction = ropePoint - (Vector2)transform.position;
                 float distance = Vector2.Distance(transform.position, ropePoint);
-                if (distance < grappleDistance)
+                if (distance < grappleDistance) 
+                // grapple hasnt reached maximum distance
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, distance, grappleLayer);
                     if (hit.collider != null)
                     {
                         if (hit.collider.gameObject.CompareTag("Grappable"))
                         {
-                            grapplePoint = hit.point;
-                            grappleJoint.connectedAnchor = grapplePoint;
-                            grappleJoint.enabled = true;
+                            if (hit.collider.gameObject.GetType() == typeof(KineticReceptor))
+                            // collided object is a receptor
+                            {
 
-                            launching = false;
-                            grappling = true;
+
+
+                            }
+                            else 
+                            // collided object is tilemap
+                            {
+                                // activate joint
+                                grapplePoint = hit.point;
+                                grappleJoint.connectedAnchor = grapplePoint;
+                                grappleJoint.enabled = true;
+
+                                launching = false;
+                                grappling = true;
+                            }
                         }
                         else
                         {
@@ -68,11 +83,14 @@ public class GrapplingHook : MonoBehaviour
             } 
             else if (grappling)
             {
+                // update grapple position 
                 rope.SetPosition(1, transform.position);
                 rope.SetPosition(0, ropePoint);
             }
             else if ( retracting )
             {
+                
+                // move grapple hook back to the organism
                 ropePoint = Vector2.Lerp(ropePoint, transform.position, Time.deltaTime * ropeLauchSpeed * 2);
                 rope.SetPosition(1, transform.position);
                 rope.SetPosition(0, ropePoint);
@@ -98,6 +116,7 @@ public class GrapplingHook : MonoBehaviour
 
     public void DismantleGrapple()
     {
+        // disable elements and reset flags
         grappleJoint.enabled = false;
         rope.enabled = false;
         grappling = false;
