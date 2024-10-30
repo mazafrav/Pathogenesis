@@ -155,7 +155,7 @@ MonoBehaviour:
   followGameObject: {fileID: 6911789383419822696}
   attackGameObject: {fileID: 2849769192153137201}
   followRange: 5.5
-  attackRange: 3
+  attackRange: 4
   shockRange: 1.5
   cooldown: 0.2
   windUp: 0.5
@@ -427,7 +427,7 @@ ParticleSystemForceField:
     m_DirectionCurveY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.5
+      scalar: 4.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -878,7 +878,7 @@ Transform:
   m_GameObject: {fileID: 3954916039054728215}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.084, y: -0.649, z: 0}
+  m_LocalPosition: {x: 0.084, y: -0.491, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

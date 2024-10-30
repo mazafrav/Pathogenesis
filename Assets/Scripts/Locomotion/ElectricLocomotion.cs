@@ -278,11 +278,11 @@ public class ElectricLocomotion : HostLocomotion
     {
         base.DeactivateAttack();
         DeactivateShock();
-        electricShockVFX.Stop();
     }
     public void DeactivateShock()
     {
         shockGameObject.SetActive(false);
+        electricShockVFX.Stop();
 
         //if (GetAudioSource().isPlaying)
         //{
