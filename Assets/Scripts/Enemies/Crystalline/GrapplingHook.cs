@@ -24,6 +24,7 @@ public class GrapplingHook : MonoBehaviour
     {
         grappleJoint.enabled = false;
         rope.enabled = false;
+        Physics2D.queriesStartInColliders = false;
     }
 
     // Update is called once per frame
@@ -47,14 +48,13 @@ public class GrapplingHook : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, distance, grappleLayer);
                     if (hit.collider != null)
                     {
-                        if (hit.collider.gameObject.CompareTag("Grappable"))
+                        if (hit.collider.gameObject.CompareTag("MapElement"))
                         {
-                            if (hit.collider.gameObject.GetType() == typeof(KineticReceptor))
+                            KineticReceptor kineticReceptor = hit.collider.gameObject.GetComponent<KineticReceptor>();
+                            if (kineticReceptor)
                             // collided object is a receptor
                             {
-
-
-
+                                kineticReceptor.Stabbed();
                             }
                             else 
                             // collided object is tilemap
