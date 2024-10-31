@@ -19,9 +19,12 @@ public class GrapplingHook : MonoBehaviour
     private bool grappling = false; // the organism is grappling to a surface, the organism moves to the grapple point
     private bool retracting = false; // the organism is retracting the grapple, it goes back to organism
 
+    private GameObject defaultAimPoint; //the aim point used by the enemy
+
     // Start is called before the first frame update
     void Start()
     {
+        defaultAimPoint = aimPoint;
         grappleJoint.enabled = false;
         rope.enabled = false;
         Physics2D.queriesStartInColliders = false;
@@ -86,6 +89,11 @@ public class GrapplingHook : MonoBehaviour
                 // update grapple position 
                 rope.SetPosition(1, transform.position);
                 rope.SetPosition(0, ropePoint);
+               
+                if (Vector2.Distance(transform.position, ropePoint) < 0.7f)
+                {
+                    DismantleGrapple();
+                }
             }
             else if ( retracting )
             {
@@ -137,4 +145,13 @@ public class GrapplingHook : MonoBehaviour
         }
     }
 
+    public void SetAimPoint(GameObject newAimPoint)
+    {
+        aimPoint = newAimPoint;
+    }
+
+    public void ResetAimPoint()
+    {
+        aimPoint = defaultAimPoint;
+    }
 }
