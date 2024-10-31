@@ -135,13 +135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b4cd1f39a09db040bd74291dcf9b443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatableElement: {fileID: 0}
+  targetElements: []
+  triggerVFX: {fileID: 611185172726488819, guid: e0245a22fccd7e04895262cec63480a3, type: 3}
+  triggerDelay: 0.5
+  pitch: -0.5
   timeToActivate: 1
   lingeringTimeShock: 0.1
   cooldownTime: 0.3
-  pitch: -0.5
-  activationProjectilePrefab: {fileID: 611185172726488819, guid: e0245a22fccd7e04895262cec63480a3, type: 3}
-  timeToActivateBlock: 0.5
 --- !u!95 &8225193837037947966
 Animator:
   serializedVersion: 5

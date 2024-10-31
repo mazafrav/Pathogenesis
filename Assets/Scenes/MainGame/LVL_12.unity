@@ -10582,6 +10582,14 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4336386520266715270, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
+      propertyPath: targetElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336386520266715270, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
+      propertyPath: targetElements.Array.data[0]
+      value: 
+      objectReference: {fileID: 585872368}
+    - target: {fileID: 4336386520266715270, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
       propertyPath: activatableElements.Array.data[0]
       value: 
       objectReference: {fileID: 585872368}
@@ -11098,11 +11106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000076293945
+      value: 0.000005722046
       objectReference: {fileID: 0}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.712107
+      value: -9.712109
       objectReference: {fileID: 0}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13202,6 +13210,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4336386520266715270, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
+      propertyPath: targetElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336386520266715270, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
+      propertyPath: targetElements.Array.data[0]
+      value: 
+      objectReference: {fileID: 2045134307}
     - target: {fileID: 4336386520266715270, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
       propertyPath: activatableElements.Array.data[0]
       value: 

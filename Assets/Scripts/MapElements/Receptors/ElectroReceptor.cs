@@ -1,11 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectroReceptor : MonoBehaviour
+public class ElectroReceptor : ReceptorBase
 {
-    [SerializeField]
-    public GameObject activatableElement;
 
     [SerializeField]
     private float timeToActivate = 2f;
@@ -16,72 +13,27 @@ public class ElectroReceptor : MonoBehaviour
     [SerializeField]
     private float cooldownTime = 0.3f;
 
-
-    private FMODUnity.StudioEventEmitter emitter;
-    [SerializeField] private float pitch = -0.5f;
-
-    enum Stage { IDLE, STAGE_1, STAGE_2 };
+    private enum Stage { IDLE, STAGE_1, STAGE_2 };
     private Stage stage = Stage.IDLE;
     private float currentTime = 0.0f;
     private float currentCooldownTime = 0.0f;
-    public bool onCooldown { get; private set; } = false;
-    public bool isReceivingShock { get; private set; } = false;
+    private bool onCooldown = false;
+    private bool isReceivingShock = false;
     private IEnumerator lingeringTimer;
-    private AudioSource audioSource;
 
-    [SerializeField]
-    private ReceptorActivationProjectile activationProjectilePrefab; 
-
-    [SerializeField]
-    private float timeToActivateBlock = 1.5f;
-
-    private IActivatableElement activatableInterface;
-    // Start is called before the first frame update
-    private void Start()
-    {
-        //currentTimeToBeActivatedAgain = timeToBeActivatedAgain;
-        activatableInterface = activatableElement.GetComponent<IActivatableElement>();
-        if (activatableInterface == null) { throw new System.Exception("Object does not implement IActivaatbleElement"); }
-        
-        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
-    }
-
-    private void Update()
+    private new void Update()
     {
         if (!onCooldown)
         {
             if (isReceivingShock)
             {
                 currentTime += Time.deltaTime;
-                if (currentTime > timeToActivate)
-                // time of activation completed: activate element, reset state and start cooldown
-                {
-                    ReceptorActivationProjectile activationProjectile = Instantiate(activationProjectilePrefab, transform.position, Quaternion.identity) as ReceptorActivationProjectile;
-                    activationProjectile.Initialize(activatableElement, timeToActivateBlock);
-                    StartCoroutine(activateBlock(activatableElement));
-                    //VFX ACTIVATION
-                    stage = Stage.IDLE;
-                    currentTime = 0.0f;
-                    isReceivingShock = false;
-                    StopCoroutine(lingeringTimer);
-                    onCooldown = true;
-                    currentCooldownTime = cooldownTime;
-
-                }
-                else if (currentTime > timeToActivate / 2 && currentTime <= timeToActivate)
-                {
-                    stage = Stage.STAGE_2;
-                }
-                else if (currentTime > 0 && currentTime <= timeToActivate / 2)
-                {
-                    stage = Stage.STAGE_1;
-                }
+                UpdateStage();
             }
             else
             {
                 // if not receiving shock, reset state
-                stage = Stage.IDLE;
-                currentTime = 0.0f;
+                Reset();
             }
         }
         else
@@ -90,7 +42,42 @@ public class ElectroReceptor : MonoBehaviour
             if (currentCooldownTime < 0) { onCooldown = false; }
         }
 
-        //Checks current state and sets animation if necessary
+        UpdateAnimation();
+    }
+
+    private void Reset()
+    {
+        stage = Stage.IDLE;
+        currentTime = 0.0f;
+    }
+
+    private void UpdateStage()
+    {
+        if (currentTime > timeToActivate)
+        // time of activation completed: activate element, reset state and start cooldown
+        {
+            TriggerTargets();
+            //VFX ACTIVATION
+            Reset();
+            isReceivingShock = false;
+            StopCoroutine(lingeringTimer);
+            onCooldown = true;
+            currentCooldownTime = cooldownTime;
+
+        }
+        else if (currentTime > timeToActivate / 2 && currentTime <= timeToActivate)
+        {
+            stage = Stage.STAGE_2;
+        }
+        else if (currentTime > 0 && currentTime <= timeToActivate / 2)
+        {
+            stage = Stage.STAGE_1;
+        }
+    }
+
+    //Checks current state and sets animation if necessary
+    private void UpdateAnimation()
+    {
         AnimatorStateInfo animatorStateInfo = GetComponentInParent<Animator>().GetCurrentAnimatorStateInfo(0);
         if (stage == Stage.IDLE && !animatorStateInfo.IsName("ElectroReceptor-Idle"))
         {
@@ -106,23 +93,11 @@ public class ElectroReceptor : MonoBehaviour
         }
     }
 
-    private IEnumerator activateBlock(GameObject target)
-    {
-        yield return new WaitForSeconds(timeToActivateBlock);
-        target.GetComponent<IActivatableElement>()?.Activate();
-    }
-
     public void ElectroShock()
     {
         // if lingering timer is active, kill it
         if (lingeringTimer != null) { StopCoroutine(lingeringTimer); }
-        
         isReceivingShock = true;
-
-        // emitter.Play();
-        // emitter.EventInstance.getPitch(out float originalPitch);
-        // emitter.EventInstance.setPitch(originalPitch + pitch);
-       
         // reset lingering timer
         lingeringTimer = LingeringShockTimer();
         StartCoroutine(lingeringTimer);

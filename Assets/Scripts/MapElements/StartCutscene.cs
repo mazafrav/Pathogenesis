@@ -63,7 +63,7 @@ public class StartCutscene : MonoBehaviour
 
     public void MoveBlock()
     {
-        sensitiveTile.ActivateActivables();
+        sensitiveTile.TriggerTargets();
     }
 
     public void EndCutscene()

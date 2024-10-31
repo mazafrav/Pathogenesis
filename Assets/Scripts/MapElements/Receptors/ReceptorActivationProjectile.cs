@@ -27,7 +27,6 @@ public class ReceptorActivationProjectile : MonoBehaviour
         {
             speed = 0f;
             GetComponentInChildren<VisualEffect>()?.Stop();
-            Debug.Log( GetComponentInChildren<VisualEffect>());
             Destroy(gameObject, 2f);
         }
     }

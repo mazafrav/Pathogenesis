@@ -131,12 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a483e445dde8b249a052a1cd9847daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatableElements:
-  - {fileID: 0}
+  targetElements: []
+  triggerVFX: {fileID: 611185172726488819, guid: fbf37dfb70e64e342b95d00db3654f72, type: 3}
+  triggerDelay: 0.5
+  pitch: 0.5
   animator: {fileID: 1980311244927045336}
-  activateClip: {fileID: 8300000, guid: 8ad0208d764d3194ba501408f121820c, type: 3}
-  activationProjectilePrefab: {fileID: 611185172726488819, guid: fbf37dfb70e64e342b95d00db3654f72, type: 3}
-  timeToActivate: 0.5
 --- !u!61 &558502299355184760
 BoxCollider2D:
   m_ObjectHideFlags: 0

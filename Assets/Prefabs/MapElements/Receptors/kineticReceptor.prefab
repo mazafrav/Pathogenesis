@@ -134,12 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e4413bf039f344f83418372ffbfc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatableElement: {fileID: 0}
-  timeToDeactivate: 0
-  destructionVFX: {fileID: 4461264849037053233, guid: 3548d7c45ae62fc4d9897affad91111e, type: 3}
-  activationProjectilePrefab: {fileID: 611185172726488819, guid: 3f82f340927b8e74ca8b7586428b3938, type: 3}
-  timeToActivate: 0.5
+  targetElements: []
+  triggerVFX: {fileID: 611185172726488819, guid: 3f82f340927b8e74ca8b7586428b3938, type: 3}
+  triggerDelay: 0.5
   pitch: 0
+  destructionVFX: {fileID: 4461264849037053233, guid: 3548d7c45ae62fc4d9897affad91111e, type: 3}
 --- !u!114 &1647217741750075117
 MonoBehaviour:
   m_ObjectHideFlags: 0
