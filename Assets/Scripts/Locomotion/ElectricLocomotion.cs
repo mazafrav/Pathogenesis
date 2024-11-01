@@ -58,6 +58,7 @@ public class ElectricLocomotion : HostLocomotion
     private float currentPlanningGravity = 0.1f;
     private float newYPosition = 0.0f;
     private Vector3 startPosition = Vector3.zero;
+    private float propulsingTimeCounter = 0.0f;
     private bool isPropulsing = false, isPlanning = false;
 
     private float originalMoveSpeed;
@@ -161,19 +162,22 @@ public class ElectricLocomotion : HostLocomotion
         //Calculating new enemy position while jumping
         if (isPropulsing)
         {
-            if (!jumpParticles.isPlaying) 
-            {  
+            propulsingTimeCounter += Time.deltaTime;
+            if (!jumpParticles.isPlaying)
+            {
                 jumpParticles.Play();
             }
-            if (transform.position.y > startPosition.y + propulsionHeight) //Has reached the requiered height
+            if (transform.position.y > startPosition.y + propulsionHeight || propulsingTimeCounter >= propulsionTime) 
+            //Has reached the requiered height or time
             {
                 isPropulsing = false;
                 jumpParticles.Stop();
                 isPlanning = true;
+                propulsingTimeCounter = 0f;
             }
             else
             {
-                newYPosition += velocityY * Time.deltaTime;
+                //newYPosition += velocityY * Time.deltaTime;
             }
 
         }
@@ -200,7 +204,7 @@ public class ElectricLocomotion : HostLocomotion
         {
             if (transform.position.y < startPosition.y + propulsionHeight)
             {
-                rb2D.velocity = new Vector2(rb2D.velocity.x , newYPosition);
+                rb2D.velocity = new Vector2(rb2D.velocity.x , velocityY);//newYPosition);
             }
         }
     }
@@ -218,6 +222,7 @@ public class ElectricLocomotion : HostLocomotion
             rb2D.gravityScale = 1f;
             startPosition = transform.position;
             newYPosition = 0;
+            propulsingTimeCounter = 0f;
             isPropulsing = true;
         }
        

@@ -20291,6 +20291,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2888764600608411743, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
+      propertyPath: triggerDelay
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888764600608411743, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
       propertyPath: activatableElement
       value: 
       objectReference: {fileID: 641283835}
@@ -20298,6 +20302,14 @@ PrefabInstance:
       propertyPath: timeToBeActivatedAgain
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2888764600608411743, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
+      propertyPath: targetElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888764600608411743, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
+      propertyPath: targetElements.Array.data[0]
+      value: 
+      objectReference: {fileID: 641283835}
     - target: {fileID: 4903738322299356754, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.5
@@ -22146,6 +22158,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2888764600608411743, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
+      propertyPath: triggerDelay
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888764600608411743, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
       propertyPath: activatableElement
       value: 
       objectReference: {fileID: 1646512916}
@@ -22153,6 +22169,14 @@ PrefabInstance:
       propertyPath: timeToBeActivatedAgain
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2888764600608411743, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
+      propertyPath: targetElements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888764600608411743, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
+      propertyPath: targetElements.Array.data[0]
+      value: 
+      objectReference: {fileID: 1646512916}
     - target: {fileID: 4903738322299356754, guid: e9266822d5b9a9b45818694dcb2f8caf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.5
