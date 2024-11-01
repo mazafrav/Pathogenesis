@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RespawnCheckpoint : MonoBehaviour
 {
+    [SerializeField]
+    GameObject checkpointAnimUI;
+
     bool isActive = true;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,6 +33,7 @@ public class RespawnCheckpoint : MonoBehaviour
 
             // Saves the position stored in the RespawnCheckpoint prefab instance (this position is the prefab's first and only child) as the position to respawn
             GameManager.Instance.SetPlayerRespawnPosition(gameObject.transform.GetChild(0).position);
+            Instantiate(checkpointAnimUI);
         }
     }
 }
