@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
+using Unity.VisualScripting;
 
 public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -15,6 +16,10 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             particle.Play();
         }
+        if (GetComponent<Animator>() != null)
+        {
+            GetComponent<Animator>().Play("ButtonHighlight");
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -22,6 +27,10 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         foreach (var particle in _particleSystem)
         {
             particle.Stop();
+        }
+        if (GetComponent<Animator>() != null)
+        {
+            GetComponent<Animator>().Play("ButtonAnim");
         }
     }
 
@@ -31,6 +40,10 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             particle.Play();
         }
+        if (GetComponent<Animator>() != null)
+        {
+            GetComponent<Animator>().Play("ButtonHighlight");
+        }
     }
 
     public void OnDeselect(BaseEventData eventData)
@@ -39,6 +52,14 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             particle.Stop();
         }
+        if (GetComponent<Animator>() != null)
+        {
+            GetComponent<Animator>().Play("ButtonAnim");
+        }
     }
 
+    public void OnClick()
+    {
+        GetComponent<Animator>().Play("ButtonSelected");
+    }
 }
