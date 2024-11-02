@@ -17,9 +17,8 @@ public class ScriptedGrapple : MonoBehaviour
             grapplingHook.SetAimPoint(aimPoint);
             grapplingHook.LaunchGrapple();
 
-            //SpriteRenderer graphics = crystallineLocomotion.GetComponentInChildren<SpriteRenderer>();
-            //float angle = Vector3.Angle(transform.up, crystallineLocomotion.transform.up);
-            //graphics.transform.Rotate(new Vector3(0, 0, angle), Space.Self);
+            SpriteRenderer graphics = crystallineLocomotion.GetComponentInChildren<SpriteRenderer>();
+            graphics.transform.right = aimPoint.transform.position - graphics.transform.position;
         }
     }
 
