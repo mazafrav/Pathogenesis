@@ -30,15 +30,33 @@ public class Enemy : MonoBehaviour
     private string detectEventPath;
     [SerializeField]
     private float pitch;
+    [SerializeField]
+    private bool shouldApplyDangerLayer = false;
+    [SerializeField]
+    [Range(0f, 1f)]
+    private float dangerLayerIntensity;
+    [SerializeField]
+    private GameObject layerDetectionCollider;
 
     private FMOD.Studio.EventInstance detectEventInstance;
     private List<GameObject> organismsDetected = new List<GameObject>();
+
 
     private void Awake()
     {
         detectEventInstance = FMODUnity.RuntimeManager.CreateInstance(detectEventPath);
     }
     public bool CanAttackSameSpecie { get; set; } = false;
+
+    protected void Start()
+    {
+        layerDetectionCollider.SetActive(false);
+    }
+
+    public void SetLayerDetection (bool value)
+    {
+        layerDetectionCollider.SetActive(value);
+    }
 
     virtual public void DestroyEnemy()
     {
@@ -76,6 +94,11 @@ public class Enemy : MonoBehaviour
         detectEventInstance.start();
         detectEventInstance.getPitch(out float originalPitch);
         detectEventInstance.setPitch(originalPitch + pitch);
+
+        if (shouldApplyDangerLayer)
+        {
+            GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, Mathf.Clamp(dangerLayerIntensity, 0f, 1f));
+        }
     }
 
     protected void AllowAttackSameSpecies()

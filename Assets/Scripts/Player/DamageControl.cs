@@ -57,10 +57,13 @@ public class DamageControl : MonoBehaviour
                     GameManager.Instance.GetPlayerController().EnablePlayerBody();
                     GameManager.Instance.GetCamera().Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
                     GameManager.Instance.GetPlayerController().locomotion = GameManager.Instance.GetPlayerLocomotion();
+                    //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 0);
+                    GameManager.Instance.soundtrackManager.ResetSoundtrack();
                 }
                 else //The enemy is not possessed
                 {
                     enemy.DestroyEnemy();
+                    GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, 0f);
                 }
 
             }

@@ -45,7 +45,6 @@ public class HostAbsorption : Interactable
     private Enemy enemyBehaviour;
 
     private bool doOnce = false;
-
     public Color possessingColor => possessColor;
 
     void Start()
@@ -107,6 +106,7 @@ public class HostAbsorption : Interactable
                 }
                 //CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
                 //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = false;
+                GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 0.5f);
                 doOnce = false;
             } 
            
@@ -205,6 +205,10 @@ public class HostAbsorption : Interactable
             //hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
 
             possessionEventInstance.start();
+            ApplyEnemySoundtrackLayer();
+            GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 1);
+            GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, 0);
+            hostLocomotion.GetComponent<Enemy>().SetLayerDetection(true);
 
             /*
             currentTimeToZoomIn = possessionEffectTime/2.0f;
@@ -228,6 +232,26 @@ public class HostAbsorption : Interactable
             enemyBehaviour.enabled = false;
         }
 
+    }
+
+    private void ApplyEnemySoundtrackLayer()
+    {
+        SoundtrackManager soundtrackManager = GameManager.Instance.soundtrackManager;
+        if (hostLocomotion.GetType() == typeof(RangedLocomotion))
+        {
+            soundtrackManager.PhotonicLayerIntensity = 1f;
+            soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Photegenic, 1f);
+        }
+        else if (hostLocomotion.GetType() == typeof(ElectricLocomotion))
+        {
+            soundtrackManager.ElectricLayerIntensity = 1f;
+            soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Electric, 1f);
+        }
+        else if (hostLocomotion.GetType() == typeof(CrystallineLocomotion))
+        {
+            soundtrackManager.CrystallineLayerIntensity = 1f;
+            soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Crystalline, 1f);
+        }
     }
 
     private void ChangeColor(Color color)

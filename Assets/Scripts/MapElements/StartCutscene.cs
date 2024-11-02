@@ -36,7 +36,7 @@ public class StartCutscene : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            GameManager.Instance.SetMusicSelectionIndex(6);
+            //GameManager.Instance.SetMusicSelectionIndex(6);
             director.Play();
         }
     }
@@ -51,7 +51,7 @@ public class StartCutscene : MonoBehaviour
         absortionRangeVfx.SetVector3("Direction", (virus.transform.position - evilVirus.transform.position).normalized);
         absortionRangeVfx.Play();
         //TODO: QUITAR CONTROLES
-        GameManager.Instance.SetMusicSelectionIndex(7);
+        //GameManager.Instance.SetMusicSelectionIndex(7);
         GameManager.Instance.GetPlayerController().GetPlayerIAs().Disable();
     }
 
@@ -69,7 +69,7 @@ public class StartCutscene : MonoBehaviour
     public void EndCutscene()
     {
         GameManager.Instance.GetPlayerController().GetPlayerIAs().Enable();
-        GameManager.Instance.SetMusicSelectionIndex(0);
+        //GameManager.Instance.SetMusicSelectionIndex(0);
         GameManager.Instance.GetLevelLoader().StartLoadingLevel(0);
     }
 }

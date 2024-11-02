@@ -60,6 +60,7 @@ public class RangedEnemy : Enemy
         //     locomotion.Aim(targetPosition);
         // }
         // Windup color
+
         if (shootingCooldownTimer <= 0f && timeToShootTimer > 0f)
         {
             timeToShootTimer = Mathf.Max(timeToShootTimer - Time.deltaTime, 0f);

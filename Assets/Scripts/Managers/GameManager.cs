@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera virtualCamera;
 
-    private DynamicMusicController musicController;
+    public SoundtrackManager soundtrackManager { get; private set; }
 
     private GameObject levelEventSystem;
     private int pausedMusicSelection = 1;
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       musicController = GetComponentInChildren<DynamicMusicController>();      
+       soundtrackManager = GetComponentInChildren<SoundtrackManager>();      
     }
 
     private void Update()
@@ -117,6 +117,16 @@ public class GameManager : MonoBehaviour
     public GameObject GetPlayer()
     { return player; }
 
+    public GameObject GetPlayerMovementBody()
+    {
+        if (player.GetComponentInChildren<HostLocomotion>().GetType() != typeof(PlayerLocomotion))
+        {
+            return player.GetComponentInChildren<HostLocomotion>().gameObject;
+        }
+
+        return player.GetComponentInChildren<Rigidbody2D>().gameObject;
+    }
+
     public PlayerController GetPlayerController()
     {
         return player.GetComponent<PlayerController>();
@@ -153,8 +163,8 @@ public class GameManager : MonoBehaviour
             levelEventSystem.GetComponent<InputSystemUIInputModule>().enabled = false;
             canPlayerProcessInput = false;
             Time.timeScale = 0.0f;
-            pausedMusicSelection = musicController.GetSelectionIndex();
-            musicController.SetSelectionIndex(2);
+            //pausedMusicSelection = soundtrackManager.GetSelectionIndex();
+            //soundtrackManager.SetSelectionIndex(2);
 
             bool isPauseOn = false;
             for (int i = 0; i < SceneManager.sceneCount; i++)
@@ -177,14 +187,14 @@ public class GameManager : MonoBehaviour
             processInputTimer = 0.1f;
             Time.timeScale = 1.0f;
             SceneManager.UnloadSceneAsync("PauseMenu");
-            musicController.SetSelectionIndex(pausedMusicSelection);
+            //soundtrackManager.SetSelectionIndex(pausedMusicSelection);
         }
     }
 
-    public void SetMusicSelectionIndex(int index)
-    {
-        musicController.SetSelectionIndex(index);
-    }
+    //public void SetMusicSelectionIndex(int index)
+    //{
+    //    soundtrackManager.SetSelectionIndex(index);
+    //}
 
     public List<GameObject> GetGameObjectsToRespawn()
     {

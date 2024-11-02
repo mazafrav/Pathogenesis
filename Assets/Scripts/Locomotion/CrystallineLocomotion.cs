@@ -330,7 +330,7 @@ public class CrystallineLocomotion : HostLocomotion
         windUp = crystallinePossessingParameters.windUp;
         stabDuration = crystallinePossessingParameters.stabDuration;
 
-        GameManager.Instance.SetMusicSelectionIndex(5);
+        //GameManager.Instance.SetMusicSelectionIndex(5);
 
         //change light source
         ligthSource.SetActive(false);

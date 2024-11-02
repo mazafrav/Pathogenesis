@@ -14823,8 +14823,20 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2440992622452792228, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: dangerLayerIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440992622452792228, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
       propertyPath: wayPoints.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440992622452792228, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: minDistanceToAddLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440992622452792228, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
+      propertyPath: shouldApplyDangerLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2440992622452792228, guid: b7bc59c458fe8444e81b81367599ce7b, type: 3}
       propertyPath: wayPoints.Array.data[0]
@@ -15537,7 +15549,7 @@ PrefabInstance:
       objectReference: {fileID: 717962204}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.799015
+      value: 13.803738
       objectReference: {fileID: 0}
     - target: {fileID: 7669171567107856629, guid: a127e30441c145740aa73105d6e8a2e2, type: 3}
       propertyPath: m_LocalPosition.y

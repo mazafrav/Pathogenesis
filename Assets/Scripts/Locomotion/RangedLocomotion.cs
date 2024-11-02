@@ -172,7 +172,7 @@ public class RangedLocomotion : HostLocomotion
         windUp = rangedPossessingParameters.windUp;
         shootCooldown = rangedPossessingParameters.shootCooldown;
 
-        GameManager.Instance.SetMusicSelectionIndex(3);
+        //GameManager.Instance.SetMusicSelectionIndex(3);
 
         //change light source
         ligthSource.SetActive(false);
