@@ -161,6 +161,7 @@ public class GameManager : MonoBehaviour
         {
             levelEventSystem.GetComponent<EventSystem>().enabled = false;
             levelEventSystem.GetComponent<InputSystemUIInputModule>().enabled = false;
+            soundtrackManager.ApplyPauseSnapshot();
             canPlayerProcessInput = false;
             Time.timeScale = 0.0f;
             //pausedMusicSelection = soundtrackManager.GetSelectionIndex();
@@ -184,6 +185,7 @@ public class GameManager : MonoBehaviour
         {
             levelEventSystem.GetComponent<EventSystem>().enabled = true;
             levelEventSystem.GetComponent<InputSystemUIInputModule>().enabled = true;
+            soundtrackManager.StopPausepSnapshot();
             processInputTimer = 0.1f;
             Time.timeScale = 1.0f;
             SceneManager.UnloadSceneAsync("PauseMenu");

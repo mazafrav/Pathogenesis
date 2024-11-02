@@ -18,6 +18,9 @@ public class SoundtrackManager : MonoBehaviour
     public float ElectricLayerIntensity { get; set; }
     public float CrystallineLayerIntensity { get; set; }
 
+    [SerializeField] private string pauseSnapshotPath = "snapshot:/Pause_Menu";
+    private FMOD.Studio.EventInstance snapshotInstance;
+
     private FMODUnity.StudioEventEmitter emitter;
 
     private void Start()
@@ -28,6 +31,8 @@ public class SoundtrackManager : MonoBehaviour
             emitter.Play();
         }
         ResetSoundtrack();
+
+        snapshotInstance = FMODUnity.RuntimeManager.CreateInstance(pauseSnapshotPath);
     }
 
     public void ChangeSoundtrackParameter(SoundtrackParameter parameter, float value)
@@ -127,8 +132,25 @@ public class SoundtrackManager : MonoBehaviour
         }
     }
 
-    //private void OnDisable()
-    //{
-    //    emitter.Stop();
-    //}
+    private void OnDisable()
+    {
+        if (emitter == null)
+        {
+            emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        }
+        if (emitter.IsPlaying())
+        {
+            emitter.Stop();
+        }
+    }
+
+    public void ApplyPauseSnapshot()
+    {
+        snapshotInstance.start();
+    }
+
+    public void StopPausepSnapshot()
+    {
+        snapshotInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    }
 }
