@@ -382,7 +382,7 @@ public class ElectricLocomotion : HostLocomotion
         //followRange = electricPossessingParameters.electricFollowRange;
         //followGameObject.transform.localScale = new Vector3(followRange, followRange, shockGameObject.transform.localScale.z);
 
-        GameManager.Instance.SetMusicSelectionIndex(4);
+        //GameManager.Instance.SetMusicSelectionIndex(4);
 
         //change light source
         ligthSource.SetActive(false);

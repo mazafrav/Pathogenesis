@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour
         if (playerBody)
         {
             playerBody.SetActive(true);
-            GameManager.Instance.SetMusicSelectionIndex(1);
+            //GameManager.Instance.SetMusicSelectionIndex(1);
         }
 
     }

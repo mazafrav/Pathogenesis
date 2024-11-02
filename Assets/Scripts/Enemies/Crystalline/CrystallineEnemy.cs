@@ -8,9 +8,12 @@ public class CrystalineEnemy : Enemy
 
     public static event Action OnAttackSameSpecies;
 
+    [HideInInspector]
     public GameObject currentRangedTarget = null;
+    [HideInInspector]
     public List<GameObject> closeTargets;
 
+    [Header("Crystalline Behaviour")]
     [SerializeField] 
     private ElectricShockRange range; // we use the same behaviour as the electric enemy xd
     [SerializeField]

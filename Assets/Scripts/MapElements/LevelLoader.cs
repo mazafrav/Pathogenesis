@@ -66,7 +66,7 @@ public class LevelLoader : MonoBehaviour
 
     public void RestartLevel()
     {
-        GameManager.Instance.SetMusicSelectionIndex(1);
+        //GameManager.Instance.SetMusicSelectionIndex(1);
         GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         GameManager.Instance.GetPlayerController().GetPlayerIAs().Disable();
         StartLoadingLevel(SceneManager.GetActiveScene().buildIndex);
@@ -79,7 +79,7 @@ public class LevelLoader : MonoBehaviour
     {
         if (GameManager.Instance.GetRespawnValues().Count > 0 || GameManager.Instance.GetPlayerRespawnPosition() != Vector3.zero)
         {
-            GameManager.Instance.SetMusicSelectionIndex(1);
+            //GameManager.Instance.SetMusicSelectionIndex(1);
             GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
             StartLoadingLevel(SceneManager.GetActiveScene().buildIndex);
         }

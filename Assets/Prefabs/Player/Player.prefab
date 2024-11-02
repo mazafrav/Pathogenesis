@@ -37,6 +37,7 @@ Transform:
   - {fileID: 8935456655124352179}
   - {fileID: 3125746150255415315}
   - {fileID: 972097442121494637}
+  - {fileID: 6721341198405178024}
   m_Father: {fileID: 3352753978018443518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3746488418620674799
@@ -385,6 +386,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2365c4a4edf7d3b4db458c27f94553d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5821055216015733782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6721341198405178024}
+  - component: {fileID: 7325256418047454337}
+  - component: {fileID: 6628618978118269650}
+  m_Layer: 16
+  m_Name: EnemyLayerDetection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6721341198405178024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821055216015733782}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7773273768846469444}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &7325256418047454337
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821055216015733782}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &6628618978118269650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821055216015733782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee89f1aadd75c66439267de977a61746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistanceToAddLayer: 15
+  checkLayersCD: 2
 --- !u!1 &6281464528950676588
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadZone: 0.5
-  bisActive: 1
 --- !u!1 &6502504440373144436
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,9 +649,8 @@ MonoBehaviour:
   absortionRangeVfx: {fileID: 7638314830641488875}
   deathEffect: {fileID: 4784911079922076189, guid: 733886f14a2f6c74aa36c40fbf2778be, type: 3}
   locomotion: {fileID: 4518946334730068295}
-  shootingComponent: {fileID: 0}
+  initialTimeWithDisabledInput: 0.7
   inputBufferTime: 0.3
-  isPossessing: 0
 --- !u!114 &4518946334730068295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,7 +668,7 @@ MonoBehaviour:
   moveSpeed: 5.5
   jumpHeight: 1.8
   jumpDistance: 1.8
-  coyoteTime: 0.2
+  coyoteTime: 0.1
   jumpBufferTime: 0.2
   groundChecker: {fileID: 130100337902420687}
   animator: {fileID: 6737278433806530578}
