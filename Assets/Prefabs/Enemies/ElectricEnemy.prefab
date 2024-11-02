@@ -106,8 +106,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000020289933, y: 0.02042717}
-  m_Size: {x: 1.776813, y: 1.1449476}
+  m_Offset: {x: 0.000005128435, y: 0.02042717}
+  m_Size: {x: 1.7768195, y: 1.144954}
   m_Direction: 1
 --- !u!114 &6099004757991992690
 MonoBehaviour:
@@ -167,8 +167,8 @@ MonoBehaviour:
   electricShockClip: {fileID: 8300000, guid: 59808dccb62b111498cd51229f1748b4, type: 3}
   deltaXModifier: 1.2
   speedModifier: 0.7
-  propulsionHeight: 2.3
-  propulsionTime: 0.65
+  propulsionHeight: 1.9
+  propulsionTime: 0.6
   planningGravity: 0.15
   jumpParticles: {fileID: 1142215920660990658}
   ligthSource: {fileID: 8478901972570562192}
