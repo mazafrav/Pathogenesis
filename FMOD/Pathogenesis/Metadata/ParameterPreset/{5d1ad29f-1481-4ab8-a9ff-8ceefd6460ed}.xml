@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{5d1ad29f-1481-4ab8-a9ff-8ceefd6460ed}">
+		<property name="name">
+			<value>Epic</value>
+		</property>
+		<relationship name="folder">
+			<destination>{c9153d5e-7e6a-43e0-aac7-f535e9e93240}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{7be62c23-c730-4c42-9b5c-25413b907a6a}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{7be62c23-c730-4c42-9b5c-25413b907a6a}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.17999999225139618</value>
+		</property>
+		<property name="seekSpeedDescending">
+			<value>0.20999999344348907</value>
+		</property>
+		<property name="seekSpeedAsymmetric">
+			<value>true</value>
+		</property>
+	</object>
+</objects>
