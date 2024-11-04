@@ -23,7 +23,7 @@ public class ControllerFeedback : MonoBehaviour
     void Update()
     {
         if(isRunning) return;
-        
+
         if (GameManager.Instance.IsThereAGamepadConnected &&
                 Gamepad.current.rightShoulder.isPressed &&
                 Gamepad.current.leftShoulder.isPressed)
@@ -49,6 +49,7 @@ public class ControllerFeedback : MonoBehaviour
             Gamepad.current.SetMotorSpeeds(lCurve.Evaluate(runtime), rCurve.Evaluate(runtime));
             yield return new WaitForSeconds(.01f);
         }
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
         isRunning = false;
     }
 
@@ -63,6 +64,7 @@ public class ControllerFeedback : MonoBehaviour
             Gamepad.current.SetMotorSpeeds(value, value);
             yield return new WaitForSeconds(.01f);
         }
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
         isRunning = false;
     }
 }
