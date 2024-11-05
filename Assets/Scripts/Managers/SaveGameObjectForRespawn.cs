@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SaveGameObjectForRespawn : MonoBehaviour
 {
-    public List<GameObject> gameObjectsToSave;
+    public List<GameObject> gameObjectsToSave = new List<GameObject>();
     // Start is called before the first frame update
     void Awake()
     {

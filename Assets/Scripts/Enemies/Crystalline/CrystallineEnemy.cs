@@ -33,6 +33,8 @@ public class CrystalineEnemy : Enemy
 
     void Start()
     {
+        base.Start();
+
         OnAttackSameSpecies += AllowAttackSameSpecies;
 
 

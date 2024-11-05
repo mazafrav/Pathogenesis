@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private List<GameObject> gameObjectsToRespawn = new List<GameObject>();
     private Dictionary<int, Vector3> respawnValues = new Dictionary<int, Vector3>();
     private Vector3 playerRespawnPosition = Vector3.zero;
+    private int possessedEnemyToRespawn = -1;
 
     public bool isPaused { get; set; } = false;
     public bool canPlayerProcessInput { get; set; } = true;
@@ -260,6 +261,22 @@ public class GameManager : MonoBehaviour
         ResetGameObjectsToRespawn();
         ResetRespawnValues();
         ResetPlayerRespawnPosition();
+        ResetPossessedEnemyToRespawn();
+    }
+
+    public int GetPossessedEnemyToRespawn()
+    {
+        return possessedEnemyToRespawn;
+    }
+
+    public void SetPossessedEnemyToRespawn(int i)
+    {
+        possessedEnemyToRespawn = i;
+    }
+
+    public void ResetPossessedEnemyToRespawn()
+    {
+        possessedEnemyToRespawn = -1;
     }
 
     public void SetLastLevelPlayed(int index)

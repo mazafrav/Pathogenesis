@@ -16,14 +16,21 @@ public class LevelLoader : MonoBehaviour
     {
         //currentTimeToResetLevel = timeToResetLevel;
 
+        StartCoroutine(LoadCheckpointValues());
+    }
+
+    IEnumerator LoadCheckpointValues()
+    {
+        yield return null;
+
         Dictionary<int, Vector3> respawnValues = GameManager.Instance.GetRespawnValues();
         if (respawnValues.Count > 0)
         {
-            List<GameObject> gameObjectsToRespawn = GameObject.Find("RespawnLoader").GetComponent<SaveGameObjectForRespawn>().gameObjectsToSave;
+            List<GameObject> gameObjectsToRespawn = GameObject.FindObjectOfType<SaveGameObjectForRespawn>().gameObjectsToSave;
 
             for (int i = 0; i < gameObjectsToRespawn.Count; i++)
             {
-                if (gameObjectsToRespawn[i] != null && !respawnValues.ContainsKey(i))
+                if (gameObjectsToRespawn[i] != null && (respawnValues.ContainsKey(i) && respawnValues[i].Equals(Vector3.zero)))
                 {
                     Destroy(gameObjectsToRespawn[i]);
                 }
@@ -31,10 +38,19 @@ public class LevelLoader : MonoBehaviour
 
             foreach (KeyValuePair<int, Vector3> entry in respawnValues)
             {
-                gameObjectsToRespawn[entry.Key].transform.position = entry.Value;
+                if (gameObjectsToRespawn[entry.Key] != null)
+                {
+                    gameObjectsToRespawn[entry.Key].transform.position = entry.Value;
+                }
             }
 
-            //GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
+            GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
+
+            int possessedEnemyToRespawn = GameManager.Instance.GetPossessedEnemyToRespawn();
+            if (possessedEnemyToRespawn != -1)
+            {
+                StartCoroutine(ApplyPossessionRoutine(gameObjectsToRespawn[possessedEnemyToRespawn]));
+            }
 
         }
 
@@ -43,7 +59,6 @@ public class LevelLoader : MonoBehaviour
             GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
         }
     }
-
     private void Update()
     {
         //We reset the level when pressing a key for X seconds
@@ -96,5 +111,11 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(level);
         GameManager.Instance.SetLastLevelPlayed(level);
+    }
+
+    IEnumerator ApplyPossessionRoutine(GameObject go)
+    {
+        yield return null;
+        go.GetComponent<HostAbsorption>().ApplyPossessionWithNoEffects();
     }
 }

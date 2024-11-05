@@ -53,7 +53,7 @@ public class PlayerLocomotion : HostLocomotion
 
     private void Update()
     {
-        //emitter.EventInstance.getParameterByName("Terrain", out float param);
+        emitter.EventInstance.getParameterByName("Terrain", out float param);
         //Debug.Log("Terreno= " + param);
 
         animator.SetFloat("Speed", Mathf.Abs(rb2D.velocity.x) + Mathf.Abs(rb2D.velocity.y));

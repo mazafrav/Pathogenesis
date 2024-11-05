@@ -40,6 +40,8 @@ public class RangedEnemy : Enemy
 
     void Start()
     {
+        base.Start();
+
         OnAttackSameSpecies += AllowAttackSameSpecies;
 
         rangedLocomotion = (RangedLocomotion)locomotion;

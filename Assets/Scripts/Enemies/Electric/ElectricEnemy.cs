@@ -23,6 +23,8 @@ public class ElectricEnemy : Enemy
 
     void Start()
     {
+        base.Start();
+
         OnAttackSameSpecie += AllowAttackSameSpecies;
 
         shootingComponent = GetComponentInChildren<ShootingComponent>();

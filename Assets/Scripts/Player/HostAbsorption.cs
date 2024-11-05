@@ -49,12 +49,17 @@ public class HostAbsorption : Interactable
 
     void Start()
     {
+        SetInfo();
+        Physics2D.queriesStartInColliders = false;
+        possessionEventInstance = FMODUnity.RuntimeManager.CreateInstance(possessionEventPath);
+    }
+
+    private void SetInfo()
+    {
         hostLocomotion = GetComponent<HostLocomotion>();
         playerController = GameManager.Instance.GetPlayerController();
         playerLocomotion = GameManager.Instance.GetPlayerLocomotion();
         enemyBehaviour = GetComponent<Enemy>();
-        Physics2D.queriesStartInColliders = false;
-        possessionEventInstance = FMODUnity.RuntimeManager.CreateInstance(possessionEventPath);
     }
 
     protected override void Update()
@@ -232,6 +237,77 @@ public class HostAbsorption : Interactable
             enemyBehaviour.enabled = false;
         }
 
+    }
+
+    public void ApplyPossessionWithNoEffects()
+    {
+        SetInfo();
+        if (playerController.GetPlayerBody()) //we possess if the player exists
+        {
+            playerLocomotion.DisableFreeMovement();
+            hostLocomotion.ResetAttack();
+            hostLocomotion.SetPossessingParameters();
+            playerController.locomotion = hostLocomotion;
+            gameObject.transform.parent = playerController.transform;
+            playerController.DisablePlayerBody();
+
+            CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
+            if (cinemachineVirtualCamera != null)
+            {
+                CameraSwitchManagement cameraSwitchManagement = cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>();
+
+                cameraSwitchManagement?.setNewFollow(hostLocomotion.transform);
+                //cameraSwitchManagement?.StartPossessionEffect(possessionEffectTime);
+            }
+
+            RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
+            if (rangedEnemy != null)
+            {
+                //weaponGraphics.color = possessingColor;
+                playerController.shootingComponent = rangedEnemy.shootingComponent;
+                rangedEnemy.GetComponent<LineRenderer>().enabled = false;
+                rangedEnemy.ResetRigidbodyConstraints();
+                rangedEnemy.SetAimBehaviour(true);
+            }
+
+            ElectricEnemy electricEnemy = GetComponent<ElectricEnemy>();
+            if (electricEnemy != null)
+            {
+                playerController.shootingComponent = electricEnemy.GetShootingComponent();
+            }
+
+
+            //possessionTimer = possessionEffectTime;
+
+            //hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
+
+            //possessionEventInstance.start();
+            ApplyEnemySoundtrackLayer();
+            //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 1);
+            //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, 0);
+            hostLocomotion.GetComponent<Enemy>().SetLayerDetection(true);
+
+            /*
+            currentTimeToZoomIn = possessionEffectTime/2.0f;
+            currentTimeToZoomOut = possessionEffectTime/2.0f;
+            */
+            //doOnce = true;
+            //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
+
+            /*
+            if (zoomValue > 0.0f) // Transformation of a natural zoom value chosen by arrobaManu to a practical zoom value
+            {
+                if (cinemachineVirtualCamera)
+                {
+                    originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
+                }
+                zoomValue = Mathf.Clamp(originalZoom - zoomValue, 1 , 20);
+            }
+            */
+
+
+            enemyBehaviour.enabled = false;
+        }
     }
 
     private void ApplyEnemySoundtrackLayer()

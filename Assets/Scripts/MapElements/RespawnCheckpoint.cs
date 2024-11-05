@@ -10,11 +10,12 @@ public class RespawnCheckpoint : MonoBehaviour
     bool isActive = true;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isActive && collision.gameObject.CompareTag("Player"))
+        if (isActive && (collision.gameObject.CompareTag("Player") || 
+            (collision.gameObject.CompareTag("Enemy") && collision.GetComponentInParent<PlayerController>())))
         {
-            //Debug.Log("SIIIIIIIUUUUUU");
+            Debug.Log("SIIIIIIIUUUUUU");
             isActive = false;
-            List<GameObject> gameObjectsToRespawn = GameManager.Instance.GetComponentInChildren<SaveGameObjectForRespawn>().gameObjectsToSave;
+            List<GameObject> gameObjectsToRespawn = GameObject.FindObjectOfType<SaveGameObjectForRespawn>().gameObjectsToSave;
 
 
             // Reset respawn values when you reach a nearer checkpoint
@@ -28,6 +29,16 @@ public class RespawnCheckpoint : MonoBehaviour
                 if (gameObjectsToRespawn[i] != null)
                 {
                     GameManager.Instance.AddRespawnValue(i, gameObjectsToRespawn[i].transform.position);
+
+                    if (collision.gameObject.CompareTag("Enemy") && gameObjectsToRespawn[i] == collision.gameObject)
+                    {
+                        Debug.Log("oh yesyeyses");
+                        GameManager.Instance.SetPossessedEnemyToRespawn(i);
+                    }
+                }
+                else
+                {
+                    GameManager.Instance.AddRespawnValue(i, Vector3.zero);
                 }
             }
 
