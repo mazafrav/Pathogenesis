@@ -34,4 +34,8 @@ public class DamagingGround : MonoBehaviour
         damageControl.Damage(other);
 
     }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        damageControl.Damage(other);
+    }
 }
