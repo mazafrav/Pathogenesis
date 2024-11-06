@@ -136,7 +136,7 @@ MonoBehaviour:
   movingSpeed: 3
   animator: {fileID: 1716437094004682892}
   isOpened: 0
-  movingClip: {fileID: 8300000, guid: 11d0aa3a0e9352543bff5b6b4ee42dd9, type: 3}
+  pitch: 0
 --- !u!61 &6254766094864345595
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -297,5 +297,80 @@ Transform:
   - {fileID: 6336727943846253135}
   - {fileID: 8438728296673483205}
   - {fileID: 6484365150316536308}
+  - {fileID: 4968385876313522809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4983311875328682620
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1665944531955470299}
+    m_Modifications:
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810676401012973456, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810676401012973456, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7311321
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810676401012973456, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_Color.r
+      value: 0.91017926
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033023321320672249, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_Name
+      value: LightRecpetorBlock
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+--- !u!4 &4968385876313522809 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 133708443483629573, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+  m_PrefabInstance: {fileID: 4983311875328682620}
+  m_PrefabAsset: {fileID: 0}
