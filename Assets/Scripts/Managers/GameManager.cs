@@ -113,10 +113,6 @@ public class GameManager : MonoBehaviour
         {
             levelLoader = GameObject.FindObjectOfType<LevelLoader>();
         }
-        if(soundtrackManager == null)
-        {
-            soundtrackManager = GetComponentInChildren<SoundtrackManager>();
-        }
     }
 
     public GameObject GetPlayer()
