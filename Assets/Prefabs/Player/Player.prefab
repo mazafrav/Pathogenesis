@@ -828,6 +828,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1929362050644284991, guid: ba63d36a7f952234b84f8124148b007f, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929362050644284991, guid: ba63d36a7f952234b84f8124148b007f, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929362050644284991, guid: ba63d36a7f952234b84f8124148b007f, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5576360361102300036, guid: ba63d36a7f952234b84f8124148b007f, type: 3}
       propertyPath: m_Name
       value: PlayerLight
