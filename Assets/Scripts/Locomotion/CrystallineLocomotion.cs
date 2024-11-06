@@ -84,6 +84,9 @@ public class CrystallineLocomotion : HostLocomotion
 
     void Update()
     {
+
+        //Debug.Log("Gravity " + rb2D.gravityScale);
+
         if (groundChecker.isGrounded)
         {
             climbedDistance = 0f;
@@ -91,7 +94,8 @@ public class CrystallineLocomotion : HostLocomotion
 
         if (isClimbing && !wallCheckerL.isGrounded && !wallCheckerR.isGrounded && !ceilChecker.isGrounded)
         {
-            rb2D.gravityScale = g / Physics2D.gravity.y;
+            //rb2D.gravityScale = g / Physics2D.gravity.y;
+            rb2D.gravityScale = 1;
             isClimbing = false;
             directionClimb = AdhesionDirection.S;
         }
@@ -323,7 +327,7 @@ public class CrystallineLocomotion : HostLocomotion
         CrystallineEnemyPossessingParameters crystallinePossessingParameters = (CrystallineEnemyPossessingParameters)possessingParameters;
 
         g = ((-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f))) * possessingParameters.gravityModifier;
-        rb2D.gravityScale = g / Physics2D.gravity.y;
+        //rb2D.gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         cooldown = crystallinePossessingParameters.cooldown;
@@ -341,7 +345,7 @@ public class CrystallineLocomotion : HostLocomotion
     {
         base.SetMoveSpeed(newSpeed);
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-        rb2D.gravityScale = g / Physics2D.gravity.y;
+        //rb2D.gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
     }
 
