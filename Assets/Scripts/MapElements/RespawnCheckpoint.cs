@@ -15,30 +15,36 @@ public class RespawnCheckpoint : MonoBehaviour
         {
             Debug.Log("SIIIIIIIUUUUUU");
             isActive = false;
-            List<GameObject> gameObjectsToRespawn = GameObject.FindObjectOfType<SaveGameObjectForRespawn>().gameObjectsToSave;
+            SaveGameObjectForRespawn respawnLoader = GameObject.FindObjectOfType<SaveGameObjectForRespawn>();
 
-
-            // Reset respawn values when you reach a nearer checkpoint
-            if (GameManager.Instance.GetRespawnValues().Count > 0)
+            if (respawnLoader != null)
             {
-                GameManager.Instance.ResetRespawnValues();
-            }
 
-            for (int i = 0; i < gameObjectsToRespawn.Count; i++)
-            {
-                if (gameObjectsToRespawn[i] != null)
+                List<GameObject> gameObjectsToRespawn = respawnLoader.gameObjectsToSave;
+
+
+                // Reset respawn values when you reach a nearer checkpoint
+                if (GameManager.Instance.GetRespawnValues().Count > 0)
                 {
-                    GameManager.Instance.AddRespawnValue(i, gameObjectsToRespawn[i].transform.position);
-
-                    if (collision.gameObject.CompareTag("Enemy") && gameObjectsToRespawn[i] == collision.gameObject)
-                    {
-                        Debug.Log("oh yesyeyses");
-                        GameManager.Instance.SetPossessedEnemyToRespawn(i);
-                    }
+                    GameManager.Instance.ResetRespawnValues();
                 }
-                else
+
+                for (int i = 0; i < gameObjectsToRespawn.Count; i++)
                 {
-                    GameManager.Instance.AddRespawnValue(i, Vector3.zero);
+                    if (gameObjectsToRespawn[i] != null)
+                    {
+                        GameManager.Instance.AddRespawnValue(i, gameObjectsToRespawn[i].transform.position);
+
+                        if (collision.gameObject.CompareTag("Enemy") && gameObjectsToRespawn[i] == collision.gameObject)
+                        {
+                            Debug.Log("oh yesyeyses");
+                            GameManager.Instance.SetPossessedEnemyToRespawn(i);
+                        }
+                    }
+                    else
+                    {
+                        GameManager.Instance.AddRespawnValue(i, Vector3.zero);
+                    }
                 }
             }
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 592628468443137284}
   - component: {fileID: 9094393445980851331}
-  - component: {fileID: 7542697537780583686}
+  - component: {fileID: 2266048128957407965}
   m_Layer: 0
   m_Name: SoundtrackManager
   m_TagString: Untagged
@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbe2a500f5b310d41bb2cb1b1920187c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMusicPath: event:/Music/Menu_End
+  ambientMusicPath: event:/Music/Ambient
   pauseSnapshotPath: snapshot:/Pause_Menu
---- !u!114 &7542697537780583686
+--- !u!114 &2266048128957407965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
