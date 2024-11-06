@@ -13,6 +13,12 @@ public class PlayerController : MonoBehaviour
     private GameObject playerBody;
     [SerializeField]
     private VisualEffect absortionRangeVfx;
+
+    [SerializeField]
+    private string inAbsorptionRangeEventPath = "event:/SFX/Player/Player Possession Proximity";
+    private FMOD.Studio.EventInstance inAbsorptionRangeEventInstance;
+    private FMODUnity.StudioEventEmitter emitter;
+
     [SerializeField]
     private ParticleSystem deathEffect;
 
@@ -50,6 +56,9 @@ public class PlayerController : MonoBehaviour
         inputBuffer = new Queue<string>(5);
 
         StartCoroutine(EnableInput());
+
+        emitter = absortionRangeVfx.gameObject.GetComponent<FMODUnity.StudioEventEmitter>();
+        //inAbsorptionRangeEventInstance = FMODUnity.RuntimeManager.CreateInstance(inAbsorptionRangeEventPath);
     }
 
     public float GetDeltaX() { return deltaX; }
@@ -223,6 +232,20 @@ public class PlayerController : MonoBehaviour
         AbsorbableHostInRange = host;
         absortionRangeVfx.SetVector3("Direction", (host.transform.position - playerBody.transform.position).normalized);
         absortionRangeVfx.Play();
+
+        emitter.EventInstance.getPaused(out bool SFXpaused);
+        if(SFXpaused)
+        {
+            emitter.EventInstance.setPaused(false);
+        }
+        else
+        {
+            if (!emitter.IsPlaying())
+            {
+                emitter.Play();
+            }
+        }
+        //inAbsorptionRangeEventInstance.start();
     }
 
     public void UpdateAbsortionVfxDirection()
@@ -234,6 +257,12 @@ public class PlayerController : MonoBehaviour
     {
         AbsorbableHostInRange = null;
         absortionRangeVfx.Stop();
+    }
+
+    public void StopAbsorbableSFX()
+    {
+        emitter.EventInstance.setPaused(true);
+        //inAbsorptionRangeEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     public void PlayerBodyDeath()

@@ -282,6 +282,7 @@ public class RangedEnemy : Enemy
     private IEnumerator AimRoutine()
     {
         locomotion.GetComponent<RangedLocomotion>().chargeShotVFX.Play();
+        locomotion.GetComponent<RangedLocomotion>().windUpEventInstance.start();
         isAiming = true;
         canShoot = false;
         timeToShootTimer = timeToShoot;

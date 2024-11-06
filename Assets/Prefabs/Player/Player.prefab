@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 3125746150255415315}
   - component: {fileID: 7638314830641488875}
   - component: {fileID: 6826296248912914377}
+  - component: {fileID: 8012844347678620827}
   m_Layer: 0
   m_Name: InAbsorptionRange
   m_TagString: Untagged
@@ -296,6 +297,37 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+--- !u!114 &8012844347678620827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849970504622510934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -683133928
+      Data2: 1100970613
+      Data3: 1247504549
+      Data4: 278790560
+    Path: event:/SFX/Player/Player Possession Proximity
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2105898412028735329
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBody: {fileID: 1021976914963050282}
   absortionRangeVfx: {fileID: 7638314830641488875}
+  inAbsorptionRangeEventPath: event:/SFX/Player/Player Possession Proximity
   deathEffect: {fileID: 4784911079922076189, guid: 733886f14a2f6c74aa36c40fbf2778be, type: 3}
   locomotion: {fileID: 4518946334730068295}
   initialTimeWithDisabledInput: 0.7

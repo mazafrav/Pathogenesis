@@ -23,7 +23,8 @@ public class RangedLocomotion : HostLocomotion
 
     [Header("SFX")]
     [SerializeField]
-    private AudioClip shotClip;
+    private string windUpSFXPath = "event:/SFX/Enemies/Photogenic Charge";
+    public FMOD.Studio.EventInstance windUpEventInstance;
 
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
@@ -50,6 +51,12 @@ public class RangedLocomotion : HostLocomotion
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         //GetOneShotSource().pitch += 0.5f;
+
+        if (windUpSFXPath.Equals(""))
+        {
+            windUpSFXPath = "event:/SFX/Enemies/Photogenic Charge";
+    }
+        windUpEventInstance = FMODUnity.RuntimeManager.CreateInstance(windUpSFXPath);
     }
 
     // Update is called once per frame
@@ -89,6 +96,7 @@ public class RangedLocomotion : HostLocomotion
         if (GetComponentInParent<PlayerController>() != null )
         {
             windUpTimer = windUp;
+            windUpEventInstance.start();
         }
         else
         {
@@ -106,6 +114,7 @@ public class RangedLocomotion : HostLocomotion
         if (groundChecker.isGrounded)
         {
             rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
+            jumpEventInstance.start();
         }
     }
 

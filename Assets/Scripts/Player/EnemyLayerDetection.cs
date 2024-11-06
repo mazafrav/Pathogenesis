@@ -51,7 +51,7 @@ public class EnemyLayerDetection : MonoBehaviour
                         }
                     }
 
-                    Debug.Log("RANGED INTENSITY: " + current);
+                    //Debug.Log("RANGED INTENSITY: " + current);
 
                     soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Photegenic, current);
                 }
@@ -75,7 +75,7 @@ public class EnemyLayerDetection : MonoBehaviour
                         }
                     }
 
-                    Debug.Log("ELECTRIC INTENSITY: " + current);
+                    //Debug.Log("ELECTRIC INTENSITY: " + current);
 
                     soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Electric, current);
                 }
@@ -99,7 +99,7 @@ public class EnemyLayerDetection : MonoBehaviour
                         }
                     }
 
-                    Debug.Log("CRYSTALLINE INTENSITY: " + current);
+                    //Debug.Log("CRYSTALLINE INTENSITY: " + current);
 
                     soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Crystalline, current);
                 }

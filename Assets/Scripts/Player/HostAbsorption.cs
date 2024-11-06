@@ -161,6 +161,7 @@ public class HostAbsorption : Interactable
     protected override void OnDeactivateAbsorptionVFX()
     {
         playerController.OnLeaveAbsorbableRange();
+        playerController.StopAbsorbableSFX();
     }
 
     protected override void OnInteract(GameObject interactedObject)

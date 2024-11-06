@@ -174,6 +174,8 @@ public class ElectricLocomotion : HostLocomotion
                 jumpParticles.Stop();
                 isPlanning = true;
                 propulsingTimeCounter = 0f;
+
+                //jumpEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             }
             else
             {
@@ -192,6 +194,10 @@ public class ElectricLocomotion : HostLocomotion
         }
         else if(groundChecker.isGrounded) //Reached the floor, he is not planning
         {
+            if (isPlanning)
+            {
+                jumpEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            }
             isPlanning = false;
             rb2D.gravityScale = 1.0f;
         }
@@ -224,6 +230,8 @@ public class ElectricLocomotion : HostLocomotion
             newYPosition = 0;
             propulsingTimeCounter = 0f;
             isPropulsing = true;
+
+            jumpEventInstance.start();
         }
        
     }
