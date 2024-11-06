@@ -149,8 +149,8 @@ public class PlayerLocomotion : HostLocomotion
     {
         //GetAudioSource().clip = FMAMoveLoopClip;
         //emitter.setParameterByName("Terrain", 1);
-        emitter.SetParameter("Terrain", 1);
-        //FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 1);
+        //emitter.SetParameter("Terrain", 1);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 1);
 
         heightJumped = 0f;
         moveSpeed *= speedModifier;
@@ -164,8 +164,8 @@ public class PlayerLocomotion : HostLocomotion
     {
         //GetAudioSource().clip = movementLoopClip;
         //emitter.EventInstance.setParameterByName("Terrain", 0);
-        emitter.SetParameter("Terrain", 0);
-        //FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 0);
+        //emitter.SetParameter("Terrain", 0);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 0);
 
         moveSpeed = originalMoveSpeed;
         rb2D.gravityScale = gravityScale;
