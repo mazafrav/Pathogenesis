@@ -80,7 +80,7 @@ public class CameraTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Player") || (other.gameObject.CompareTag("Enemy") && other.GetComponentInParent<PlayerController>()))
         {
             if (ChangeDeadZoneY)
             {
@@ -107,7 +107,7 @@ public class CameraTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if (other.CompareTag("Player") || (other.gameObject.CompareTag("Enemy") && other.GetComponentInParent<PlayerController>()))
         {
             if (ChangeDeadZoneY)
             {
