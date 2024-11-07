@@ -96,10 +96,11 @@ public class RangedLocomotion : HostLocomotion
         if (!IsAttackReady()) { return; }
 
         chargeShotVFX.Play();
-        rangedAnimator.Play("RangedEnemAttack");
+        
 
         if (GetComponentInParent<PlayerController>() != null )
         {
+            rangedAnimator.Play("RangedEnemAttack");
             windUpTimer = windUp;
             windUpEventInstance.start();
         }

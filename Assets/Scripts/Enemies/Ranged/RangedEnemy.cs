@@ -286,7 +286,7 @@ public class RangedEnemy : Enemy
         isAiming = true;
         canShoot = false;
         timeToShootTimer = timeToShoot;
-
+        rangedLocomotion.rangedAnimator.Play("RangedEnemAttack");
         yield return new WaitForSeconds(timeToShoot);
 
         locomotion.Attack(targetPosition);
