@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class BlockingBouncines : MonoBehaviour
 {
+    [Header("Condition to disable bloking bouncines")]
+    [SerializeField] private bool moveDown = true;
+    [SerializeField] private bool moveRight = false;
+    [SerializeField] private bool moveLeft = false;
+
     private bool isOnBlockingBouncines = false;
     private BoxCollider2D boxCollider2D;
     
@@ -16,7 +21,7 @@ public class BlockingBouncines : MonoBehaviour
 
     private void Update()
     {
-        if (isOnBlockingBouncines && GameManager.Instance.GetPlayerController().GetDeltaY() < 0.0f)
+        if (isOnBlockingBouncines && CheckBlockingBouncinesDisabledCondition())
         {
             enabled = false;
             boxCollider2D.enabled = false;
@@ -34,5 +39,25 @@ public class BlockingBouncines : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         isOnBlockingBouncines = false;
+    }
+
+    private bool CheckBlockingBouncinesDisabledCondition()
+    {
+        if (moveDown)
+        {
+            return GameManager.Instance.GetPlayerController().GetDeltaY() < 0.0f;
+        }
+        else if (moveRight)
+        {
+            return GameManager.Instance.GetPlayerController().GetDeltaX() > 0.0f;
+        }
+        else if (moveLeft)
+        {
+            return GameManager.Instance.GetPlayerController().GetDeltaX() < 0.0f;
+        }
+        else
+        {
+            return GameManager.Instance.GetPlayerController().GetDeltaY() < 0.0f;
+        }
     }
 }

@@ -22,7 +22,7 @@ public class ThrustBlocking : MonoBehaviour
     {
         if (isOnThrustBlocking)
         {
-            playerRigidbody.position += new Vector2(0, 1) * blockingThrust * Time.fixedDeltaTime;
+            playerRigidbody.position += new Vector2(transform.up.x, transform.up.y) * blockingThrust * Time.fixedDeltaTime;
         }
     }
 
