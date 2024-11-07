@@ -7,7 +7,7 @@ public class VerticalThrust : MonoBehaviour
 {
     [SerializeField] private float thrust = 20.0f;
     [SerializeField] private GameObject thrustBlocking;
-    [SerializeField]private bool showArrowGizmo = true;
+    [SerializeField] private bool showArrowGizmo = true;
     [SerializeField] private ParticleSystem thurstVFX;
    
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,17 +28,24 @@ public class VerticalThrust : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision)
-    {
-        ActivateThrustBlocking(true);       
+    {     
+        StartCoroutine(EnableThrust());
     }
 
-    private void ActivateThrustBlocking(bool isActive)
+    public void ActivateThrustBlocking(bool isActive)
     {
         thrustBlocking.SetActive(isActive);
         thrustBlocking.GetComponent<BoxCollider2D>().enabled = isActive;
-        thrustBlocking.GetComponent<ThrustBlocking>().enabled = isActive;        
+        //thrustBlocking.GetComponent<FreeMovement>().enabled = isActive;        
+        thrustBlocking.GetComponent<ThrustBlocking>().enabled = isActive;
     }
 
+
+    private IEnumerator EnableThrust()
+    {
+        yield return new WaitForSeconds(0.2f);
+        ActivateThrustBlocking(true);
+    }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {

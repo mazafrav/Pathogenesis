@@ -5,34 +5,47 @@ using UnityEngine;
 public class ThrustBlocking : MonoBehaviour
 {
     [SerializeField] private float blockingThrust = 1.5f;
+    [SerializeField] private Transform thrustTrigger;
+    [SerializeField] private Transform blockingBouncines;
 
     private bool isOnThrustBlocking = false;
-    private BoxCollider2D boxCollider2D;
-
+    private Collider2D colliderThrustTrigger;
+    private Rigidbody2D playerRigidbody;
 
     private void Start()
     {
-        boxCollider2D = GetComponent<BoxCollider2D>();
+        colliderThrustTrigger = thrustTrigger.GetComponent<Collider2D>();
+        playerRigidbody = GameManager.Instance.GetPlayerController().GetComponentInChildren<Rigidbody2D>();
     }
 
     private void FixedUpdate()
-    {      
-        if (isOnThrustBlocking && GameManager.Instance.GetPlayerController().GetDeltaY() < 0.0f)
-        {      
-            GameManager.Instance.GetPlayerController().GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(0, 1) * blockingThrust, ForceMode2D.Impulse);         
+    {
+        if (isOnThrustBlocking)
+        {
+            playerRigidbody.position += new Vector2(0, 1) * blockingThrust * Time.fixedDeltaTime;
         }
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        GameManager.Instance.GetPlayerLocomotion().EnableFreeMovement();
+        colliderThrustTrigger.isTrigger = false;
         isOnThrustBlocking = true;
+
+        blockingBouncines.gameObject.SetActive(false);
+        blockingBouncines.GetComponent<BoxCollider2D>().enabled = false;
+        blockingBouncines.GetComponent<BlockingBouncines>().enabled = false;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
+        GameManager.Instance.GetPlayerLocomotion().DisableFreeMovement();
+
+        colliderThrustTrigger.isTrigger = true;
         isOnThrustBlocking = false;
+        blockingBouncines.gameObject.SetActive(true);
+        blockingBouncines.GetComponent<BoxCollider2D>().enabled = true;
+        blockingBouncines.GetComponent<BlockingBouncines>().enabled = true;
+
     }
-
-
 }
