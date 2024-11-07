@@ -49,12 +49,13 @@ public class LevelLoader : MonoBehaviour
             int possessedEnemyToRespawn = GameManager.Instance.GetPossessedEnemyToRespawn();
             if (possessedEnemyToRespawn != -1)
             {
+                gameObjectsToRespawn[possessedEnemyToRespawn].GetComponent<HostAbsorption>().interactable = false;
                 StartCoroutine(ApplyPossessionRoutine(gameObjectsToRespawn[possessedEnemyToRespawn]));
             }
 
         }
 
-        if (GameManager.Instance.GetPlayerRespawnPosition() != Vector3.zero)
+        if (GameManager.Instance.GetPlayerRespawnPosition() != Vector3.zero && GameManager.Instance.GetPossessedEnemyToRespawn() == -1)
         {
             GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
         }
@@ -116,6 +117,11 @@ public class LevelLoader : MonoBehaviour
     IEnumerator ApplyPossessionRoutine(GameObject go)
     {
         yield return null;
+        Vector3 checkpointRespawn = GameManager.Instance.GetPlayerRespawnPosition();
+        if (checkpointRespawn != Vector3.zero)
+        {
+            go.transform.position = checkpointRespawn;
+        }
         go.GetComponent<HostAbsorption>().ApplyPossessionWithNoEffects();
     }
 }

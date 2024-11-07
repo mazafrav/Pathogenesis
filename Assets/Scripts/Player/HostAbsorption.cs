@@ -6,6 +6,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class HostAbsorption : Interactable
 {
+    [HideInInspector] public bool interactable = true;
+
     [SerializeField]
     private LayerMask layerMask;
     [SerializeField]
@@ -120,6 +122,9 @@ public class HostAbsorption : Interactable
 
     protected override void OnCollided(GameObject collidedObject)
     {
+        if (!interactable) 
+            return;
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (collidedObject.transform.position - transform.position).normalized, 10f, ~layerMask);
         Debug.DrawLine(transform.position, collidedObject.transform.position + (collidedObject.transform.position - transform.position).normalized * 0.2f, Color.green);
 
