@@ -8,6 +8,7 @@ public class RangedLocomotion : HostLocomotion
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject shootOrigin;
     [SerializeField] public ParticleSystem chargeShotVFX;
+
     //private GroundChecker groundChecker;
     private float shootCooldown, windUp;
     public float shootCDTimer = 0.0f, windUpTimer = 0.0f;
@@ -29,6 +30,9 @@ public class RangedLocomotion : HostLocomotion
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
     [SerializeField] GameObject possessedLightSource;
+
+    [Header("Animation")]
+    [SerializeField] public Animator rangedAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +96,7 @@ public class RangedLocomotion : HostLocomotion
         if (!IsAttackReady()) { return; }
 
         chargeShotVFX.Play();
+        rangedAnimator.Play("RangedEnemAttack");
 
         if (GetComponentInParent<PlayerController>() != null )
         {
