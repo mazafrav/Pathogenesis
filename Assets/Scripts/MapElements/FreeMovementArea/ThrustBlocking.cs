@@ -5,9 +5,12 @@ using UnityEngine;
 public class ThrustBlocking : MonoBehaviour
 {
     [SerializeField] private float blockingThrust = 1.5f;
+    [SerializeField] private float maxBlockingThrust = 5f;
+    [SerializeField] private float blockingThrustIncrement = 1.5f;
     [SerializeField] private Transform thrustTrigger;
     [SerializeField] private Transform blockingBouncines;
 
+    private float currentBlockingThrust = 0.0f;
     private bool isOnThrustBlocking = false;
     private Collider2D colliderThrustTrigger;
     private Rigidbody2D playerRigidbody;
@@ -18,16 +21,25 @@ public class ThrustBlocking : MonoBehaviour
         playerRigidbody = GameManager.Instance.GetPlayerController().GetComponentInChildren<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (isOnThrustBlocking && currentBlockingThrust < maxBlockingThrust)
+        {
+            currentBlockingThrust += blockingThrustIncrement * Time.deltaTime;          
+        }
+    }
+
     private void FixedUpdate()
     {
         if (isOnThrustBlocking)
-        {
-            playerRigidbody.position += new Vector2(transform.up.x, transform.up.y) * blockingThrust * Time.fixedDeltaTime;
+        {          
+            playerRigidbody.position += currentBlockingThrust * Time.fixedDeltaTime * new Vector2(transform.up.x, transform.up.y);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        currentBlockingThrust = blockingThrust;
         GameManager.Instance.GetPlayerLocomotion().EnableFreeMovement();
         colliderThrustTrigger.isTrigger = false;
         isOnThrustBlocking = true;

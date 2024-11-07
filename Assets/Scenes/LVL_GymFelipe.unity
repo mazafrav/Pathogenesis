@@ -2804,7 +2804,7 @@ Tilemap:
       - {fileID: -1252835220, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
       - {fileID: -351659142, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
       - {fileID: 448387746, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
-      m_AnimationSpeed: 1.3985825
+      m_AnimationSpeed: 1.2342358
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -29, y: 6, z: 0}
@@ -2815,7 +2815,7 @@ Tilemap:
       - {fileID: 1985567421, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
       - {fileID: 985733586, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
       - {fileID: -1617714498, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
-      m_AnimationSpeed: 1.4714298
+      m_AnimationSpeed: 1.2580488
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -29, y: 7, z: 0}
@@ -2826,7 +2826,7 @@ Tilemap:
       - {fileID: 1985567421, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
       - {fileID: 985733586, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
       - {fileID: -1617714498, guid: c358f13ac282b394984afdcc63107ff1, type: 3}
-      m_AnimationSpeed: 1.0684084
+      m_AnimationSpeed: 1.4137051
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -22, y: 9, z: 0}
@@ -3234,6 +3234,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 572223043353490033, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
+      propertyPath: blockingThrust
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 572223043353490033, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
+      propertyPath: blockingThrustIncrement
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 969429817759586666, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.5
@@ -3499,6 +3507,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 572223043353490033, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
+      propertyPath: blockingThrust
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 572223043353490033, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
+      propertyPath: blockingThrustIncrement
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 969429817759586666, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.57
