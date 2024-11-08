@@ -14,12 +14,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private VisualEffect absortionRangeVfx;
 
-    //[SerializeField]
-    //private string inAbsorptionRangeEventPath = "event:/SFX/Player/Player Possession Proximity";
-    //private FMOD.Studio.EventInstance inAbsorptionRangeEventInstance;
-    private FMODUnity.StudioEventEmitter emitterSFX;
-    private bool emitterDoOnce = false;
-
+    [SerializeField]
+    private string inAbsorptionRangeEventPath = "event:/SFX/Player/Player Possession Proximity";
+    private FMOD.Studio.EventInstance inAbsorptionRangeEventInstance;
+    private FMODUnity.StudioEventEmitter emitter;
 
     [SerializeField]
     private ParticleSystem deathEffect;
@@ -59,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(EnableInput());
 
-        emitterSFX = absortionRangeVfx.gameObject.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter = absortionRangeVfx.gameObject.GetComponent<FMODUnity.StudioEventEmitter>();
         //inAbsorptionRangeEventInstance = FMODUnity.RuntimeManager.CreateInstance(inAbsorptionRangeEventPath);
     }
 
@@ -87,15 +85,6 @@ public class PlayerController : MonoBehaviour
                 if (AbsorbableHostInRange != null)
                 {
                     UpdateAbsortionVfxDirection();
-                    emitterDoOnce = true;
-                }
-                else
-                {
-                    if (emitterDoOnce)
-                    {
-                        emitterSFX.Stop();
-                        emitterDoOnce = false;
-                    }
                 }
             }
             else
@@ -244,16 +233,16 @@ public class PlayerController : MonoBehaviour
         absortionRangeVfx.SetVector3("Direction", (host.transform.position - playerBody.transform.position).normalized);
         absortionRangeVfx.Play();
 
-        emitterSFX.EventInstance.getPaused(out bool SFXpaused);
+        emitter.EventInstance.getPaused(out bool SFXpaused);
         if(SFXpaused)
         {
-            emitterSFX.EventInstance.setPaused(false);
+            emitter.EventInstance.setPaused(false);
         }
         else
         {
-            if (!emitterSFX.IsPlaying())
+            if (!emitter.IsPlaying())
             {
-                emitterSFX.Play();
+                emitter.Play();
             }
         }
         //inAbsorptionRangeEventInstance.start();
@@ -272,7 +261,7 @@ public class PlayerController : MonoBehaviour
 
     public void StopAbsorbableSFX()
     {
-        emitterSFX.EventInstance.setPaused(true);
+        emitter.EventInstance.setPaused(true);
         //inAbsorptionRangeEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
