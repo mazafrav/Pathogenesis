@@ -19,24 +19,24 @@ public class CrystalineEnemy : Enemy
     [SerializeField]
     private PhotonicDetection photonicRange;
     [SerializeField] 
-    public GameObject graphics;
-
+    private GameObject graphics;
+    [SerializeField]
+    private float minDistanceToFaceNextWayPoint = 1.5f;
     [SerializeField] private float photonicDetectionRange = 7f;
     [SerializeField] private float detectionRange = 4f;
     [SerializeField] private float stabRange = 2f;
 
     public float timeToCancelAggro = 1.5f;
-
     private CrystallineLocomotion crystallineLocomotion;
     private bool isSeeingTarget = false;
     private Vector3 direction;
-
+    private GrapplingHook grapplingHook;
     void Start()
     {
         base.Start();
 
         OnAttackSameSpecies += AllowAttackSameSpecies;
-
+        grapplingHook = graphics.GetComponentInChildren<GrapplingHook>();
 
         crystallineLocomotion = GetComponent<CrystallineLocomotion>();
 
@@ -59,15 +59,15 @@ public class CrystalineEnemy : Enemy
             }
             else
             {
-
-                //if (movementDirection > 0)
-                //{
-                //    graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
-                //}
-                //else if (movementDirection < 0)
-                //{
-                //    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                //}
+                //Orient enemy towards current waypoint
+                if(!grapplingHook.launching)
+                {
+                    float distanceToWayPoint = (transform.position - wayPoints[currentWayPointIndex].position).magnitude;
+                    if (distanceToWayPoint > minDistanceToFaceNextWayPoint)
+                    {
+                        graphics.transform.right = wayPoints[currentWayPointIndex].transform.position - graphics.transform.position;
+                    }
+                }
             }
             
             if (range.personInRange) // if an organism enters in his detection range, we check if there are any obstacles (if it can see its target)
@@ -115,9 +115,8 @@ public class CrystalineEnemy : Enemy
 
                 CheckIfDetected(range.personInRange);
             }
-
             else
-            {
+            {                         
                 isSeeingTarget = false;
             }
            
@@ -132,9 +131,7 @@ public class CrystalineEnemy : Enemy
             if (wayPoints.Length != 0)
             {
                 Patrol();
-
             }
-
         }
     }
 

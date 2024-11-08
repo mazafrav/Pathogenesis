@@ -28,7 +28,7 @@ public class GrapplingHook : MonoBehaviour
     private Vector2 grapplePoint;
     private Vector2 ropePoint;
 
-    private bool launching = false; // the organism is launching the grapple, it moves to aiming point
+    public bool launching { get; private set; } = false; // the organism is launching the grapple, it moves to aiming point
     private bool grappling = false; // the organism is grappling to a surface, the organism moves to the grapple point
     private bool retracting = false; // the organism is retracting the grapple, it goes back to organism
 

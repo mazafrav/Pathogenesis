@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     protected float movementDirection = 0;
 
-    private int currentWayPointIndex = 0;
+    protected int currentWayPointIndex = 0;
 
     [Header("SFX")]
     [SerializeField]
