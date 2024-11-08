@@ -15068,14 +15068,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 572223043353490033, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
-      propertyPath: maxBlockingThrust
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 572223043353490033, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
-      propertyPath: blockingThrustIncrement
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 969429817759586666, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -39.5
@@ -15119,14 +15111,6 @@ PrefabInstance:
     - target: {fileID: 4329156169854087749, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
       propertyPath: m_Name
       value: Thrust
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393106527203135927, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
-      propertyPath: m_Size.y
-      value: 0.5137694
-      objectReference: {fileID: 0}
-    - target: {fileID: 7393106527203135927, guid: 694dfcaeecbdf774396dc5305b4303e8, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.20551288
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
