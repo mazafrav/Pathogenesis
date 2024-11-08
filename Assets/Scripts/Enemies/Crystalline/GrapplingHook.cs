@@ -12,6 +12,19 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] private float ropeLauchSpeed = 5f;
     [SerializeField] private LineRenderer rope;
 
+    [Header("SFX")]
+    [SerializeField] private string grappleThrowPath = "event:/SFX/Enemies/Crystalline Grapple Shot";
+    [SerializeField] private string grappleStickPath = "event:/SFX/Enemies/Crystalline Grapple Stick";
+    [SerializeField] private string grappleFailPath = "event:/SFX/Enemies/Crystalline Grapple Fail";
+    [SerializeField] private string grapplePullPath = "event:/SFX/Enemies/Crystalline Grapple Pull";
+
+    private FMOD.Studio.EventInstance grappleThrowInstance;
+    private FMOD.Studio.EventInstance grappleStickInstance;
+    private FMOD.Studio.EventInstance grappleFailInstance;
+    private FMOD.Studio.EventInstance grapplePullInstance;
+
+    private bool grapplePullSFXDoOnce = true;
+
     private Vector2 grapplePoint;
     private Vector2 ropePoint;
 
@@ -28,6 +41,11 @@ public class GrapplingHook : MonoBehaviour
         grappleJoint.enabled = false;
         rope.enabled = false;
         Physics2D.queriesStartInColliders = false;
+
+        grappleThrowInstance = FMODUnity.RuntimeManager.CreateInstance(grappleThrowPath);
+        grappleStickInstance = FMODUnity.RuntimeManager.CreateInstance(grappleStickPath);
+        grappleFailInstance = FMODUnity.RuntimeManager.CreateInstance(grappleFailPath);
+        grapplePullInstance = FMODUnity.RuntimeManager.CreateInstance(grapplePullPath);
     }
 
     // Update is called once per frame
@@ -69,12 +87,16 @@ public class GrapplingHook : MonoBehaviour
 
                                 launching = false;
                                 grappling = true;
+
+                                grappleStickInstance.start();
                             }
                         }
                         else
                         {
                             launching = false;
                             retracting = true;
+
+                            grappleFailInstance.start();
                         }
                     }
                 } 
@@ -89,6 +111,12 @@ public class GrapplingHook : MonoBehaviour
                 // update grapple position 
                 rope.SetPosition(1, transform.position);
                 rope.SetPosition(0, ropePoint);
+
+                if (grapplePullSFXDoOnce)
+                {
+                    grapplePullInstance.start();
+                    grapplePullSFXDoOnce = false;
+                }
                
                 if (Vector2.Distance(transform.position, ropePoint) < 0.7f)
                 {
@@ -119,6 +147,8 @@ public class GrapplingHook : MonoBehaviour
             rope.SetPosition(0, ropePoint);
             rope.enabled = true;
             launching = true;
+
+            grappleThrowInstance.start();
         }
     }
 
@@ -130,6 +160,7 @@ public class GrapplingHook : MonoBehaviour
         grappling = false;
         launching = false;
         retracting = false;
+        grapplePullSFXDoOnce = true;
     }
 
     public void CancelGrapple()
