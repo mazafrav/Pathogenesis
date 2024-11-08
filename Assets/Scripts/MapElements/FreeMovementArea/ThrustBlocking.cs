@@ -42,7 +42,7 @@ public class ThrustBlocking : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         currentBlockingThrust = blockingThrust;
-        GameManager.Instance.GetPlayerLocomotion().EnableFreeMovement();
+        collision.GetComponentInParent<PlayerLocomotion>().EnableFreeMovement();
         colliderThrustTrigger.isTrigger = false;
         isOnThrustBlocking = true;
 
@@ -55,7 +55,7 @@ public class ThrustBlocking : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GameManager.Instance.GetPlayerLocomotion().DisableFreeMovement();
+        collision.GetComponentInParent<PlayerLocomotion>().DisableFreeMovement();
 
         colliderThrustTrigger.isTrigger = true;
         isOnThrustBlocking = false;
