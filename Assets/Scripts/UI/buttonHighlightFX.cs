@@ -10,6 +10,18 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     [SerializeField] private ParticleSystem[] _particleSystem;
 
+    [SerializeField] private string hoverSFXPath = "event:/UI/Menu Button Hover";
+    [SerializeField] private string selectSFXPath = "event:/UI/Menu Button Select";
+
+    private FMOD.Studio.EventInstance hoverInstance;
+    private FMOD.Studio.EventInstance selectInstance;
+
+    private void Start()
+    {
+        hoverInstance = FMODUnity.RuntimeManager.CreateInstance(hoverSFXPath);
+        selectInstance = FMODUnity.RuntimeManager.CreateInstance(selectSFXPath);
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         foreach (var particle in _particleSystem)
@@ -20,6 +32,8 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             GetComponent<Animator>().Play("ButtonHighlight");
         }
+
+        hoverInstance.start();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -44,6 +58,8 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             GetComponent<Animator>().Play("ButtonHighlight");
         }
+
+        selectInstance.start();
     }
 
     public void OnDeselect(BaseEventData eventData)
