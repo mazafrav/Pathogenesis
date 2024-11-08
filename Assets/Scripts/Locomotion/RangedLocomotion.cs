@@ -61,6 +61,7 @@ public class RangedLocomotion : HostLocomotion
             windUpSFXPath = "event:/SFX/Enemies/Photogenic Charge";
     }
         windUpEventInstance = FMODUnity.RuntimeManager.CreateInstance(windUpSFXPath);
+        jumpEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
     // Update is called once per frame
