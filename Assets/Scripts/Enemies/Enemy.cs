@@ -95,8 +95,12 @@ public class Enemy : MonoBehaviour
         detectEventInstance.getPitch(out float originalPitch);
         detectEventInstance.setPitch(originalPitch + pitch);
 
-        if (shouldApplyDangerLayer)
+        if (shouldApplyDangerLayer && organism.GetComponentInParent<PlayerController>())
         {
+            if (organism.CompareTag("Enemy") && !CanAttackSameSpecie)
+            {
+                return;
+            }
             GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, Mathf.Clamp(dangerLayerIntensity, 0f, 1f));
         }
     }
