@@ -59,7 +59,6 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
             GetComponent<Animator>().Play("ButtonHighlight");
         }
 
-        selectInstance.start();
     }
 
     public void OnDeselect(BaseEventData eventData)
@@ -77,5 +76,8 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
     public void OnClick()
     {
         GetComponent<Animator>().Play("ButtonSelected");
+
+
+        selectInstance.start();
     }
 }
