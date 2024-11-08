@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -59,6 +60,10 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
             GetComponent<Animator>().Play("ButtonHighlight");
         }
 
+        if(GameManager.Instance.IsThereAGamepadConnected)
+        {
+            hoverInstance.start();
+        }
     }
 
     public void OnDeselect(BaseEventData eventData)
@@ -76,7 +81,6 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
     public void OnClick()
     {
         GetComponent<Animator>().Play("ButtonSelected");
-
 
         selectInstance.start();
     }

@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
 
         if (IsThereAGamepadConnected)
         {
+            // Restrict input to gamepad only
+            InputSystem.DisableDevice(Mouse.current);
+            InputSystem.DisableDevice(Keyboard.current);
+            //Cursor.visible = false;
+
             if (Gamepad.current is DualShockGamepad)
             {
                 gamepadType = GamepadType.Dualshock;
@@ -76,6 +81,12 @@ public class GameManager : MonoBehaviour
             {
                 gamepadType = GamepadType.XboxController;
             }
+        }
+        else
+        {         
+            InputSystem.EnableDevice(Mouse.current);
+            InputSystem.EnableDevice(Keyboard.current);
+            //Cursor.visible = true;
         }
 
 
