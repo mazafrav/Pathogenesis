@@ -112,7 +112,7 @@
 	<object class="MixerBusPanner" id="{a0bb6eb4-946b-4ac4-9726-6e7658c5c9bc}" />
 	<object class="SingleSound" id="{0cc2efbd-a81b-4910-99eb-a4f33ad72bbc}">
 		<property name="length">
-			<value>0.875</value>
+			<value>0.5</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>0.042639294996751134</value>
@@ -143,7 +143,7 @@
 	</object>
 	<object class="SingleSound" id="{45e04183-bbbf-4c3d-a825-c9c0025d4a7a}">
 		<property name="length">
-			<value>0.98687170037361915</value>
+			<value>0.6640625</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>0.2416231718887748</value>
@@ -223,7 +223,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{50bfb5c1-37f4-40e3-9c55-44e2fff147b7}">
 		<property name="volume">
-			<value>-80</value>
+			<value>-10.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 3</value>
@@ -349,7 +349,7 @@
 	</object>
 	<object class="AutomationPoint" id="{f2dec080-373b-4922-8e82-6dcefeb2ba53}">
 		<property name="position">
-			<value>0.77909762833008445</value>
+			<value>0.40409762833008445</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -360,7 +360,7 @@
 	</object>
 	<object class="AutomationPoint" id="{47c972fb-6b27-4dd7-ad75-f2c2973f1742}">
 		<property name="position">
-			<value>0.875</value>
+			<value>0.5</value>
 		</property>
 		<property name="value">
 			<value>0</value>
@@ -388,18 +388,18 @@
 	</object>
 	<object class="AutomationPoint" id="{72d3598f-041b-4e43-bffe-114e1e00cec3}">
 		<property name="position">
-			<value>0.81708003370695259</value>
+			<value>0.49427083333333344</value>
 		</property>
 		<property name="value">
 			<value>1</value>
 		</property>
 		<property name="curveShape">
-			<value>0.25471893</value>
+			<value>-0.0722839907</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{b8952d60-99e0-4936-b016-73a0825b6981}">
 		<property name="position">
-			<value>0.98687170037361915</value>
+			<value>0.6640625</value>
 		</property>
 		<property name="value">
 			<value>0</value>
