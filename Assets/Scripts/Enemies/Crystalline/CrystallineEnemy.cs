@@ -61,13 +61,15 @@ public class CrystalineEnemy : Enemy
             else
             {
                 //Orient enemy towards current waypoint
-                if(!grapplingHook.launching)
-                {
+                if(!grapplingHook.launching && currentWayPointIndex < wayPoints.Length)
+                {                   
                     float distanceToWayPoint = (transform.position - wayPoints[currentWayPointIndex].position).magnitude;
                     if (distanceToWayPoint > minDistanceToFaceNextWayPoint)
-                    {
-                        graphics.transform.right = wayPoints[currentWayPointIndex].transform.position - graphics.transform.position;
-                    }
+                    {                                             
+                        Vector3 targetDir = wayPoints[currentWayPointIndex].transform.position - graphics.transform.position;
+                        float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+                        graphics.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                    }                
                 }
             }
             
