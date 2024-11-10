@@ -17,6 +17,8 @@ public class Thrust : MonoBehaviour
     [SerializeField] private bool applyHorizontalThrust = false;
     [SerializeField] private float disabledControlsTime = 1.0f;
 
+    private FMODUnity.StudioEventEmitter emitter;
+
     private bool hasDisabledControls = false;
     private float currentTime = 0.0f;
 
@@ -25,6 +27,7 @@ public class Thrust : MonoBehaviour
     {
         animator = GetComponentInParent<Animator>();
         currentTime = disabledControlsTime;
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     void Update()
@@ -78,6 +81,7 @@ public class Thrust : MonoBehaviour
         }
 
         animator.Play("FMAT_Thurst");
+        emitter.Play();
         if (thurstVFX) { thurstVFX.Play(); };
     }
 

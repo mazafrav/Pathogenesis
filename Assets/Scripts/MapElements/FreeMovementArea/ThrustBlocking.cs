@@ -15,12 +15,14 @@ public class ThrustBlocking : MonoBehaviour
     private Collider2D colliderThrustTrigger;
     private Rigidbody2D playerRigidbody;
     private Animator animator;
+    private FMODUnity.StudioEventEmitter emitter;
 
     private void Start()
     {
         colliderThrustTrigger = thrustTrigger.GetComponent<Collider2D>();
         playerRigidbody = GameManager.Instance.GetPlayerController().GetComponentInChildren<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     private void Update()
@@ -51,6 +53,7 @@ public class ThrustBlocking : MonoBehaviour
         blockingBouncines.GetComponent<BlockingBouncines>().enabled = false;
 
         animator.Play("FMAT_Block");
+        emitter.Play();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -64,5 +67,6 @@ public class ThrustBlocking : MonoBehaviour
         blockingBouncines.GetComponent<BlockingBouncines>().enabled = true;
 
         animator.Play("FMAT_Idle");
+        emitter.Stop();
     }
 }
