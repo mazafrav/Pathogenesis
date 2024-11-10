@@ -7,8 +7,8 @@ public class ElectricShockRange : MonoBehaviour
 
     public GameObject personInRange {  get; private set; }
     private CrystalineEnemy crystalineEnemy;
-    private bool cancellingAggro;
-    private float cancelAggroTimer = 0f;
+    private bool cancellingFlee;
+    private float cancelFleeTimer = 0f;
 
     private void Start()
     {
@@ -17,15 +17,15 @@ public class ElectricShockRange : MonoBehaviour
 
     private void Update()
     {
-        if (cancellingAggro)
+        if (cancellingFlee)
         {
-            cancelAggroTimer = Mathf.Max(cancelAggroTimer - Time.deltaTime, 0f);
+            cancelFleeTimer = Mathf.Max(cancelFleeTimer - Time.deltaTime, 0f);
 
-            if (cancelAggroTimer <= 0f)
+            if (cancelFleeTimer <= 0f)
             {
                 personInRange = null;
-                cancelAggroTimer = 0f;
-                cancellingAggro = false;
+                cancelFleeTimer = 0f;
+                cancellingFlee = false;
             }
         }
     }
@@ -34,10 +34,10 @@ public class ElectricShockRange : MonoBehaviour
     {
         if(personInRange == null && collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
-            if (cancelAggroTimer > 0f)
+            if (cancelFleeTimer > 0f)
             {
-                cancelAggroTimer = 0f;
-                cancellingAggro = false;
+                cancelFleeTimer = 0f;
+                cancellingFlee = false;
             }
             else
             {
@@ -56,8 +56,8 @@ public class ElectricShockRange : MonoBehaviour
             }
             else
             {
-                cancellingAggro = true;
-                cancelAggroTimer = crystalineEnemy.timeToCancelAggro;
+                cancellingFlee = true;
+                cancelFleeTimer = crystalineEnemy.timeToCancelFlee;
             }
         }
     }

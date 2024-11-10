@@ -26,7 +26,8 @@ public class CrystalineEnemy : Enemy
     [SerializeField] private float detectionRange = 4f;
     [SerializeField] private float stabRange = 2f;
 
-    public float timeToCancelAggro = 1.5f;
+    public float timeToCancelFlee = 1.5f;
+    [SerializeField] private float fleeSpeed = 2f;
     private CrystallineLocomotion crystallineLocomotion;
     private bool isSeeingTarget = false;
     private Vector3 direction;
@@ -100,7 +101,7 @@ public class CrystalineEnemy : Enemy
         {
             if (range.personInRange)
             {
-                crystallineLocomotion.SetMoveSpeed(chaseSpeed);
+                crystallineLocomotion.SetMoveSpeed(fleeSpeed);
 
                 //AI dont attack
                 //if (Vector3.Distance(transform.position, range.personInRange.transform.position) <= stabRange)
@@ -109,9 +110,11 @@ public class CrystalineEnemy : Enemy
                 //}
                 //else
                 //{
-                    locomotion.Move(direction.x, direction.y);
+                    locomotion.Move(-direction.x, -direction.y);
                 //}
-                UpdateOrientation(range.personInRange.transform.position);
+                //UpdateOrientation(transform.down);
+                graphics.transform.right = -(range.personInRange.transform.position - graphics.transform.position);
+
 
                 CheckIfDetected(range.personInRange);
             }

@@ -196,10 +196,11 @@ MonoBehaviour:
   range: {fileID: 6513760127648393129}
   photonicRange: {fileID: 3831116354335974870}
   graphics: {fileID: 6336304723267710215}
+  minDistanceToFaceNextWayPoint: 1.5
   photonicDetectionRange: 10
   detectionRange: 4
   stabRange: 2
-  timeToCancelAggro: 1.5
+  timeToCancelFlee: 1.5
 --- !u!114 &6721288742054024510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +256,7 @@ SliderJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -21.76, y: 3.73}
   m_AutoConfigureAngle: 1
-  m_Angle: 55.338932
+  m_Angle: 170.27315
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: -15
@@ -1147,7 +1148,7 @@ GameObject:
   - component: {fileID: 372864127837661307}
   - component: {fileID: 6513760127648393129}
   m_Layer: 2
-  m_Name: StabDetectionRange
+  m_Name: FleeDetectionRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1345,6 +1346,10 @@ MonoBehaviour:
   grappleJoint: {fileID: 4166133987236749894}
   ropeLauchSpeed: 5
   rope: {fileID: 1240293065442075780}
+  grappleThrowPath: event:/SFX/Enemies/Crystalline Grapple Shot
+  grappleStickPath: event:/SFX/Enemies/Crystalline Grapple Stick
+  grappleFailPath: event:/SFX/Enemies/Crystalline Grapple Fail
+  grapplePullPath: event:/SFX/Enemies/Crystalline Grapple Pull
 --- !u!1 &5182233745538508833
 GameObject:
   m_ObjectHideFlags: 0
