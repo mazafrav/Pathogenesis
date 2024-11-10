@@ -7,14 +7,13 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10.0f;
     private Rigidbody2D rb;
     public GameObject player;
-    public DamageControl damageControl;
+    private DamageControl damageControl;
     public GameObject owner;
     [SerializeField]
-    public ParticleSystem BulletVFX;
+    private ParticleSystem BulletVFX;
     [SerializeField]
     private AudioClip bulletHitClip;
 
-    private bool isReflected = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +24,6 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
-        /*
-        if (transform.position.y >= 20 || transform.position.y <= -20
-            || transform.position.x >= 30 || transform.position.x <= -30)
-        {
-            Destroy(gameObject);
-        }
-        */
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,11 +74,6 @@ public class Bullet : MonoBehaviour
         ParticleSystem bulletVFX = Instantiate(BulletVFX, this.gameObject.transform.position, Quaternion.identity);
         bulletVFX.Play();
         HostLocomotion ownerLocomotion = owner.GetComponentInParent<HostLocomotion>();
-
-        //if(ownerLocomotion != null)
-        //{
-        //    ownerLocomotion.GetOneShotSource().PlayOneShot(bulletHitClip);
-        //}
 
         Destroy(this.gameObject);
     }

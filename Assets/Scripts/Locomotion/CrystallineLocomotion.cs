@@ -16,8 +16,6 @@ public class CrystallineLocomotion : HostLocomotion
     [SerializeField]
     private GameObject graphics;
     [SerializeField]
-    private float maxAngularSpeed = 10f;
-    [SerializeField]
     private CrystallineStab crystallineStab;
     [SerializeField]
     private float cooldown = 1.0f;
@@ -51,7 +49,6 @@ public class CrystallineLocomotion : HostLocomotion
     private GroundChecker ceilChecker;
     private HostAbsorption absorption;
     private bool isClimbing = false;
-    private float climbedDistance = 0f;
     private CrystalineEnemy enemyIA;
     private bool flipRot = true;
 
@@ -59,7 +56,7 @@ public class CrystallineLocomotion : HostLocomotion
 
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
-    [SerializeField] GameObject possessedLightSource;
+    [SerializeField] GameObject possessedLightSource;  
 
     public GrapplingHook GetGrapplingHook() => grapplingHook;
 
@@ -84,13 +81,7 @@ public class CrystallineLocomotion : HostLocomotion
 
     void Update()
     {
-
         //Debug.Log("Gravity " + rb2D.gravityScale);
-
-        if (groundChecker.isGrounded)
-        {
-            climbedDistance = 0f;
-        }
 
         if (isClimbing && !wallCheckerL.isGrounded && !wallCheckerR.isGrounded && !ceilChecker.isGrounded)
         {

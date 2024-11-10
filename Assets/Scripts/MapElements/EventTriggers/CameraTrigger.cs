@@ -31,20 +31,21 @@ public class CameraTrigger : MonoBehaviour
     private float targetDeadZoneX;
     private float targetOrthoSize;
 
-    private CinemachineVirtualCamera camera;
+    private CinemachineVirtualCamera cinemachineCamera;
+
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameManager.Instance.GetCamera();
-        baseOffsetY = camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY;
+        cinemachineCamera = GameManager.Instance.GetCamera();
+        baseOffsetY = cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY;
         targetOffsetY = baseOffsetY;
-        baseDeadZoneY = camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight;
+        baseDeadZoneY = cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight;
         targetDeadZoneY = baseDeadZoneY;
-        baseOffsetX = camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX;
+        baseOffsetX = cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX;
         targetOffsetX = baseOffsetX;
-        baseDeadZoneX = camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneWidth;
+        baseDeadZoneX = cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneWidth;
         targetDeadZoneX = baseDeadZoneX;
-        baseOrthoSize = camera.m_Lens.OrthographicSize;
+        baseOrthoSize = cinemachineCamera.m_Lens.OrthographicSize;
         targetOrthoSize = baseOrthoSize;
     }
 
@@ -53,28 +54,28 @@ public class CameraTrigger : MonoBehaviour
     {
         if (ChangeDeadZoneY)
         {
-            float lerpedDeadZone = Mathf.Lerp(camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight, targetDeadZoneY, speed * Time.deltaTime);
-            camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight = lerpedDeadZone;
+            float lerpedDeadZone = Mathf.Lerp(cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight, targetDeadZoneY, speed * Time.deltaTime);
+            cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight = lerpedDeadZone;
         }
         if (ChangeOffsetY)
         {
-            float lerpedOffset = Mathf.Lerp(camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY, targetOffsetY, speed * Time.deltaTime);
-            camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = lerpedOffset;
+            float lerpedOffset = Mathf.Lerp(cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY, targetOffsetY, speed * Time.deltaTime);
+            cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = lerpedOffset;
         }
         if (ChangeDeadZoneX)
         {
-            float lerpedDeadZone = Mathf.Lerp(camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneWidth, targetDeadZoneX, speed * Time.deltaTime);
-            camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight = lerpedDeadZone;
+            float lerpedDeadZone = Mathf.Lerp(cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneWidth, targetDeadZoneX, speed * Time.deltaTime);
+            cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_DeadZoneHeight = lerpedDeadZone;
         }
         if (ChangeOffsetX)
         {
-            float lerpedOffset = Mathf.Lerp(camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY, targetOffsetX, speed * Time.deltaTime);
-            camera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = lerpedOffset;
+            float lerpedOffset = Mathf.Lerp(cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY, targetOffsetX, speed * Time.deltaTime);
+            cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = lerpedOffset;
         }
         if (ChangeOrthoSize)
         {
-            float lerpedOrthoSize = Mathf.Lerp(camera.m_Lens.OrthographicSize, targetOrthoSize, speed * Time.deltaTime);
-            camera.m_Lens.OrthographicSize = lerpedOrthoSize;
+            float lerpedOrthoSize = Mathf.Lerp(cinemachineCamera.m_Lens.OrthographicSize, targetOrthoSize, speed * Time.deltaTime);
+            cinemachineCamera.m_Lens.OrthographicSize = lerpedOrthoSize;
         }
     }
 

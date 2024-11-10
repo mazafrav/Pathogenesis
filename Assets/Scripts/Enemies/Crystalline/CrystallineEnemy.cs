@@ -24,15 +24,16 @@ public class CrystalineEnemy : Enemy
     private float minDistanceToFaceNextWayPoint = 1.5f;
     [SerializeField] private float photonicDetectionRange = 7f;
     [SerializeField] private float detectionRange = 4f;
-    [SerializeField] private float stabRange = 2f;
+    //[SerializeField] private float stabRange = 2f;
 
-    public float timeToCancelFlee = 1.5f;
+    public float timeToCancelFlee { get; private set; } = 1.5f;
     [SerializeField] private float fleeSpeed = 2f;
     private CrystallineLocomotion crystallineLocomotion;
     private bool isSeeingTarget = false;
     private Vector3 direction;
     private GrapplingHook grapplingHook;
-    void Start()
+
+    protected override void Start()
     {
         base.Start();
 

@@ -38,7 +38,7 @@ public class RangedEnemy : Enemy
 
     private RangedLocomotion rangedLocomotion;
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
 

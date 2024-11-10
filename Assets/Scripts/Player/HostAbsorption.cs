@@ -17,11 +17,7 @@ public class HostAbsorption : Interactable
 
     [Header("Possession Effect")]
     [SerializeField]
-    private float cameraShakeIntensity = 0.6f;
-    [SerializeField]
     private float possessionEffectTime = 1.5f;
-    [SerializeField]
-    private float zoomValue = 0.0f;
     [SerializeField]
     private float controllerVibrationIntestity = 0.01f;
     [SerializeField]
@@ -36,10 +32,7 @@ public class HostAbsorption : Interactable
     private string possessionEventPath = "event:/SFX/Player/Player Enemy Possession";
     private FMOD.Studio.EventInstance possessionEventInstance;
 
-    private float originalZoom;
     private float possessionTimer = 0.0f;
-    private float currentTimeToZoomIn = 0.0f;
-    private float currentTimeToZoomOut = 0.0f;
 
     private HostLocomotion hostLocomotion;
     private PlayerController playerController;
@@ -74,24 +67,6 @@ public class HostAbsorption : Interactable
 
             ChangeColor(Color.Lerp(graphics.color, possessingColor, 1 - possessionTimer / possessionEffectTime));
             ChangePossessionMaterial(Mathf.Clamp(1 - possessionTimer / possessionEffectTime, 0f, 1f));
-
-            /*
-            if (zoomValue > 0f)
-            {
-                if (currentTimeToZoomIn > 0.0f) //Zoom in
-                {
-                    currentTimeToZoomIn = Math.Max(currentTimeToZoomIn - Time.deltaTime, 0.0f);
-                  
-                    Zoom(Mathf.Lerp(originalZoom, zoomValue, Mathf.Clamp(1 - currentTimeToZoomIn / (possessionEffectTime/2.0f), 0f, 1f)));
-                }
-                else if (currentTimeToZoomIn <= 0.0f && currentTimeToZoomOut > 0.0f) //Zoom out
-                {
-                    currentTimeToZoomOut = Math.Max(currentTimeToZoomOut - Time.deltaTime, 0.0f);
-                                     
-                    Zoom(Mathf.Lerp(zoomValue, originalZoom, Mathf.Clamp(1 - currentTimeToZoomOut / (possessionEffectTime / 2.0f), 0f, 1f)));
-                }
-            }
-            */
 
             Gamepad gamepad = Gamepad.current;
             if (gamepad != null)
@@ -221,25 +196,9 @@ public class HostAbsorption : Interactable
             GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, 0);
             hostLocomotion.GetComponent<Enemy>().SetLayerDetection(true);
 
-            /*
-            currentTimeToZoomIn = possessionEffectTime/2.0f;
-            currentTimeToZoomOut = possessionEffectTime/2.0f;
-            */
             doOnce = true;
             //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
-
-            /*
-            if (zoomValue > 0.0f) // Transformation of a natural zoom value chosen by arrobaManu to a practical zoom value
-            {
-                if (cinemachineVirtualCamera)
-                {
-                    originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
-                }
-                zoomValue = Mathf.Clamp(originalZoom - zoomValue, 1 , 20);
-            }
-            */
-            
-
+            //
             enemyBehaviour.enabled = false;
         }
 
@@ -299,18 +258,6 @@ public class HostAbsorption : Interactable
             */
             //doOnce = true;
             //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
-
-            /*
-            if (zoomValue > 0.0f) // Transformation of a natural zoom value chosen by arrobaManu to a practical zoom value
-            {
-                if (cinemachineVirtualCamera)
-                {
-                    originalZoom = cinemachineVirtualCamera.m_Lens.OrthographicSize;
-                }
-                zoomValue = Mathf.Clamp(originalZoom - zoomValue, 1 , 20);
-            }
-            */
-
 
             enemyBehaviour.enabled = false;
         }

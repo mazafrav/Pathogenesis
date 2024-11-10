@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
     }
     public bool CanAttackSameSpecie { get; set; } = false;
 
-    protected void Start()
+    virtual protected void Start()
     {
         layerDetectionCollider.SetActive(false);
     }
