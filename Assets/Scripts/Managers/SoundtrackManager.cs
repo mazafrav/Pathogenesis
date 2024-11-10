@@ -30,6 +30,7 @@ public class SoundtrackManager : MonoBehaviour
     //private FMOD.Studio.EventInstance currentInstance;
 
     private FMODUnity.StudioEventEmitter emitter;
+    private bool audioDoOnce = true;
 
     private void Start()
     {
@@ -190,14 +191,24 @@ public class SoundtrackManager : MonoBehaviour
 
     private void CheckLevelSoundtrack(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.Equals("LVL_0"))
+        if (scene.name.Equals("MainMenu"))
+        {
+            audioDoOnce = true;
+
+            emitter.Stop();
+            mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            mainMusicInstance.release();
+            mainMusicInstance.start();
+        }
+        else if (scene.name.Equals("LVL_0"))
         {
             emitter.Stop();
             mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             mainMusicInstance.release();
         }
-        else if (scene.name.Equals("LVL_12"))
+        else if (audioDoOnce && scene.name.Equals("LVL_12"))
         {
+            audioDoOnce = false;
             emitter.Stop();
             mainMusicInstance.start();
         }
