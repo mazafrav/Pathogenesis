@@ -26,6 +26,7 @@ public class SensitiveTile : ReceptorBase
         {
             animator.Play("SensitiveTileActivated");
             TriggerTargets();
+            EmitSFX();
         }
     }
 }
