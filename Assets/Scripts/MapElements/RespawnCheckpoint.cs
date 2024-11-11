@@ -13,7 +13,7 @@ public class RespawnCheckpoint : MonoBehaviour
         if (isActive && (collision.gameObject.CompareTag("Player") || 
             (collision.gameObject.CompareTag("Enemy") && collision.GetComponentInParent<PlayerController>())))
         {
-            Debug.Log("SIIIIIIIUUUUUU");
+            //Debug.Log("SIIIIIIIUUUUUU");
             isActive = false;
             SaveGameObjectForRespawn respawnLoader = GameObject.FindObjectOfType<SaveGameObjectForRespawn>();
 
@@ -37,7 +37,7 @@ public class RespawnCheckpoint : MonoBehaviour
 
                         if (collision.gameObject.CompareTag("Enemy") && gameObjectsToRespawn[i] == collision.gameObject)
                         {
-                            Debug.Log("oh yesyeyses");
+                            //Debug.Log("oh yesyeyses");
                             GameManager.Instance.SetPossessedEnemyToRespawn(i);
                         }
                     }

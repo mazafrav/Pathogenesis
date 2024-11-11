@@ -16,8 +16,6 @@ public class CrystallineLocomotion : HostLocomotion
     [SerializeField]
     private GameObject graphics;
     [SerializeField]
-    private float maxAngularSpeed = 10f;
-    [SerializeField]
     private CrystallineStab crystallineStab;
     [SerializeField]
     private float cooldown = 1.0f;
@@ -51,7 +49,6 @@ public class CrystallineLocomotion : HostLocomotion
     private GroundChecker ceilChecker;
     private HostAbsorption absorption;
     private bool isClimbing = false;
-    private float climbedDistance = 0f;
     private CrystalineEnemy enemyIA;
     private bool flipRot = true;
 
@@ -59,7 +56,7 @@ public class CrystallineLocomotion : HostLocomotion
 
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
-    [SerializeField] GameObject possessedLightSource;
+    [SerializeField] GameObject possessedLightSource;  
 
     public GrapplingHook GetGrapplingHook() => grapplingHook;
 
@@ -91,14 +88,12 @@ public class CrystallineLocomotion : HostLocomotion
 
     void Update()
     {
-        if (groundChecker.isGrounded)
-        {
-            climbedDistance = 0f;
-        }
+        //Debug.Log("Gravity " + rb2D.gravityScale);
 
         if (isClimbing && !wallCheckerL.isGrounded && !wallCheckerR.isGrounded && !ceilChecker.isGrounded)
         {
-            rb2D.gravityScale = g / Physics2D.gravity.y;
+            //rb2D.gravityScale = g / Physics2D.gravity.y;
+            rb2D.gravityScale = 1;
             isClimbing = false;
             directionClimb = AdhesionDirection.S;
         }
@@ -333,7 +328,7 @@ public class CrystallineLocomotion : HostLocomotion
         CrystallineEnemyPossessingParameters crystallinePossessingParameters = (CrystallineEnemyPossessingParameters)possessingParameters;
 
         g = ((-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f))) * possessingParameters.gravityModifier;
-        rb2D.gravityScale = g / Physics2D.gravity.y;
+        //rb2D.gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         cooldown = crystallinePossessingParameters.cooldown;
@@ -351,7 +346,7 @@ public class CrystallineLocomotion : HostLocomotion
     {
         base.SetMoveSpeed(newSpeed);
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-        rb2D.gravityScale = g / Physics2D.gravity.y;
+        //rb2D.gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
     }
 

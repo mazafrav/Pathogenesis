@@ -21,7 +21,7 @@ public class ElectricEnemy : Enemy
 
     public ShootingComponent GetShootingComponent() { return shootingComponent; }
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
 

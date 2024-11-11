@@ -38,7 +38,7 @@ public class RangedEnemy : Enemy
 
     private RangedLocomotion rangedLocomotion;
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
 
@@ -286,7 +286,7 @@ public class RangedEnemy : Enemy
         isAiming = true;
         canShoot = false;
         timeToShootTimer = timeToShoot;
-
+        rangedLocomotion.rangedAnimator.Play("RangedEnemAttack");
         yield return new WaitForSeconds(timeToShoot);
 
         locomotion.Attack(targetPosition);

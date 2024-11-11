@@ -19,24 +19,26 @@ public class CrystalineEnemy : Enemy
     [SerializeField]
     private PhotonicDetection photonicRange;
     [SerializeField] 
-    public GameObject graphics;
-
+    private GameObject graphics;
+    [SerializeField]
+    private float minDistanceToFaceNextWayPoint = 1.5f;
     [SerializeField] private float photonicDetectionRange = 7f;
     [SerializeField] private float detectionRange = 4f;
-    [SerializeField] private float stabRange = 2f;
+    //[SerializeField] private float stabRange = 2f;
 
-    public float timeToCancelAggro = 1.5f;
-
+    public float timeToCancelFlee { get; private set; } = 1.5f;
+    [SerializeField] private float fleeSpeed = 2f;
     private CrystallineLocomotion crystallineLocomotion;
     private bool isSeeingTarget = false;
     private Vector3 direction;
+    private GrapplingHook grapplingHook;
 
-    void Start()
+    protected override void Start()
     {
         base.Start();
 
         OnAttackSameSpecies += AllowAttackSameSpecies;
-
+        grapplingHook = graphics.GetComponentInChildren<GrapplingHook>();
 
         crystallineLocomotion = GetComponent<CrystallineLocomotion>();
 
@@ -59,15 +61,17 @@ public class CrystalineEnemy : Enemy
             }
             else
             {
-
-                //if (movementDirection > 0)
-                //{
-                //    graphics.transform.rotation = Quaternion.Euler(0, 0, -90);
-                //}
-                //else if (movementDirection < 0)
-                //{
-                //    graphics.transform.rotation = Quaternion.Euler(0, 0, 90);
-                //}
+                //Orient enemy towards current waypoint
+                if(!grapplingHook.launching && currentWayPointIndex < wayPoints.Length)
+                {                   
+                    float distanceToWayPoint = (transform.position - wayPoints[currentWayPointIndex].position).magnitude;
+                    if (distanceToWayPoint > minDistanceToFaceNextWayPoint)
+                    {                                             
+                        Vector3 targetDir = wayPoints[currentWayPointIndex].transform.position - graphics.transform.position;
+                        float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
+                        graphics.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                    }                
+                }
             }
             
             if (range.personInRange) // if an organism enters in his detection range, we check if there are any obstacles (if it can see its target)
@@ -100,7 +104,7 @@ public class CrystalineEnemy : Enemy
         {
             if (range.personInRange)
             {
-                crystallineLocomotion.SetMoveSpeed(chaseSpeed);
+                crystallineLocomotion.SetMoveSpeed(fleeSpeed);
 
                 //AI dont attack
                 //if (Vector3.Distance(transform.position, range.personInRange.transform.position) <= stabRange)
@@ -109,15 +113,16 @@ public class CrystalineEnemy : Enemy
                 //}
                 //else
                 //{
-                    locomotion.Move(direction.x, direction.y);
+                    locomotion.Move(-direction.x, -direction.y);
                 //}
-                UpdateOrientation(range.personInRange.transform.position);
+                //UpdateOrientation(transform.down);
+                graphics.transform.right = -(range.personInRange.transform.position - graphics.transform.position);
+
 
                 CheckIfDetected(range.personInRange);
             }
-
             else
-            {
+            {                         
                 isSeeingTarget = false;
             }
            
@@ -132,9 +137,7 @@ public class CrystalineEnemy : Enemy
             if (wayPoints.Length != 0)
             {
                 Patrol();
-
             }
-
         }
     }
 

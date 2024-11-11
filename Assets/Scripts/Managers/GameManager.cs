@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     public SoundtrackManager soundtrackManager { get; private set; }
 
     private GameObject levelEventSystem;
-    private int pausedMusicSelection = 1;
     private float processInputTimer = 0.0f;
 
     private List<GameObject> gameObjectsToRespawn = new List<GameObject>();
@@ -71,6 +70,11 @@ public class GameManager : MonoBehaviour
 
         if (IsThereAGamepadConnected)
         {
+            // Restrict input to gamepad only
+            InputSystem.DisableDevice(Mouse.current);
+            InputSystem.DisableDevice(Keyboard.current);
+            //Cursor.visible = false;
+
             if (Gamepad.current is DualShockGamepad)
             {
                 gamepadType = GamepadType.Dualshock;
@@ -79,6 +83,12 @@ public class GameManager : MonoBehaviour
             {
                 gamepadType = GamepadType.XboxController;
             }
+        }
+        else
+        {         
+            InputSystem.EnableDevice(Mouse.current);
+            InputSystem.EnableDevice(Keyboard.current);
+            //Cursor.visible = true;
         }
 
 
@@ -169,8 +179,6 @@ public class GameManager : MonoBehaviour
             soundtrackManager.ApplyPauseSnapshot();
             canPlayerProcessInput = false;
             Time.timeScale = 0.0f;
-            //pausedMusicSelection = soundtrackManager.GetSelectionIndex();
-            //soundtrackManager.SetSelectionIndex(2);
 
             bool isPauseOn = false;
             for (int i = 0; i < SceneManager.sceneCount; i++)
@@ -194,14 +202,8 @@ public class GameManager : MonoBehaviour
             processInputTimer = 0.1f;
             Time.timeScale = 1.0f;
             SceneManager.UnloadSceneAsync("PauseMenu");
-            //soundtrackManager.SetSelectionIndex(pausedMusicSelection);
         }
     }
-
-    //public void SetMusicSelectionIndex(int index)
-    //{
-    //    soundtrackManager.SetSelectionIndex(index);
-    //}
 
     public List<GameObject> GetGameObjectsToRespawn()
     {

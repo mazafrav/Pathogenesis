@@ -5,7 +5,7 @@
 			<value>Photogenic Jump</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9ede8ee4-21fa-438b-8aea-9647f1f4f0e5}</destination>
@@ -122,6 +122,7 @@
 	<object class="MixerBusEffectChain" id="{c34cc4fa-1bfb-439d-a966-4af290d37e39}">
 		<relationship name="effects">
 			<destination>{15460cea-b5ed-40f9-aa05-cc976151fe4c}</destination>
+			<destination>{ac34d779-8fa2-43c5-bf7c-8bb2f29affdb}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7eee81a9-fc6a-49c0-8a4a-5b1d069b7660}" />
@@ -149,6 +150,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{fb1cf033-5191-41fe-ac93-fdf005701c92}" />
 	<object class="MixerBusFader" id="{15460cea-b5ed-40f9-aa05-cc976151fe4c}" />
+	<object class="SpatialiserEffect" id="{ac34d779-8fa2-43c5-bf7c-8bb2f29affdb}">
+		<property name="maximumDistance">
+			<value>25</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{45bc2733-1fd7-44ab-9f0c-3c84ce643e5b}">
 		<property name="position">
 			<value>0</value>

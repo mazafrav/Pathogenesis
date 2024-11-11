@@ -16,8 +16,8 @@ public class ElectricLocomotion : HostLocomotion
     private float followRange = 4.0f;
     [SerializeField]
     private float attackRange = 2.5f;
-    [SerializeField]
-    private float shockRange = 1.5f;
+    //[SerializeField]
+    //private float shockRange = 1.5f;
     [SerializeField]
     private float cooldown = 1.0f;
     [SerializeField]
@@ -56,7 +56,7 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField] GameObject possessedLightSource;
 
     private float currentPlanningGravity = 0.1f;
-    private float newYPosition = 0.0f;
+    //private float newYPosition = 0.0f;
     private Vector3 startPosition = Vector3.zero;
     private float propulsingTimeCounter = 0.0f;
     private bool isPropulsing = false, isPlanning = false;
@@ -65,7 +65,7 @@ public class ElectricLocomotion : HostLocomotion
 
     private Color defaultColor;
 
-    private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentShockDuration = 0.0f;
+    private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f;/*, currentShockDuration = 0.0f;*/
 
     private PlayerController playerController;
 
@@ -105,11 +105,6 @@ public class ElectricLocomotion : HostLocomotion
         followGameObject.transform.localScale = new Vector3(2*followRange, 2*followRange, followGameObject.transform.localScale.z);
         //shockGameObject.transform.localScale = new Vector3(0.25f, 2*shockRange, shockGameObject.transform.localScale.z);
         attackGameObject.transform.localScale = new Vector3(2*attackRange, 2*attackRange, attackGameObject.transform.localScale.z);
-
-        //GetAudioSource().clip = electricShockClip;
-        //GetAudioSource().loop = true;
-
-        //GetOneShotSource().pitch -= 0.5f;
     }
 
     void Update()
@@ -138,16 +133,6 @@ public class ElectricLocomotion : HostLocomotion
                 ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - currentCooldownTime));
             }
         }
-
-        //if (GameManager.Instance.isPaused)
-        //{
-        //    GetAudioSource().Stop();
-        //    GetOneShotSource().Stop();
-        //}
-        //else if (shockGameObject.activeSelf && attackEventInstance.pla)
-        //{
-        //    GetAudioSource().Play();
-        //}
 
         //Only when we are possessed the shock is deactivated after x time
         //if (transform.parent!=null && shockGameObject.activeSelf)
@@ -227,7 +212,7 @@ public class ElectricLocomotion : HostLocomotion
         {
             rb2D.gravityScale = 1f;
             startPosition = transform.position;
-            newYPosition = 0;
+            //newYPosition = 0;
             propulsingTimeCounter = 0f;
             isPropulsing = true;
 
@@ -281,11 +266,6 @@ public class ElectricLocomotion : HostLocomotion
         shockGameObject.SetActive(true);
         moveSpeed *= speedModifier;
         electricShockVFX.Play();
-
-        //if (!GetAudioSource().isPlaying)
-        //{
-        //    GetAudioSource().Play();
-        //}
     }
     public override void DeactivateAttack()
     {
@@ -296,11 +276,6 @@ public class ElectricLocomotion : HostLocomotion
     {
         shockGameObject.SetActive(false);
         electricShockVFX.Stop();
-
-        //if (GetAudioSource().isPlaying)
-        //{
-        //    GetAudioSource().Stop();
-        //}
 
         if (hasAttacked)
         {
@@ -401,11 +376,6 @@ public class ElectricLocomotion : HostLocomotion
     {
         
     }
-
-    //public float GetShockDuration()
-    //{
-    //    return shockDuration;
-    //}
 }
 
 

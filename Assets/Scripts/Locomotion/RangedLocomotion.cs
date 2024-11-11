@@ -8,6 +8,7 @@ public class RangedLocomotion : HostLocomotion
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject shootOrigin;
     [SerializeField] public ParticleSystem chargeShotVFX;
+
     //private GroundChecker groundChecker;
     private float shootCooldown, windUp;
     public float shootCDTimer = 0.0f, windUpTimer = 0.0f;
@@ -21,16 +22,24 @@ public class RangedLocomotion : HostLocomotion
     private SpriteRenderer weaponSprite;
     private HostAbsorption absorption;
 
+    private float originalY;
+    private float heightJumped;
+
     [Header("SFX")]
     [SerializeField]
     private string windUpSFXPath = "event:/SFX/Enemies/Photogenic Charge";
     public FMOD.Studio.EventInstance windUpEventInstance;
+    [SerializeField]
+    private float distanceToFallToPlayLandClip = 2f;
 
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
     [SerializeField] GameObject possessedLightSource;
     public delegate void OnShoot();
     public OnShoot onShoot;
+
+    [Header("Animation")]
+    [SerializeField] public Animator rangedAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +68,8 @@ public class RangedLocomotion : HostLocomotion
             windUpSFXPath = "event:/SFX/Enemies/Photogenic Charge";
     }
         windUpEventInstance = FMODUnity.RuntimeManager.CreateInstance(windUpSFXPath);
+        jumpEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        landEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
     // Update is called once per frame
@@ -87,6 +98,22 @@ public class RangedLocomotion : HostLocomotion
 
             ChangeSpritesColor(Color.Lerp(colorWhileCooldown, GetCurrentColor(), 1.0f - shootCDTimer));
         }
+
+        if (groundChecker.isGrounded)
+        {
+            originalY = transform.position.y;
+        }
+        else
+        {
+            float yDiff = Mathf.Abs(transform.position.y - originalY);
+            heightJumped = Mathf.Max(heightJumped, yDiff);
+        }
+
+        if (heightJumped >= distanceToFallToPlayLandClip && groundChecker.isGrounded)
+        {
+            heightJumped = 0f;
+            landEventInstance.start();
+        }
     }
 
     public override void Attack(Vector3 target = default)
@@ -94,9 +121,11 @@ public class RangedLocomotion : HostLocomotion
         if (!IsAttackReady()) { return; }
 
         chargeShotVFX.Play();
+        
 
         if (GetComponentInParent<PlayerController>() != null )
         {
+            rangedAnimator.Play("RangedEnemAttack");
             windUpTimer = windUp;
             windUpEventInstance.start();
         }
@@ -117,6 +146,7 @@ public class RangedLocomotion : HostLocomotion
         {
             rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
             jumpEventInstance.start();
+            heightJumped = 0f;
         }
     }
 

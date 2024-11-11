@@ -5,10 +5,23 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private ParticleSystem[] _particleSystem;
+
+    [SerializeField] private string hoverSFXPath = "event:/UI/Menu Button Hover";
+    [SerializeField] private string selectSFXPath = "event:/UI/Menu Button Select";
+
+    private FMOD.Studio.EventInstance hoverInstance;
+    private FMOD.Studio.EventInstance selectInstance;
+
+    private void Start()
+    {
+        hoverInstance = FMODUnity.RuntimeManager.CreateInstance(hoverSFXPath);
+        selectInstance = FMODUnity.RuntimeManager.CreateInstance(selectSFXPath);
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -20,6 +33,8 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             GetComponent<Animator>().Play("ButtonHighlight");
         }
+
+        hoverInstance.start();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -44,6 +59,11 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             GetComponent<Animator>().Play("ButtonHighlight");
         }
+
+        if(GameManager.Instance.IsThereAGamepadConnected)
+        {
+            hoverInstance.start();
+        }
     }
 
     public void OnDeselect(BaseEventData eventData)
@@ -61,5 +81,7 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
     public void OnClick()
     {
         GetComponent<Animator>().Play("ButtonSelected");
+
+        selectInstance.start();
     }
 }

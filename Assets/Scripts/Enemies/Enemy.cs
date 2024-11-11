@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     protected float movementDirection = 0;
 
-    private int currentWayPointIndex = 0;
+    protected int currentWayPointIndex = 0;
 
     [Header("SFX")]
     [SerializeField]
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
     }
     public bool CanAttackSameSpecie { get; set; } = false;
 
-    protected void Start()
+    virtual protected void Start()
     {
         layerDetectionCollider.SetActive(false);
     }
@@ -95,8 +95,12 @@ public class Enemy : MonoBehaviour
         detectEventInstance.getPitch(out float originalPitch);
         detectEventInstance.setPitch(originalPitch + pitch);
 
-        if (shouldApplyDangerLayer)
+        if (shouldApplyDangerLayer && organism.GetComponentInParent<PlayerController>())
         {
+            if (organism.CompareTag("Enemy") && !CanAttackSameSpecie)
+            {
+                return;
+            }
             GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, Mathf.Clamp(dangerLayerIntensity, 0f, 1f));
         }
     }

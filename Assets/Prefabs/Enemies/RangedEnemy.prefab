@@ -140,9 +140,10 @@ MonoBehaviour:
   colorWhileWindUp: {r: 1, g: 0.9402296, b: 0.28773582, a: 1}
   colorWhileCooldown: {r: 1, g: 0.8632216, b: 0.5896226, a: 1}
   weaponSprite: {fileID: 8601716645142450873}
-  shotClip: {fileID: 8300000, guid: f0175b6588b6c0a46bcf240e796e1710, type: 3}
+  windUpSFXPath: event:/SFX/Enemies/Photogenic Charge
   ligthSource: {fileID: 2071483044919851034}
   possessedLightSource: {fileID: 7197178655429386291}
+  rangedAnimator: {fileID: 5632285636790511479}
 --- !u!114 &3714384544568055674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +408,7 @@ Transform:
   m_GameObject: {fileID: 49632745737564221}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.82, z: 0}
+  m_LocalPosition: {x: 0, y: 0.813, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1052,7 +1053,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6336304723267710215}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8c472a5d9d9979a4ea386250fa965dd5, type: 2}
   m_CullingMode: 0
