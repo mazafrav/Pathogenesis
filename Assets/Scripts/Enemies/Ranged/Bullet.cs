@@ -73,7 +73,7 @@ public class Bullet : MonoBehaviour
     {
         ParticleSystem bulletVFX = Instantiate(BulletVFX, this.gameObject.transform.position, Quaternion.identity);
         bulletVFX.Play();
-        HostLocomotion ownerLocomotion = owner.GetComponentInParent<HostLocomotion>();
+        //HostLocomotion ownerLocomotion = owner.GetComponentInParent<HostLocomotion>();
 
         Destroy(this.gameObject);
     }
