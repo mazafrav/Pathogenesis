@@ -102,9 +102,9 @@ public class ElectricLocomotion : HostLocomotion
 
         shockGameObject.SetActive(false);
 
-        followGameObject.transform.localScale = new Vector3(2*followRange, 2*followRange, followGameObject.transform.localScale.z);
+        followGameObject.transform.localScale = new Vector3(followRange, followRange, followGameObject.transform.localScale.z);
         //shockGameObject.transform.localScale = new Vector3(0.25f, 2*shockRange, shockGameObject.transform.localScale.z);
-        attackGameObject.transform.localScale = new Vector3(2*attackRange, 2*attackRange, attackGameObject.transform.localScale.z);
+        attackGameObject.transform.localScale = new Vector3(attackRange, attackRange, attackGameObject.transform.localScale.z);
     }
 
     void Update()
