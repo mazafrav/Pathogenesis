@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         if (player == null)
         {
             player = GameObject.Find("Player");
-            onPlayerSet.Invoke();
+            onPlayerSet?.Invoke();
         }
         if (virtualCamera == null)
         {
