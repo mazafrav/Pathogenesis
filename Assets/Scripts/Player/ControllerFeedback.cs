@@ -24,9 +24,10 @@ public class ControllerFeedback : MonoBehaviour
     private bool isRunning = false;
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
         GameManager.Instance.onPlayerSet += BindEvents;
+        yield return new WaitForSeconds(1);
         BindEvents();
     }
 
@@ -66,7 +67,7 @@ public class ControllerFeedback : MonoBehaviour
             GameManager.Instance.GetPlayerController().onHostDeath += OnHostDeath;
             GameManager.Instance.GetPlayerController().onPossession += OnPossession;
         }
-        ReceptorBase[] receptors = FindObjectsOfType<FotoReceptor>();
+        ReceptorBase[] receptors = FindObjectsOfType<ReceptorBase>();
         foreach (ReceptorBase receptor in receptors)
         {
             receptor.onReceptorTrigger += OnReceptorTrigger;
@@ -130,14 +131,14 @@ public class ControllerFeedback : MonoBehaviour
     private void OnPossession(HostLocomotion locomotion)
     {
         CrystallineLocomotion crystaline = locomotion as CrystallineLocomotion;
-        if(crystaline != null)
+        if (crystaline != null)
         {
             crystaline.onGrappleHit += OnGrappleHit;
             crystaline.onGrappleThrow += OnGrappleThrow;
         }
 
         RangedLocomotion ranged = locomotion as RangedLocomotion;
-        if(ranged != null)
+        if (ranged != null)
         {
             ranged.onShoot += OnPhotonicAttack;
         }
@@ -154,19 +155,19 @@ public class ControllerFeedback : MonoBehaviour
 
     private void OnGrappleHit()
     {
-        if(onGrappleHitPreset == null) return;
+        if (onGrappleHitPreset == null) return;
         Vibrate(onGrappleHitPreset);
     }
 
     private void OnGrappleThrow()
     {
-        if(onGrappleThrowPreset == null) return;
+        if (onGrappleThrowPreset == null) return;
         Vibrate(onGrappleThrowPreset);
     }
 
     private void OnPhotonicAttack()
     {
-        if(onPhotonicAttackPreset == null) return;
+        if (onPhotonicAttackPreset == null) return;
         Vibrate(onPhotonicAttackPreset);
     }
 }

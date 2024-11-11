@@ -38,6 +38,7 @@ public class ReceptorBase : MonoBehaviour
 
     public void TriggerTargets()
     {
+        onReceptorTrigger?.Invoke();
         foreach (var element in targetElements)
         {
             ReceptorActivationProjectile triggerVFXInst = Instantiate(triggerVFX, transform.position, Quaternion.identity) as ReceptorActivationProjectile;
@@ -48,7 +49,6 @@ public class ReceptorBase : MonoBehaviour
 
     protected IEnumerator TriggerTargetDelayed(GameObject target, float delay)
     {
-        onReceptorTrigger?.Invoke();
         yield return new WaitForSeconds(delay);
         target.GetComponent<IActivatableElement>()?.Activate();
     }
