@@ -63,6 +63,12 @@ public class CrystallineLocomotion : HostLocomotion
 
     public GrapplingHook GetGrapplingHook() => grapplingHook;
 
+    public delegate void OnGrappleThrow();
+    public OnGrappleThrow onGrappleThrow;
+
+    public delegate void OnGrappleHit();
+    public OnGrappleHit onGrappleHit;
+
     void Start()
     {
         playerController = GameManager.Instance.GetPlayerController();
@@ -80,6 +86,7 @@ public class CrystallineLocomotion : HostLocomotion
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
         rb2D.gravityScale = g / Physics2D.gravity.y;
         velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
+        grapplingHook.onGrappleHit += OnGrappleHitEvent;
     }
 
     void Update()
@@ -182,7 +189,10 @@ public class CrystallineLocomotion : HostLocomotion
         //    currentWindUpTime = windUp;
         //    //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         //}
-        grapplingHook.LaunchGrapple();
+        if(grapplingHook.LaunchGrapple())
+        {
+            onGrappleThrow?.Invoke();
+        }
     }
 
     public override void CancelAttack()
@@ -348,6 +358,11 @@ public class CrystallineLocomotion : HostLocomotion
     public override bool CanJump()
     {
         return groundChecker.isGrounded || ceilChecker.isGrounded || wallCheckerL.isGrounded || wallCheckerR.isGrounded;
+    }
+
+    private void OnGrappleHitEvent()
+    {
+        onGrappleHit?.Invoke();
     }
 
    

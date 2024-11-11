@@ -22,6 +22,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ParticleSystem deathEffect;
 
+    public delegate void OnHostDeath();
+    public OnHostDeath onHostDeath;
+    public delegate void OnVirusDeath();
+    public OnVirusDeath onVirusDeath;
+    public delegate void OnPossesion(HostLocomotion locomotion);
+    public OnPossesion onPossession;
+
+
     [SerializeField]
     public HostLocomotion locomotion;
     [SerializeField]
@@ -268,6 +276,7 @@ public class PlayerController : MonoBehaviour
     public void PlayerBodyDeath()
     {
         Instantiate(deathEffect, playerBody.transform.position, playerBody.transform.rotation);
+        onVirusDeath?.Invoke();
         DisablePlayerBody();
     }
 
@@ -298,4 +307,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(initialTimeWithDisabledInput); 
         playerInputActions.Enable();
     } 
+
+    public void OnPossesionEvent(HostLocomotion locomotion)
+    {
+        onPossession?.Invoke(locomotion);
+    }
 }

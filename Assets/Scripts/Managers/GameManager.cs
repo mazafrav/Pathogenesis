@@ -38,9 +38,12 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused { get; set; } = false;
     public bool canPlayerProcessInput { get; set; } = true;
-    public bool IsThereAGamepadConnected {  get; private set; }
+    public bool IsThereAGamepadConnected { get; private set; }
     public GamepadType gamepadType { get; private set; }
     public static GameManager Instance { get; private set; }
+
+    public delegate void OnPlayerSet();
+    public OnPlayerSet onPlayerSet;
 
     private void Awake()
     {
@@ -58,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       soundtrackManager = GetComponentInChildren<SoundtrackManager>();      
+        soundtrackManager = GetComponentInChildren<SoundtrackManager>();
     }
 
     private void Update()
@@ -84,9 +87,9 @@ public class GameManager : MonoBehaviour
         {
             processInputTimer -= Time.deltaTime;
 
-            if(processInputTimer <=0)
+            if (processInputTimer <= 0)
             {
-                canPlayerProcessInput = true;          
+                canPlayerProcessInput = true;
             }
         }
     }
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
         if (player == null)
         {
             player = GameObject.Find("Player");
+            onPlayerSet.Invoke();
         }
         if (virtualCamera == null)
         {
@@ -143,8 +147,8 @@ public class GameManager : MonoBehaviour
         return levelLoader;
     }
 
-    public CinemachineVirtualCamera GetCamera() 
-    { 
+    public CinemachineVirtualCamera GetCamera()
+    {
         return virtualCamera;
     }
 
@@ -223,7 +227,7 @@ public class GameManager : MonoBehaviour
         gameObjectsToRespawn.Clear();
     }
 
-    public Dictionary<int,Vector3> GetRespawnValues()
+    public Dictionary<int, Vector3> GetRespawnValues()
     {
         return respawnValues;
     }
@@ -233,7 +237,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        respawnValues.Add(go,position);
+        respawnValues.Add(go, position);
     }
 
     public void ResetRespawnValues()

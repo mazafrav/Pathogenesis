@@ -29,6 +29,8 @@ public class RangedLocomotion : HostLocomotion
     [Header("Lights")]
     [SerializeField] GameObject ligthSource;
     [SerializeField] GameObject possessedLightSource;
+    public delegate void OnShoot();
+    public OnShoot onShoot;
 
     // Start is called before the first frame update
     void Start()
@@ -149,6 +151,8 @@ public class RangedLocomotion : HostLocomotion
         // bullet.transform.rotation = Quaternion.Euler(0, 0, rot + 90);
         bullet.GetComponent<Bullet>().owner = gameObject;
         bullet.transform.up = direction.normalized;
+
+        onShoot?.Invoke();
 
         if (cooldown >= 0.0f) 
         {
