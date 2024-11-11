@@ -19,8 +19,6 @@ public class HostAbsorption : Interactable
     [SerializeField]
     private float possessionEffectTime = 1.5f;
     [SerializeField]
-    private float controllerVibrationIntestity = 0.01f;
-    [SerializeField]
     private ParticleSystem absortionParticles;
     [SerializeField]
     private Color possessColor = new Color(0.6696f, 0.7624f, 0.7981f);
