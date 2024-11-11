@@ -61,7 +61,7 @@ public class ControllerFeedback : MonoBehaviour
 
     private void BindEvents()
     {
-        if (GameManager.Instance.GetPlayerController())
+        if (GameManager.Instance.GetPlayer() && GameManager.Instance.GetPlayerController())
         {
             GameManager.Instance.GetPlayerController().onVirusDeath += OnVirusDeath;
             GameManager.Instance.GetPlayerController().onHostDeath += OnHostDeath;
