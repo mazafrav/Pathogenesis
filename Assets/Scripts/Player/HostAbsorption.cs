@@ -67,25 +67,12 @@ public class HostAbsorption : Interactable
 
             ChangeColor(Color.Lerp(graphics.color, possessingColor, 1 - possessionTimer / possessionEffectTime));
             ChangePossessionMaterial(Mathf.Clamp(1 - possessionTimer / possessionEffectTime, 0f, 1f));
-
-            Gamepad gamepad = Gamepad.current;
-            if (gamepad != null)
-            {
-                gamepad.SetMotorSpeeds(controllerVibrationIntestity, controllerVibrationIntestity);
-            }
-
         }
         else
         {
             if (doOnce)
             {
                 playerController.isPossessing = false;
-        
-                Gamepad gamepad = Gamepad.current;
-                if (gamepad != null)
-                {
-                    gamepad.SetMotorSpeeds(0f, 0f);
-                }
                 //CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
                 //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = false;
                 GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 0.5f);
@@ -156,6 +143,7 @@ public class HostAbsorption : Interactable
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;
             playerController.DisablePlayerBody();
+            playerController.OnPossesionEvent(hostLocomotion);
             //graphics.color = possessingColor;
 
             ParticleSystem absortionVFX = Instantiate(absortionParticles, this.gameObject.transform.position, Quaternion.identity);

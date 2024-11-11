@@ -34,6 +34,9 @@ public class GrapplingHook : MonoBehaviour
 
     private GameObject defaultAimPoint; //the aim point used by the enemy
 
+    public delegate void OnGrappleHit();
+    public OnGrappleHit onGrappleHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +56,7 @@ public class GrapplingHook : MonoBehaviour
     {
         if (rope.enabled)
         {
-            if ( launching )
+            if (launching)
             {
                 // Update grapple hook position, lerp from starting point to aim point
                 ropePoint = Vector2.Lerp(ropePoint, aimPoint.transform.position, Time.deltaTime * ropeLauchSpeed);
@@ -63,7 +66,7 @@ public class GrapplingHook : MonoBehaviour
                 // Calculate current length of grapple
                 Vector2 direction = ropePoint - (Vector2)transform.position;
                 float distance = Vector2.Distance(transform.position, ropePoint);
-                if (distance < grappleDistance) 
+                if (distance < grappleDistance)
                 // grapple hasnt reached maximum distance
                 {
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, distance, grappleLayer);
@@ -76,8 +79,9 @@ public class GrapplingHook : MonoBehaviour
                             // collided object is a receptor
                             {
                                 kineticReceptor.Stabbed();
+                                onGrappleHit?.Invoke();
                             }
-                            else 
+                            else
                             // collided object is tilemap
                             {
                                 // activate joint
@@ -87,6 +91,7 @@ public class GrapplingHook : MonoBehaviour
 
                                 launching = false;
                                 grappling = true;
+                                onGrappleHit?.Invoke();
 
                                 grappleStickInstance.start();
                             }
@@ -99,13 +104,13 @@ public class GrapplingHook : MonoBehaviour
                             grappleFailInstance.start();
                         }
                     }
-                } 
+                }
                 else
                 {
                     launching = false;
                     retracting = true;
                 }
-            } 
+            }
             else if (grappling)
             {
                 // update grapple position 
@@ -117,15 +122,15 @@ public class GrapplingHook : MonoBehaviour
                     grapplePullInstance.start();
                     grapplePullSFXDoOnce = false;
                 }
-               
+
                 if (Vector2.Distance(transform.position, ropePoint) < 0.7f)
                 {
                     DismantleGrapple();
                 }
             }
-            else if ( retracting )
+            else if (retracting)
             {
-                
+
                 // move grapple hook back to the organism
                 ropePoint = Vector2.Lerp(ropePoint, transform.position, Time.deltaTime * ropeLauchSpeed * 2);
                 rope.SetPosition(1, transform.position);
@@ -138,18 +143,18 @@ public class GrapplingHook : MonoBehaviour
         }
     }
 
-    public void LaunchGrapple()
+    public bool LaunchGrapple()
     {
-        if (!grappling && !launching)
-        {
-            ropePoint = transform.position;
-            rope.SetPosition(1, transform.position);
-            rope.SetPosition(0, ropePoint);
-            rope.enabled = true;
-            launching = true;
+        if (grappling || launching) return false;
 
-            grappleThrowInstance.start();
-        }
+        ropePoint = transform.position;
+        rope.SetPosition(1, transform.position);
+        rope.SetPosition(0, ropePoint);
+        rope.enabled = true;
+        launching = true;
+
+        grappleThrowInstance.start();
+        return true;
     }
 
     public void DismantleGrapple()

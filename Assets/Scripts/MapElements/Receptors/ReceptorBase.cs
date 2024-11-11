@@ -14,6 +14,9 @@ public class ReceptorBase : MonoBehaviour
     [SerializeField]
     protected float pitch = 0.5f;
 
+    public delegate void OnReceptorTrigger();
+    public OnReceptorTrigger onReceptorTrigger;
+
     protected void Start()
     {
         foreach (var element in targetElements)
@@ -45,6 +48,7 @@ public class ReceptorBase : MonoBehaviour
 
     protected IEnumerator TriggerTargetDelayed(GameObject target, float delay)
     {
+        onReceptorTrigger?.Invoke();
         yield return new WaitForSeconds(delay);
         target.GetComponent<IActivatableElement>()?.Activate();
     }

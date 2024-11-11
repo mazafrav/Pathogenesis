@@ -11,6 +11,7 @@ public class DamageControl : MonoBehaviour
     private bool wasPossessing = false;
 
     private LevelLoader levelLoader;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -53,12 +54,13 @@ public class DamageControl : MonoBehaviour
                     enemy.DestroyEnemy();
                     GameManager.Instance.GetPlayerController().transform.position = enemyPos;
                     GameManager.Instance.GetPlayerController().GetPlayerBody().transform.localPosition = Vector3.zero;
-
+                    
                     GameManager.Instance.GetPlayerController().EnablePlayerBody();
                     GameManager.Instance.GetCamera().Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
                     GameManager.Instance.GetPlayerController().locomotion = GameManager.Instance.GetPlayerLocomotion();
                     //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 0);
                     GameManager.Instance.soundtrackManager.ResetSoundtrack();
+                    GameManager.Instance.GetPlayerController().onHostDeath?.Invoke();
                 }
                 else //The enemy is not possessed
                 {
@@ -69,4 +71,9 @@ public class DamageControl : MonoBehaviour
             }
         }
     }
+
+
+
+
+
 }

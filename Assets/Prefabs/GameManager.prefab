@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1214635315629040010}
   - component: {fileID: 4796828729407239301}
+  - component: {fileID: 5917967585654315672}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -127,3 +128,23 @@ MonoBehaviour:
   player: {fileID: 0}
   levelLoader: {fileID: 0}
   virtualCamera: {fileID: 0}
+--- !u!114 &5917967585654315672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6496974038760274254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b213cae1dfaec6448a59e151029118d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onVirusDeathPreset: {fileID: 11400000, guid: fbebb532deef69448b280f94c7a92df2, type: 2}
+  onHostDeathPreset: {fileID: 11400000, guid: 52f26366887e0c54d802bde17d26701c, type: 2}
+  onReceptorTriggerPreset: {fileID: 11400000, guid: 7d99fe655d2f97747b13c3979f7452de, type: 2}
+  onPosessionPreset: {fileID: 11400000, guid: af79ad80e5de21449a23914af3698b15, type: 2}
+  onPhotonicAttackPreset: {fileID: 11400000, guid: 1ebc4cdb0ef4fa44c890723532fea300, type: 2}
+  onGrappleThrowPreset: {fileID: 11400000, guid: 1ebc4cdb0ef4fa44c890723532fea300, type: 2}
+  onGrappleHitPreset: {fileID: 11400000, guid: 7d99fe655d2f97747b13c3979f7452de, type: 2}
+  preset: {fileID: 11400000, guid: 7d99fe655d2f97747b13c3979f7452de, type: 2}

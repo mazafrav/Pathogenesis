@@ -8,6 +8,9 @@ public class LevelLoader : MonoBehaviour
     public Animator transition;
     [SerializeField]
     public float transitionTime = 0.7f;
+
+    public delegate void OnLevelRestart();
+    public OnLevelRestart onLevelRestart;
    
     //private float timeToResetLevel = 1.0f;
     //private float currentTimeToResetLevel = 0.0f;
@@ -87,7 +90,6 @@ public class LevelLoader : MonoBehaviour
         GameManager.Instance.GetPlayerController().GetPlayerIAs().Disable();
         StartLoadingLevel(SceneManager.GetActiveScene().buildIndex);
 
-
         GameManager.Instance.ClearRespawn();
     }
 
@@ -111,6 +113,7 @@ public class LevelLoader : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(level);
+        onLevelRestart?.Invoke();
         GameManager.Instance.SetLastLevelPlayed(level);
     }
 
