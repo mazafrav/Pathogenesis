@@ -61,11 +61,13 @@ public class Enemy : MonoBehaviour
     virtual public void DestroyEnemy()
     {
         GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
-        ElectricLocomotion electric = (ElectricLocomotion) locomotion;
-        if (electric != null)
+        if (locomotion.GetType() == typeof(ElectricLocomotion))
         {
+            ElectricLocomotion electric = (ElectricLocomotion)locomotion;
+
             electric.StopJumpLoopSFX();
         }
+        
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
         Destroy(gameObject);
     }
