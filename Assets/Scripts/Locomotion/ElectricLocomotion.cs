@@ -376,6 +376,12 @@ public class ElectricLocomotion : HostLocomotion
     {
         
     }
+
+    public void StopJumpLoopSFX()
+    {
+        jumpEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        jumpEventInstance.release();
+    }
 }
 
 
