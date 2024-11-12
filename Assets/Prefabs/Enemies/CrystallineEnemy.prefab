@@ -112,10 +112,7 @@ MonoBehaviour:
     m_Bits: 5260
   graphics: {fileID: 5905917215000478002}
   weaponGraphics: {fileID: 8601716645142450873}
-  cameraShakeIntensity: 0
   possessionEffectTime: 1.5
-  zoomValue: 1
-  controllerVibrationIntestity: 0.1
   absortionParticles: {fileID: 3343275468964738342, guid: d8c8f8e1cbfce63438a0565e6d7d088a, type: 3}
   possessColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
   possessParticles: {fileID: 3343275468964738342, guid: 32568aafc63da6e4ebc7269e0bbc3fda, type: 3}
@@ -167,7 +164,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.65
 --- !u!114 &470268383740179908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,8 +196,7 @@ MonoBehaviour:
   minDistanceToFaceNextWayPoint: 1.5
   photonicDetectionRange: 10
   detectionRange: 4
-  stabRange: 2
-  timeToCancelFlee: 1.5
+  fleeSpeed: 2
 --- !u!114 &6721288742054024510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +218,6 @@ MonoBehaviour:
   jumpBufferTime: 0.1
   groundChecker: {fileID: 3949019572260824486}
   graphics: {fileID: 6336304723267710215}
-  maxAngularSpeed: 10
   crystallineStab: {fileID: 8177829030128081836}
   cooldown: 1.5
   windUp: 0.2
@@ -256,7 +251,7 @@ SliderJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -21.76, y: 3.73}
   m_AutoConfigureAngle: 1
-  m_Angle: 170.27315
+  m_Angle: -33.481617
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: -15

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2297060442174404073}
   - component: {fileID: 8776507318956923183}
   - component: {fileID: 4672028648143886245}
+  - component: {fileID: 1955120578958099659}
   m_Layer: 3
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -141,6 +142,7 @@ MonoBehaviour:
   colorWhileCooldown: {r: 1, g: 0.8632216, b: 0.5896226, a: 1}
   weaponSprite: {fileID: 8601716645142450873}
   windUpSFXPath: event:/SFX/Enemies/Photogenic Charge
+  distanceToFallToPlayLandClip: 2
   ligthSource: {fileID: 2071483044919851034}
   possessedLightSource: {fileID: 7197178655429386291}
   rangedAnimator: {fileID: 5632285636790511479}
@@ -172,15 +174,13 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  interactable: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 5260
   graphics: {fileID: 5905917215000478002}
   weaponGraphics: {fileID: 8601716645142450873}
-  cameraShakeIntensity: 0
   possessionEffectTime: 1.5
-  zoomValue: 1
-  controllerVibrationIntestity: 0.1
   absortionParticles: {fileID: 3343275468964738342, guid: d8c8f8e1cbfce63438a0565e6d7d088a, type: 3}
   possessColor: {r: 0.8862745, g: 0.8862745, b: 0.8862745, a: 1}
   possessParticles: {fileID: 3343275468964738342, guid: 32568aafc63da6e4ebc7269e0bbc3fda, type: 3}
@@ -309,7 +309,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35908868805287134}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -332,11 +332,11 @@ CircleCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.69
 --- !u!61 &4672028648143886245
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -368,8 +368,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.013700485, y: -0.027795136}
+  m_UsedByComposite: 1
+  m_Offset: {x: 0.013700485, y: -0.054531217}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -380,8 +380,65 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1859856, y: 1.1998817}
+  m_Size: {x: 0.86, y: 1.2533538}
   m_EdgeRadius: 0.025
+--- !u!66 &1955120578958099659
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35908868805287134}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 4672028648143886245}
+    m_ColliderPaths:
+    - - X: 4437005
+        Y: 5721457
+      - X: -4162995
+        Y: 5721457
+      - X: -4162995
+        Y: -6812081
+      - X: 4437005
+        Y: -6812081
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 0.4436712, y: -0.68120813}
+      - {x: 0.4436712, y: 0.5721457}
+      - {x: -0.4162995, y: 0.57211643}
+      - {x: -0.4162702, y: -0.68120813}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+  m_UseDelaunayMesh: 0
+  m_CompositeGameObject: {fileID: 35908868805287134}
 --- !u!1 &49632745737564221
 GameObject:
   m_ObjectHideFlags: 0
