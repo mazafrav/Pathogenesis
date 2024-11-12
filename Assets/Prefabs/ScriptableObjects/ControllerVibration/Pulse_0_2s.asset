@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60d03e0b7f5522540a3ec7be9ac60726, type: 3}
-  m_Name: Increasing_1_5s
+  m_Name: Pulse_0_2s
   m_EditorClassIdentifier: 
   leftCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
+      time: 0.000015258789
+      value: -0.000022888184
       inSlope: -0.0014601977
       outSlope: -0.0014601977
       tangentMode: 0
@@ -25,17 +25,17 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.07146724
     - serializedVersion: 3
-      time: 0.40774623
-      value: 0.8712647
-      inSlope: 0.8271542
-      outSlope: 0.8271542
+      time: 0.20357986
+      value: 0.99809176
+      inSlope: 0.0023035137
+      outSlope: 0.0023035137
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.41568655
-      outWeight: 0.26219773
+      inWeight: 1
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.8708334
-      value: 0.995283
+      time: 0.4833374
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -61,4 +61,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   isSimetric: 1
-  duration: 1.5
+  duration: 0.2
