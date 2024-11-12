@@ -15203,6 +15203,37 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &548192305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 548192306}
+  m_Layer: 0
+  m_Name: ----- ENEMIES -----
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &548192306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548192305}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &555152032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17295,6 +17326,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
+--- !u!1 &1483345409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1483345410}
+  m_Layer: 0
+  m_Name: '----- MAP ELEMENTS ----- '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1483345410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483345409}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1633311236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18218,6 +18280,12 @@ SceneRoots:
   - {fileID: 1176302438}
   - {fileID: 717962198}
   - {fileID: 499291503}
+  - {fileID: 548192306}
+  - {fileID: 786562054}
+  - {fileID: 926382377}
+  - {fileID: 865118017}
+  - {fileID: 1294886664}
+  - {fileID: 1483345410}
   - {fileID: 1644187257}
   - {fileID: 1102629549}
   - {fileID: 1462061480}
@@ -18230,9 +18298,6 @@ SceneRoots:
   - {fileID: 705246309}
   - {fileID: 123850982}
   - {fileID: 1146028902}
-  - {fileID: 926382377}
-  - {fileID: 865118017}
-  - {fileID: 1294886664}
   - {fileID: 1903639615}
   - {fileID: 968864198}
   - {fileID: 736940066}
@@ -18241,4 +18306,3 @@ SceneRoots:
   - {fileID: 36602626}
   - {fileID: 1454758344}
   - {fileID: 2022104196}
-  - {fileID: 786562054}
