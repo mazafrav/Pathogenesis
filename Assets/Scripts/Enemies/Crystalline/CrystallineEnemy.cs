@@ -115,8 +115,8 @@ public class CrystalineEnemy : Enemy
                 //{
                     locomotion.Move(-direction.x, -direction.y);
                 //}
-                //UpdateOrientation(transform.down);
-                graphics.transform.right = -(range.personInRange.transform.position - graphics.transform.position);
+                UpdateOrientation(range.personInRange.transform.position);
+                //graphics.transform.right = -(range.personInRange.transform.position - graphics.transform.position);
 
 
                 CheckIfDetected(range.personInRange);
