@@ -69,7 +69,7 @@ public class CameraTrigger : MonoBehaviour
         }
         if (ChangeOffsetX)
         {
-            float lerpedOffset = Mathf.Lerp(cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY, targetOffsetX, speed * Time.deltaTime);
+            float lerpedOffset = Mathf.Lerp(cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenX, targetOffsetX, speed * Time.deltaTime);
             cinemachineCamera.GetCinemachineComponent<CinemachineFramingTransposer>().m_ScreenY = lerpedOffset;
         }
         if (ChangeOrthoSize)
