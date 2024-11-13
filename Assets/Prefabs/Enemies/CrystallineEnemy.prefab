@@ -251,7 +251,7 @@ SliderJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -21.76, y: 3.73}
   m_AutoConfigureAngle: 1
-  m_Angle: -33.481617
+  m_Angle: -179.90239
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: -15
@@ -1940,7 +1940,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c9204e11954e70b4d88675f1a97554f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc635f68d2e3d5444a2978db10433423, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2267,6 +2267,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611270407329851219, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306450120230897175, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8370322636225327055, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
