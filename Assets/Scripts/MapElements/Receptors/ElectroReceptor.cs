@@ -13,6 +13,9 @@ public class ElectroReceptor : ReceptorBase
     [SerializeField]
     private float cooldownTime = 0.3f;
 
+    [SerializeField]
+    private ParticleSystem activationVFX;
+
     private enum Stage { IDLE, STAGE_1, STAGE_2 };
     private Stage stage = Stage.IDLE;
     private float currentTime = 0.0f;
@@ -57,6 +60,7 @@ public class ElectroReceptor : ReceptorBase
         // time of activation completed: activate element, reset state and start cooldown
         {
             TriggerTargets();
+            activationVFX.Play();
             //VFX ACTIVATION
             Reset();
             isReceivingShock = false;
