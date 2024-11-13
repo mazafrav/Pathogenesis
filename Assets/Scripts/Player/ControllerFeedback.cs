@@ -82,7 +82,7 @@ public class ControllerFeedback : MonoBehaviour
         {
             runtime += .01f;
             Gamepad.current.SetMotorSpeeds(lCurve.Evaluate(runtime / duration), rCurve.Evaluate(runtime / duration));
-            yield return new WaitForSeconds(.01f);
+            yield return new WaitForSecondsRealtime(.01f);
         }
         Gamepad.current.SetMotorSpeeds(0f, 0f);
         isRunning = false;
@@ -97,7 +97,7 @@ public class ControllerFeedback : MonoBehaviour
             runtime += .01f;
             float value = curve.Evaluate(runtime / duration);
             Gamepad.current.SetMotorSpeeds(value, value);
-            yield return new WaitForSeconds(.01f);
+            yield return new WaitForSecondsRealtime(.01f);
         }
         Gamepad.current.SetMotorSpeeds(0f, 0f);
         isRunning = false;
