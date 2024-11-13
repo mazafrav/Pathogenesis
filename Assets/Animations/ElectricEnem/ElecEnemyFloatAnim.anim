@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ElectricEnemyAnimation
+  m_Name: ElecEnemyFloatAnim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,17 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 71419756113a66f4d96b25a2744b1e93, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: d1a83913b30ce904a93425a2e62ae395, type: 3}
-    - time: 0.5
-      value: {fileID: 21300000, guid: 5869df29e4f0e3e4cb4c15dfda1f2fdd, type: 3}
-    - time: 0.75
-      value: {fileID: 21300000, guid: eef82c34206ae3d44a145e8d1d80b971, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: 3fbc3de505551bc4690cb321291fa773, type: 3}
-    - time: 1.25
-      value: {fileID: 21300000, guid: ea4bd701907df7147a608428d85f2590, type: 3}
+      value: {fileID: 21300000, guid: f3efc461a1f0e7f4a8073ca0c532c7dc, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,18 +44,13 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 71419756113a66f4d96b25a2744b1e93, type: 3}
-    - {fileID: 21300000, guid: d1a83913b30ce904a93425a2e62ae395, type: 3}
-    - {fileID: 21300000, guid: 5869df29e4f0e3e4cb4c15dfda1f2fdd, type: 3}
-    - {fileID: 21300000, guid: eef82c34206ae3d44a145e8d1d80b971, type: 3}
-    - {fileID: 21300000, guid: 3fbc3de505551bc4690cb321291fa773, type: 3}
-    - {fileID: 21300000, guid: ea4bd701907df7147a608428d85f2590, type: 3}
+    - {fileID: 21300000, guid: f3efc461a1f0e7f4a8073ca0c532c7dc, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.5
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

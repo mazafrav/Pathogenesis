@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f20c0a87df80a3439068c92d20b31e5
+guid: cde0ea8bfc3f16b4f93c33e1509248f7
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -32,10 +32,10 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 16
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638670983250159652
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,69 +121,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: JumpAnimation_Frame_0
+  - name: WalkingAnimation_Frame_0
     originalName: 
-    pivot: {x: 0.49999997, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 76
-      y: 4
-      width: 28
-      height: 26
-    spriteID: 455fa0b86bf6a0e4a81cb3d9b375eb20
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 76, y: 4}
-  - name: JumpAnimation_Frame_1
-    originalName: 
-    pivot: {x: 0.49999997, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 4
-      width: 28
-      height: 27
-    spriteID: b6ac52374e107274aa14c1163faa205c
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
-  - name: JumpAnimation_Frame_2
-    originalName: 
-    pivot: {x: 0.49999997, y: -0.037037037}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 40
-      y: 4
-      width: 28
-      height: 27
-    spriteID: a733eb6e3c9a7c54f8a0be0805a55eb3
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 40, y: 4}
-  - name: JumpAnimation_Frame_3
-    originalName: 
-    pivot: {x: 0.49999997, y: -0.120000005}
+    pivot: {x: 0.46428573, y: -0.15384616}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -191,8 +131,8 @@ ScriptedImporter:
       x: 4
       y: 39
       width: 28
-      height: 25
-    spriteID: 3c9a91876275aac42b08e09d4b2338d8
+      height: 26
+    spriteID: c5c41b1279886dd4bb12f3cecd5ae507
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -201,9 +141,69 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 39}
-  - name: JumpAnimation_Frame_4
+  - name: WalkingAnimation_Frame_1
     originalName: 
-    pivot: {x: 0.49999997, y: -0.16666666}
+    pivot: {x: 0.46428573, y: -0.14814815}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 28
+      height: 27
+    spriteID: e71999230c7922a48a8665562d6d34c2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: WalkingAnimation_Frame_2
+    originalName: 
+    pivot: {x: 0.46428573, y: -0.14814815}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 40
+      y: 4
+      width: 28
+      height: 27
+    spriteID: 66a635210db318f4997631d1c97dfbf5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 40, y: 4}
+  - name: WalkingAnimation_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: -0.14814815}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 4
+      width: 28
+      height: 27
+    spriteID: 5132310f190cd394598fec6b612eb5e3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 4}
+  - name: WalkingAnimation_Frame_4
+    originalName: 
+    pivot: {x: 0.5, y: -0.15384616}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -211,8 +211,8 @@ ScriptedImporter:
       x: 40
       y: 39
       width: 28
-      height: 24
-    spriteID: c57536c225872624e9066f86da6a6961
+      height: 26
+    spriteID: 7d83f9760eb05d243bb1e6f9e6993757
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -221,59 +221,159 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 40, y: 39}
+  - name: WalkingAnimation_Frame_5
+    originalName: 
+    pivot: {x: 0.5, y: -0.15384616}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 39
+      width: 28
+      height: 26
+    spriteID: 67b461e1397814a49a67e383fbc9cd86
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 76, y: 39}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1264881292
-    name: JumpAnimation
+    guid: 413463735
+    name: WalkingAnimation
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: JumpAnimation_Frame_0
+    - name: WalkingAnimation_Frame_0
       frameIndex: 0
       cellRect:
-        x: 5
-        y: 0
-        width: 28
-        height: 26
-      spriteId: 455fa0b86bf6a0e4a81cb3d9b375eb20
-    - name: JumpAnimation_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 5
-        y: 0
-        width: 28
-        height: 27
-      spriteId: b6ac52374e107274aa14c1163faa205c
-    - name: JumpAnimation_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 5
-        y: 1
-        width: 28
-        height: 27
-      spriteId: a733eb6e3c9a7c54f8a0be0805a55eb3
-    - name: JumpAnimation_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 5
-        y: 3
-        width: 28
-        height: 25
-      spriteId: 3c9a91876275aac42b08e09d4b2338d8
-    - name: JumpAnimation_Frame_4
-      frameIndex: 4
-      cellRect:
-        x: 5
+        x: 3
         y: 4
         width: 28
-        height: 24
-      spriteId: c57536c225872624e9066f86da6a6961
+        height: 26
+      spriteId: c5c41b1279886dd4bb12f3cecd5ae507
+    - name: WalkingAnimation_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 3
+        y: 4
+        width: 28
+        height: 27
+      spriteId: e71999230c7922a48a8665562d6d34c2
+    - name: WalkingAnimation_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 3
+        y: 4
+        width: 28
+        height: 27
+      spriteId: 66a635210db318f4997631d1c97dfbf5
+    - name: WalkingAnimation_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 2
+        y: 4
+        width: 28
+        height: 27
+      spriteId: 5132310f190cd394598fec6b612eb5e3
+    - name: WalkingAnimation_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 2
+        y: 4
+        width: 28
+        height: 26
+      spriteId: 7d83f9760eb05d243bb1e6f9e6993757
+    - name: WalkingAnimation_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 2
+        y: 4
+        width: 28
+        height: 26
+      spriteId: 67b461e1397814a49a67e383fbc9cd86
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Windows Store Apps
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 38, y: 43}
+  canvasSize: {x: 32, y: 32}
