@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ElectricLocomotion : HostLocomotion
 {
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
     [Header("Attack")]
     [SerializeField]
     private GameObject shockGameObject = null;
@@ -108,7 +111,9 @@ public class ElectricLocomotion : HostLocomotion
     }
 
     void Update()
-    {      
+    {
+        animator.SetFloat("Speed", Mathf.Abs(rb2D.velocity.x) + Mathf.Abs(rb2D.velocity.y));
+
         //Debug.Log("Cooldown: " + currentCooldownTime);
         if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
         {
@@ -155,6 +160,7 @@ public class ElectricLocomotion : HostLocomotion
             if (transform.position.y > startPosition.y + propulsionHeight || propulsingTimeCounter >= propulsionTime) 
             //Has reached the requiered height or time
             {
+                animator.Play("ElecEnemyFloatAnim");
                 isPropulsing = false;
                 jumpParticles.Stop();
                 isPlanning = true;
@@ -181,6 +187,7 @@ public class ElectricLocomotion : HostLocomotion
         {
             if (isPlanning)
             {
+                animator.Play("ElecEnemyLandAnim");
                 jumpEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             }
             isPlanning = false;
@@ -215,6 +222,7 @@ public class ElectricLocomotion : HostLocomotion
             //newYPosition = 0;
             propulsingTimeCounter = 0f;
             isPropulsing = true;
+            animator.Play("ElecEnemyJumpAnim");
 
             jumpEventInstance.start();
         }
