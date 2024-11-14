@@ -1,8 +1,8 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.Rendering.DebugUI;
 
 public class SoundtrackManager : MonoBehaviour
 {
@@ -12,7 +12,8 @@ public class SoundtrackManager : MonoBehaviour
         Danger,
         Photegenic,
         Electric,
-        Crystalline        
+        Crystalline,
+        Epic
     }
 
     public float PhotonicLayerIntensity { get; set; }
@@ -20,12 +21,15 @@ public class SoundtrackManager : MonoBehaviour
     public float CrystallineLayerIntensity { get; set; }
 
     [SerializeField] private string mainMusicPath = "event:/Music/Menu_End";
-    [SerializeField] private string ambientMusicPath = "event:/Music/Ambient";
+    //[SerializeField] private string ambientMusicPath = "event:/Music/Ambient";
     [SerializeField] private string pauseSnapshotPath = "snapshot:/Pause_Menu";
 
     private FMOD.Studio.EventInstance mainMusicInstance;
-    private FMOD.Studio.EventInstance ambientMusicInstance;
+    //private FMOD.Studio.EventInstance ambientMusicInstance;
     private FMOD.Studio.EventInstance snapshotInstance;
+
+    //[SerializeField] private FMOD.Studio.Bus sfxBus;
+    //[SerializeField] private FMOD.Studio.Bus musicBus;
 
     //private FMOD.Studio.EventInstance currentInstance;
 
@@ -223,6 +227,17 @@ public class SoundtrackManager : MonoBehaviour
         }
 
     }
+
+    //public void StopAllSFX()
+    //{
+    //    sfxBus.stopAllEvents(STOP_MODE.IMMEDIATE);
+    //    //FMODUnity.RuntimeManager.StudioSystem.getBankList(out bankList);
+    //}
+
+    //public void StopAllMusic()
+    //{
+    //    musicBus.stopAllEvents(STOP_MODE.ALLOWFADEOUT);
+    //}
 
     private void OnDestroy()
     {
