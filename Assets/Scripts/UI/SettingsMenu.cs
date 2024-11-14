@@ -17,7 +17,7 @@ public class SettingsMenu : MonoBehaviour
 
     private GameObject eventSystem;
     private GameObject eventSystem1;
-    private List<Resolution> filteredResolutions;
+    //private List<Resolution> filteredResolutions;
 
     private void Start()
     {
@@ -25,35 +25,35 @@ public class SettingsMenu : MonoBehaviour
         eventSystem1 = GameObject.FindGameObjectWithTag("EventSystemSettings");
 
         resolutions = Screen.resolutions;
-        filteredResolutions = new List<Resolution>();
+        //filteredResolutions = new List<Resolution>();
 
-        int minWidth = 800;
-        int minHeight = 600;
-        float targetAspectRatio = 16f / 9f;
+        //int minWidth = 800;
+        //int minHeight = 600;
+        //float targetAspectRatio = 16f / 9f;
 
-        // Filter resolutions based on criteria
-        filteredResolutions = new List<Resolution>();
-        foreach (Resolution res in Screen.resolutions)
-        {
-            // Filter by minimum resolution size and aspect ratio
-            if (res.width >= minWidth && res.height >= minHeight &&
-                Mathf.Approximately((float)res.width / res.height, targetAspectRatio))
-            {
-                filteredResolutions.Add(res);
-            }
-        }
+        //// Filter resolutions based on criteria
+        //filteredResolutions = new List<Resolution>();
+        //foreach (Resolution res in Screen.resolutions)
+        //{
+        //    // Filter by minimum resolution size and aspect ratio
+        //    if (res.width >= minWidth && res.height >= minHeight &&
+        //        Mathf.Approximately((float)res.width / res.height, targetAspectRatio))
+        //    {
+        //        filteredResolutions.Add(res);
+        //    }
+        //}
 
 
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
-        for (int i = 0; i < filteredResolutions.Count; i++)
+        for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = filteredResolutions[i].width + " x " + filteredResolutions[i].height;
+            string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if (filteredResolutions[i].width == Screen.currentResolution.width &&
-                filteredResolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
