@@ -13,6 +13,7 @@ public class SoundtrackManager : MonoBehaviour
         Photegenic,
         Electric,
         Crystalline,
+        Menu,
         Epic
     }
 
@@ -20,11 +21,11 @@ public class SoundtrackManager : MonoBehaviour
     public float ElectricLayerIntensity { get; set; }
     public float CrystallineLayerIntensity { get; set; }
 
-    [SerializeField] private string mainMusicPath = "event:/Music/Menu_End";
+    //[SerializeField] private string mainMusicPath = "event:/Music/Menu_End";
     //[SerializeField] private string ambientMusicPath = "event:/Music/Ambient";
     [SerializeField] private string pauseSnapshotPath = "snapshot:/Pause_Menu";
 
-    private FMOD.Studio.EventInstance mainMusicInstance;
+    //private FMOD.Studio.EventInstance mainMusicInstance;
     //private FMOD.Studio.EventInstance ambientMusicInstance;
     private FMOD.Studio.EventInstance snapshotInstance;
 
@@ -42,7 +43,7 @@ public class SoundtrackManager : MonoBehaviour
 
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
 
-        mainMusicInstance = FMODUnity.RuntimeManager.CreateInstance(mainMusicPath);
+        //mainMusicInstance = FMODUnity.RuntimeManager.CreateInstance(mainMusicPath);
         //ambientMusicInstance = FMODUnity.RuntimeManager.CreateInstance(ambientMusicPath);
         snapshotInstance = FMODUnity.RuntimeManager.CreateInstance(pauseSnapshotPath);
 
@@ -59,14 +60,18 @@ public class SoundtrackManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name.Equals("MainMenu"))
         {
-            mainMusicInstance.start();
-            emitter.Stop();
+            ChangeSoundtrackParameter(SoundtrackParameter.Menu, 1);
+            if (!emitter.IsPlaying())
+            {
+                emitter.Play();
+            }
+            //emitter.Stop();
         }
         else if (SceneManager.GetActiveScene().name.Equals("LVL_0"))
         {
             emitter.Stop();
-            mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            mainMusicInstance.release();
+            //mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //mainMusicInstance.release();
         }
 
     }
@@ -138,15 +143,7 @@ public class SoundtrackManager : MonoBehaviour
         string[] soundtrackParameterNames = System.Enum.GetNames(typeof(SoundtrackParameter));
         foreach (string name in soundtrackParameterNames)
         {
-            if (name.Equals(SoundtrackParameter.Absorption.ToString()))
-            {
-                emitter.EventInstance.setParameterByName(name, 0);
-                //ambientMusicInstance.setParameterByName(name, 0);
-            }
-            else
-            {
-                FMODUnity.RuntimeManager.StudioSystem.setParameterByName(name, 0);
-            }
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName(name, 0);
         }
     }
 
@@ -188,36 +185,44 @@ public class SoundtrackManager : MonoBehaviour
 
     private void CheckLevelSoundtrack(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.Equals("MainMenu"))
-        {
-            audioDoOnce = true;
 
-            emitter.Stop();
-            mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            mainMusicInstance.release();
-            mainMusicInstance.start();
-        }
-        else if (scene.name.Equals("LVL_0"))
+        if (scene.name.Equals("LVL_0"))
         {
             emitter.Stop();
-            mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            mainMusicInstance.release();
-        }
-        else if (audioDoOnce && scene.name.Equals("LVL_12"))
-        {
-            audioDoOnce = false;
-            emitter.Stop();
-            mainMusicInstance.start();
+            //mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            //mainMusicInstance.release();
         }
         else
         {
             if (!emitter.IsPlaying())
             {
-                mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                mainMusicInstance.release();
                 emitter.Play();
             }
+
+            if (scene.name.Equals("MainMenu"))
+            {
+                ChangeSoundtrackParameter(SoundtrackParameter.Menu, 1);
+            }
+            else
+            {
+                ChangeSoundtrackParameter(SoundtrackParameter.Menu, 0);
+            }
         }
+        //else if (audioDoOnce && scene.name.Equals("LVL_12"))
+        //{
+        //    audioDoOnce = false;
+        //    emitter.Stop();
+        //    mainMusicInstance.start();
+        //}
+        //else
+        //{
+        //    if (!emitter.IsPlaying())
+        //    {
+        //        mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //        mainMusicInstance.release();
+        //        emitter.Play();
+        //    }
+        //}
 
     }
 
