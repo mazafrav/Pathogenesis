@@ -68,8 +68,8 @@ public class RangedLocomotion : HostLocomotion
             windUpSFXPath = "event:/SFX/Enemies/Photogenic Charge";
     }
         windUpEventInstance = FMODUnity.RuntimeManager.CreateInstance(windUpSFXPath);
-        jumpEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        landEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        //jumpEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        //landEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
     // Update is called once per frame
@@ -79,6 +79,15 @@ public class RangedLocomotion : HostLocomotion
         //{
         //    shootCDTimer = Mathf.Max(shootCDTimer - Time.deltaTime, 0f);
 
+        //}
+
+        //if (debug)
+        //{
+        //    //GameManager.Instance.Getpla
+        //    Debug.Log("Ranged Position is:" + transform.position.ToString());
+
+        //    jumpEventInstance.get3DAttributes(out FMOD.ATTRIBUTES_3D attributes);
+        //    Debug.Log("Position: " + attributes.position.x + ", " + attributes.position.y);
         //}
 
         if (shootCDTimer <= 0f && windUpTimer > 0f)

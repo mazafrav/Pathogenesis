@@ -95,6 +95,9 @@ public class LevelLoader : MonoBehaviour
 
     public void CheckRespawn()
     {
+        //GameManager.Instance.soundtrackManager.StopAllSFX();
+        GameManager.Instance.soundtrackManager.ResetSoundtrack();
+
         if (GameManager.Instance.GetRespawnValues().Count > 0 || GameManager.Instance.GetPlayerRespawnPosition() != Vector3.zero)
         {
             //GameManager.Instance.SetMusicSelectionIndex(1);
