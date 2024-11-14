@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreditsScroller : MonoBehaviour
 {
     #region References
-    [SerializeField] private RectTransform _textRectTransform;
+    [SerializeField] private RectTransform _objectRectTransform;
 
     #endregion
 
@@ -22,7 +22,7 @@ public class CreditsScroller : MonoBehaviour
 
     private void Start()
     {
-        _originalPosition = _textRectTransform.anchoredPosition;
+        _originalPosition = _objectRectTransform.anchoredPosition;
     }
 
     private void Update()
@@ -30,7 +30,7 @@ public class CreditsScroller : MonoBehaviour
         _time += Time.deltaTime;
         if (_time < _totalScrollingTime)
         {
-            _textRectTransform.anchoredPosition = Vector2.Lerp(_originalPosition, Vector2.zero, _time/ _totalScrollingTime);
+            _objectRectTransform.anchoredPosition = Vector2.Lerp(_originalPosition, Vector2.zero, _time/ _totalScrollingTime);
         }
     }
 
