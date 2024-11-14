@@ -10616,8 +10616,8 @@ Transform:
   m_GameObject: {fileID: 287686588}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.44, y: -7.08, z: -0.037635133}
-  m_LocalScale: {x: 0.71845317, y: 5.705977, z: 1}
+  m_LocalPosition: {x: -16.300001, y: -8.3, z: -0.037635133}
+  m_LocalScale: {x: 2.1436846, y: 2.0060077, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 706439783}
@@ -10852,6 +10852,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4336386520266715270, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
+      propertyPath: triggerDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336386520266715270, guid: af0f4f5fdaedd6e4ca9baf341f4b73a5, type: 3}
       propertyPath: targetElements.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10919,6 +10923,10 @@ PrefabInstance:
     - target: {fileID: 1665944531955470299, guid: f1336e1527806d640b459529e17b273e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689736419402463871, guid: f1336e1527806d640b459529e17b273e, type: 3}
+      propertyPath: movingSpeed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7412092975999588478, guid: f1336e1527806d640b459529e17b273e, type: 3}
       propertyPath: m_Name
@@ -11198,7 +11206,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 4
+    OrthographicSize: 4.5
     NearClipPlane: -0.14
     FarClipPlane: 1000
     Dutch: 0

@@ -37,6 +37,7 @@ public class StartCutscene : MonoBehaviour
         if (collision.tag == "Player")
         {
             //GameManager.Instance.SetMusicSelectionIndex(6);
+            GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Menu, 1f);
             director.Play();
         }
     }
@@ -52,6 +53,7 @@ public class StartCutscene : MonoBehaviour
         absortionRangeVfx.Play();
         //TODO: QUITAR CONTROLES
         //GameManager.Instance.SetMusicSelectionIndex(7);
+        GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 1f);
         GameManager.Instance.GetPlayerController().GetPlayerIAs().Disable();
     }
 
@@ -64,6 +66,7 @@ public class StartCutscene : MonoBehaviour
     public void MoveBlock()
     {
         sensitiveTile.TriggerTargets();
+        GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 0.4f);
     }
 
     public void EndCutscene()
