@@ -73,7 +73,8 @@ public class GrapplingHook : MonoBehaviour
                     if (hit.collider != null)
                     {
                         IActivatableElement activatableElement = hit.collider.GetComponent<IActivatableElement>();
-                        if (hit.collider.gameObject.CompareTag("MapElement") && activatableElement == null && !hit.collider.gameObject.GetComponent<FreeMovement>())
+                        if (hit.collider.gameObject.CompareTag("MapElement") && activatableElement == null && !hit.collider.gameObject.GetComponent<FreeMovement>() && 
+                            !hit.collider.gameObject.GetComponent<ThrustBlocking>() && !hit.collider.gameObject.GetComponent<ElectroReceptor>() && !hit.collider.gameObject.GetComponent<FotoReceptor>())
                         {
                             KineticReceptor kineticReceptor = hit.collider.gameObject.GetComponent<KineticReceptor>();
                             if (kineticReceptor)
