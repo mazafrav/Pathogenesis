@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
     public delegate void OnPlayerSet();
     public OnPlayerSet onPlayerSet;
 
+    [SerializeField]
+    private int targetFrameRate = 144;
+    [SerializeField]
+    bool limitFps = false;
+
     private void Awake()
     {
         if (Instance != null)
@@ -61,6 +66,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         soundtrackManager = GetComponentInChildren<SoundtrackManager>();
+        if(limitFps)
+        {
+            Application.targetFrameRate = targetFrameRate;
+        }
     }
 
     private void Update()
