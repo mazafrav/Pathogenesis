@@ -72,7 +72,7 @@ public class GrapplingHook : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, distance, grappleLayer);
                     if (hit.collider != null)
                     {
-                        if (hit.collider.gameObject.CompareTag("MapElement"))
+                        if (hit.collider.gameObject.CompareTag("MapElement") && !hit.collider.GetComponent<KineticBlock>())
                         {
                             KineticReceptor kineticReceptor = hit.collider.gameObject.GetComponent<KineticReceptor>();
                             if (kineticReceptor)
