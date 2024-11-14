@@ -73,6 +73,7 @@ public class HostAbsorption : Interactable
                 playerController.isPossessing = false;
                 //CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
                 //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = false;
+                //Debug.Log("absooorption");
                 GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 0.5f);
                 doOnce = false;
             } 
@@ -140,6 +141,7 @@ public class HostAbsorption : Interactable
             hostLocomotion.SetPossessingParameters();
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;
+            //playerController.locomotion.Set3DAttributes(gameObject);
             playerController.DisablePlayerBody();
             playerController.OnPossesionEvent(hostLocomotion);
             //graphics.color = possessingColor;

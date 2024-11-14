@@ -14,6 +14,7 @@ public abstract class HostLocomotion : MonoBehaviour
     protected FMOD.Studio.EventInstance landEventInstance;
     protected FMOD.Studio.EventInstance attackEventInstance;
 
+    //protected bool debug = false;
 
     [Header("Movement")]
     [SerializeField]
@@ -97,4 +98,18 @@ public abstract class HostLocomotion : MonoBehaviour
     {
         return groundChecker.isGrounded; 
     }
+
+    //public void Set3DAttributes(GameObject go)
+    //{
+    //    if (jumpEventInstance.isValid())
+    //    {
+    //        jumpEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(go, go.GetComponent<Rigidbody2D>()));
+    //    }
+
+    //    if (landEventInstance.isValid())
+    //    {
+    //        landEventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(go, go.GetComponent<Rigidbody2D>()));
+    //    }
+    //    //debug = true;
+    //}
 }

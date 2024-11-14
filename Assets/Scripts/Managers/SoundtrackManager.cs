@@ -75,15 +75,8 @@ public class SoundtrackManager : MonoBehaviour
     {
         string parameterString = parameter.ToString();
 
-        if (parameter == SoundtrackParameter.Absorption)
-        {
-            emitter.EventInstance.setParameterByName(parameterString, value);
-            //ambientMusicInstance.setParameterByName(parameterString, value);
-        }
-        else
-        {
-            FMODUnity.RuntimeManager.StudioSystem.setParameterByName(parameterString, value);
-        }
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName(parameterString, value);
+
     }
 
     public void CompareEnemyLayer(int id, float value)
