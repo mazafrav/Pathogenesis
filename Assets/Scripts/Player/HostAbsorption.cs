@@ -117,11 +117,11 @@ public class HostAbsorption : Interactable
             // Debug.LogWarning(playerLOS + " : " + playerController.AbsorbableHostInRange);
             playerController.OnEnterAbsorbableRange(this);
         }
-        else if (/*!playerLOS &&*/ playerController.AbsorbableHostInRange == this)
-        {
-            //Debug.LogWarning("disable absorbable");
-            playerController.OnLeaveAbsorbableRange();
-        }
+        //else if (/*!playerLOS &&*/ playerController.AbsorbableHostInRange == this)
+        //{
+        //    //Debug.LogWarning("disable absorbable");
+        //    playerController.OnLeaveAbsorbableRange();
+        //}
     }
 
     protected override void OnDeactivateAbsorptionVFX()
