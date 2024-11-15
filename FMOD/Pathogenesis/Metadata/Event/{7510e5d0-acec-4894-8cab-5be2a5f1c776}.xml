@@ -802,6 +802,9 @@
 		<property name="spawnQuantizationInterval">
 			<value>6</value>
 		</property>
+		<property name="spawnRate">
+			<value>75</value>
+		</property>
 		<property name="minimumScatterDistance">
 			<value>4.20000029</value>
 		</property>
@@ -903,7 +906,7 @@
 			<value>true</value>
 		</property>
 		<property name="triggerProbability">
-			<value>25</value>
+			<value>19.5</value>
 		</property>
 		<property name="start">
 			<value>24</value>
@@ -980,16 +983,16 @@
 			<value>1.5</value>
 		</property>
 		<property name="pitch">
-			<value>-0.340000004</value>
+			<value>-0.100000001</value>
 		</property>
 		<property name="spawnDelayType">
 			<value>1</value>
 		</property>
 		<property name="spawnQuantizationInterval">
-			<value>5</value>
+			<value>6</value>
 		</property>
 		<property name="spawnRate">
-			<value>96</value>
+			<value>75</value>
 		</property>
 		<property name="pitchRandomization">
 			<value>0.100000001</value>
@@ -2714,7 +2717,7 @@
 	</object>
 	<object class="DistortionEffect" id="{791051ad-a933-4ab7-9401-6652b58a49ef}">
 		<property name="level">
-			<value>0.574999988</value>
+			<value>0.48999998</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{cc8a1351-b26c-4936-acd2-10529a961ded}" />
@@ -2725,29 +2728,44 @@
 		<property name="filterTypeC">
 			<value>9</value>
 		</property>
+		<property name="filterTypeD">
+			<value>9</value>
+		</property>
+		<property name="filterTypeE">
+			<value>9</value>
+		</property>
 		<property name="frequencyA">
 			<value>126.435799</value>
 		</property>
 		<property name="frequencyC">
-			<value>496.308167</value>
+			<value>314.623352</value>
+		</property>
+		<property name="frequencyD">
+			<value>623.349548</value>
 		</property>
 		<property name="frequencyE">
-			<value>5489.62793</value>
+			<value>7039.16846</value>
 		</property>
 		<property name="qualityA">
 			<value>0.751586199</value>
 		</property>
 		<property name="qualityC">
-			<value>9.19999981</value>
+			<value>3.60000014</value>
+		</property>
+		<property name="qualityD">
+			<value>0.602344871</value>
 		</property>
 		<property name="qualityE">
-			<value>10</value>
+			<value>0.900000036</value>
 		</property>
 		<property name="gainA">
 			<value>-30</value>
 		</property>
 		<property name="gainC">
-			<value>-23.2758617</value>
+			<value>-26.8965511</value>
+		</property>
+		<property name="gainE">
+			<value>-12.4137917</value>
 		</property>
 	</object>
 	<object class="SingleSound" id="{27456b95-a996-4501-bf9b-b5044af76abf}">
