@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8438728296673483205}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: PointOpen
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6254766094864345595}
   - component: {fileID: 8006374191543114737}
   - component: {fileID: 5566574175399852314}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Block
   m_TagString: MapElement
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6484365150316536308}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: PointClose
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -275,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1665944531955470299}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: MovingBlockElectric
   m_TagString: MapElement
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8033023321320672249, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
