@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{7384d93b-5d88-4a92-b935-7a6de74f452b}">
+		<property name="name">
+			<value>Crystalline(Random)</value>
+		</property>
+		<relationship name="folder">
+			<destination>{c9153d5e-7e6a-43e0-aac7-f535e9e93240}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{50acb88f-8911-4f41-a85d-ec5573d0f28f}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{50acb88f-8911-4f41-a85d-ec5573d0f28f}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
