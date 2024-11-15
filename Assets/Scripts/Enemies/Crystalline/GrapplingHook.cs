@@ -72,9 +72,21 @@ public class GrapplingHook : MonoBehaviour
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized, distance, grappleLayer);
                     if (hit.collider != null)
                     {
-                        IActivatableElement activatableElement = hit.collider.GetComponent<IActivatableElement>();
-                        if (hit.collider.gameObject.CompareTag("MapElement") && activatableElement == null && !hit.collider.gameObject.GetComponent<FreeMovement>() && 
-                            !hit.collider.gameObject.GetComponent<ThrustBlocking>() && !hit.collider.gameObject.GetComponent<ElectroReceptor>() && !hit.collider.gameObject.GetComponent<FotoReceptor>())
+                        if (hit.collider.gameObject.CompareTag("Grappable"))
+                        // collided object is grappable
+                        {
+                            // activate joint
+                            grapplePoint = hit.point;
+                            grappleJoint.connectedAnchor = grapplePoint;
+                            grappleJoint.enabled = true;
+
+                            launching = false;
+                            grappling = true;
+                            onGrappleHit?.Invoke();
+
+                            grappleStickInstance.start();
+                        }
+                        else if (hit.collider.gameObject.CompareTag("MapElement"))
                         {
                             KineticReceptor kineticReceptor = hit.collider.gameObject.GetComponent<KineticReceptor>();
                             if (kineticReceptor)
@@ -82,20 +94,13 @@ public class GrapplingHook : MonoBehaviour
                             {
                                 kineticReceptor.Stabbed();
                                 onGrappleHit?.Invoke();
-                            }
+                            } 
                             else
-                            // collided object is tilemap
                             {
-                                // activate joint
-                                grapplePoint = hit.point;
-                                grappleJoint.connectedAnchor = grapplePoint;
-                                grappleJoint.enabled = true;
-
                                 launching = false;
-                                grappling = true;
-                                onGrappleHit?.Invoke();
+                                retracting = true;
 
-                                grappleStickInstance.start();
+                                grappleFailInstance.start();
                             }
                         }
                         else
