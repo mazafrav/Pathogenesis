@@ -33,6 +33,8 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        EventSystem.current.SetSelectedGameObject(gameObject);
+
         foreach (var particle in _particleSystem)
         {
             particle.Play();
