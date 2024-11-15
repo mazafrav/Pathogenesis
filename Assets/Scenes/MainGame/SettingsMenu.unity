@@ -1952,16 +1952,44 @@ PrefabInstance:
 '
       objectReference: {fileID: 0}
     - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1751164447}
+    - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 947272661}
+    - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlaySelectVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SettingsMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonHighlightFX, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222843152928929503, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8380407232016280660, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
       propertyPath: m_Name
@@ -1982,6 +2010,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8380407232016280660, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
   m_PrefabInstance: {fileID: 947272658}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &947272661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2200110886580914422, guid: 24d28407dc6506042a647af876c5ca77, type: 3}
+  m_PrefabInstance: {fileID: 947272658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947272660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5532b6ccc5c103f439dc917d14520db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &978345732
 GameObject:
   m_ObjectHideFlags: 0
