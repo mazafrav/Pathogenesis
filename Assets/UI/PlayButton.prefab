@@ -286,6 +286,8 @@ MonoBehaviour:
   _particleSystem:
   - {fileID: 7955179706620376231}
   - {fileID: 5276329833731317097}
+  hoverSFXPath: event:/UI/Menu Button Hover
+  selectSFXPath: event:/UI/Menu Button Select
 --- !u!95 &3962458592699395457
 Animator:
   serializedVersion: 5
@@ -298,7 +300,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d35958a9da1848047983d34b241a8a22, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -315,6 +317,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6039300026016838901}
     m_Modifications:
+    - target: {fileID: 178265750107382436, guid: 4077b3484a9608047b4e161b560081fb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4197168276632085085, guid: 4077b3484a9608047b4e161b560081fb, type: 3}
       propertyPath: m_Name
       value: Button_Partices (1)
@@ -382,6 +388,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6039300026016838901}
     m_Modifications:
+    - target: {fileID: 178265750107382436, guid: 4077b3484a9608047b4e161b560081fb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4197168276632085085, guid: 4077b3484a9608047b4e161b560081fb, type: 3}
       propertyPath: m_Name
       value: Button_Partices
