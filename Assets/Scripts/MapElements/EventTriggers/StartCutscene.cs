@@ -73,6 +73,7 @@ public class StartCutscene : MonoBehaviour
     {
         GameManager.Instance.GetPlayerController().GetPlayerIAs().Enable();
         //GameManager.Instance.SetMusicSelectionIndex(0);
+        GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 0f);
         GameManager.Instance.GetLevelLoader().StartLoadingLevel(0);
     }
 }
