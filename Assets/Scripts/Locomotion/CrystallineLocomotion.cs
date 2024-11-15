@@ -80,9 +80,6 @@ public class CrystallineLocomotion : HostLocomotion
         jumpHeight += jumpOffset;
         rb2D = GetComponent<Rigidbody2D>();
 
-        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-        rb2D.gravityScale = g / Physics2D.gravity.y;
-        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
         grapplingHook.onGrappleHit += OnGrappleHitEvent;
     }
 
@@ -93,7 +90,7 @@ public class CrystallineLocomotion : HostLocomotion
         if (isClimbing && !wallCheckerL.isGrounded && !wallCheckerR.isGrounded && !ceilChecker.isGrounded)
         {
             //rb2D.gravityScale = g / Physics2D.gravity.y;
-            rb2D.gravityScale = 1;
+            rb2D.gravityScale = 3;
             isClimbing = false;
             directionClimb = AdhesionDirection.S;
         }
@@ -160,12 +157,6 @@ public class CrystallineLocomotion : HostLocomotion
 
     public override void Move(float deltaX, float deltaY = 0f)
     {
-        if (IsWindingUp() && IsCooldownFinished())
-        {
-            rb2D.velocity = new Vector2(0.0f, rb2D.velocity.y);
-        }
-        else
-        {
             if (isClimbing)
             {
                 rb2D.velocity = new Vector2(deltaX * moveSpeed, deltaY * moveSpeed);
@@ -174,16 +165,11 @@ public class CrystallineLocomotion : HostLocomotion
             {
                 rb2D.velocity = new Vector2(deltaX * moveSpeed, rb2D.velocity.y);
             }
-        }
+
     }
 
     public override void Attack(Vector3 target = default)
     {
-        //if (IsAttackReady() && crystallineStab.CanStab())
-        //{
-        //    currentWindUpTime = windUp;
-        //    //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-        //}
         if(grapplingHook.LaunchGrapple())
         {
             onGrappleThrow?.Invoke();
@@ -216,8 +202,6 @@ public class CrystallineLocomotion : HostLocomotion
         ChangeSpritesColor(currentColor);
         crystallineStab.isDamageActive = false;
         crystallineStab.MoveStab(0f);
-        //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public override bool IsAttackReady()
@@ -327,10 +311,6 @@ public class CrystallineLocomotion : HostLocomotion
 
         CrystallineEnemyPossessingParameters crystallinePossessingParameters = (CrystallineEnemyPossessingParameters)possessingParameters;
 
-        g = ((-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f))) * possessingParameters.gravityModifier;
-        //rb2D.gravityScale = g / Physics2D.gravity.y;
-        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
-
         cooldown = crystallinePossessingParameters.cooldown;
         windUp = crystallinePossessingParameters.windUp;
         stabDuration = crystallinePossessingParameters.stabDuration;
@@ -345,9 +325,6 @@ public class CrystallineLocomotion : HostLocomotion
     public override void SetMoveSpeed(float newSpeed)
     {
         base.SetMoveSpeed(newSpeed);
-        g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-        //rb2D.gravityScale = g / Physics2D.gravity.y;
-        velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
     }
 
     public override bool CanJump()
