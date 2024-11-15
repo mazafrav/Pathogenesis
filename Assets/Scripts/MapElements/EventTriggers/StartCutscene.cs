@@ -66,7 +66,7 @@ public class StartCutscene : MonoBehaviour
     public void MoveBlock()
     {
         sensitiveTile.TriggerTargets();
-        GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 0.4f);
+        GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 0.5f);
     }
 
     public void EndCutscene()
