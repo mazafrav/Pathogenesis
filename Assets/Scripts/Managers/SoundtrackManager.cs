@@ -69,7 +69,8 @@ public class SoundtrackManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name.Equals("LVL_0"))
         {
-            emitter.Stop();
+            //emitter.Stop();
+            ChangeSoundtrackParameter(SoundtrackParameter.Menu, 0.5f);
             //mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             //mainMusicInstance.release();
         }
@@ -190,8 +191,8 @@ public class SoundtrackManager : MonoBehaviour
 
         if (scene.name.Equals("LVL_0"))
         {
-            emitter.Stop();
-            //ChangeSoundtrackParameter(SoundtrackParameter.Menu, 0.5f);
+            //emitter.Stop();
+            ChangeSoundtrackParameter(SoundtrackParameter.Menu, 0.5f);
 
         }
         else
