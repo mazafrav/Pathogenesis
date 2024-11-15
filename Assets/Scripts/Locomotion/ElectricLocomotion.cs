@@ -12,6 +12,8 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField]
     private GameObject shockGameObject = null;
     [SerializeField]
+    private GameObject shockBaseObject = null;
+    [SerializeField]
     private GameObject followGameObject = null;
     [SerializeField]
     private GameObject attackGameObject = null;
@@ -104,6 +106,7 @@ public class ElectricLocomotion : HostLocomotion
         //velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         shockGameObject.SetActive(false);
+        shockBaseObject.SetActive(false);
 
         followGameObject.transform.localScale = new Vector3(followRange, followRange, followGameObject.transform.localScale.z);
         //shockGameObject.transform.localScale = new Vector3(0.25f, 2*shockRange, shockGameObject.transform.localScale.z);
@@ -272,6 +275,7 @@ public class ElectricLocomotion : HostLocomotion
         inAttackRange = true;
         hasAttacked = true;
         shockGameObject.SetActive(true);
+        shockBaseObject.SetActive(true);
         moveSpeed *= speedModifier;
         electricShockVFX.Play();
     }
@@ -283,6 +287,7 @@ public class ElectricLocomotion : HostLocomotion
     public void DeactivateShock()
     {
         shockGameObject.SetActive(false);
+        shockBaseObject.SetActive(false);
         electricShockVFX.Stop();
 
         if (hasAttacked)
@@ -328,7 +333,8 @@ public class ElectricLocomotion : HostLocomotion
         currentCooldownTime = 0f;
         currentWindUpTime = 0f;
         ChangeSpritesColor(GetCurrentColor());
-        shockGameObject.SetActive(false);      
+        shockGameObject.SetActive(false); 
+        shockBaseObject.SetActive(false);
         attackGameObject.SetActive(false); 
         followGameObject.SetActive(false);
     }

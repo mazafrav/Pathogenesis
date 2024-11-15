@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9df7829bcea3a149b8d438c69bd27d2
+guid: 3aedbf19eaaadf642be1ff2fa021e70c
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,38 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: ElectrickShock
+  - name: ElectrickShockRange_Frame_0
     originalName: 
-    pivot: {x: 0.48, y: -0.16}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 40
-      y: 70
-      width: 25
-      height: 25
-    spriteID: 43c23f39546692f49a7933f29c6aadb0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 40, y: 70}
-  - name: ElectrickShock_Frame_1
-    originalName: 
-    pivot: {x: 0.5, y: 0.2857143}
+    pivot: {x: 0.625, y: -0.6875}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 69
-      width: 28
-      height: 56
-    spriteID: bf0544a77542b2e4c8e7c8e89021033f
+      y: 98
+      width: 8
+      height: 16
+    spriteID: 61b35fb64f324db429e3666ca78067a1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -160,19 +140,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 69}
-  - name: ElectrickShock_Frame_2
+    uvTransform: {x: 4, y: 98}
+  - name: ElectrickShockRange_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0.27586207}
+    pivot: {x: 0.5, y: -0.2857143}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 40
+      x: 60
       y: 4
-      width: 26
-      height: 58
-    spriteID: 537f3fa54112afa4c905453d82494ea6
+      width: 18
+      height: 35
+    spriteID: 01088ce2bb2bd7042ad2ef45e9d8f796
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -180,19 +160,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 40, y: 4}
-  - name: ElectrickShock_Frame_3
+    uvTransform: {x: 60, y: 4}
+  - name: ElectrickShockRange_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: 0.3478261}
+    pivot: {x: 0.57894737, y: -0.15789473}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 199
-      width: 26
-      height: 46
-    spriteID: 12dfb6ad97ef16c45adee96ec9e16c8b
+      y: 52
+      width: 19
+      height: 38
+    spriteID: 95ad188f55d102d4fb4150906b2443c0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -200,39 +180,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 199}
-  - name: ElectrickShock_Frame_4
+    uvTransform: {x: 4, y: 52}
+  - name: ElectrickShockRange_Frame_3
     originalName: 
-    pivot: {x: 0.5555556, y: 0.27586207}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 133
-      width: 27
-      height: 58
-    spriteID: 53ee42708c8cf2244a469173209f47bb
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 133}
-  - name: ElectrickShock_Frame_5
-    originalName: 
-    pivot: {x: 0.5, y: 0.28070176}
+    pivot: {x: 0.5263158, y: -0.15}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 28
-      height: 57
-    spriteID: 1458d92263c9d2b429293026e748ccc9
+      width: 19
+      height: 40
+    spriteID: e5c1db3f85e14fc48abbd9904bad986c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -241,67 +201,107 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: ElectrickShockRange_Frame_4
+    originalName: 
+    pivot: {x: 0.47619048, y: -0.25714287}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 4
+      width: 21
+      height: 35
+    spriteID: d0c99cff4675b9e40b40434c8e33486e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 4}
+  - name: ElectrickShockRange_Frame_5
+    originalName: 
+    pivot: {x: 0.3529412, y: -0.18421051}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 31
+      y: 47
+      width: 17
+      height: 38
+    spriteID: 6f3c4138ec996e948a42aaa0f3e94961
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 31, y: 47}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1724958244
-    name: ElectrickShock
+    guid: 981729687
+    name: ElectrickShockRange
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: ElectrickShock_Frame_0
+    - name: ElectrickShockRange_Frame_0
       frameIndex: 0
       cellRect:
-        x: 4
-        y: 4
-        width: 25
-        height: 25
-      spriteId: 43c23f39546692f49a7933f29c6aadb0
-    - name: ElectrickShock_Frame_1
+        x: 11
+        y: 11
+        width: 8
+        height: 16
+      spriteId: 61b35fb64f324db429e3666ca78067a1
+    - name: ElectrickShockRange_Frame_1
       frameIndex: 1
       cellRect:
-        x: 2
-        y: -16
-        width: 28
-        height: 56
-      spriteId: bf0544a77542b2e4c8e7c8e89021033f
-    - name: ElectrickShock_Frame_2
+        x: 7
+        y: 10
+        width: 18
+        height: 35
+      spriteId: 01088ce2bb2bd7042ad2ef45e9d8f796
+    - name: ElectrickShockRange_Frame_2
       frameIndex: 2
       cellRect:
-        x: 3
-        y: -16
-        width: 26
-        height: 58
-      spriteId: 537f3fa54112afa4c905453d82494ea6
-    - name: ElectrickShock_Frame_3
+        x: 5
+        y: 6
+        width: 19
+        height: 38
+      spriteId: 95ad188f55d102d4fb4150906b2443c0
+    - name: ElectrickShockRange_Frame_3
       frameIndex: 3
       cellRect:
-        x: 3
-        y: -16
-        width: 26
-        height: 46
-      spriteId: 12dfb6ad97ef16c45adee96ec9e16c8b
-    - name: ElectrickShock_Frame_4
+        x: 6
+        y: 6
+        width: 19
+        height: 40
+      spriteId: e5c1db3f85e14fc48abbd9904bad986c
+    - name: ElectrickShockRange_Frame_4
       frameIndex: 4
       cellRect:
-        x: 1
-        y: -16
-        width: 27
-        height: 58
-      spriteId: 53ee42708c8cf2244a469173209f47bb
-    - name: ElectrickShock_Frame_5
+        x: 6
+        y: 9
+        width: 21
+        height: 35
+      spriteId: d0c99cff4675b9e40b40434c8e33486e
+    - name: ElectrickShockRange_Frame_5
       frameIndex: 5
       cellRect:
-        x: 2
-        y: -16
-        width: 28
-        height: 57
-      spriteId: 1458d92263c9d2b429293026e748ccc9
+        x: 10
+        y: 7
+        width: 17
+        height: 38
+      spriteId: 6f3c4138ec996e948a42aaa0f3e94961
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
+  canvasSize: {x: 32, y: 48}
