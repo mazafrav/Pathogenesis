@@ -250,7 +250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 17
   player: {fileID: 0}
-  damageControl: {fileID: 0}
   owner: {fileID: 0}
   BulletVFX: {fileID: 6750202284499076391, guid: 0c77e70aa65a76c48b2bef08af809269, type: 3}
   bulletHitClip: {fileID: 8300000, guid: d097c4a7bfb7ce34ead594c20bbfebc6, type: 3}
@@ -287,7 +286,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.4, y: 1.9999999}
+  m_Size: {x: 1.4, y: 2.4155626}
   m_Direction: 0
 --- !u!50 &8394758077807741849
 Rigidbody2D:

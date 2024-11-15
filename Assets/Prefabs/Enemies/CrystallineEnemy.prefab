@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 470268383740179908}
   - component: {fileID: 6721288742054024510}
   - component: {fileID: 4166133987236749894}
+  - component: {fileID: 5825712140466431976}
   m_Layer: 3
   m_Name: CrystallineEnemy
   m_TagString: Enemy
@@ -137,7 +138,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35908868805287134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -251,7 +252,7 @@ SliderJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -21.76, y: 3.73}
   m_AutoConfigureAngle: 1
-  m_Angle: -179.90239
+  m_Angle: 170.27315
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: -15
@@ -260,6 +261,62 @@ SliderJoint2D:
   m_TranslationLimits:
     m_LowerTranslation: 0.2
     m_UpperTranslation: 6
+--- !u!60 &5825712140466431976
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35908868805287134}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.2815901, y: 0.28952286}
+      - {x: 0.3059736, y: 0.28698558}
+      - {x: 0.5827537, y: 0.28661442}
+      - {x: 0.64754105, y: 0.0014028549}
+      - {x: 0.54180986, y: -0.3588841}
+      - {x: 0.3402233, y: -0.5538669}
+      - {x: 0.00015544891, y: -0.64809084}
+      - {x: -0.34244347, y: -0.5638774}
+      - {x: -0.57152253, y: -0.29584098}
+      - {x: -0.6503086, y: -0.0026743412}
+      - {x: -0.5529366, y: 0.28115693}
+  m_UseDelaunayMesh: 0
 --- !u!1 &719785701111877732
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,19 +2354,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8370322636225327055, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_Size.x
-      value: 0.29289705
+      value: 0.5564548
       objectReference: {fileID: 0}
     - target: {fileID: 8370322636225327055, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_Size.y
-      value: 1.7348524
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 8370322636225327055, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_Offset.x
-      value: 0.7097218
+      value: 0.5978932
       objectReference: {fileID: 0}
     - target: {fileID: 8370322636225327055, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_Offset.y
-      value: -0.0023363233
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8393706193660190047, guid: a8f09c610b6f8194cb95a7b33afa977a, type: 3}
       propertyPath: m_Name
