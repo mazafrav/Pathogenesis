@@ -47,18 +47,6 @@ public class ControllerFeedback : MonoBehaviour
         GameManager.Instance.onPlayerSet -= BindEvents;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isRunning) return;
-        if (GameManager.Instance.IsThereAGamepadConnected &&
-                Gamepad.current.rightShoulder.isPressed &&
-                Gamepad.current.leftShoulder.isPressed)
-        {
-            Vibrate(preset);
-        }
-    }
-
     private void BindEvents()
     {
         if (GameManager.Instance.GetPlayer() && GameManager.Instance.GetPlayerController())
@@ -80,6 +68,10 @@ public class ControllerFeedback : MonoBehaviour
         float runtime = 0f;
         while (runtime < duration)
         {
+            if (!GameManager.Instance.IsThereAGamepadConnected)
+            {
+                yield break;
+            }
             runtime += .01f;
             Gamepad.current.SetMotorSpeeds(lCurve.Evaluate(runtime / duration), rCurve.Evaluate(runtime / duration));
             yield return new WaitForSecondsRealtime(.01f);
@@ -94,6 +86,10 @@ public class ControllerFeedback : MonoBehaviour
         float runtime = 0f;
         while (runtime < duration)
         {
+            if (!GameManager.Instance.IsThereAGamepadConnected)
+            {
+                yield break;
+            }
             runtime += .01f;
             float value = curve.Evaluate(runtime / duration);
             Gamepad.current.SetMotorSpeeds(value, value);
