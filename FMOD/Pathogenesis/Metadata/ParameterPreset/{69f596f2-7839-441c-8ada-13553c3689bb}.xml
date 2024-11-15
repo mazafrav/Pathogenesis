@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{69f596f2-7839-441c-8ada-13553c3689bb}">
+		<property name="name">
+			<value>Photogenic(Random)</value>
+		</property>
+		<relationship name="folder">
+			<destination>{c9153d5e-7e6a-43e0-aac7-f535e9e93240}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e17404cf-0ae7-43ac-ae0e-4b812d1ff7dd}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e17404cf-0ae7-43ac-ae0e-4b812d1ff7dd}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.34000000357627869</value>
+		</property>
+		<property name="seekSpeedDescending">
+			<value>0.18999999761581421</value>
+		</property>
+		<property name="seekSpeedAsymmetric">
+			<value>true</value>
+		</property>
+	</object>
+</objects>

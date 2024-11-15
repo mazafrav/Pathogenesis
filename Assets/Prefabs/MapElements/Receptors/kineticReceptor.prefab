@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8815143021026367103}
   - component: {fileID: 900803625814304740}
   - component: {fileID: 1647217741750075117}
-  m_Layer: 15
+  m_Layer: 17
   m_Name: kineticReceptor
   m_TagString: MapElement
   m_Icon: {fileID: 0}
@@ -230,6 +230,10 @@ PrefabInstance:
     - target: {fileID: 8033023321320672249, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
       propertyPath: m_Name
       value: LightRecpetorBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033023321320672249, guid: c42f548116e2bc14eac09b23d759d0b5, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
