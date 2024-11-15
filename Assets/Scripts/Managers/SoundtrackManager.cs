@@ -29,8 +29,8 @@ public class SoundtrackManager : MonoBehaviour
     //private FMOD.Studio.EventInstance ambientMusicInstance;
     private FMOD.Studio.EventInstance snapshotInstance;
 
-    //[SerializeField] private FMOD.Studio.Bus sfxBus;
-    //[SerializeField] private FMOD.Studio.Bus musicBus;
+     private Bus sfxBus;
+     private Bus musicBus;
 
     //private FMOD.Studio.EventInstance currentInstance;
 
@@ -73,6 +73,8 @@ public class SoundtrackManager : MonoBehaviour
             //mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             //mainMusicInstance.release();
         }
+
+        SetBuses();
 
     }
 
@@ -189,8 +191,8 @@ public class SoundtrackManager : MonoBehaviour
         if (scene.name.Equals("LVL_0"))
         {
             emitter.Stop();
-            //mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            //mainMusicInstance.release();
+            //ChangeSoundtrackParameter(SoundtrackParameter.Menu, 0.5f);
+
         }
         else
         {
@@ -226,16 +228,51 @@ public class SoundtrackManager : MonoBehaviour
 
     }
 
-    //public void StopAllSFX()
-    //{
-    //    sfxBus.stopAllEvents(STOP_MODE.IMMEDIATE);
-    //    //FMODUnity.RuntimeManager.StudioSystem.getBankList(out bankList);
-    //}
+    public void SetBuses(bool debug = false)
+    {
+        Bank[] bankList;
+        FMODUnity.RuntimeManager.StudioSystem.getBankList(out bankList);
 
-    //public void StopAllMusic()
-    //{
-    //    musicBus.stopAllEvents(STOP_MODE.ALLOWFADEOUT);
-    //}
+        foreach (var bank in bankList)
+        {
+            Bus[] buses;
+            bank.getBusList(out buses);
+
+            foreach (var bus in buses)
+            {
+                bus.getPath(out string pathBus);
+                if (pathBus.Contains("SFX"))
+                {
+                    sfxBus = bus;
+                }
+                else if (pathBus.Contains("Music"))
+                {
+                    musicBus = bus;
+                }
+            }
+
+        }
+
+        if (debug)
+        {
+            sfxBus.getPath(out string sfxpath);
+            musicBus.getPath(out string musicpath);
+
+            Debug.Log("SFX bus loaded from " + sfxpath);
+            Debug.Log("Music bus loaded from " + musicpath);
+        }
+
+    }
+
+    public void StopAllSFX()
+    {
+        sfxBus.stopAllEvents(STOP_MODE.IMMEDIATE);
+    }
+
+    public void StopAllMusic()
+    {
+        musicBus.stopAllEvents(STOP_MODE.ALLOWFADEOUT);
+    }
 
     private void OnDestroy()
     {

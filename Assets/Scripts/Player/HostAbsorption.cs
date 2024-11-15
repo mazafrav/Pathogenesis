@@ -138,6 +138,7 @@ public class HostAbsorption : Interactable
         {
             playerLocomotion.DisableFreeMovement();
             hostLocomotion.ResetAttack();
+            hostLocomotion.StopSFX();
             hostLocomotion.SetPossessingParameters();
             playerController.locomotion = hostLocomotion;
             gameObject.transform.parent = playerController.transform;

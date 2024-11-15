@@ -249,10 +249,13 @@ public class PlayerController : MonoBehaviour
         absortionRangeVfx.SetVector3("Direction", (host.transform.position - playerBody.transform.position).normalized);
         absortionRangeVfx.Play();
 
-        if (!proximityEmitter.IsPlaying())
-        {
-            proximityEmitter.Play();
-        }
+
+        proximityEmitter.Play();
+
+        //if (!proximityEmitter.IsPlaying())
+        //{
+        //    proximityEmitter.Play();
+        //}
     }
 
     public void UpdateAbsortionVfxDirection()
@@ -268,8 +271,8 @@ public class PlayerController : MonoBehaviour
 
     public void StopAbsorbableSFX()
     {
-        //proximityEmitter.Stop();
-        proximityEmitter.EventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);  
+        proximityEmitter.Stop();
+        //proximityEmitter.EventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);  
     }
 
     public void PlayerBodyDeath()

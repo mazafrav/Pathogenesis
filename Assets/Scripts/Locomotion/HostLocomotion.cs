@@ -99,6 +99,33 @@ public abstract class HostLocomotion : MonoBehaviour
         return groundChecker.isGrounded; 
     }
 
+    public void StopSFX()
+    {
+        if (jumpEventInstance.isValid())
+        {
+            jumpEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            jumpEventInstance.release();
+        }
+
+        if (landEventInstance.isValid())
+        {
+            landEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            landEventInstance.release();
+        }
+
+        if (attackEventInstance.isValid())
+        {
+            attackEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            attackEventInstance.release();
+        }
+
+        FMODUnity.StudioEventEmitter emitter = GetComponentInChildren<FMODUnity.StudioEventEmitter>();
+        if (emitter != null)
+        {
+            emitter.Stop();
+        }
+    }
+
     //public void Set3DAttributes(GameObject go)
     //{
     //    if (jumpEventInstance.isValid())
