@@ -16,11 +16,19 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     private FMOD.Studio.EventInstance hoverInstance;
     private FMOD.Studio.EventInstance selectInstance;
+    private Animator animator;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         hoverInstance = FMODUnity.RuntimeManager.CreateInstance(hoverSFXPath);
         selectInstance = FMODUnity.RuntimeManager.CreateInstance(selectSFXPath);
+
+        if(EventSystem.current.currentSelectedGameObject)
+        {
+            EventSystem.current.currentSelectedGameObject.GetComponent<Animator>().Play("ButtonHighlight");
+            EventSystem.current.currentSelectedGameObject.GetComponent<ButtonHighlightFX>().PlayParticles();
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -29,9 +37,9 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             particle.Play();
         }
-        if (GetComponent<Animator>() != null)
+        if (animator != null)
         {
-            GetComponent<Animator>().Play("ButtonHighlight");
+            animator.Play("ButtonHighlight");
         }
 
         hoverInstance.start();
@@ -43,9 +51,9 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             particle.Stop();
         }
-        if (GetComponent<Animator>() != null)
+        if (animator != null)
         {
-            GetComponent<Animator>().Play("ButtonAnim");
+            animator.Play("ButtonAnim");
         }
     }
 
@@ -55,9 +63,9 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             particle.Play();
         }
-        if (GetComponent<Animator>() != null)
+        if (animator != null)
         {
-            GetComponent<Animator>().Play("ButtonHighlight");
+            animator.Play("ButtonHighlight");
         }
 
         if(GameManager.Instance.IsThereAGamepadConnected)
@@ -72,16 +80,24 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             particle.Stop();
         }
-        if (GetComponent<Animator>() != null)
+        if (animator != null)
         {
-            GetComponent<Animator>().Play("ButtonAnim");
+            animator.Play("ButtonAnim");
         }
     }
 
     public void OnClick()
     {
-        GetComponent<Animator>().Play("ButtonSelected");
+        animator.Play("ButtonSelected");
 
         selectInstance.start();
+    }
+
+    public void PlayParticles()
+    {
+        foreach (var particle in _particleSystem)
+        {
+            particle.Play();
+        }
     }
 }
