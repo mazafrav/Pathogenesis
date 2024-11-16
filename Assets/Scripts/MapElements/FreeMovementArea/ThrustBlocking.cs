@@ -43,30 +43,36 @@ public class ThrustBlocking : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        currentBlockingThrust = blockingThrust;
-        collision.GetComponentInParent<PlayerLocomotion>().EnableFreeMovement();
-        colliderThrustTrigger.isTrigger = false;
-        isOnThrustBlocking = true;
+        if(collision.CompareTag("Player"))
+        {
+            currentBlockingThrust = blockingThrust;
+            collision.GetComponentInParent<PlayerLocomotion>().EnableFreeMovement();
+            colliderThrustTrigger.isTrigger = false;
+            isOnThrustBlocking = true;
 
-        blockingBouncines.gameObject.SetActive(false);
-        blockingBouncines.GetComponent<BoxCollider2D>().enabled = false;
-        blockingBouncines.GetComponent<BlockingBouncines>().enabled = false;
+            blockingBouncines.gameObject.SetActive(false);
+            blockingBouncines.GetComponent<BoxCollider2D>().enabled = false;
+            blockingBouncines.GetComponent<BlockingBouncines>().enabled = false;
 
-        animator.Play("FMAT_Block");
-        emitter.Play();
+            animator.Play("FMAT_Block");
+            emitter.Play();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.GetComponentInParent<PlayerLocomotion>().DisableFreeMovement();
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponentInParent<PlayerLocomotion>().DisableFreeMovement();
 
-        colliderThrustTrigger.isTrigger = true;
-        isOnThrustBlocking = false;
-        blockingBouncines.gameObject.SetActive(true);
-        blockingBouncines.GetComponent<BoxCollider2D>().enabled = true;
-        blockingBouncines.GetComponent<BlockingBouncines>().enabled = true;
+            colliderThrustTrigger.isTrigger = true;
+            isOnThrustBlocking = false;
+            blockingBouncines.gameObject.SetActive(true);
+            blockingBouncines.GetComponent<BoxCollider2D>().enabled = true;
+            blockingBouncines.GetComponent<BlockingBouncines>().enabled = true;
 
-        animator.Play("FMAT_Idle");
-        emitter.Stop();
+            animator.Play("FMAT_Idle");
+            emitter.Stop();
+        }
     }
 }
