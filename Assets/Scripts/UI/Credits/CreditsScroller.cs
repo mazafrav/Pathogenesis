@@ -37,6 +37,7 @@ public class CreditsScroller : MonoBehaviour
         else
         {
             GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 0f);
+            GameManager.Instance.GetPlayerController().GetPlayerIAs().Enable();
             GameManager.Instance.GetLevelLoader().StartLoadingLevel(0);
         }
     }

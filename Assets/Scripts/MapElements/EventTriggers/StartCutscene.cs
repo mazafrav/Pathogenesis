@@ -72,7 +72,6 @@ public class StartCutscene : MonoBehaviour
 
     public void EndCutscene()
     {
-        GameManager.Instance.GetPlayerController().GetPlayerIAs().Enable();
         //GameManager.Instance.SetMusicSelectionIndex(0);
         creditCanvas.SetActive(true);
         GetComponentInChildren<Canvas>().enabled = false;
