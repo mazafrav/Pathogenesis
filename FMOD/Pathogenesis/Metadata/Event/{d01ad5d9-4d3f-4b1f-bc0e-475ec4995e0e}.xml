@@ -228,7 +228,7 @@
 	</object>
 	<object class="SingleSound" id="{6a2d3bdf-9fde-43e8-b8e7-834563a2bcae}">
 		<property name="start">
-			<value>37.5</value>
+			<value>31.5</value>
 		</property>
 		<property name="length">
 			<value>32</value>
@@ -260,10 +260,10 @@
 	</object>
 	<object class="TransitionDestinationSound" id="{e48fe784-20a2-4c44-a252-abb89542d128}">
 		<property name="start">
-			<value>2.875</value>
+			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.1250000000000004</value>
+			<value>2.0000000000000009</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{ebf45fe3-c2dd-413f-84b1-db9f2f8c43e7}</destination>
@@ -288,7 +288,7 @@
 	</object>
 	<object class="LoopRegion" id="{7da4057a-b50b-4394-8f57-76089a96365e}">
 		<property name="position">
-			<value>38</value>
+			<value>32</value>
 		</property>
 		<property name="length">
 			<value>29.5</value>
@@ -316,7 +316,7 @@
 	</object>
 	<object class="TransitionRegion" id="{b8a4e667-6810-47ff-aec9-aefd05ac6955}">
 		<property name="position">
-			<value>38</value>
+			<value>32</value>
 		</property>
 		<property name="length">
 			<value>29.5</value>
@@ -370,7 +370,6 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{606af9ff-081d-4470-9d6a-86b3b09348d1}">
 		<relationship name="effects">
-			<destination>{e041a2d9-08c3-49e8-9262-2244929ed126}</destination>
 			<destination>{a568e19b-5246-42e4-936b-7a2c53b80ea0}</destination>
 		</relationship>
 	</object>
@@ -399,9 +398,10 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{95183f7a-237e-479e-b63c-312716b9d155}">
 		<relationship name="effects">
-			<destination>{97f77472-2061-4f2f-9901-09f687c70c05}</destination>
+			<destination>{2399a6ee-2bc0-4ac2-989f-3ddc2422213a}</destination>
 			<destination>{c044ea1c-952f-461c-8336-e9e3241455ba}</destination>
-			<destination>{2fa4b7d7-1699-4bb6-af3d-5cd2ff29123c}</destination>
+			<destination>{f9bbd7a0-3426-4dcb-b451-3036cb1b117f}</destination>
+			<destination>{1a574df7-d871-4c2a-ba15-f20612a51767}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{a5410b4c-4fdf-4734-bd42-0f1943a855c0}" />
@@ -428,6 +428,7 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{f2da51cc-43f8-420b-8012-d602b9fc3826}">
 		<relationship name="effects">
+			<destination>{37680366-32c4-492a-9ca4-560ac0106c0b}</destination>
 			<destination>{97a4c59e-a039-4edc-bf5d-0f0f8be1f0c9}</destination>
 		</relationship>
 	</object>
@@ -490,11 +491,6 @@
 			<destination>{3e4221ad-2d6e-4982-ab6f-2abe473a1ff5}</destination>
 		</relationship>
 	</object>
-	<object class="DistortionEffect" id="{e041a2d9-08c3-49e8-9262-2244929ed126}">
-		<property name="level">
-			<value>0.289999992</value>
-		</property>
-	</object>
 	<object class="MixerBusFader" id="{a568e19b-5246-42e4-936b-7a2c53b80ea0}" />
 	<object class="AutomationPoint" id="{bf2ca7d5-b817-4dd2-9922-615bbf4b5f9e}">
 		<property name="position">
@@ -534,27 +530,29 @@
 			<value>0</value>
 		</property>
 	</object>
-	<object class="SFXReverbEffect" id="{97f77472-2061-4f2f-9901-09f687c70c05}">
-		<property name="decayTime">
-			<value>5000</value>
-		</property>
-		<property name="wetLevel">
-			<value>-7.5</value>
-		</property>
-		<property name="dryLevel">
-			<value>-1</value>
+	<object class="DistortionEffect" id="{2399a6ee-2bc0-4ac2-989f-3ddc2422213a}">
+		<property name="level">
+			<value>0.214999989</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{c044ea1c-952f-461c-8336-e9e3241455ba}" />
-	<object class="MultibandEqEffect" id="{2fa4b7d7-1699-4bb6-af3d-5cd2ff29123c}">
+	<object class="SFXReverbEffect" id="{f9bbd7a0-3426-4dcb-b451-3036cb1b117f}">
+		<property name="decayTime">
+			<value>10000</value>
+		</property>
+		<property name="wetLevel">
+			<value>-10</value>
+		</property>
+	</object>
+	<object class="MultibandEqEffect" id="{1a574df7-d871-4c2a-ba15-f20612a51767}">
 		<property name="frequencyA">
-			<value>420.499817</value>
+			<value>1046.37341</value>
 		</property>
 		<property name="qualityA">
-			<value>1.82165527</value>
+			<value>0.885344803</value>
 		</property>
 		<relationship name="modulators">
-			<destination>{1435c603-5dfb-44fa-89b0-87f1119e40e7}</destination>
+			<destination>{3cfd4876-f362-4d70-a3ec-336100d203fa}</destination>
 		</relationship>
 	</object>
 	<object class="AutomationPoint" id="{7ee90df7-2ad7-476c-94dd-491560421ccd}">
@@ -578,13 +576,13 @@
 	</object>
 	<object class="AutomationPoint" id="{0c054bd9-3f3a-4baf-b823-03538b97cacb}">
 		<property name="position">
-			<value>2.875</value>
+			<value>2</value>
 		</property>
 		<property name="value">
 			<value>0</value>
 		</property>
 		<property name="curveShape">
-			<value>0.155178994</value>
+			<value>0.0357734188</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{c2cc1946-7994-4f9f-b2d7-2f57ee7b3997}">
@@ -595,13 +593,18 @@
 			<value>1</value>
 		</property>
 	</object>
+	<object class="DistortionEffect" id="{37680366-32c4-492a-9ca4-560ac0106c0b}">
+		<property name="level">
+			<value>0.310000002</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{97a4c59e-a039-4edc-bf5d-0f0f8be1f0c9}" />
 	<object class="AutomationPoint" id="{e2f47fcc-1d57-4a0a-9e97-ab69a86a9d3f}">
 		<property name="position">
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>-42</value>
+			<value>-47</value>
 		</property>
 		<property name="curveShape">
 			<value>-0.360295832</value>
@@ -612,7 +615,7 @@
 			<value>0.99576271186440679</value>
 		</property>
 		<property name="value">
-			<value>1</value>
+			<value>-1</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{3e4221ad-2d6e-4982-ab6f-2abe473a1ff5}">
@@ -620,10 +623,10 @@
 			<value>0.70000000000000007</value>
 		</property>
 		<property name="value">
-			<value>-1</value>
+			<value>-3</value>
 		</property>
 	</object>
-	<object class="LFOModulator" id="{1435c603-5dfb-44fa-89b0-87f1119e40e7}">
+	<object class="LFOModulator" id="{3cfd4876-f362-4d70-a3ec-336100d203fa}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>frequencyA</value>
 		</property>
@@ -634,10 +637,10 @@
 			<value>0.0249999985</value>
 		</property>
 		<property name="beats">
-			<value>64</value>
+			<value>56</value>
 		</property>
 		<property name="depth">
-			<value>9.5</value>
+			<value>3</value>
 		</property>
 	</object>
 </objects>
