@@ -183,11 +183,16 @@ public class SoundtrackManager : MonoBehaviour
     public void StopPausepSnapshot()
     {
         snapshotInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        snapshotInstance.release();
     }
 
     private void CheckLevelSoundtrack(Scene scene, LoadSceneMode mode)
     {
+        StopAllSFX();
+
+        if (scene.name.Equals("PauseMenu") || scene.name.Equals("SettingsMenu"))
+        {
+            return;
+        }
 
         if (scene.name.Equals("LVL_0"))
         {
@@ -211,21 +216,6 @@ public class SoundtrackManager : MonoBehaviour
                 ChangeSoundtrackParameter(SoundtrackParameter.Menu, 0);
             }
         }
-        //else if (audioDoOnce && scene.name.Equals("LVL_12"))
-        //{
-        //    audioDoOnce = false;
-        //    emitter.Stop();
-        //    mainMusicInstance.start();
-        //}
-        //else
-        //{
-        //    if (!emitter.IsPlaying())
-        //    {
-        //        mainMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        //        mainMusicInstance.release();
-        //        emitter.Play();
-        //    }
-        //}
 
     }
 
