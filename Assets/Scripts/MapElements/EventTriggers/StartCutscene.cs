@@ -56,6 +56,7 @@ public class StartCutscene : MonoBehaviour
         //GameManager.Instance.SetMusicSelectionIndex(7);
         GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 1f);
         GameManager.Instance.GetPlayerController().GetPlayerIAs().Disable();
+        GameManager.Instance.soundtrackManager.StopAllSFX();
     }
 
     public void StartVFX2()
