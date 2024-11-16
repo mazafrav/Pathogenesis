@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
+using UnityEngine.SceneManagement;
 
 public class CreditsScroller : MonoBehaviour
 {
@@ -31,6 +33,11 @@ public class CreditsScroller : MonoBehaviour
         if (_time < _totalScrollingTime)
         {
             _objectRectTransform.anchoredPosition = Vector2.Lerp(_originalPosition, Vector2.zero, _time/ _totalScrollingTime);
+        } 
+        else
+        {
+            GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 0f);
+            GameManager.Instance.GetLevelLoader().StartLoadingLevel(0);
         }
     }
 

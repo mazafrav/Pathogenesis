@@ -13,6 +13,7 @@ public class StartCutscene : MonoBehaviour
     private VisualEffect absortionRangeVfx;
     [SerializeField]
     private VisualEffect absortionRangeVfx2;
+    [SerializeField] private GameObject creditCanvas;
 
     [SerializeField] private SensitiveTile sensitiveTile;
 
@@ -73,7 +74,9 @@ public class StartCutscene : MonoBehaviour
     {
         GameManager.Instance.GetPlayerController().GetPlayerIAs().Enable();
         //GameManager.Instance.SetMusicSelectionIndex(0);
-        GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 0f);
-        GameManager.Instance.GetLevelLoader().StartLoadingLevel(0);
+        creditCanvas.SetActive(true);
+        GetComponentInChildren<Canvas>().enabled = false;
+        //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Epic, 0f);
+        //GameManager.Instance.GetLevelLoader().StartLoadingLevel(0);
     }
 }
