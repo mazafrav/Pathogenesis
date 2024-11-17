@@ -872,6 +872,9 @@
 		<relationship name="triggerConditions">
 			<destination>{ecf27cd6-7475-4994-b8f9-cde83843a063}</destination>
 		</relationship>
+		<relationship name="fadeInCurve">
+			<destination>{b60168d9-7c11-4c72-b09f-1a0f4c67827a}</destination>
+		</relationship>
 		<relationship name="event">
 			<destination>{02cc8083-db44-4a3f-8858-388f20e3180d}</destination>
 		</relationship>
@@ -881,7 +884,7 @@
 			<value>true</value>
 		</property>
 		<property name="triggerProbability">
-			<value>19.5</value>
+			<value>25</value>
 		</property>
 		<property name="start">
 			<value>24</value>
@@ -1756,6 +1759,14 @@
 			<destination>{ad603388-a06d-4ee0-94df-d4de066d2c50}</destination>
 		</relationship>
 	</object>
+	<object class="FadeCurve" id="{b60168d9-7c11-4c72-b09f-1a0f4c67827a}">
+		<relationship name="startPoint">
+			<destination>{6124f6b6-6f6c-4094-b1c9-3ca3fc52a7ae}</destination>
+		</relationship>
+		<relationship name="endPoint">
+			<destination>{5775244d-2c1d-41b7-865a-6a442e992aec}</destination>
+		</relationship>
+	</object>
 	<object class="RandomizerModulator" id="{063950d4-4cee-499b-921a-8252a21a2cae}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>targetValue</value>
@@ -2540,6 +2551,25 @@
 			<destination>{98db7e10-ef07-402e-9273-5d42dd9b70bf}</destination>
 			<destination>{8305dfdd-87aa-46ae-88ab-31df2282e7d2}</destination>
 		</relationship>
+	</object>
+	<object class="AutomationPoint" id="{6124f6b6-6f6c-4094-b1c9-3ca3fc52a7ae}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+		<property name="curveShape">
+			<value>0.0944647342</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{5775244d-2c1d-41b7-865a-6a442e992aec}">
+		<property name="position">
+			<value>0.20999999999999999</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
 	</object>
 	<object class="AutomationCurve" id="{fbc4bf22-2d05-436e-b449-4a0ac991f5e5}">
 		<relationship name="parameter">
