@@ -132,6 +132,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{d6201374-879f-4f63-b3b9-ba9f8da64d90}">
+		<property name="volume">
+			<value>0.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -277,10 +280,10 @@
 	</object>
 	<object class="MultibandEqEffect" id="{1a574df7-d871-4c2a-ba15-f20612a51767}">
 		<property name="frequencyA">
-			<value>1046.37341</value>
+			<value>1685.17639</value>
 		</property>
 		<property name="qualityA">
-			<value>0.885344803</value>
+			<value>1.19744825</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{3cfd4876-f362-4d70-a3ec-336100d203fa}</destination>
@@ -308,7 +311,7 @@
 			<value>0.99576271186440679</value>
 		</property>
 		<property name="value">
-			<value>2</value>
+			<value>3</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{3e4221ad-2d6e-4982-ab6f-2abe473a1ff5}">
@@ -330,10 +333,13 @@
 			<value>0.0249999985</value>
 		</property>
 		<property name="beats">
-			<value>56</value>
+			<value>6</value>
 		</property>
 		<property name="depth">
-			<value>3</value>
+			<value>21</value>
+		</property>
+		<property name="direction">
+			<value>-24</value>
 		</property>
 	</object>
 </objects>
