@@ -90,7 +90,6 @@ public class ButtonHighlightFX : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnClick()
     {
-        Debug.Log(gameObject.name);
         animator.Play("ButtonSelected");
 
         selectInstance.start();

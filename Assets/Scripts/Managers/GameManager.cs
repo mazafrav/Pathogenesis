@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+#if UNITY_STANDALONE && !UNITY_EDITOR
+            Mouse.current.WarpCursorPosition(Vector2.zero);
+            Cursor.visible = false;
+#endif
+
         if (Instance != null)
         {
             Instance.SetInfo();
@@ -82,7 +87,12 @@ public class GameManager : MonoBehaviour
             // Restrict input to gamepad only
             InputSystem.DisableDevice(Mouse.current);
             InputSystem.DisableDevice(Keyboard.current);
-            //Cursor.visible = false;
+
+#if UNITY_STANDALONE && !UNITY_EDITOR
+            Mouse.current.WarpCursorPosition(Vector2.zero);
+            Cursor.visible = false;
+#endif
+
 
             if (Gamepad.current is DualShockGamepad)
             {
@@ -97,7 +107,7 @@ public class GameManager : MonoBehaviour
         {         
             InputSystem.EnableDevice(Mouse.current);
             InputSystem.EnableDevice(Keyboard.current);
-            //Cursor.visible = true;
+            Cursor.visible = true;
         }
 
 
