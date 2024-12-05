@@ -46,16 +46,21 @@ public class DamageControl : MonoBehaviour
 
             if (enemy)
             {
-                if (enemy.transform.parent != null) //The enemy is possessed
+                if (enemy.GetComponentInChildren<PlayerController>() != null) //The enemy is possessed
                 {
                     wasPossessing = true;
-                    enemy.transform.parent = null;
+
+                    GameObject virus = GameManager.Instance.GetVirusBody();
+                    GameManager.Instance.GetPlayerController().transform.parent = virus.transform;
+                    virus.SetActive(true);
+
                     Vector3 enemyPos = enemy.transform.position;
                     enemy.DestroyEnemy();
-                    GameManager.Instance.GetPlayerController().transform.position = enemyPos;
-                    GameManager.Instance.GetPlayerController().GetPlayerBody().transform.localPosition = Vector3.zero;
+                    virus.transform.position = enemyPos;
+                    // GameManager.Instance.GetPlayerController().GetPlayerBody().transform.localPosition = Vector3.zero;
                     
-                    GameManager.Instance.GetPlayerController().EnablePlayerBody();
+                    // GameManager.Instance.GetPlayerController().EnablePlayerBody();
+                    //Puede que no haga falta
                     GameManager.Instance.GetCamera().Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
                     GameManager.Instance.GetPlayerController().locomotion = GameManager.Instance.GetPlayerLocomotion();
                     //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 0);

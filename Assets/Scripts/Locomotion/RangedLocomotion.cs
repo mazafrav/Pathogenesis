@@ -131,8 +131,8 @@ public class RangedLocomotion : HostLocomotion
 
         chargeShotVFX.Play();
         
-
-        if (GetComponentInParent<PlayerController>() != null )
+        //TODO: cambiar a un bool en enemy para saber si esta poseido
+        if (GetComponentInChildren<PlayerController>() != null )
         {
             rangedAnimator.Play("RangedEnemAttack");
             windUpTimer = windUp;

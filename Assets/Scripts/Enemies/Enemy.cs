@@ -61,6 +61,8 @@ public class Enemy : MonoBehaviour
     virtual public void DestroyEnemy()
     {
         GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
+        
+        //TODO: pasar a electrico
         if (locomotion.GetType() == typeof(ElectricLocomotion))
         {
             ElectricLocomotion electric = (ElectricLocomotion)locomotion;

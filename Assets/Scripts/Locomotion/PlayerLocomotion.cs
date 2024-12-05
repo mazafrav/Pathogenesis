@@ -17,7 +17,7 @@ public class PlayerLocomotion : HostLocomotion
     [SerializeField]
     private GameObject playerBody;
 
-    private FMODUnity.StudioEventEmitter emitter;
+    //private FMODUnity.StudioEventEmitter emitter;
 
     [SerializeField] private float distanceToFallToPlayLandClip = 2f;
 
@@ -37,7 +37,7 @@ public class PlayerLocomotion : HostLocomotion
         rb2D.gravityScale = g / Physics2D.gravity.y;
 
         originalMoveSpeed = moveSpeed;
-        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        //emitter = GetComponentInChildren<FMODUnity.StudioEventEmitter>();
         //audioSource.loop = true;
 }
 
@@ -53,8 +53,7 @@ public class PlayerLocomotion : HostLocomotion
 
     private void Update()
     {
-        emitter.EventInstance.getParameterByName("Terrain", out float param);
-        //Debug.Log("Terreno= " + param);
+        //emitter.EventInstance.getParameterByName("Terrain", out float param);
 
         animator.SetFloat("Speed", Mathf.Abs(rb2D.velocity.x) + Mathf.Abs(rb2D.velocity.y));
         if (groundChecker.isGrounded)
@@ -79,30 +78,30 @@ public class PlayerLocomotion : HostLocomotion
             landEventInstance.start();
         }
 
-        if (rb2D.velocity.x != 0)
-        {
-            if (!emitter.IsPlaying())
-            {
-                emitter.Play();
-            }
-        }
-        else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
-        {
-            if (!emitter.IsPlaying())
-            {
-                emitter.Play();
-            }
-        }
-        else
-        {
-            emitter.Stop();
-        }
+        // if (rb2D.velocity.x != 0)
+        // {
+        //     if (!emitter.IsPlaying())
+        //     {
+        //         emitter.Play();
+        //     }
+        // }
+        // else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
+        // {
+        //     if (!emitter.IsPlaying())
+        //     {
+        //         emitter.Play();
+        //     }
+        // }
+        // else
+        // {
+        //     emitter.Stop();
+        // }
 
 
-        if (GameManager.Instance.isPaused)
-        {
-            emitter.Stop();
-        }
+        // if (GameManager.Instance.isPaused)
+        // {
+        //     emitter.Stop();
+        // }
     }
 
     public override void Jump(float deltaX = 0)

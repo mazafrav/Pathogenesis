@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
+    private GameObject virusBody;
+    private PlayerController playerController;
 
     [SerializeField]
     private LevelLoader levelLoader;
@@ -70,8 +72,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        virusBody = player;
+        playerController = player.GetComponentInChildren<PlayerController>();
         soundtrackManager = GetComponentInChildren<SoundtrackManager>();
-        if(limitFps)
+        if (limitFps)
         {
             Application.targetFrameRate = targetFrameRate;
         }
@@ -104,7 +108,7 @@ public class GameManager : MonoBehaviour
             }
         }
         else
-        {         
+        {
             InputSystem.EnableDevice(Mouse.current);
             InputSystem.EnableDevice(Keyboard.current);
             Cursor.visible = true;
@@ -151,6 +155,8 @@ public class GameManager : MonoBehaviour
     public GameObject GetPlayer()
     { return player; }
 
+    public void SetPlayer(GameObject player) { this.player = player; }
+
     public GameObject GetPlayerMovementBody()
     {
         if (player.GetComponentInChildren<HostLocomotion>().GetType() != typeof(PlayerLocomotion))
@@ -163,13 +169,15 @@ public class GameManager : MonoBehaviour
 
     public PlayerController GetPlayerController()
     {
-        return player.GetComponent<PlayerController>();
+        return playerController;
     }
 
     public PlayerLocomotion GetPlayerLocomotion()
     {
-        return player.GetComponent<PlayerLocomotion>();
+        return virusBody.GetComponent<PlayerLocomotion>();
     }
+
+    public GameObject GetVirusBody() { return virusBody; }
 
     public LevelLoader GetLevelLoader()
     {

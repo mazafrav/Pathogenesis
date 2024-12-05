@@ -2,6 +2,7 @@ using Cinemachine;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using static UnityEngine.Rendering.DebugUI;
 
 public class HostAbsorption : Interactable
@@ -136,11 +137,15 @@ public class HostAbsorption : Interactable
 
         if (playerController.GetPlayerBody()) //we possess if the player exists
         {
+            ApplyPossessionWithNoEffects();
+            return;
+
             playerLocomotion.DisableFreeMovement();
             hostLocomotion.ResetAttack();
             hostLocomotion.StopSFX();
             hostLocomotion.SetPossessingParameters();
             playerController.locomotion = hostLocomotion;
+            //TODO: cambiar  (?)
             gameObject.transform.parent = playerController.transform;
             //playerController.locomotion.Set3DAttributes(gameObject);
             playerController.DisablePlayerBody();
@@ -202,9 +207,14 @@ public class HostAbsorption : Interactable
             hostLocomotion.ResetAttack();
             hostLocomotion.SetPossessingParameters();
             playerController.locomotion = hostLocomotion;
-            gameObject.transform.parent = playerController.transform;
+            Debug.Log(playerController.locomotion);
+            playerController.transform.parent.gameObject.SetActive(false);
+            playerController.transform.parent = gameObject.transform;
             playerController.DisablePlayerBody();
+            GameManager.Instance.SetPlayer(gameObject);
 
+
+            //TODO: maybe no hace falta si se sigue al playercontroller todo el rato
             CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
             if (cinemachineVirtualCamera != null)
             {
