@@ -10,8 +10,9 @@ public class ScriptedGrapple : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CrystallineLocomotion crystallineLocomotion = collision.gameObject.GetComponent<CrystallineLocomotion>();
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         //The enemy dont have to be possessed
-        if (crystallineLocomotion && crystallineLocomotion.transform.parent == null)
+        if (crystallineLocomotion && enemy && !enemy.IsPossesed)
         {
             GrapplingHook grapplingHook = crystallineLocomotion.GetGrapplingHook();
             grapplingHook.SetAimPoint(aimPoint);
@@ -25,8 +26,9 @@ public class ScriptedGrapple : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         CrystallineLocomotion crystallineLocomotion = collision.gameObject.GetComponent<CrystallineLocomotion>();
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         //The enemy dont have to be possessed
-        if (crystallineLocomotion && crystallineLocomotion.transform.parent == null)
+        if (crystallineLocomotion && enemy && !enemy.IsPossesed)
         {
             GrapplingHook grapplingHook = crystallineLocomotion.GetGrapplingHook();         
             grapplingHook.ResetAimPoint();
