@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SetPlayer(transform.parent.gameObject);
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Disable();
         playerInputActions.Player.Jump.performed += Jump;

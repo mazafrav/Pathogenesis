@@ -135,9 +135,9 @@ public class HostAbsorption : Interactable
     {
         base.OnInteract(interactedObject);
 
-        if (playerController.GetPlayerBody()) //we possess if the player exists
-        {
-            ApplyPossessionWithNoEffects();
+        //if (interactedObject.GetComponent<Rigidbody2D>()) //we possess if the player exists
+        //{
+            ApplyPossessionWithNoEffects(interactedObject);
             return;
 
             playerLocomotion.DisableFreeMovement();
@@ -193,19 +193,21 @@ public class HostAbsorption : Interactable
             doOnce = true;
             //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
             //
+            enemyBehaviour.IsPossesed = true;
             enemyBehaviour.enabled = false;
-        }
+        //}
 
     }
 
-    public void ApplyPossessionWithNoEffects()
+    public void ApplyPossessionWithNoEffects(GameObject interactedObject)
     {
         SetInfo();
-        if (playerController.GetPlayerBody()) //we possess if the player exists
-        {
+        //if (playerController.GetPlayerBody()) //we possess if the player exists
+        //{
             playerLocomotion.DisableFreeMovement();
             hostLocomotion.ResetAttack();
             hostLocomotion.SetPossessingParameters();
+            hostLocomotion.playerController = interactedObject.GetComponentInChildren<PlayerController>();
             playerController.locomotion = hostLocomotion;
             Debug.Log(playerController.locomotion);
             playerController.transform.parent.gameObject.SetActive(false);
@@ -240,28 +242,15 @@ public class HostAbsorption : Interactable
                 playerController.shootingComponent = electricEnemy.GetShootingComponent();
             }
 
-
-            //possessionTimer = possessionEffectTime;
-
-            //hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
-
             //possessionEventInstance.start();
             ApplyEnemySoundtrackLayer();
             //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 1);
             //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, 0);
             hostLocomotion.GetComponent<Enemy>().SetLayerDetection(true);
 
-            /*
-            currentTimeToZoomIn = possessionEffectTime/2.0f;
-            currentTimeToZoomOut = possessionEffectTime/2.0f;
-            */
-            //doOnce = true;
-            //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
-
             enemyBehaviour.IsPossesed = true;
-            enemyBehaviour.enabled = false;
-            
-        }
+            enemyBehaviour.enabled = false;           
+        //}
     }
 
     private void ApplyEnemySoundtrackLayer()

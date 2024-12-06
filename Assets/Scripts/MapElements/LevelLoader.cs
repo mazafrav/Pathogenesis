@@ -128,6 +128,6 @@ public class LevelLoader : MonoBehaviour
         {
             go.transform.position = checkpointRespawn;
         }
-        go.GetComponent<HostAbsorption>().ApplyPossessionWithNoEffects();
+        go.GetComponent<HostAbsorption>().ApplyPossessionWithNoEffects(go);
     }
 }

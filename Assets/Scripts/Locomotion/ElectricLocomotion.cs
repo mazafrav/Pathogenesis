@@ -72,8 +72,6 @@ public class ElectricLocomotion : HostLocomotion
 
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f;/*, currentShockDuration = 0.0f;*/
 
-    private PlayerController playerController;
-
     public float currentRemainingShockTime { get; set; } = 0.0f;
     public bool inAttackRange { get; set; } = false;
 

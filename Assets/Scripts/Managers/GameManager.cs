@@ -10,6 +10,7 @@ using UnityEngine.InputSystem.DualShock;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class GameManager : MonoBehaviour
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private GameObject virusBody;
     private PlayerController playerController;
+    private PlayerLocomotion playerLocomotion;
 
     [SerializeField]
     private LevelLoader levelLoader;
@@ -136,6 +138,8 @@ public class GameManager : MonoBehaviour
         if (player == null)
         {
             player = GameObject.Find("Player");
+            playerController = player.GetComponentInChildren<PlayerController>();
+            playerLocomotion = player.GetComponentInChildren<PlayerLocomotion>();
             onPlayerSet?.Invoke();
         }
         if (virtualCamera == null)
@@ -174,7 +178,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerLocomotion GetPlayerLocomotion()
     {
-        return virusBody.GetComponent<PlayerLocomotion>();
+        return playerLocomotion;
     }
 
     public GameObject GetVirusBody() { return virusBody; }

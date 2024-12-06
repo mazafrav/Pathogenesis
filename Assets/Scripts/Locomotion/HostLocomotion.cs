@@ -37,6 +37,8 @@ public abstract class HostLocomotion : MonoBehaviour
 
     protected float g = 1.0f, velocityY = 1.0f, jumpOffset = 0.5f;
 
+    public PlayerController playerController { set; protected get; } = null;
+
     private DamageControl damageControl = null;
     private Collider2D hostCollider;
 
