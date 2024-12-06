@@ -81,8 +81,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (doOnce)
                 {
-                    GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                    GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                    GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                     doOnce = false;
                 }
 
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+                GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
                 doOnce = true;
             }
 
