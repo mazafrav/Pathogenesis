@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
     private FMOD.Studio.EventInstance detectEventInstance;
     private List<GameObject> organismsDetected = new List<GameObject>();
 
+    public bool IsPossesed { get; set; } = false;
 
     private void Awake()
     {

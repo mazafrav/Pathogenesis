@@ -258,7 +258,9 @@ public class HostAbsorption : Interactable
             //doOnce = true;
             //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
 
+            enemyBehaviour.IsPossesed = true;
             enemyBehaviour.enabled = false;
+            
         }
     }
 

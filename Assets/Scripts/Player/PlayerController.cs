@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //Attacking with electric enemy
-            ElectricLocomotion electricLocomotion = GetComponentInChildren<ElectricLocomotion>();
+            ElectricLocomotion electricLocomotion = GetComponentInParent<ElectricLocomotion>();
             if (electricLocomotion)
             {
                 if ((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
