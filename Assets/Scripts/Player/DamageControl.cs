@@ -46,7 +46,7 @@ public class DamageControl : MonoBehaviour
 
             if (enemy)
             {
-                if (enemy.GetComponentInChildren<PlayerController>() != null) //The enemy is possessed
+                if (enemy.IsPossesed) //The enemy is possessed
                 {
                     wasPossessing = true;
 
@@ -57,9 +57,7 @@ public class DamageControl : MonoBehaviour
                     Vector3 enemyPos = enemy.transform.position;
                     enemy.DestroyEnemy();
                     virus.transform.position = enemyPos;
-                    // GameManager.Instance.GetPlayerController().GetPlayerBody().transform.localPosition = Vector3.zero;
                     
-                    // GameManager.Instance.GetPlayerController().EnablePlayerBody();
                     //Puede que no haga falta
                     GameManager.Instance.GetCamera().Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
                     GameManager.Instance.GetPlayerController().locomotion = GameManager.Instance.GetPlayerLocomotion();
