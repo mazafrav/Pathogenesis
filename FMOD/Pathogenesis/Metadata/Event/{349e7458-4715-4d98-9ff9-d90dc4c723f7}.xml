@@ -90,7 +90,10 @@
 	<object class="MixerBusPanner" id="{d3491b2b-df15-4613-8aeb-0ea92fccafd9}" />
 	<object class="SingleSound" id="{81db5bcd-31ba-411b-9d0b-c4e8f2d31a97}">
 		<property name="length">
-			<value>0.40104166666666669</value>
+			<value>0.39415201060351324</value>
+		</property>
+		<property name="pitch">
+			<value>0.300000012</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{5122bed2-4253-42a6-b3c4-cbb364ac19b1}</destination>
@@ -104,7 +107,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{6b4ab5fe-6be8-43ad-afcc-9a82149ea290}">
 		<property name="volume">
-			<value>-1</value>
+			<value>-0.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -146,24 +149,25 @@
 		<relationship name="effects">
 			<destination>{e37c9642-e6d9-4f3c-b46c-ddec0388b0ea}</destination>
 			<destination>{9137e09b-30ec-444a-b462-fe284b919f6e}</destination>
+			<destination>{f3d4df6f-ed8a-4e40-aa81-d2c69594e0a4}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0df30385-738d-41cd-b4ac-e5ea2f9d04ff}" />
 	<object class="MixerBusFader" id="{bae27f35-d4b0-474b-a8c2-95d836ded72d}" />
 	<object class="AutomationPoint" id="{d1d4c73f-af1d-44ff-94c7-a6dbaa6343cd}">
 		<property name="position">
-			<value>0.359375</value>
+			<value>0.36811034393684655</value>
 		</property>
 		<property name="value">
 			<value>1</value>
 		</property>
 		<property name="curveShape">
-			<value>-0.150255591</value>
+			<value>-0.543254614</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{12a69180-f22a-43eb-a099-8a65a161512d}">
 		<property name="position">
-			<value>0.40104166666666669</value>
+			<value>0.39415201060351324</value>
 		</property>
 		<property name="value">
 			<value>0</value>
@@ -176,6 +180,17 @@
 		</property>
 		<property name="mix">
 			<value>27</value>
+		</property>
+	</object>
+	<object class="ThreeEQEffect" id="{f3d4df6f-ed8a-4e40-aa81-d2c69594e0a4}">
+		<property name="lowGain">
+			<value>-5</value>
+		</property>
+		<property name="highGain">
+			<value>1</value>
+		</property>
+		<property name="lowCrossover">
+			<value>300</value>
 		</property>
 	</object>
 </objects>
