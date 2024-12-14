@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected float patrolSpeed = 3.0f;
 
-
     [SerializeField]
     private float minDistanceToWaypoint = 0.3f;
     [Header("VFX")]
@@ -62,15 +61,7 @@ public class Enemy : MonoBehaviour
     virtual public void DestroyEnemy()
     {
         GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
-        
-        //TODO: pasar a electrico
-        if (locomotion.GetType() == typeof(ElectricLocomotion))
-        {
-            ElectricLocomotion electric = (ElectricLocomotion)locomotion;
-
-            electric.StopJumpLoopSFX();
-        }
-        
+               
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
         Destroy(gameObject);
     }

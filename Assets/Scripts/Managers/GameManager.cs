@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         {
             player = GameObject.Find("Player");
             playerController = player.GetComponentInChildren<PlayerController>();
-            playerLocomotion = player.GetComponentInChildren<PlayerLocomotion>();
+            playerLocomotion = player.GetComponent<PlayerLocomotion>();
             onPlayerSet?.Invoke();
         }
         if (virtualCamera == null)

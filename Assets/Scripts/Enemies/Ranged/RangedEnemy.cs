@@ -42,7 +42,7 @@ public class RangedEnemy : Enemy
     {
         base.Start();
 
-        OnAttackSameSpecies += AllowAttackSameSpecies;
+        //OnAttackSameSpecies += AllowAttackSameSpecies;
 
         rangedLocomotion = (RangedLocomotion)locomotion;
         rb = GetComponent<Rigidbody2D>();
@@ -338,9 +338,9 @@ public class RangedEnemy : Enemy
     // }
 
 
-    private void OnDisable()
-    {
-        OnAttackSameSpecies -= AllowAttackSameSpecies;
-    }
+    //private void OnDisable()
+    //{
+    //    OnAttackSameSpecies -= AllowAttackSameSpecies;
+    //}
 
 }
