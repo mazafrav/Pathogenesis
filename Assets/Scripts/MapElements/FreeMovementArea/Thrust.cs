@@ -21,8 +21,8 @@ public class Thrust : MonoBehaviour
 
     private bool hasDisabledControls = false;
     private float currentTime = 0.0f;
-
     private Animator animator;
+
     private void Start()
     {
         animator = GetComponentInParent<Animator>();
@@ -43,8 +43,6 @@ public class Thrust : MonoBehaviour
                 currentTime = disabledControlsTime;
                 hasDisabledControls = false;
                 PlayerController playerController = GameManager.Instance.GetPlayerController();
-                //PlayerLocomotion playerLocomotion = GameManager.Instance.GetPlayerLocomotion();
-                //playerLocomotion.DisableFreeMovement();
                 playerController.enabled = true;
             }
         }
@@ -52,10 +50,10 @@ public class Thrust : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerLocomotion playerLocomotion = collision.GetComponentInParent<PlayerLocomotion>();
+        PlayerLocomotion playerLocomotion = collision.GetComponent<PlayerLocomotion>();
         if(applyHorizontalThrust)
         {
-            PlayerController playerController = collision.GetComponentInParent<PlayerController>();
+            PlayerController playerController = collision.GetComponentInChildren<PlayerController>();
 
             Vector2 dir = new Vector2(playerController.GetDeltaX(), playerController.GetDeltaY());
             if (dir.x > 0.0f || dir.x < 0.0f)
@@ -63,8 +61,7 @@ public class Thrust : MonoBehaviour
                 playerController.enabled = false;
                 hasDisabledControls = true;
             }
-            //playerLocomotion.EnableFreeMovement();
-            //collision.GetComponent<Rigidbody2D>().velocity = transform.right * thrust;
+
             collision.GetComponent<Rigidbody2D>().AddForce(transform.up * thrust, ForceMode2D.Impulse);
         }
         else if(applyVerticalThrust)
