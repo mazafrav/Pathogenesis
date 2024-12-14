@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ElectricEnemy : Enemy
-{
-    public static event Action OnAttackSameSpecie;
-
+{ 
     private ElectricFollowRange followRange = null;
     private ElectricLocomotion electricLocomotion = null;
 
@@ -22,8 +20,6 @@ public class ElectricEnemy : Enemy
     protected override void Start()
     {
         base.Start();
-
-        OnAttackSameSpecie += AllowAttackSameSpecies;
 
         shootingComponent = GetComponentInChildren<ShootingComponent>();
         electricLocomotion = GetComponent<ElectricLocomotion>();
@@ -66,24 +62,9 @@ public class ElectricEnemy : Enemy
     }
 
     public override void DestroyEnemy()
-    {
-        ElectricEnemy possessedEnemy = GameManager.Instance.GetPlayerController().GetComponentInParent<ElectricEnemy>();
-
-        //If the player is possessing an electric enemy we notify the others electric enemies
-        if (possessedEnemy)
-        {
-            possessedEnemy.transform.position += new Vector3(0.01f, 0.0f, 0.0f); //We need to move it a bit so OnTriggerStay is executed in ElectricFollowRange.cs
-
-            OnAttackSameSpecie?.Invoke();
-        }
-
+    {       
         electricLocomotion.StopJumpLoopSFX();
 
         base.DestroyEnemy();
-    }
-
-    private void OnDisable()
-    {
-        OnAttackSameSpecie -= AllowAttackSameSpecies;
     }
 }

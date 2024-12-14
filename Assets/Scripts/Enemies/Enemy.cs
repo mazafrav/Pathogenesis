@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static event Action OnAttackSameSpecie;
+
     [SerializeField]
     protected HostLocomotion locomotion;
     [Header("Movement")]
@@ -39,6 +42,8 @@ public class Enemy : MonoBehaviour
 
     private FMOD.Studio.EventInstance detectEventInstance;
     private List<GameObject> organismsDetected = new List<GameObject>();
+    private Enemy possessedEnemy = null;
+
 
     public bool IsPossesed { get; set; } = false;
 
@@ -50,6 +55,8 @@ public class Enemy : MonoBehaviour
 
     virtual protected void Start()
     {
+        OnAttackSameSpecie += AllowAttackSameSpecies;
+
         layerDetectionCollider.SetActive(false);
     }
 
@@ -60,6 +67,16 @@ public class Enemy : MonoBehaviour
 
     virtual public void DestroyEnemy()
     {
+        possessedEnemy = GameManager.Instance.GetPlayerController().GetComponentInParent<Enemy>();
+
+        //If the player is possessing an enemy we notify the others electric enemies
+        if (possessedEnemy)
+        {
+            possessedEnemy.transform.position += new Vector3(0.01f, 0.0f, 0.0f); //We need to move it a bit so OnTriggerStay is executed 
+
+            OnAttackSameSpecie?.Invoke();
+        }
+
         GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
                
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
@@ -108,7 +125,16 @@ public class Enemy : MonoBehaviour
 
     protected void AllowAttackSameSpecies()
     {
-        CanAttackSameSpecie = true;
+        possessedEnemy = GameManager.Instance.GetPlayerController().GetComponentInParent<Enemy>();
+       
+        if (GetType() == possessedEnemy.GetType())
+        {
+            CanAttackSameSpecie = true;
+        }
     }
 
+    private void OnDisable()
+    {
+        OnAttackSameSpecie -= AllowAttackSameSpecies;
+    }
 }
