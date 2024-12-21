@@ -8,8 +8,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    static int j = 0;
-
     [SerializeField]
     private GameObject playerBody;
     [SerializeField]
@@ -52,16 +50,8 @@ public class PlayerController : MonoBehaviour
     private bool doOnce = false;
     private PlayerInputActions playerInputActions;
 
-
-    private void Awake()
-    {
-        j++;
-        Debug.Log(j);
-    }
-
     void Start()
     {
-        //GameManager.Instance.SetPlayer(transform.parent.gameObject);
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Disable();
         playerInputActions.Player.Jump.performed += Jump;
@@ -328,10 +318,5 @@ public class PlayerController : MonoBehaviour
     public void OnPossesionEvent(HostLocomotion locomotion)
     {
         onPossession?.Invoke(locomotion);
-    }
-
-    private void OnDestroy()
-    {
-        Debug.Log("Destroyed");
     }
 }
