@@ -321,26 +321,4 @@ public class RangedEnemy : Enemy
     {
         shootingCooldownTimer = shootingCooldown;
     }
-
-    //TODO: mover a clase base
-    // public override void DestroyEnemy()
-    // {
-    //     RangedLocomotion possessedEnemy = GameManager.Instance.GetPlayer().GetComponent<HostLocomotion>();
-
-    //     //If the player is possessing an electric enemy we notify the others electric enemies
-    //     if (possessedEnemy)
-    //     {
-    //         OnAttackSameSpecies?.Invoke();
-    //         possessedEnemy.transform.position += new Vector3(0.01f, 0.0f, 0.0f);
-    //     }
-
-    //     base.DestroyEnemy();
-    // }
-
-
-    //private void OnDisable()
-    //{
-    //    OnAttackSameSpecies -= AllowAttackSameSpecies;
-    //}
-
 }

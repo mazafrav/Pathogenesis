@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public static event Action OnAttackSameSpecie;
+    public static event Action<Type,Type> OnAttackSameSpecie;
 
     [SerializeField]
     protected HostLocomotion locomotion;
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
         {
             possessedEnemy.transform.position += new Vector3(0.01f, 0.0f, 0.0f); //We need to move it a bit so OnTriggerStay is executed 
 
-            OnAttackSameSpecie?.Invoke();
+            OnAttackSameSpecie?.Invoke(GetType(), possessedEnemy.GetType());
         }
 
         GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
@@ -123,11 +123,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void AllowAttackSameSpecies()
-    {
-        possessedEnemy = GameManager.Instance.GetPlayerController().GetComponentInParent<Enemy>();
-       
-        if (GetType() == possessedEnemy.GetType())
+    protected void AllowAttackSameSpecies(Type deadEnemyType, Type possessedEnemyType)
+    {       
+        if (deadEnemyType == possessedEnemyType)
         {
             CanAttackSameSpecie = true;
         }

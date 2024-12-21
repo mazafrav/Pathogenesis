@@ -16,7 +16,7 @@ public class RangedEnemyDetection : MonoBehaviour
             {
                 allTargetsInRange.Add(collision.gameObject);
             }
-            else if (GetComponentInParent<RangedEnemy>().CanAttackSameSpecie && collision.gameObject.GetComponentInParent<PlayerController>() != null)
+            else if (GetComponentInParent<RangedEnemy>().CanAttackSameSpecie && collision.gameObject.GetComponent<RangedEnemy>().IsPossesed)
             {
                 allTargetsInRange.Add(collision.gameObject);
             }
