@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
-    private GameObject virusBody;
+    //private GameObject virusBody;
     private PlayerController playerController;
     private PlayerLocomotion playerLocomotion;
 
@@ -74,8 +74,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        virusBody = player;
-        playerController = player.GetComponentInChildren<PlayerController>();
+        //virusBody = player;
+        //playerController = player.GetComponentInChildren<PlayerController>();
         soundtrackManager = GetComponentInChildren<SoundtrackManager>();
         if (limitFps)
         {
@@ -138,9 +138,13 @@ public class GameManager : MonoBehaviour
         if (player == null)
         {
             player = GameObject.Find("Player");
-            playerController = player.GetComponentInChildren<PlayerController>();
-            playerLocomotion = player.GetComponent<PlayerLocomotion>();
-            onPlayerSet?.Invoke();
+
+            if(player)
+            {
+                playerLocomotion = player.GetComponent<PlayerLocomotion>();
+                playerController = player.GetComponentInChildren<PlayerController>();
+                onPlayerSet?.Invoke();
+            }
         }
         if (virtualCamera == null)
         {
@@ -181,7 +185,6 @@ public class GameManager : MonoBehaviour
         return playerLocomotion;
     }
 
-    public GameObject GetVirusBody() { return virusBody; }
 
     public LevelLoader GetLevelLoader()
     {

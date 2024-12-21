@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    static int j = 0;
 
     [SerializeField]
     private GameObject playerBody;
@@ -51,9 +52,16 @@ public class PlayerController : MonoBehaviour
     private bool doOnce = false;
     private PlayerInputActions playerInputActions;
 
+
+    private void Awake()
+    {
+        j++;
+        Debug.Log(j);
+    }
+
     void Start()
     {
-        GameManager.Instance.SetPlayer(transform.parent.gameObject);
+        //GameManager.Instance.SetPlayer(transform.parent.gameObject);
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Disable();
         playerInputActions.Player.Jump.performed += Jump;
@@ -138,19 +146,24 @@ public class PlayerController : MonoBehaviour
                 switch (inputBuffer.Peek())
                 {
                     case "jump":
-                        if (locomotion.CanJump())
-                        {
-                            locomotion.Jump(deltaX);
-                            inputBuffer.Dequeue();
-                        }
-                        break;
+                    {
+
+                            if (locomotion.CanJump())
+                            {
+                                locomotion.Jump(deltaX);
+                                inputBuffer.Dequeue();
+                            }
+                            break;
+                    }
                     case "attack":
+                    {
                         if (locomotion.IsAttackReady())
                         {
                             locomotion.Attack(mousePos);
                             inputBuffer.Dequeue();
                         }
                         break;
+                    }
                 }
             }
         }
@@ -192,6 +205,7 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance.canPlayerProcessInput)
         {
+            Debug.Log("Jump");
             inputBuffer.Enqueue("jump");
             Invoke("RemoveAction", inputBufferTime);
         }
@@ -314,5 +328,10 @@ public class PlayerController : MonoBehaviour
     public void OnPossesionEvent(HostLocomotion locomotion)
     {
         onPossession?.Invoke(locomotion);
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Destroyed");
     }
 }
