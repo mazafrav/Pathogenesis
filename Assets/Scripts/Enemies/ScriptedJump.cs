@@ -9,7 +9,7 @@ public class ScriptedJump : MonoBehaviour
         HostLocomotion hostLocomotion = collision.gameObject.GetComponent<HostLocomotion>();
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         //The enemy dont have to be possessed
-        if (hostLocomotion && !enemy.IsPossesed && !collision.gameObject.CompareTag("Player"))
+        if (hostLocomotion && enemy && !enemy.IsPossesed && !collision.gameObject.CompareTag("Player"))
         {
             if ((transform.position.x - collision.transform.position.x) < 0)
             {
