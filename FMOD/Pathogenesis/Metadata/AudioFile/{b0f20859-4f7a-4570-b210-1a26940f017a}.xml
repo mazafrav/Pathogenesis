@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{b0f20859-4f7a-4570-b210-1a26940f017a}">
+		<property name="assetPath">
+			<value>Music/Host2/PercuMinimal/DrumsPhoto.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>54</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0ff12dee-c1da-4c68-8da9-3fc99f9fadcc}</destination>
+		</relationship>
+	</object>
+</objects>
