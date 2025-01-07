@@ -1242,7 +1242,7 @@
 		</relationship>
 		<relationship name="triggerConditions">
 			<destination>{b821e125-c4c3-4775-80dd-3701898ca21d}</destination>
-			<destination>{e69f9ee2-a790-499d-b3db-b30737c0116c}</destination>
+			<destination>{d0dad1a6-476a-4732-b0c4-781ed83d1690}</destination>
 		</relationship>
 	</object>
 	<object class="LoopRegion" id="{06bd239b-91c1-4b20-8124-1260fcc05326}">
@@ -1769,7 +1769,7 @@
 			<destination>{ae832785-2b3f-4d58-b1fc-d7dd93af401b}</destination>
 		</relationship>
 	</object>
-	<object class="ParameterCondition" id="{e69f9ee2-a790-499d-b3db-b30737c0116c}">
+	<object class="ParameterCondition" id="{d0dad1a6-476a-4732-b0c4-781ed83d1690}">
 		<property name="minimum">
 			<value>1</value>
 		</property>
@@ -1777,7 +1777,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="parameter">
-			<destination>{71e93aa5-cc45-4d9f-bbb1-858b977ad4c0}</destination>
+			<destination>{ad603388-a06d-4ee0-94df-d4de066d2c50}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{e5335d37-0267-467e-9689-d150d5c91869}" />
