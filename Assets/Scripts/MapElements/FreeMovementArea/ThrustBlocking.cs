@@ -20,7 +20,7 @@ public class ThrustBlocking : MonoBehaviour
     private void Start()
     {
         colliderThrustTrigger = thrustTrigger.GetComponent<Collider2D>();
-        playerRigidbody = GameManager.Instance.GetPlayerController().GetComponentInChildren<Rigidbody2D>();
+        playerRigidbody = GameManager.Instance.GetPlayer().GetComponent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }

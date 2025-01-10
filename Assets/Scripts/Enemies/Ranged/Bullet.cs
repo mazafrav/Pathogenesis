@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player")) //Damage a player
         {
-            collision.GetComponentInParent<DamageControl>().Damage(collision);
+            collision.GetComponentInChildren<DamageControl>().Damage(collision);
             DestroyBullet();
         }
         else if (collision.gameObject.CompareTag("TileMap"))

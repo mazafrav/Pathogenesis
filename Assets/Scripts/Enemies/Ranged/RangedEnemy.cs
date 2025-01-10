@@ -42,7 +42,7 @@ public class RangedEnemy : Enemy
     {
         base.Start();
 
-        OnAttackSameSpecies += AllowAttackSameSpecies;
+        //OnAttackSameSpecies += AllowAttackSameSpecies;
 
         rangedLocomotion = (RangedLocomotion)locomotion;
         rb = GetComponent<Rigidbody2D>();
@@ -321,25 +321,4 @@ public class RangedEnemy : Enemy
     {
         shootingCooldownTimer = shootingCooldown;
     }
-
-    public override void DestroyEnemy()
-    {
-        RangedLocomotion possessedEnemy = GameManager.Instance.GetPlayerLocomotion().GetComponentInChildren<RangedLocomotion>();
-
-        //If the player is possessing an electric enemy we notify the others electric enemies
-        if (possessedEnemy)
-        {
-            OnAttackSameSpecies?.Invoke();
-            possessedEnemy.transform.position += new Vector3(0.01f, 0.0f, 0.0f);
-        }
-
-        base.DestroyEnemy();
-    }
-
-
-    private void OnDisable()
-    {
-        OnAttackSameSpecies -= AllowAttackSameSpecies;
-    }
-
 }

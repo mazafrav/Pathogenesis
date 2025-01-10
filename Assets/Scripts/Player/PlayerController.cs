@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
     [SerializeField]
     private GameObject playerBody;
     [SerializeField]
@@ -80,8 +79,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (doOnce)
                 {
-                    GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                    GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                    GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                     doOnce = false;
                 }
 
@@ -97,12 +96,12 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                GetComponentInChildren<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+                GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
                 doOnce = true;
             }
 
             //Attacking with electric enemy
-            ElectricLocomotion electricLocomotion = GetComponentInChildren<ElectricLocomotion>();
+            ElectricLocomotion electricLocomotion = GetComponentInParent<ElectricLocomotion>();
             if (electricLocomotion)
             {
                 if ((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
@@ -137,19 +136,24 @@ public class PlayerController : MonoBehaviour
                 switch (inputBuffer.Peek())
                 {
                     case "jump":
-                        if (locomotion.CanJump())
-                        {
-                            locomotion.Jump(deltaX);
-                            inputBuffer.Dequeue();
-                        }
-                        break;
+                    {
+
+                            if (locomotion.CanJump())
+                            {
+                                locomotion.Jump(deltaX);
+                                inputBuffer.Dequeue();
+                            }
+                            break;
+                    }
                     case "attack":
+                    {
                         if (locomotion.IsAttackReady())
                         {
                             locomotion.Attack(mousePos);
                             inputBuffer.Dequeue();
                         }
                         break;
+                    }
                 }
             }
         }

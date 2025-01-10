@@ -7,8 +7,9 @@ public class ScriptedJump : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         HostLocomotion hostLocomotion = collision.gameObject.GetComponent<HostLocomotion>();
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         //The enemy dont have to be possessed
-        if (hostLocomotion && hostLocomotion.transform.parent == null && !collision.gameObject.CompareTag("Player"))
+        if (hostLocomotion && enemy && !enemy.IsPossesed && !collision.gameObject.CompareTag("Player"))
         {
             if ((transform.position.x - collision.transform.position.x) < 0)
             {

@@ -59,7 +59,9 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
         {
             foreach (Collider2D obj in collidedObjects) //We activate the shock
             {
-                if (electricEnemy.CanAttackSameSpecie && electricEnemy.ISeeingTarget() && obj.transform.parent != null) //Possessed electric enemy
+                ElectricEnemy otherElectricEnemy = obj.GetComponent<ElectricEnemy>();
+
+                if (electricEnemy.CanAttackSameSpecie && electricEnemy.ISeeingTarget() && otherElectricEnemy && otherElectricEnemy.IsPossesed) //Possessed electric enemy
                 {
                     Attack(obj.transform);
                 }

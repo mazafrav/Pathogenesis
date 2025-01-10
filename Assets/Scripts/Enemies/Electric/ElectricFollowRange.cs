@@ -76,7 +76,9 @@ public class ElectricFollowRange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(electricEnemy.CanAttackSameSpecie && collision.transform.parent != null && !targets.Contains(collision.gameObject)) //Possessed electric enemy
+        ElectricEnemy otherElectricEnemy = collision.GetComponent<ElectricEnemy>();
+
+        if (electricEnemy.CanAttackSameSpecie && otherElectricEnemy && otherElectricEnemy.IsPossesed && !targets.Contains(collision.gameObject)) //Possessed electric enemy
         {
             targets.Add(collision.gameObject);
         } 
@@ -88,7 +90,9 @@ public class ElectricFollowRange : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (electricEnemy.CanAttackSameSpecie && collision.transform.parent != null && !targets.Contains(collision.gameObject)) //Possessed electric enemy
+        ElectricEnemy otherElectricEnemy = collision.GetComponent<ElectricEnemy>();
+
+        if (electricEnemy.CanAttackSameSpecie && otherElectricEnemy && otherElectricEnemy.IsPossesed && !targets.Contains(collision.gameObject)) //Possessed electric enemy
         {
             targets.Add(collision.gameObject);
         }

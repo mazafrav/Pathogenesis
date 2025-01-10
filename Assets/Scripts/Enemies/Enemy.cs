@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public static event Action<Type,Type> OnAttackSameSpecie;
+
     [SerializeField]
     protected HostLocomotion locomotion;
     [Header("Movement")]
@@ -13,7 +16,6 @@ public class Enemy : MonoBehaviour
     protected float chaseSpeed = 3.0f;
     [SerializeField]
     protected float patrolSpeed = 3.0f;
-
 
     [SerializeField]
     private float minDistanceToWaypoint = 0.3f;
@@ -40,7 +42,10 @@ public class Enemy : MonoBehaviour
 
     private FMOD.Studio.EventInstance detectEventInstance;
     private List<GameObject> organismsDetected = new List<GameObject>();
+    private Enemy possessedEnemy = null;
 
+
+    public bool IsPossesed { get; set; } = false;
 
     private void Awake()
     {
@@ -50,6 +55,8 @@ public class Enemy : MonoBehaviour
 
     virtual protected void Start()
     {
+        OnAttackSameSpecie += AllowAttackSameSpecies;
+
         layerDetectionCollider.SetActive(false);
     }
 
@@ -60,14 +67,18 @@ public class Enemy : MonoBehaviour
 
     virtual public void DestroyEnemy()
     {
-        GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
-        if (locomotion.GetType() == typeof(ElectricLocomotion))
-        {
-            ElectricLocomotion electric = (ElectricLocomotion)locomotion;
+        possessedEnemy = GameManager.Instance.GetPlayerController().GetComponentInParent<Enemy>();
 
-            electric.StopJumpLoopSFX();
+        //If the player is possessing an enemy we notify the others electric enemies
+        if (possessedEnemy)
+        {
+            possessedEnemy.transform.position += new Vector3(0.01f, 0.0f, 0.0f); //We need to move it a bit so OnTriggerStay is executed 
+
+            OnAttackSameSpecie?.Invoke(GetType(), possessedEnemy.GetType());
         }
-        
+
+        GameManager.Instance.GetPlayerController().OnLeaveAbsorbableRange();
+               
         Instantiate(deathEffect, this.transform.position, this.transform.rotation);
         Destroy(gameObject);
     }
@@ -112,9 +123,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void AllowAttackSameSpecies()
-    {
-        CanAttackSameSpecie = true;
+    protected void AllowAttackSameSpecies(Type deadEnemyType, Type possessedEnemyType)
+    {       
+        if (deadEnemyType == possessedEnemyType)
+        {
+            CanAttackSameSpecie = true;
+        }
     }
 
+    private void OnDisable()
+    {
+        OnAttackSameSpecie -= AllowAttackSameSpecies;
+    }
 }

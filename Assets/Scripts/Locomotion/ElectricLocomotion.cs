@@ -72,12 +72,11 @@ public class ElectricLocomotion : HostLocomotion
 
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f;/*, currentShockDuration = 0.0f;*/
 
-    private PlayerController playerController;
-
     public float currentRemainingShockTime { get; set; } = 0.0f;
     public bool inAttackRange { get; set; } = false;
 
     private HostAbsorption absorption;
+    private ElectricEnemy electricEnemy;
     private bool hasAttacked = false;
     public float FollowRange { get { return followRange; } }
     public float AttackRange { get { return attackRange; } }
@@ -91,6 +90,7 @@ public class ElectricLocomotion : HostLocomotion
         originalMoveSpeed = moveSpeed;
         playerController = GameManager.Instance.GetPlayerController();
 
+        electricEnemy = GetComponent<ElectricEnemy>();
         absorption = GetComponent<HostAbsorption>();
 
         defaultColor = spriteRenderer.color;
@@ -249,7 +249,7 @@ public class ElectricLocomotion : HostLocomotion
         //else
         //{       
         //when is jumping and possessed we apply a modifier to the X
-        if (!groundChecker.isGrounded && transform.parent != null)
+        if (!groundChecker.isGrounded && electricEnemy.IsPossesed)
         {           
             rb2D.velocity = new Vector2(deltaXModifier * deltaX * moveSpeed, rb2D.velocity.y);          
         }

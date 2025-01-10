@@ -37,7 +37,7 @@ public class CrystalineEnemy : Enemy
     {
         base.Start();
 
-        OnAttackSameSpecies += AllowAttackSameSpecies;
+        
         grapplingHook = graphics.GetComponentInChildren<GrapplingHook>();
 
         crystallineLocomotion = GetComponent<CrystallineLocomotion>();
@@ -218,11 +218,4 @@ public class CrystalineEnemy : Enemy
 
         base.DestroyEnemy();
     }
-
-
-    private void OnDisable()
-    {
-        OnAttackSameSpecies -= AllowAttackSameSpecies;
-    }
-
 }

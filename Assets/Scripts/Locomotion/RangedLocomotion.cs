@@ -24,6 +24,7 @@ public class RangedLocomotion : HostLocomotion
 
     private float originalY;
     private float heightJumped;
+    private RangedEnemy rangedEnemy;
 
     [Header("SFX")]
     [SerializeField]
@@ -44,12 +45,13 @@ public class RangedLocomotion : HostLocomotion
     // Start is called before the first frame update
     void Start()
     {
+        rangedEnemy = GetComponent<RangedEnemy>();
         shootingComponent = GetComponentInChildren<ShootingComponent>();
         rb2D = GetComponentInParent<Rigidbody2D>();
         //groundChecker = GetComponentInChildren<GroundChecker>();
-        shootCooldown = GetComponent<RangedEnemy>().playerShootingCooldown;
-        windUp = GetComponent<RangedEnemy>().playerWindUp;
-        spriteRenderer = GetComponent<RangedEnemy>().graphics.GetComponent<SpriteRenderer>();
+        shootCooldown = rangedEnemy.playerShootingCooldown;
+        windUp = rangedEnemy.playerWindUp;
+        spriteRenderer = rangedEnemy.graphics.GetComponent<SpriteRenderer>();
         defaultColor = spriteRenderer.color;
         absorption = GetComponent<HostAbsorption>();
 
@@ -131,8 +133,7 @@ public class RangedLocomotion : HostLocomotion
 
         chargeShotVFX.Play();
         
-
-        if (GetComponentInParent<PlayerController>() != null )
+        if (rangedEnemy.IsPossesed)
         {
             rangedAnimator.Play("RangedEnemAttack");
             windUpTimer = windUp;

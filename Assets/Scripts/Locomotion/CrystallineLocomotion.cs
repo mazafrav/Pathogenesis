@@ -40,7 +40,6 @@ public class CrystallineLocomotion : HostLocomotion
 
     private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f, currentStabDuration = 0.0f;
 
-    private PlayerController playerController;
     [SerializeField]
     private GroundChecker wallCheckerR;
     [SerializeField]
@@ -68,7 +67,6 @@ public class CrystallineLocomotion : HostLocomotion
 
     void Start()
     {
-        playerController = GameManager.Instance.GetPlayerController();
         absorption = GetComponent<HostAbsorption>();
 
         enemyIA = GetComponent<CrystalineEnemy>();

@@ -5,12 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class DamageControl : MonoBehaviour
 {
-
     [SerializeField] float invencibilityTime = 0.5f;
     private float currentInvecibilityTime = 0.5f;
     private bool wasPossessing = false;
-
-    private LevelLoader levelLoader;
 
     // Start is called before the first frame update
     private void Start()
@@ -37,26 +34,32 @@ public class DamageControl : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player") && !wasPossessing)
         {
-            GameManager.Instance.GetPlayerController().PlayerBodyDeath();
+            PlayerController playerController = collider.GetComponentInChildren<PlayerController>();
+            playerController.PlayerBodyDeath();
             GameManager.Instance.GetLevelLoader().CheckRespawn();
         }
         else if (collider.GetComponent<Enemy>() != null)
         {
             Enemy enemy = collider.GetComponent<Enemy>();
-
+            PlayerController playerController = collider.GetComponentInChildren<PlayerController>();
             if (enemy)
             {
-                if (enemy.transform.parent != null) //The enemy is possessed
+                if (enemy.IsPossesed && playerController) //The enemy is possessed
                 {
                     wasPossessing = true;
-                    enemy.transform.parent = null;
+
+                    //Change player controller parent to the player
+                    GameObject virus = playerController.GetPlayerBody();
+                    playerController.transform.parent = virus.transform;
+                    virus.SetActive(true);
+
+                    //Setting player position to the enemy position
                     Vector3 enemyPos = enemy.transform.position;
                     enemy.DestroyEnemy();
-                    GameManager.Instance.GetPlayerController().transform.position = enemyPos;
-                    GameManager.Instance.GetPlayerController().GetPlayerBody().transform.localPosition = Vector3.zero;
+                    virus.transform.position = enemyPos;
                     
-                    GameManager.Instance.GetPlayerController().EnablePlayerBody();
-                    GameManager.Instance.GetCamera().Follow = GameManager.Instance.GetPlayerController().GetPlayerBody().transform;
+                    //Puede que no haga falta
+                    GameManager.Instance.GetCamera().Follow = playerController.GetPlayerBody().transform;
                     GameManager.Instance.GetPlayerController().locomotion = GameManager.Instance.GetPlayerLocomotion();
                     //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 0);
                     GameManager.Instance.soundtrackManager.ResetSoundtrack();
