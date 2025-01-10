@@ -195,7 +195,6 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance.canPlayerProcessInput)
         {
-            Debug.Log("Jump");
             inputBuffer.Enqueue("jump");
             Invoke("RemoveAction", inputBufferTime);
         }

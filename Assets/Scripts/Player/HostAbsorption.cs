@@ -135,68 +135,62 @@ public class HostAbsorption : Interactable
     {
         base.OnInteract(interactedObject);
 
-        //if (interactedObject.GetComponent<Rigidbody2D>()) //we possess if the player exists
-        //{
-            ApplyPossessionWithNoEffects(interactedObject);
-            return;
+       
+        ApplyPossessionWithNoEffects(interactedObject);
+        return;
 
-            playerLocomotion.DisableFreeMovement();
-            hostLocomotion.ResetAttack();
-            hostLocomotion.StopSFX();
-            hostLocomotion.SetPossessingParameters();
-            playerController.locomotion = hostLocomotion;
-            //TODO: cambiar  (?)
-            gameObject.transform.parent = playerController.transform;
-            //playerController.locomotion.Set3DAttributes(gameObject);
-            playerController.DisablePlayerBody();
-            playerController.OnPossesionEvent(hostLocomotion);
-            //graphics.color = possessingColor;
+        playerLocomotion.DisableFreeMovement();
+        hostLocomotion.ResetAttack();
+        hostLocomotion.StopSFX();
+        hostLocomotion.SetPossessingParameters();
+        playerController.locomotion = hostLocomotion;
+        //TODO: cambiar  (?)
+        gameObject.transform.parent = playerController.transform;
+        //playerController.locomotion.Set3DAttributes(gameObject);
+        playerController.DisablePlayerBody();
+        playerController.OnPossesionEvent(hostLocomotion);
+        //graphics.color = possessingColor;
 
-            ParticleSystem absortionVFX = Instantiate(absortionParticles, this.gameObject.transform.position, Quaternion.identity);
-            ParticleSystem particlesVFX = Instantiate(possessParticles, this.gameObject.transform.position, Quaternion.identity);
-            CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
-            if (cinemachineVirtualCamera != null)
-            {
-                CameraSwitchManagement cameraSwitchManagement = cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>();
+        ParticleSystem absortionVFX = Instantiate(absortionParticles, this.gameObject.transform.position, Quaternion.identity);
+        ParticleSystem particlesVFX = Instantiate(possessParticles, this.gameObject.transform.position, Quaternion.identity);
+        CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
+        if (cinemachineVirtualCamera != null)
+        {
+            CameraSwitchManagement cameraSwitchManagement = cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>();
 
-                cameraSwitchManagement?.setNewFollow(hostLocomotion.transform);
-                cameraSwitchManagement?.StartPossessionEffect(possessionEffectTime);
-            }
+            cameraSwitchManagement?.setNewFollow(hostLocomotion.transform);
+            cameraSwitchManagement?.StartPossessionEffect(possessionEffectTime);
+        }
 
-            RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
-            if (rangedEnemy != null)
-            {
-                //weaponGraphics.color = possessingColor;
-                playerController.shootingComponent = rangedEnemy.shootingComponent;
-                rangedEnemy.GetComponent<LineRenderer>().enabled = false;
-                rangedEnemy.ResetRigidbodyConstraints();
-                rangedEnemy.SetAimBehaviour(true);
-            }
+        RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
+        if (rangedEnemy != null)
+        {
+            //weaponGraphics.color = possessingColor;
+            playerController.shootingComponent = rangedEnemy.shootingComponent;
+            rangedEnemy.GetComponent<LineRenderer>().enabled = false;
+            rangedEnemy.ResetRigidbodyConstraints();
+            rangedEnemy.SetAimBehaviour(true);
+        }
 
-            ElectricEnemy electricEnemy = GetComponent<ElectricEnemy>();
-            if (electricEnemy != null)
-            {
-                playerController.shootingComponent = electricEnemy.GetShootingComponent();
-            }
+        ElectricEnemy electricEnemy = GetComponent<ElectricEnemy>();
+        if (electricEnemy != null)
+        {
+            playerController.shootingComponent = electricEnemy.GetShootingComponent();
+        }
 
 
-            possessionTimer = possessionEffectTime;
+        possessionTimer = possessionEffectTime;
+     
+        possessionEventInstance.start();
+        ApplyEnemySoundtrackLayer();
+        GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 1);
+        GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, 0);
+        hostLocomotion.GetComponent<Enemy>().SetLayerDetection(true);
 
-            //hostLocomotion.GetOneShotSource().PlayOneShot(possessionClip);
-
-            possessionEventInstance.start();
-            ApplyEnemySoundtrackLayer();
-            GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 1);
-            GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, 0);
-            hostLocomotion.GetComponent<Enemy>().SetLayerDetection(true);
-
-            doOnce = true;
-            //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = true;
-            //
-            enemyBehaviour.IsPossesed = true;
-            enemyBehaviour.enabled = false;
-        //}
-
+        doOnce = true;
+        
+        enemyBehaviour.IsPossesed = true;
+        enemyBehaviour.enabled = false;      
     }
 
     public void ApplyPossessionWithNoEffects(GameObject interactedObject)
