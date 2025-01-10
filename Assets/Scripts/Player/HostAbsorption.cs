@@ -135,21 +135,23 @@ public class HostAbsorption : Interactable
     {
         base.OnInteract(interactedObject);
 
-       
-        ApplyPossessionWithNoEffects(interactedObject);
-        return;
+
+        //ApplyPossessionWithNoEffects(interactedObject);
+        //return;
+
+        SetInfo();
 
         playerLocomotion.DisableFreeMovement();
         hostLocomotion.ResetAttack();
-        hostLocomotion.StopSFX();
         hostLocomotion.SetPossessingParameters();
+        hostLocomotion.playerController = interactedObject.GetComponentInChildren<PlayerController>();
+        playerController.GetPlayerIAs().Enable();
         playerController.locomotion = hostLocomotion;
-        //TODO: cambiar  (?)
-        gameObject.transform.parent = playerController.transform;
-        //playerController.locomotion.Set3DAttributes(gameObject);
+        Debug.Log(playerController.locomotion);
+        playerController.transform.parent.gameObject.SetActive(false);
+        playerController.transform.parent = gameObject.transform;
         playerController.DisablePlayerBody();
-        playerController.OnPossesionEvent(hostLocomotion);
-        //graphics.color = possessingColor;
+        GameManager.Instance.SetPlayer(gameObject);
 
         ParticleSystem absortionVFX = Instantiate(absortionParticles, this.gameObject.transform.position, Quaternion.identity);
         ParticleSystem particlesVFX = Instantiate(possessParticles, this.gameObject.transform.position, Quaternion.identity);
