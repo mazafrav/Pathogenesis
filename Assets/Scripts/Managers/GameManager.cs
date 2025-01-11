@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     bool limitFps = false;
 
+    private SaveSystem saveSystem;
+
+    public SaveSystem GetSaveSystem() => saveSystem;
+
     private void Awake()
     {
 #if UNITY_STANDALONE && !UNITY_EDITOR
@@ -69,13 +73,12 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         Instance.SetInfo(); //This is neccessary if we start in any level
+        saveSystem = new SaveSystem();
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        //virusBody = player;
-        //playerController = player.GetComponentInChildren<PlayerController>();
         soundtrackManager = GetComponentInChildren<SoundtrackManager>();
         if (limitFps)
         {

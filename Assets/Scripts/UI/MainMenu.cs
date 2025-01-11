@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class MainMenu : MonoBehaviour
 {
@@ -24,15 +25,16 @@ public class MainMenu : MonoBehaviour
     {
         eventSystem = GameObject.FindGameObjectWithTag("EventSystemMainMenu");
 
-        if (PlayerPrefs.GetInt("LastLevel", 0) <= 1 )
-        {
-            eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = playButton;
-        }
-        else
+        GameData gameData = GameManager.Instance.GetSaveSystem().LoadCurrentLevelName();
+       
+        if(gameData != null)
         {
             eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = continueButton;
         }
-
+        else
+        {
+            eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = playButton;
+        }
     }
 
     public void PlayGame()
@@ -45,8 +47,9 @@ public class MainMenu : MonoBehaviour
     public void Continue()
     {
         Time.timeScale = 1.0f;
-        int scene = PlayerPrefs.GetInt("LastLevel", SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(scene);
+        //int scene = PlayerPrefs.GetInt("LastLevel", SceneManager.GetActiveScene().buildIndex + 1);
+        GameData gameData = GameManager.Instance.GetSaveSystem().LoadCurrentLevelName();
+        SceneManager.LoadScene(gameData.GetCurrentLevelName());
     }
 
     public void QuitGame()
@@ -56,7 +59,8 @@ public class MainMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        if (PlayerPrefs.GetInt("LastLevel", 0) <= 1)
+        GameData gameData = GameManager.Instance.GetSaveSystem().LoadCurrentLevelName();
+        if (gameData == null)
         {
             mainMenu.SetActive(false);
         }
@@ -74,13 +78,14 @@ public class MainMenu : MonoBehaviour
     {
         if (SceneManager.sceneCount == 1)
         {
-            if (PlayerPrefs.GetInt("LastLevel", 0) <= 1)
+            GameData gameData = GameManager.Instance.GetSaveSystem().LoadCurrentLevelName();
+            if (gameData == null)
             {
                 mainMenu.SetActive(true);
                 continueMenu.SetActive(false);
             }
             else
-            {
+            {             
                 mainMenu.SetActive(false);
                 continueMenu.SetActive(true);
             }

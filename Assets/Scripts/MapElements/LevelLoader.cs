@@ -19,6 +19,11 @@ public class LevelLoader : MonoBehaviour
     {
         //currentTimeToResetLevel = timeToResetLevel;
 
+        if (SceneManager.GetActiveScene().buildIndex > 0) //Skip main menu
+        {
+            GameManager.Instance.GetSaveSystem().SaveCurrentLevelName(SceneManager.GetActiveScene().name);
+        }
+
         StartCoroutine(LoadCheckpointValues());
     }
 
@@ -117,7 +122,8 @@ public class LevelLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(level);
         onLevelRestart?.Invoke();
-        GameManager.Instance.SetLastLevelPlayed(level);
+        //GameManager.Instance.SetLastLevelPlayed(level);
+        
     }
 
     IEnumerator ApplyPossessionRoutine(GameObject go)
