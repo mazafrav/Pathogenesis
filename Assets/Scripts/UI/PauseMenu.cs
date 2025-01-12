@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetLevel()
     {
+        GameManager.Instance.GetSaveSystem().GetGameData().DeleteLevelData(SceneManager.GetActiveScene().name);
         GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         GameManager.Instance.ResetLevelFromPause();
     }

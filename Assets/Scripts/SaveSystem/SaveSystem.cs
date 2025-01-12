@@ -22,7 +22,7 @@ public class SaveSystem
         
         FileStream stream = new FileStream(path, File.Exists(path)? FileMode.Open: FileMode.Create);
       
-        gameData.SetLastLevelName(lastLevelName);
+        gameData.SetCurrentLevelName(lastLevelName);
 
         formatter.Serialize(stream, gameData);
         stream.Close();
@@ -43,6 +43,7 @@ public class SaveSystem
     {
         if (File.Exists(path))
         {
+            gameData = new GameData();
             File.Delete(path);
         }
     }

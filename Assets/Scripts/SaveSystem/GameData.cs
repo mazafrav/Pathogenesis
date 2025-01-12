@@ -19,20 +19,20 @@ public class GameData
     public GameData()
     {
         levels = new Dictionary<string, LevelData>();      
-        lastLevel = "";
+        currentLevel = "";
     }
 
     private Dictionary<string,LevelData> levels;
-    private string lastLevel;
+    private string currentLevel;
 
-    public void SetLastLevelName(string name)
+    public void SetCurrentLevelName(string name)
     {
-        lastLevel = name;
+        currentLevel = name;
     }
 
     public string GetCurrentLevelName()
     {
-        return lastLevel;
+        return currentLevel;
     }
 
     public void SetLevelData(string levelName, LevelData levelData)
@@ -56,6 +56,14 @@ public class GameData
         else
         {
             return new LevelData();
+        }
+    }
+
+    public void DeleteLevelData(string levelName) 
+    {
+        if (levels.ContainsKey(levelName)) 
+        {
+            levels.Remove(levelName);
         }
     }
 }
