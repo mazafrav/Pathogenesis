@@ -6,31 +6,57 @@ using System.IO;
 
 public class SaveSystem 
 {
+    private GameData gameData = null;
+    string path = Application.persistentDataPath + "/GameData.virus";
+
     public SaveSystem()
     {
-
+        Init();
     }
+
+    public GameData GetGameData() { return gameData; }
 
     public void SaveCurrentLevelName(string lastLevelName)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/GameData.virus";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        
+        FileStream stream = new FileStream(path, File.Exists(path)? FileMode.Open: FileMode.Create);
+      
+        gameData.SetLastLevelName(lastLevelName);
 
-        GameData data = new GameData();
-        data.SetLastLevelName(lastLevelName);
-
-        formatter.Serialize(stream, data);
+        formatter.Serialize(stream, gameData);
         stream.Close();
     }
 
-    public GameData LoadCurrentLevelName()
+    public void SaveCurrentLevelState(string currentLevelName, GameData.LevelData levelData)
     {
-        string path = Application.persistentDataPath + "/GameData.virus";
+        BinaryFormatter formatter = new BinaryFormatter();      
+        FileStream stream = new FileStream(path, File.Exists(path) ? FileMode.Open : FileMode.Create);
+        
+        gameData.SetLevelData(currentLevelName, levelData);
+
+        formatter.Serialize(stream, gameData);
+        stream.Close();
+    }
+
+    private void Init()
+    {
+        if(!File.Exists(path))
+        {
+            gameData = new GameData();
+        }
+        else
+        {
+            gameData = LoadGameData();
+        }
+    }
+
+    private GameData LoadGameData()
+    {      
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            FileStream stream = new FileStream(path, File.Exists(path) ? FileMode.Open : FileMode.Create);
             GameData gameData = formatter.Deserialize(stream) as GameData;
             stream.Close();
 

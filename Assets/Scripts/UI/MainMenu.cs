@@ -19,15 +19,15 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject playButton;
 
     private GameObject eventSystem;
-
+    private GameData gameData;
 
     private void Start()
     {
         eventSystem = GameObject.FindGameObjectWithTag("EventSystemMainMenu");
 
-        GameData gameData = GameManager.Instance.GetSaveSystem().LoadCurrentLevelName();
+        gameData = GameManager.Instance.GetSaveSystem().GetGameData();
        
-        if(gameData != null)
+        if(gameData.GetCurrentLevelName() != "")
         {
             eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = continueButton;
         }
@@ -41,14 +41,14 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        GameManager.Instance.SetLastLevelPlayed(SceneManager.GetActiveScene().buildIndex + 1);
+        //GameManager.Instance.SetLastLevelPlayed(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Continue()
     {
         Time.timeScale = 1.0f;
         //int scene = PlayerPrefs.GetInt("LastLevel", SceneManager.GetActiveScene().buildIndex + 1);
-        GameData gameData = GameManager.Instance.GetSaveSystem().LoadCurrentLevelName();
+        GameData gameData = GameManager.Instance.GetSaveSystem().GetGameData();
         SceneManager.LoadScene(gameData.GetCurrentLevelName());
     }
 
@@ -59,8 +59,8 @@ public class MainMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        GameData gameData = GameManager.Instance.GetSaveSystem().LoadCurrentLevelName();
-        if (gameData == null)
+        
+        if (gameData.GetCurrentLevelName() == "")
         {
             mainMenu.SetActive(false);
         }
@@ -78,16 +78,15 @@ public class MainMenu : MonoBehaviour
     {
         if (SceneManager.sceneCount == 1)
         {
-            GameData gameData = GameManager.Instance.GetSaveSystem().LoadCurrentLevelName();
-            if (gameData == null)
-            {
-                mainMenu.SetActive(true);
-                continueMenu.SetActive(false);
-            }
-            else
+            if(gameData.GetCurrentLevelName() != "")
             {             
                 mainMenu.SetActive(false);
                 continueMenu.SetActive(true);
+            }
+            else 
+            {
+                mainMenu.SetActive(true);
+                continueMenu.SetActive(false);
             }
         }
     }

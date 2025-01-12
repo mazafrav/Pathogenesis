@@ -19,55 +19,52 @@ public class LevelLoader : MonoBehaviour
     {
         //currentTimeToResetLevel = timeToResetLevel;
 
-        if (SceneManager.GetActiveScene().buildIndex > 0) //Skip main menu
-        {
-            GameManager.Instance.GetSaveSystem().SaveCurrentLevelName(SceneManager.GetActiveScene().name);
-        }
+    
 
-        StartCoroutine(LoadCheckpointValues());
+       // StartCoroutine(LoadCheckpointValues());
     }
 
-    IEnumerator LoadCheckpointValues()
-    {
-        yield return null;
+    //IEnumerator LoadCheckpointValues()
+    //{
+    //    yield return null;
 
-        Dictionary<int, Vector3> respawnValues = GameManager.Instance.GetRespawnValues();
-        if (respawnValues.Count > 0)
-        {
-            List<GameObject> gameObjectsToRespawn = GameObject.FindObjectOfType<SaveGameObjectForRespawn>().gameObjectsToSave;
+    //    Dictionary<int, Vector3> respawnValues = GameManager.Instance.GetRespawnValues();
+    //    if (respawnValues.Count > 0)
+    //    {
+    //        List<GameObject> gameObjectsToRespawn = GameObject.FindObjectOfType<SaveGameObjectForRespawn>().gameObjectsToSave;
 
-            for (int i = 0; i < gameObjectsToRespawn.Count; i++)
-            {
-                if (gameObjectsToRespawn[i] != null && (respawnValues.ContainsKey(i) && respawnValues[i].Equals(Vector3.zero)))
-                {
-                    Destroy(gameObjectsToRespawn[i]);
-                }
-            }
+    //        for (int i = 0; i < gameObjectsToRespawn.Count; i++)
+    //        {
+    //            if (gameObjectsToRespawn[i] != null && (respawnValues.ContainsKey(i) && respawnValues[i].Equals(Vector3.zero)))
+    //            {
+    //                Destroy(gameObjectsToRespawn[i]);
+    //            }
+    //        }
 
-            foreach (KeyValuePair<int, Vector3> entry in respawnValues)
-            {
-                if (gameObjectsToRespawn[entry.Key] != null)
-                {
-                    gameObjectsToRespawn[entry.Key].transform.position = entry.Value;
-                }
-            }
+    //        foreach (KeyValuePair<int, Vector3> entry in respawnValues)
+    //        {
+    //            if (gameObjectsToRespawn[entry.Key] != null)
+    //            {
+    //                gameObjectsToRespawn[entry.Key].transform.position = entry.Value;
+    //            }
+    //        }
 
-            GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
+    //        GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
 
-            int possessedEnemyToRespawn = GameManager.Instance.GetPossessedEnemyToRespawn();
-            if (possessedEnemyToRespawn != -1)
-            {
-                gameObjectsToRespawn[possessedEnemyToRespawn].GetComponent<HostAbsorption>().interactable = false;
-                StartCoroutine(ApplyPossessionRoutine(gameObjectsToRespawn[possessedEnemyToRespawn]));
-            }
+    //        int possessedEnemyToRespawn = GameManager.Instance.GetPossessedEnemyToRespawn();
+    //        if (possessedEnemyToRespawn != -1)
+    //        {
+    //            gameObjectsToRespawn[possessedEnemyToRespawn].GetComponent<HostAbsorption>().interactable = false;
+    //            StartCoroutine(ApplyPossessionRoutine(gameObjectsToRespawn[possessedEnemyToRespawn]));
+    //        }
 
-        }
+    //    }
 
-        if (GameManager.Instance.GetPlayerRespawnPosition() != Vector3.zero && GameManager.Instance.GetPossessedEnemyToRespawn() == -1)
-        {
-            GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
-        }
-    }
+    //    if (GameManager.Instance.GetPlayerRespawnPosition() != Vector3.zero && GameManager.Instance.GetPossessedEnemyToRespawn() == -1)
+    //    {
+    //        GameManager.Instance.GetPlayerController().gameObject.transform.position = GameManager.Instance.GetPlayerRespawnPosition();
+    //    }
+    //}
     private void Update()
     {
         //We reset the level when pressing a key for X seconds
@@ -126,14 +123,14 @@ public class LevelLoader : MonoBehaviour
         
     }
 
-    IEnumerator ApplyPossessionRoutine(GameObject go)
-    {
-        yield return null;
-        Vector3 checkpointRespawn = GameManager.Instance.GetPlayerRespawnPosition();
-        if (checkpointRespawn != Vector3.zero)
-        {
-            go.transform.position = checkpointRespawn;
-        }
-        go.GetComponent<HostAbsorption>().ApplyPossessionWithNoEffects(go);
-    }
+    //IEnumerator ApplyPossessionRoutine(GameObject go)
+    //{
+    //    yield return null;
+    //    Vector3 checkpointRespawn = GameManager.Instance.GetPlayerRespawnPosition();
+    //    if (checkpointRespawn != Vector3.zero)
+    //    {
+    //        go.transform.position = checkpointRespawn;
+    //    }
+    //    go.GetComponent<HostAbsorption>().ApplyPossessionWithNoEffects(go);
+    //}
 }

@@ -3,19 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [Serializable]
 public class GameData 
 {
+    [Serializable]
     public struct LevelData
     {
-        public Vector2 playerPosition;
-        public Transform[] mapElementsPosition;
+        public float playerXposition;
+        public float playerYposition;
+        //public Transform[] mapElementsPosition;
     }
 
 
     public GameData()
     {
-        levels = new Dictionary<string, LevelData>();
+        levels = new Dictionary<string, LevelData>();      
         lastLevel = "";
     }
 
@@ -34,11 +37,25 @@ public class GameData
 
     public void SetLevelData(string levelName, LevelData levelData)
     {
-        levels[levelName] = levelData;
+        if(levels.ContainsKey(levelName))
+        {
+            levels[levelName] = levelData;
+        }
+        else
+        {
+            levels.Add(levelName, levelData);
+        }
     }
 
     public LevelData GetLevelData(string levelName) 
     {
-        return levels[levelName];
+        if (levels.ContainsKey(levelName))
+        {      
+             return levels[levelName];
+        }
+        else
+        {
+            return new LevelData();
+        }
     }
 }

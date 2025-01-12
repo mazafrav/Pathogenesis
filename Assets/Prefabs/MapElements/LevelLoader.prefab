@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605337485431057509}
   - component: {fileID: 3157853554719067986}
+  - component: {fileID: 8836391203905646089}
   m_Layer: 11
   m_Name: LevelLoader
   m_TagString: MapElement
@@ -259,3 +260,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transition: {fileID: 4937755851787214027}
   transitionTime: 0.7
+--- !u!114 &8836391203905646089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5744070107495766322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464f57556e844c64fabcb8d5969f8250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
