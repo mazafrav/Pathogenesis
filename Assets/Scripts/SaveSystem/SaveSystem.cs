@@ -39,6 +39,14 @@ public class SaveSystem
         stream.Close();
     }
 
+    public void DeleteGameData()
+    {
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+    }
+
     private void Init()
     {
         if(!File.Exists(path))
