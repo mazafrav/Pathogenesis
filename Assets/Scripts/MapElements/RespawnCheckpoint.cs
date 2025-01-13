@@ -8,7 +8,8 @@ public class RespawnCheckpoint : MonoBehaviour
     [SerializeField]
     GameObject checkpointAnimUI;
 
-    bool isActive = true;
+    private bool isActive = true;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isActive && (collision.gameObject.CompareTag("Player")))/*||*/ 
@@ -57,7 +58,9 @@ public class RespawnCheckpoint : MonoBehaviour
             levelData.playerXposition = collision.transform.position.x;
             levelData.playerYposition = collision.transform.position.y;
 
-            GameManager.Instance.GetSaveSystem().SaveCurrentLevelState(SceneManager.GetActiveScene().name, levelData);
+            SaveSystem saveSystem = GameManager.Instance.GetSaveSystem();
+            saveSystem.SaveCurrentLevelState(SceneManager.GetActiveScene().name, levelData);
+            saveSystem?.onSave.Invoke();
 
             Instantiate(checkpointAnimUI);
         }

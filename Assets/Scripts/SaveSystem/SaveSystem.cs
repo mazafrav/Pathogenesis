@@ -6,8 +6,11 @@ using System.IO;
 
 public class SaveSystem 
 {
+    public delegate void OnSave();
+    public OnSave onSave;
+
     private GameData gameData = null;
-    string path = Application.persistentDataPath + "/GameData.virus";
+    private string path = Application.persistentDataPath + "/GameData.virus";
 
     public SaveSystem()
     {

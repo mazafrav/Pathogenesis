@@ -5,16 +5,55 @@ using UnityEngine;
 
 
 [Serializable]
-public class GameData 
+public class GameData
 {
+    [Serializable]
+    public struct MovingBlockData
+    {
+        public Pos pos;
+        public bool isOpened;
+    }
+
+    [Serializable]
+    public struct Pos
+    {
+        public float x;
+        public float y;
+
+        public readonly Vector3 ConvertToUnityType()
+        {
+            return new Vector3(x, y, 0.0f);
+        }
+
+        public void ConvertToPosType(float newX, float newY)
+        {
+            x = newX;
+            y = newY;
+        }
+    }
+
     [Serializable]
     public struct LevelData
     {
         public float playerXposition;
         public float playerYposition;
-        //public Transform[] mapElementsPosition;
-    }
+        public Dictionary<string, MovingBlockData> movingBlocks;
 
+        public void AddMovingBlockData(string blockName, MovingBlockData blockInfo)
+        {
+            if(movingBlocks == null)
+            {
+                movingBlocks = new Dictionary<string, MovingBlockData>
+                {
+                    { blockName, blockInfo }
+                };
+            }
+            else if(!movingBlocks.ContainsKey(blockName))
+            {
+                movingBlocks.Add(blockName, blockInfo);
+            }
+        }
+    }
 
     public GameData()
     {
@@ -43,6 +82,8 @@ public class GameData
         }
         else
         {
+            levelData.movingBlocks = new Dictionary<string, MovingBlockData>();
+
             levels.Add(levelName, levelData);
         }
     }
