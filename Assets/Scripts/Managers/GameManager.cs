@@ -145,10 +145,20 @@ public class GameManager : MonoBehaviour
             if(player)
             {
                 playerLocomotion = player.GetComponent<PlayerLocomotion>();
-                playerController = player.GetComponentInChildren<PlayerController>();
                 onPlayerSet?.Invoke();
             }
         }
+
+        if (player)
+        {
+            playerController = player.GetComponentInChildren<PlayerController>();
+        }
+
+        if (player)
+        {
+            playerLocomotion = player.GetComponent<PlayerLocomotion>();           
+        }
+
         if (virtualCamera == null)
         {
             virtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInParent<CinemachineVirtualCamera>();
