@@ -620,6 +620,9 @@
 		<property name="length">
 			<value>1.5</value>
 		</property>
+		<property name="volume">
+			<value>0.5</value>
+		</property>
 		<relationship name="event">
 			<destination>{2b0bd757-ef0f-4d90-afe4-96ba43a86805}</destination>
 		</relationship>
@@ -1242,15 +1245,15 @@
 		</relationship>
 		<relationship name="triggerConditions">
 			<destination>{b821e125-c4c3-4775-80dd-3701898ca21d}</destination>
-			<destination>{d0dad1a6-476a-4732-b0c4-781ed83d1690}</destination>
+			<destination>{d4048592-e3c3-416f-b900-ab9ecccf5ea7}</destination>
 		</relationship>
 	</object>
 	<object class="LoopRegion" id="{06bd239b-91c1-4b20-8124-1260fcc05326}">
 		<property name="position">
-			<value>13</value>
+			<value>14</value>
 		</property>
 		<property name="length">
-			<value>3</value>
+			<value>2</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{6e629b19-b7ed-4a6f-bf98-648ef135a81a}</destination>
@@ -1769,7 +1772,7 @@
 			<destination>{ae832785-2b3f-4d58-b1fc-d7dd93af401b}</destination>
 		</relationship>
 	</object>
-	<object class="ParameterCondition" id="{d0dad1a6-476a-4732-b0c4-781ed83d1690}">
+	<object class="ParameterCondition" id="{d4048592-e3c3-416f-b900-ab9ecccf5ea7}">
 		<property name="minimum">
 			<value>1</value>
 		</property>
@@ -1777,7 +1780,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="parameter">
-			<destination>{ad603388-a06d-4ee0-94df-d4de066d2c50}</destination>
+			<destination>{71e93aa5-cc45-4d9f-bbb1-858b977ad4c0}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{e5335d37-0267-467e-9689-d150d5c91869}" />
@@ -2256,12 +2259,12 @@
 			<value>0</value>
 		</property>
 		<property name="curveShape">
-			<value>0.124480329</value>
+			<value>0.236348942</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{5be5c4fd-cc34-49f4-8f9c-5ea458ad18f7}">
 		<property name="position">
-			<value>12.839524435320511</value>
+			<value>13.958456486042692</value>
 		</property>
 		<property name="value">
 			<value>1</value>
