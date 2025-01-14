@@ -12,7 +12,9 @@ public class RespawnCheckpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isActive && (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy")))
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+
+        if (isActive && (collision.gameObject.CompareTag("Player") || (enemy && enemy.IsPossesed)))
         {        
             isActive = false;
 
