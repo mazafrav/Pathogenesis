@@ -46,6 +46,8 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1.0f;
 
+        GameManager.Instance.soundtrackManager.StopPausepSnapshot();
+
         GameData gameData = GameManager.Instance.GetSaveSystem().GetGameData();
         SceneManager.LoadScene(gameData.GetCurrentLevelName());
     }
