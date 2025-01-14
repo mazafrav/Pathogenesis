@@ -17,8 +17,8 @@ public class RespawnCheckpoint : MonoBehaviour
             isActive = false;
 
             GameData.LevelData levelData = new GameData.LevelData();
-            levelData.playerXposition = collision.transform.position.x;
-            levelData.playerYposition = collision.transform.position.y;
+
+            levelData.playerPos.ConvertToPosType(collision.transform.position.x, collision.transform.position.y);
 
             SaveSystem saveSystem = GameManager.Instance.GetSaveSystem();
             saveSystem.SaveCurrentLevelState(SceneManager.GetActiveScene().name, levelData);

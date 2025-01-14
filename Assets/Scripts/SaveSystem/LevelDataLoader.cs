@@ -19,9 +19,9 @@ public class LevelDataLoader : MonoBehaviour
         GameData gameData = saveSystem.GetGameData();
         GameData.LevelData levelData = gameData.GetLevelData(SceneManager.GetActiveScene().name);
 
-        if(levelData.playerXposition != 0.0f && levelData.playerYposition != 0.0f)
+        if(levelData.playerPos.x != 0.0f && levelData.playerPos.y != 0.0f)
         {
-            GameManager.Instance.GetPlayer().transform.position = new Vector2(levelData.playerXposition,levelData.playerYposition);
+            GameManager.Instance.GetPlayer().transform.position = levelData.playerPos.ConvertToUnityType();
         }
     }
 }

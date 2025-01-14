@@ -35,8 +35,7 @@ public class GameData
     [Serializable]
     public struct LevelData
     {
-        public float playerXposition;
-        public float playerYposition;
+        public Pos playerPos;
         public Dictionary<string, MovingBlockData> movingBlocks;
 
         public void AddMovingBlockData(string blockName, MovingBlockData blockInfo)
