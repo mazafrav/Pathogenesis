@@ -52,11 +52,11 @@ public class EnemyLayerDetection : MonoBehaviour
 
                     //Debug.Log("RANGED INTENSITY: " + current);
 
-                    soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Photegenic, current);
+                    soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Photogenic, current);
                 }
                 else
                 {
-                    soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Photegenic, 0f);
+                    soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Photogenic, 0f);
                 }
 
                 if (electricEnemies.Count > 0)

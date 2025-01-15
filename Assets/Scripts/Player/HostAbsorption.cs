@@ -205,7 +205,7 @@ public class HostAbsorption : Interactable
         if (hostLocomotion.GetType() == typeof(RangedLocomotion))
         {
             soundtrackManager.PhotonicLayerIntensity = 1f;
-            soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Photegenic, 1f);
+            soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Photogenic, 1f);
         }
         else if (hostLocomotion.GetType() == typeof(ElectricLocomotion))
         {

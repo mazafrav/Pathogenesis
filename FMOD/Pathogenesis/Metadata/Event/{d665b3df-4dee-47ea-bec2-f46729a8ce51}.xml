@@ -464,6 +464,11 @@
 			<destination>{72608b42-43fc-477b-9dec-4508e30694d4}</destination>
 			<destination>{2c559370-ab36-4984-a577-b565f659d066}</destination>
 			<destination>{37d9c89a-9810-4a8d-b5ce-f9bded702814}</destination>
+			<destination>{99c68f8e-9749-4007-829b-513827c4ffc0}</destination>
+		</relationship>
+		<relationship name="playPercentages">
+			<destination>{389f0020-2910-4123-9483-d24991a2f880}</destination>
+			<destination>{d6b5b7e7-3407-47ab-b983-01fb859c5ff3}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{7acb94f3-62f4-407b-82b6-7b494acda90e}">
@@ -1961,6 +1966,27 @@
 			<value>34000</value>
 		</property>
 	</object>
+	<object class="SilenceSound" id="{99c68f8e-9749-4007-829b-513827c4ffc0}">
+		<property name="duration">
+			<value>34000</value>
+		</property>
+	</object>
+	<object class="PlayPercentage" id="{389f0020-2910-4123-9483-d24991a2f880}">
+		<property name="percentage">
+			<value>15</value>
+		</property>
+		<relationship name="sound">
+			<destination>{dcb2f3fa-afe2-4df8-b864-c792561bb84d}</destination>
+		</relationship>
+	</object>
+	<object class="PlayPercentage" id="{d6b5b7e7-3407-47ab-b983-01fb859c5ff3}">
+		<property name="percentage">
+			<value>15</value>
+		</property>
+		<relationship name="sound">
+			<destination>{2c559370-ab36-4984-a577-b565f659d066}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{c9920a0f-5a00-4816-a3b5-dda2786d236b}">
 		<relationship name="effects">
 			<destination>{4e80e526-e557-498f-b8e5-b2e4137fde09}</destination>
@@ -2451,15 +2477,15 @@
 			<value>10</value>
 		</property>
 		<property name="gain">
-			<value>3</value>
+			<value>2.5</value>
 		</property>
 	</object>
 	<object class="ChorusEffect" id="{8264d9f0-e780-4d49-ab13-823ec114cba2}">
 		<property name="rate">
-			<value>0.5</value>
+			<value>0.699999988</value>
 		</property>
 		<property name="depth">
-			<value>31.5</value>
+			<value>33.5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{2dd73f06-9bdc-48c9-a5b9-13a1a591b5b6}">

@@ -10,7 +10,7 @@ public class SoundtrackManager : MonoBehaviour
     {
         Absorption,
         Danger,
-        Photegenic,
+        Photogenic,
         Electric,
         Crystalline,
         Menu,
@@ -92,7 +92,7 @@ public class SoundtrackManager : MonoBehaviour
         bool updated = false;
         switch(id)
         {
-            case (int)SoundtrackParameter.Photegenic:
+            case (int)SoundtrackParameter.Photogenic:
                 updated = value > PhotonicLayerIntensity;
                 if (updated)
                 {
@@ -125,7 +125,7 @@ public class SoundtrackManager : MonoBehaviour
     {
         switch (id)
         {
-            case (int)SoundtrackParameter.Photegenic:
+            case (int)SoundtrackParameter.Photogenic:
 
                 PhotonicLayerIntensity = 0;
                 break;
