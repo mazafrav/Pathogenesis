@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrystalineEnemy : Enemy
+public class CrystallineEnemy : Enemy
 {
 
     public static event Action OnAttackSameSpecies;
@@ -84,7 +84,7 @@ public class CrystalineEnemy : Enemy
                     if (raycastHit2D[i].collider.gameObject == range.personInRange)
                     {
                         //Crystalline enemies dont attack crystalline enemies, unless a possessed one kills another one
-                        if (range.personInRange.GetComponent<CrystalineEnemy>() == null || CanAttackSameSpecie)  
+                        if (range.personInRange.GetComponent<CrystallineEnemy>() == null || CanAttackSameSpecie)  
                         {
                             isSeeingTarget = true;
                             Debug.DrawRay(transform.position, direction * raycastHit2D[i].distance, Color.red);

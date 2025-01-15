@@ -85,15 +85,19 @@ public class Enemy : MonoBehaviour
 
    virtual protected void Patrol()
    {
-        locomotion.SetMoveSpeed(patrolSpeed);
-        Vector2 dirToWaypoint = (wayPoints[currentWayPointIndex].position - transform.position).normalized;
-        movementDirection = dirToWaypoint.x;
-        float distanceToWayPoint = (transform.position - wayPoints[currentWayPointIndex].position).magnitude;
-        locomotion.Move(dirToWaypoint.x, dirToWaypoint.y);
-
-        if (distanceToWayPoint < minDistanceToWaypoint)
+        if (wayPoints[currentWayPointIndex])
         {
-            currentWayPointIndex = (currentWayPointIndex + 1) % wayPoints.Length;
+            locomotion.SetMoveSpeed(patrolSpeed);
+
+            Vector2 dirToWaypoint = (wayPoints[currentWayPointIndex].position - transform.position).normalized;
+            movementDirection = dirToWaypoint.x;
+            float distanceToWayPoint = (transform.position - wayPoints[currentWayPointIndex].position).magnitude;
+            locomotion.Move(dirToWaypoint.x, dirToWaypoint.y);
+
+            if (distanceToWayPoint < minDistanceToWaypoint)
+            {
+                currentWayPointIndex = (currentWayPointIndex + 1) % wayPoints.Length;
+            }
         }
    }
 

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e60393bf63909004ca2313d535dd466f
+  m_SerializeEntries:
+  - m_GUID: b7bc59c458fe8444e81b81367599ce7b
+    m_Address: Assets/Prefabs/Enemies/RangedEnemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa48d90f86369134db41420e5b009588
+    m_Address: Assets/Prefabs/Enemies/ElectricEnemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b670826c76581c143ab06233d56ac77e
+    m_Address: Assets/Prefabs/Enemies/CrystallineEnemy.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 13869f9581c440240b7ee485394aeedb, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1afd8b9cfb24cbe4eb95acdfb6647c48, type: 2}
+    - {fileID: 11400000, guid: 9ce8277930d00d0408d6e71774c06d8c, type: 2}

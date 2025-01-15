@@ -37,6 +37,8 @@ public class GameData
     {
         public Pos playerPos;
         public Dictionary<string, MovingBlockData> movingBlocks;
+        public string possessedEnemy;
+
 
         public void AddMovingBlockData(string blockName, MovingBlockData blockInfo)
         {

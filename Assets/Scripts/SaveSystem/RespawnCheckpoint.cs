@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class RespawnCheckpoint : MonoBehaviour
 {
     [SerializeField]
+    private Transform spawnPoint;
+
+    [SerializeField]
     GameObject checkpointAnimUI;
 
     private bool isActive = true;
@@ -15,13 +18,13 @@ public class RespawnCheckpoint : MonoBehaviour
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
         if (isActive && (collision.gameObject.CompareTag("Player") || (enemy && enemy.IsPossesed)))
-        {        
+        {
             isActive = false;
 
             GameData.LevelData levelData = new GameData.LevelData();
 
-            levelData.playerPos.ConvertToPosType(collision.transform.position.x, collision.transform.position.y);
-
+            levelData.playerPos.ConvertToPosType(spawnPoint.position.x, spawnPoint.position.y);
+            levelData.possessedEnemy = enemy ? enemy.GetType().ToString() : null;
             SaveSystem saveSystem = GameManager.Instance.GetSaveSystem();
             saveSystem.SaveCurrentLevelState(SceneManager.GetActiveScene().name, levelData);
             saveSystem?.onSave.Invoke();

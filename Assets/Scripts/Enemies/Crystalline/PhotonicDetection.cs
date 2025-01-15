@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PhotonicDetection : MonoBehaviour
 {
-    private CrystalineEnemy enemy;
+    private CrystallineEnemy enemy;
     // Start is called before the first frame update
     void Start()
     {
-        enemy = GetComponentInParent<CrystalineEnemy>();
+        enemy = GetComponentInParent<CrystallineEnemy>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -6,13 +6,13 @@ public class ElectricShockRange : MonoBehaviour
 {
 
     public GameObject personInRange {  get; private set; }
-    private CrystalineEnemy crystalineEnemy;
+    private CrystallineEnemy crystalineEnemy;
     private bool cancellingFlee;
     private float cancelFleeTimer = 0f;
 
     private void Start()
     {
-        crystalineEnemy = GetComponentInParent<CrystalineEnemy>();
+        crystalineEnemy = GetComponentInParent<CrystallineEnemy>();
     }
 
     private void Update()

@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: RespawnPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3ddce35a055af47b72d96a398f3b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 198626194049959311}
   checkpointAnimUI: {fileID: 7264979986770682559, guid: aeff1d5e996020d498b5545892d1eff0, type: 3}

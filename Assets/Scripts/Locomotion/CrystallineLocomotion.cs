@@ -48,7 +48,7 @@ public class CrystallineLocomotion : HostLocomotion
     private GroundChecker ceilChecker;
     private HostAbsorption absorption;
     private bool isClimbing = false;
-    private CrystalineEnemy enemyIA;
+    private CrystallineEnemy enemyIA;
     private bool flipRot = true;
 
     public AdhesionDirection directionClimb = AdhesionDirection.S;
@@ -69,7 +69,7 @@ public class CrystallineLocomotion : HostLocomotion
     {
         absorption = GetComponent<HostAbsorption>();
 
-        enemyIA = GetComponent<CrystalineEnemy>();
+        enemyIA = GetComponent<CrystallineEnemy>();
 
         defaultColor = spriteRenderer.color;
 
