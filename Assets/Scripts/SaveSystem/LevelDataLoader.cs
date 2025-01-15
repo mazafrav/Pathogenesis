@@ -1,15 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using Cinemachine;
-
 
 public class LevelDataLoader : MonoBehaviour
 {
     private SaveSystem saveSystem;
     private GameData.LevelData levelData;
-    GameObject possessedEnemy;
+    private Enemy possessedEnemy;
+
     void Start()
     {
         saveSystem = GameManager.Instance.GetSaveSystem();
@@ -30,30 +27,26 @@ public class LevelDataLoader : MonoBehaviour
             GameManager.Instance.GetPlayer().transform.position = levelData.playerPos.ConvertToUnityType();
         }
 
-        // Load the enemy prefab using Addressables
-        if(levelData.possessedEnemy != null)
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        for (int i = 0; i < enemies.Length; i++)
         {
-            Addressables.LoadAssetAsync<GameObject>("Assets/Prefabs/Enemies/" + levelData.possessedEnemy + ".prefab").Completed += OnPrefabLoaded;
-        }
-    }
+            if (levelData.enemies != null && levelData.enemies.ContainsKey(enemies[i].name))
+            {
+                if (levelData.enemies[enemies[i].name].isPossessed)
+                {
+                    enemies[i].transform.position = levelData.playerPos.ConvertToUnityType();
+                    possessedEnemy = enemies[i];
 
-    private void OnPrefabLoaded(AsyncOperationHandle<GameObject> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            // Instantiate the prefab in the scene
-            possessedEnemy = Instantiate(handle.Result, levelData.playerPos.ConvertToUnityType(), Quaternion.identity);            
-            Invoke(nameof(Possess), 0.001f);
-        }
-        else
-        {
-            Debug.LogError("Failed to load prefab via Addressables.");
-        }
-    }
+                    //Apply possession after x seconds to let the player initialize
+                    Invoke(nameof(Possess), 0.01f);                 
+                }
 
+            }
+        }       
+    }
+  
     void Possess()
     {
         possessedEnemy.GetComponent<HostAbsorption>().ApplyPossession(GameManager.Instance.GetPlayer());
-
     }
 }

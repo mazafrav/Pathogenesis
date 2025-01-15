@@ -49,7 +49,7 @@ public class DamageControl : MonoBehaviour
                     wasPossessing = true;
 
                     //Change player controller parent to the player
-                    GameObject virus = playerController.GetPlayerBody();
+                    GameObject virus = GameManager.Instance.GetPlayer();
                     playerController.transform.parent = virus.transform;
                     virus.SetActive(true);
 

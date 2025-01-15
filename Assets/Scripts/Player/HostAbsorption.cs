@@ -69,9 +69,6 @@ public class HostAbsorption : Interactable
             if (doOnce)
             {
                 playerController.isPossessing = false;
-                //CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
-                //cinemachineVirtualCamera.GetComponent<PossessionPostProcess>().isActive = false;
-                //Debug.Log("absooorption");
                 GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 0.5f);
                 doOnce = false;
             } 
@@ -137,8 +134,6 @@ public class HostAbsorption : Interactable
         playerController.transform.parent.gameObject.SetActive(false);
         playerController.transform.parent = gameObject.transform;
         playerController.DisablePlayerBody();
-
-        GameManager.Instance.SetPlayer(gameObject);
 
         //ParticleSystem absortionVFX = Instantiate(absortionParticles, this.gameObject.transform.position, Quaternion.identity);
         //ParticleSystem particlesVFX = Instantiate(possessParticles, this.gameObject.transform.position, Quaternion.identity);

@@ -7,6 +7,14 @@ using UnityEngine;
 [Serializable]
 public class GameData
 {
+    #region Data Structs
+
+    [Serializable]
+    public struct EnemyData
+    {
+        public bool isPossessed;
+    }
+
     [Serializable]
     public struct MovingBlockData
     {
@@ -37,24 +45,42 @@ public class GameData
     {
         public Pos playerPos;
         public Dictionary<string, MovingBlockData> movingBlocks;
+        public Dictionary<string, EnemyData> enemies;
         public string possessedEnemy;
 
 
-        public void AddMovingBlockData(string blockName, MovingBlockData blockInfo)
+        public void AddMovingBlockData(string blockName, MovingBlockData blockData)
         {
             if(movingBlocks == null)
             {
                 movingBlocks = new Dictionary<string, MovingBlockData>
                 {
-                    { blockName, blockInfo }
+                    { blockName, blockData }
                 };
             }
             else if(!movingBlocks.ContainsKey(blockName))
             {
-                movingBlocks.Add(blockName, blockInfo);
+                movingBlocks.Add(blockName, blockData);
+            }
+        }
+
+        public void AddEnemyData(string enemyName, EnemyData enemyData)
+        {
+            if (enemies == null)
+            {
+                enemies = new Dictionary<string, EnemyData>
+                {
+                    { enemyName, enemyData }
+                };
+            }
+            else if (!enemies.ContainsKey(enemyName))
+            {
+                enemies.Add(enemyName, enemyData);
             }
         }
     }
+
+    #endregion
 
     public GameData()
     {

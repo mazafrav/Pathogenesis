@@ -25,6 +25,15 @@ public class RespawnCheckpoint : MonoBehaviour
 
             levelData.playerPos.ConvertToPosType(spawnPoint.position.x, spawnPoint.position.y);
             levelData.possessedEnemy = enemy ? enemy.GetType().ToString() : null;
+
+             Enemy[] enemies = FindObjectsOfType<Enemy>();
+            foreach (Enemy e in enemies)
+            {
+                GameData.EnemyData enemyData = new GameData.EnemyData();
+                enemyData.isPossessed = e.IsPossesed;
+                levelData.AddEnemyData(e.name,enemyData);
+            }
+
             SaveSystem saveSystem = GameManager.Instance.GetSaveSystem();
             saveSystem.SaveCurrentLevelState(SceneManager.GetActiveScene().name, levelData);
             saveSystem?.onSave.Invoke();
