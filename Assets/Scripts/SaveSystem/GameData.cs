@@ -41,24 +41,25 @@ public class GameData
     }
 
     [Serializable]
-    public struct LevelData
+    public class LevelData
     {
         public Pos playerPos;
         public Dictionary<string, MovingBlockData> movingBlocks;
         public Dictionary<string, EnemyData> enemies;
         public string possessedEnemy;
 
+        public LevelData()
+        {
+            movingBlocks = new Dictionary<string, MovingBlockData>();
+            enemies = new Dictionary<string, EnemyData>();
+            possessedEnemy = null;
+            playerPos.x = 0.0f;
+            playerPos.y = 0.0f;
+        }
 
         public void AddMovingBlockData(string blockName, MovingBlockData blockData)
         {
-            if(movingBlocks == null)
-            {
-                movingBlocks = new Dictionary<string, MovingBlockData>
-                {
-                    { blockName, blockData }
-                };
-            }
-            else if(!movingBlocks.ContainsKey(blockName))
+            if(!movingBlocks.ContainsKey(blockName))
             {
                 movingBlocks.Add(blockName, blockData);
             }
@@ -66,14 +67,7 @@ public class GameData
 
         public void AddEnemyData(string enemyName, EnemyData enemyData)
         {
-            if (enemies == null)
-            {
-                enemies = new Dictionary<string, EnemyData>
-                {
-                    { enemyName, enemyData }
-                };
-            }
-            else if (!enemies.ContainsKey(enemyName))
+            if (!enemies.ContainsKey(enemyName))
             {
                 enemies.Add(enemyName, enemyData);
             }
@@ -109,8 +103,6 @@ public class GameData
         }
         else
         {
-            levelData.movingBlocks = new Dictionary<string, MovingBlockData>();
-
             levels.Add(levelName, levelData);
         }
     }

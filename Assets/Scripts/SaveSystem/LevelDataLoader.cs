@@ -27,6 +27,7 @@ public class LevelDataLoader : MonoBehaviour
             GameManager.Instance.GetPlayer().transform.position = levelData.playerPos.ConvertToUnityType();
         }
 
+        //Set which enemy is possessed
         Enemy[] enemies = FindObjectsOfType<Enemy>();
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -40,9 +41,27 @@ public class LevelDataLoader : MonoBehaviour
                     //Apply possession after x seconds to let the player initialize
                     Invoke(nameof(Possess), 0.01f);                 
                 }
-
             }
-        }       
+        }
+
+        //Set moving blocks data
+        MovingBlockBase[] movingBlocks = FindObjectsOfType<MovingBlockBase>();
+        for (int i = 0; i < movingBlocks.Length; i++)
+        {
+            string blockName = movingBlocks[i].transform.parent.name;
+
+            if (levelData.movingBlocks != null && levelData.movingBlocks.ContainsKey(blockName))
+            {
+                movingBlocks[i].IsOpened = levelData.movingBlocks[blockName].isOpened;
+                movingBlocks[i].NextPosition = levelData.movingBlocks[blockName].pos.ConvertToUnityType();
+                movingBlocks[i].transform.position = movingBlocks[i].NextPosition;
+            }
+            else
+            {
+                movingBlocks[i].SetStartPosition();
+            }
+        }
+
     }
   
     void Possess()

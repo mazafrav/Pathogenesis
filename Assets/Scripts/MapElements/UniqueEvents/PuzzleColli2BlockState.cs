@@ -14,7 +14,7 @@ public class PuzzleColli2BlockState : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") || (other.gameObject.CompareTag("Enemy") && other.GetComponentInParent<PlayerController>()))
         {
-            if (block1.isOpened == stateToCheck1 && block2.isOpened == stateToCheck2)
+            if (block1.IsOpened == stateToCheck1 && block2.IsOpened == stateToCheck2)
             {
                 GetComponent<SolvedPuzzleManager>().PlaySound(soundToPlay);
                 GetComponent<BoxCollider2D>().enabled = false;
