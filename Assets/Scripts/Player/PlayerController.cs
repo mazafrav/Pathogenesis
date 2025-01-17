@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+                GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
                 doOnce = true;
             }
 
