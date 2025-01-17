@@ -101,25 +101,25 @@ public class PlayerController : MonoBehaviour
             }
 
             //Attacking with electric enemy
-            ElectricLocomotion electricLocomotion = GetComponentInParent<ElectricLocomotion>();
-            if (electricLocomotion)
-            {
-                if ((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
-                {
-                    locomotion.Attack(mousePos);
-                }
-                else if (electricLocomotion.inAttackRange && electricLocomotion.currentRemainingShockTime > 0.0f && (GameManager.Instance.IsThereAGamepadConnected && !Gamepad.current.rightShoulder.isPressed) || !Input.GetMouseButton(0))
-                {
-                    //We wait a bit to deactivate the shock
-                    electricLocomotion.currentRemainingShockTime -= Time.deltaTime;
+            //ElectricLocomotion electricLocomotion = GetComponentInParent<ElectricLocomotion>();
+            //if (electricLocomotion)
+            //{
+            //    if ((GameManager.Instance.IsThereAGamepadConnected && Gamepad.current.rightShoulder.isPressed) || Input.GetMouseButton(0))
+            //    {
+            //        locomotion.Attack(mousePos);
+            //    }
+            //    else if (electricLocomotion.inAttackRange && electricLocomotion.currentRemainingShockTime > 0.0f && (GameManager.Instance.IsThereAGamepadConnected && !Gamepad.current.rightShoulder.isPressed) || !Input.GetMouseButton(0))
+            //    {
+            //        //We wait a bit to deactivate the shock
+            //        electricLocomotion.currentRemainingShockTime -= Time.deltaTime;
 
-                    if (electricLocomotion.currentRemainingShockTime <= 0.0f)
-                    {
-                        locomotion.DeactivateAttack();
-                        electricLocomotion.inAttackRange = false;
-                    }
-                }
-            }
+            //        if (electricLocomotion.currentRemainingShockTime <= 0.0f)
+            //        {
+            //            locomotion.DeactivateAttack();
+            //            electricLocomotion.inAttackRange = false;
+            //        }
+            //    }
+            //}
 
             if (proximityEmitter.IsPlaying())
             {

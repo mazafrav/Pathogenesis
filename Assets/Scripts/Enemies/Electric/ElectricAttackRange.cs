@@ -43,15 +43,15 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
 
         if (collidedObjects.Count <= 0 || electricFollowRange.VisibleTargetsInRange().Count <= 0) //We dont have any organism, we deactivate the shock
         {
-            if (electricLocomotion.inAttackRange && electricLocomotion.currentRemainingShockTime > 0.0f)
+            if (electricLocomotion.InAttackRange && electricLocomotion.CurrentRemainingShockTime > 0.0f)
             {
                 //We wait a bit to deactivate the electric shock
-                electricLocomotion.currentRemainingShockTime -= Time.deltaTime;
+                electricLocomotion.CurrentRemainingShockTime -= Time.deltaTime;
                 //Debug.Log(electricLocomotion.currentRemainingShockTime);
-                if (electricLocomotion.currentRemainingShockTime <= 0.0f)
+                if (electricLocomotion.CurrentRemainingShockTime <= 0.0f)
                 {
                     electricLocomotion.DeactivateShock();
-                    electricLocomotion.inAttackRange = false;
+                    electricLocomotion.InAttackRange = false;
                 }
             }
         }
@@ -80,7 +80,7 @@ public class ElectricAttackRange : MonoBehaviour //This is only used for the AI
         float angle = Mathf.Atan2(targetDir.x, targetDir.y) * Mathf.Rad2Deg;
         electricShockPivot.rotation = Quaternion.Euler(new Vector3(0, 0, -angle));
 
-        electricLocomotion.currentRemainingShockTime = electricLocomotion.ShockRemainingTime();
+        electricLocomotion.CurrentRemainingShockTime = electricLocomotion.ShockRemainingTime();
         locomotion.Attack();
     }
 }

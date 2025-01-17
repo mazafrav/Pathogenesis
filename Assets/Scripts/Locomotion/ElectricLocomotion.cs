@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ElectricLocomotion : HostLocomotion
@@ -21,8 +18,6 @@ public class ElectricLocomotion : HostLocomotion
     private float followRange = 4.0f;
     [SerializeField]
     private float attackRange = 2.5f;
-    //[SerializeField]
-    //private float shockRange = 1.5f;
     [SerializeField]
     private float cooldown = 1.0f;
     [SerializeField]
@@ -31,8 +26,6 @@ public class ElectricLocomotion : HostLocomotion
     private float shockRemainingTime = 0.3f;
     [SerializeField]
     private ParticleSystem electricShockVFX;
-    //[SerializeField]
-    //private float shockDuration = 1.0f;
 
     [Header("Feedback")]
     [SerializeField]
@@ -45,8 +38,6 @@ public class ElectricLocomotion : HostLocomotion
     [Header("Movement")]
     [SerializeField]
     private float deltaXModifier = 0.5f;
-    //[SerializeField]
-    //private float deltaYModifier = 1.2f;
     [SerializeField]
     private float speedModifier = 1.0f;
 
@@ -61,7 +52,6 @@ public class ElectricLocomotion : HostLocomotion
     [SerializeField] GameObject possessedLightSource;
 
     private float currentPlanningGravity = 0.1f;
-    //private float newYPosition = 0.0f;
     private Vector3 startPosition = Vector3.zero;
     private float propulsingTimeCounter = 0.0f;
     private bool isPropulsing = false, isPlanning = false;
@@ -70,14 +60,15 @@ public class ElectricLocomotion : HostLocomotion
 
     private Color defaultColor;
 
-    private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f;/*, currentShockDuration = 0.0f;*/
-
-    public float currentRemainingShockTime { get; set; } = 0.0f;
-    public bool inAttackRange { get; set; } = false;
+    private float currentWindUpTime = 0.0f, currentCooldownTime = 0.0f;
 
     private HostAbsorption absorption;
     private ElectricEnemy electricEnemy;
     private bool hasAttacked = false;
+    private bool isAttacking = false;
+
+    public float CurrentRemainingShockTime { get; set; } = 0.0f;
+    public bool InAttackRange { get; set; } = false;
     public float FollowRange { get { return followRange; } }
     public float AttackRange { get { return attackRange; } }
 
@@ -95,35 +86,42 @@ public class ElectricLocomotion : HostLocomotion
 
         defaultColor = spriteRenderer.color;
 
-        //currentShockDuration = shockDuration;
-        //jumpDistance += jumpOffset;
-        //jumpHeight += jumpOffset;
         rb2D = GetComponent<Rigidbody2D>();
         rb2D.gravityScale = 1.0f;
-
-        //g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f));
-        //rb2D.gravityScale = g / Physics2D.gravity.y;
-        //velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
 
         shockGameObject.SetActive(false);
         shockBaseObject.SetActive(false);
 
         followGameObject.transform.localScale = new Vector3(followRange, followRange, followGameObject.transform.localScale.z);
-        //shockGameObject.transform.localScale = new Vector3(0.25f, 2*shockRange, shockGameObject.transform.localScale.z);
         attackGameObject.transform.localScale = new Vector3(attackRange, attackRange, attackGameObject.transform.localScale.z);
     }
 
     void Update()
-    {
+    {       
+        //Attacking when is possessed
+        if (electricEnemy.IsPossesed)
+        {
+            if (!isAttacking && InAttackRange && CurrentRemainingShockTime > 0.0f)
+            {
+                //We wait a bit to deactivate the shock
+                CurrentRemainingShockTime -= Time.deltaTime;               
+
+                if (CurrentRemainingShockTime <= 0.0f)
+                {
+                    DeactivateShock();
+                    InAttackRange = false;
+                }
+            }
+        }
+
         animator.SetFloat("Speed", Mathf.Abs(rb2D.velocity.x) + Mathf.Abs(rb2D.velocity.y));
 
-        //Debug.Log("Cooldown: " + currentCooldownTime);
         if (currentCooldownTime <= 0f && currentWindUpTime > 0f)
         {
             currentWindUpTime = Mathf.Max(currentWindUpTime - Time.deltaTime, 0f);
 
             ChangeSpritesColor(Color.Lerp(GetCurrentColor(), colorWhileWindUp, 1.0f - currentWindUpTime));
-            //Debug.Log("Wind up: " + currentWindUpTime);
+
             if (currentWindUpTime <= 0f)
             {
                 ActivateShock();                   
@@ -142,16 +140,6 @@ public class ElectricLocomotion : HostLocomotion
             }
         }
 
-        //Only when we are possessed the shock is deactivated after x time
-        //if (transform.parent!=null && shockGameObject.activeSelf)
-        //{
-        //    currentShockDuration = Mathf.Max(currentShockDuration - Time.deltaTime, 0f);
-        //    if (currentShockDuration <= 0f)
-        //    {
-        //        DeactivateShock();
-        //    }
-        //}
-
         //Calculating new enemy position while jumping
         if (isPropulsing)
         {
@@ -160,21 +148,20 @@ public class ElectricLocomotion : HostLocomotion
             {
                 jumpParticles.Play();
             }
-            if (transform.position.y > startPosition.y + propulsionHeight || propulsingTimeCounter >= propulsionTime) 
+
             //Has reached the requiered height or time
+            if (transform.position.y > startPosition.y + propulsionHeight || propulsingTimeCounter >= propulsionTime) 
             {
                 animator.Play("ElecEnemyFloatAnim");
                 isPropulsing = false;
                 jumpParticles.Stop();
                 isPlanning = true;
                 propulsingTimeCounter = 0f;
-
-                //jumpEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             }
-            else
-            {
-                //newYPosition += velocityY * Time.deltaTime;
-            }
+            //else
+            //{
+            //    newYPosition += velocityY * Time.deltaTime;
+            //}
 
         }
 
@@ -205,7 +192,7 @@ public class ElectricLocomotion : HostLocomotion
         {
             if (transform.position.y < startPosition.y + propulsionHeight)
             {
-                rb2D.velocity = new Vector2(rb2D.velocity.x , velocityY);//newYPosition);
+                rb2D.velocity = new Vector2(rb2D.velocity.x , velocityY);
             }
         }
     }
@@ -213,23 +200,16 @@ public class ElectricLocomotion : HostLocomotion
     public override void Jump(float deltaX)
     {
         if (currentWindUpTime > 0f) return;
-        //if(groundChecker.isGrounded)
-        //{
-        //    rb2D.velocity = new Vector2(moveSpeed * deltaX, velocityY);
-        //}
 
         if (groundChecker.isGrounded)
         {
             rb2D.gravityScale = 1f;
             startPosition = transform.position;
-            //newYPosition = 0;
             propulsingTimeCounter = 0f;
             isPropulsing = true;
             animator.Play("ElecEnemyJumpAnim");
-
             jumpEventInstance.start();
-        }
-       
+        }     
     }
     public override void JumpCancel() 
     {
@@ -265,25 +245,26 @@ public class ElectricLocomotion : HostLocomotion
     {
         if(!IsAttackReady() || shockGameObject.activeSelf) return;
         currentWindUpTime = windUp;
-        //hasAttacked = true;
-        //currentShockDuration = shockDuration;
+        isAttacking = true;
+       
+    }
+
+    public override void CancelAttack()
+    {
+        isAttacking = false;
     }
 
     private void ActivateShock()
     {
-        currentRemainingShockTime = shockRemainingTime;
-        inAttackRange = true;
+        CurrentRemainingShockTime = shockRemainingTime;
+        InAttackRange = true;
         hasAttacked = true;
         shockGameObject.SetActive(true);
         shockBaseObject.SetActive(true);
         moveSpeed *= speedModifier;
         electricShockVFX.Play();
     }
-    public override void DeactivateAttack()
-    {
-        base.DeactivateAttack();
-        DeactivateShock();
-    }
+
     public void DeactivateShock()
     {
         shockGameObject.SetActive(false);
@@ -292,7 +273,6 @@ public class ElectricLocomotion : HostLocomotion
 
         if (hasAttacked)
         {
-            //currentShockDuration = shockDuration;
             currentCooldownTime = cooldown;
             currentWindUpTime = 0f;
             hasAttacked = false;
@@ -300,27 +280,6 @@ public class ElectricLocomotion : HostLocomotion
             Color currentColor = GetCurrentColor();
             ChangeSpritesColor(currentColor);
         }
-
-        //if(transform.parent != null) //Is possessed
-        //{
-        //    currentShockDuration = shockDuration;
-        //    currentCooldownTime = cooldown;
-        //    currentWindUpTime = 0f;
-        //    shockGameObject.SetActive(false);
-        //}
-        //else
-        //{
-
-        //    if (hasAttacked)
-        //    {
-        //        currentCooldownTime = cooldown;
-        //        currentWindUpTime = 0f;
-        //        hasAttacked = false;
-        //    }          
-        //        shockGameObject.SetActive(false);
-        //}
-
-
     }
 
     public override bool IsAttackReady()
@@ -368,27 +327,13 @@ public class ElectricLocomotion : HostLocomotion
 
         ElectricEnemyPossessingParameters electricPossessingParameters = (ElectricEnemyPossessingParameters)possessingParameters;
 
-        //g =( (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2.0f) * (jumpDistance / 2.0f)) ) * electricPossessingParameters.gravityModifier;
-        //rb2D.gravityScale = g / Physics2D.gravity.y;
-        //velocityY = (2 * jumpHeight * moveSpeed) / (jumpDistance / 2.0f);
-
         cooldown = electricPossessingParameters.cooldown;
         windUp = electricPossessingParameters.windUp;
         shockRemainingTime = electricPossessingParameters.shockRemainingTime;
-        //shockDuration = electricPossessingParameters.shockDuration;
-        //followRange = electricPossessingParameters.electricFollowRange;
-        //followGameObject.transform.localScale = new Vector3(followRange, followRange, shockGameObject.transform.localScale.z);
-
-        //GameManager.Instance.SetMusicSelectionIndex(4);
 
         //change light source
         ligthSource.SetActive(false);
         possessedLightSource.SetActive(true);
-    }
-
-    public override void CancelAttack()
-    {
-        
     }
 
     public void StopJumpLoopSFX()
