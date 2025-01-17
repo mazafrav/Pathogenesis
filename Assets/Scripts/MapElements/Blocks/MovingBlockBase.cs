@@ -22,15 +22,13 @@ public class MovingBlockBase : MonoBehaviour, IActivatableElement
     {
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
         animator = GetComponent<Animator>();
-
-        //NextPosition = pointClose.position;
     }
 
     protected virtual void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, NextPosition, movingSpeed * Time.deltaTime);
 
-        if (!emitter.IsPlaying() && (transform.position - NextPosition).sqrMagnitude > 0.01f) //transform.position != nextPosition
+        if (!emitter.IsPlaying() && (transform.position - NextPosition).sqrMagnitude > 0.01f) 
         {
             emitter.Play();
         }

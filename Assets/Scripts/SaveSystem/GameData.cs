@@ -10,6 +10,12 @@ public class GameData
     #region Data Structs
 
     [Serializable]
+    public struct CheckpointData
+    {
+        public bool isActive;
+    }
+
+    [Serializable]
     public struct EnemyData
     {
         public bool isPossessed;
@@ -46,12 +52,14 @@ public class GameData
         public Pos playerPos;
         public Dictionary<string, MovingBlockData> movingBlocks;
         public Dictionary<string, EnemyData> enemies;
+        public Dictionary<string, CheckpointData> checkpoints;
         public string possessedEnemy;
 
         public LevelData()
         {
             movingBlocks = new Dictionary<string, MovingBlockData>();
             enemies = new Dictionary<string, EnemyData>();
+            checkpoints = new Dictionary<string, CheckpointData>();
             possessedEnemy = null;
             playerPos.x = 0.0f;
             playerPos.y = 0.0f;
@@ -70,6 +78,14 @@ public class GameData
             if (!enemies.ContainsKey(enemyName))
             {
                 enemies.Add(enemyName, enemyData);
+            }
+        }
+
+        public void AdCheckpointData(string checkpointName, CheckpointData checkpointData)
+        {
+            if (!checkpoints.ContainsKey(checkpointName))
+            {
+                checkpoints.Add(checkpointName, checkpointData);
             }
         }
     }

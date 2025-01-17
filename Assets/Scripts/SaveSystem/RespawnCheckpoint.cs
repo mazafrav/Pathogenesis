@@ -9,22 +9,24 @@ public class RespawnCheckpoint : MonoBehaviour
     [SerializeField]
     GameObject checkpointAnimUI;
 
-    private bool isActive = true;
+    public bool IsActive { get; set; } = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-        if (isActive && (collision.gameObject.CompareTag("Player") || (enemy && enemy.IsPossesed)))
+        if (IsActive && (collision.gameObject.CompareTag("Player") || (enemy && enemy.IsPossesed)))
         {
             Instantiate(checkpointAnimUI);
-            isActive = false;
+            IsActive = false;
 
             GameData.LevelData levelData = new GameData.LevelData();
 
+            //Save player data
             levelData.playerPos.ConvertToPosType(spawnPoint.position.x, spawnPoint.position.y);
             levelData.possessedEnemy = enemy ? enemy.GetType().ToString() : null;
 
+            //Save enemies data
             Enemy[] enemies = FindObjectsOfType<Enemy>();
             foreach (Enemy e in enemies)
             {
@@ -33,6 +35,7 @@ public class RespawnCheckpoint : MonoBehaviour
                 levelData.AddEnemyData(e.name,enemyData);
             }
 
+            //Save moving blocks data
             MovingBlockBase[] movingBlocks = FindObjectsOfType<MovingBlockBase>();
             foreach (MovingBlockBase block in movingBlocks)
             {
@@ -42,6 +45,14 @@ public class RespawnCheckpoint : MonoBehaviour
                 levelData.AddMovingBlockData(block.transform.parent.name, movingBlockData);
             }
 
+            //Save checkpoints data
+            GameData.CheckpointData checkpointData = new GameData.CheckpointData();
+            checkpointData.isActive = IsActive;
+            levelData.AdCheckpointData(transform.name, checkpointData);
+
+
+
+            //Save al data. This must be at the end
             SaveSystem saveSystem = GameManager.Instance.GetSaveSystem();
             saveSystem.SaveCurrentLevelState(SceneManager.GetActiveScene().name, levelData);
         }

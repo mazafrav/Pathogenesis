@@ -62,10 +62,23 @@ public class LevelDataLoader : MonoBehaviour
             }
         }
 
+        //Set checkpoints data
+        RespawnCheckpoint[] respawnCheckpoints = FindObjectsOfType<RespawnCheckpoint>();
+        for (int i = 0; i < respawnCheckpoints.Length;i++)
+        {
+            if(levelData.checkpoints != null && levelData.checkpoints.ContainsKey(respawnCheckpoints[i].name))
+            {
+                respawnCheckpoints[i].IsActive = levelData.checkpoints[respawnCheckpoints[i].name].isActive;
+            }
+        }
+
     }
   
     void Possess()
     {
-        possessedEnemy.GetComponent<HostAbsorption>().ApplyPossession(GameManager.Instance.GetPlayer());
+        if(possessedEnemy)
+        {
+            possessedEnemy.GetComponent<HostAbsorption>().ApplyPossession(GameManager.Instance.GetPlayer());
+        }
     }
 }
