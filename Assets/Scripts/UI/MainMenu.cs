@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -18,35 +15,41 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject playButton;
 
     private GameObject eventSystem;
-
+    private GameData gameData;
 
     private void Start()
     {
         eventSystem = GameObject.FindGameObjectWithTag("EventSystemMainMenu");
 
-        if (PlayerPrefs.GetInt("LastLevel", 0) <= 1 )
-        {
-            eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = playButton;
-        }
-        else
+        gameData = GameManager.Instance.GetSaveSystem().GetGameData();
+       
+        if(gameData.GetCurrentLevelName() != "")
         {
             eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = continueButton;
         }
-
+        else
+        {
+            eventSystem.GetComponent<EventSystem>().firstSelectedGameObject = playButton;
+        }
     }
 
     public void PlayGame()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        GameManager.Instance.SetLastLevelPlayed(SceneManager.GetActiveScene().buildIndex + 1);
+
+        GameManager.Instance.GetSaveSystem().DeleteGameData();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);        
     }
 
     public void Continue()
     {
         Time.timeScale = 1.0f;
-        int scene = PlayerPrefs.GetInt("LastLevel", SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(scene);
+
+        GameManager.Instance.soundtrackManager.StopPausepSnapshot();
+
+        GameData gameData = GameManager.Instance.GetSaveSystem().GetGameData();
+        SceneManager.LoadScene(gameData.GetCurrentLevelName());
     }
 
     public void QuitGame()
@@ -56,7 +59,8 @@ public class MainMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        if (PlayerPrefs.GetInt("LastLevel", 0) <= 1)
+        
+        if (gameData.GetCurrentLevelName() == "")
         {
             mainMenu.SetActive(false);
         }
@@ -74,15 +78,15 @@ public class MainMenu : MonoBehaviour
     {
         if (SceneManager.sceneCount == 1)
         {
-            if (PlayerPrefs.GetInt("LastLevel", 0) <= 1)
+            if(gameData.GetCurrentLevelName() != "")
+            {             
+                mainMenu.SetActive(false);
+                continueMenu.SetActive(true);
+            }
+            else 
             {
                 mainMenu.SetActive(true);
                 continueMenu.SetActive(false);
-            }
-            else
-            {
-                mainMenu.SetActive(false);
-                continueMenu.SetActive(true);
             }
         }
     }

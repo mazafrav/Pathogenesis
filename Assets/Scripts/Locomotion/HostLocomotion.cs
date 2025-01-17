@@ -46,6 +46,8 @@ public abstract class HostLocomotion : MonoBehaviour
 
     private void Awake()
     {
+        rb2D = GetComponent<Rigidbody2D>();
+
         if (locomotionEventNames.JumpEventName != "")
             jumpEventInstance = FMODUnity.RuntimeManager.CreateInstance(locomotionEventNames.GenericEventsPath + locomotionEventNames.JumpEventName);
         if (locomotionEventNames.LandEventName != "")

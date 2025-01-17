@@ -12,7 +12,7 @@ public class EnemyLayerDetection : MonoBehaviour
 
     private List<RangedEnemy> rangedEnemies = new List<RangedEnemy>();
     private List<ElectricEnemy> electricEnemies = new List<ElectricEnemy>();
-    private List<CrystalineEnemy> crystalineEnemies = new List<CrystalineEnemy>();
+    private List<CrystallineEnemy> crystalineEnemies = new List<CrystallineEnemy>();
 
     private SoundtrackManager soundtrackManager;
 
@@ -86,7 +86,7 @@ public class EnemyLayerDetection : MonoBehaviour
                 if (crystalineEnemies.Count > 0)
                 {
                     float current = 0;
-                    foreach (CrystalineEnemy crystalineEnemy in crystalineEnemies)
+                    foreach (CrystallineEnemy crystalineEnemy in crystalineEnemies)
                     {
                         float distance = Vector2.Distance(transform.parent.position, crystalineEnemy.transform.position);
                         float relativeDistance = distance / minDistanceToAddLayer;
@@ -136,7 +136,7 @@ public class EnemyLayerDetection : MonoBehaviour
                 return;
             }
 
-            CrystalineEnemy crystalline = other.GetComponent<CrystalineEnemy>();
+            CrystallineEnemy crystalline = other.GetComponent<CrystallineEnemy>();
             if (crystalline != null)
             {
                 if (!crystalineEnemies.Contains(crystalline))
@@ -172,7 +172,7 @@ public class EnemyLayerDetection : MonoBehaviour
                 return;
             }
 
-            CrystalineEnemy crystalline = other.GetComponent<CrystalineEnemy>();
+            CrystallineEnemy crystalline = other.GetComponent<CrystallineEnemy>();
             if (crystalline != null)
             {
                 if (crystalineEnemies.Contains(crystalline))

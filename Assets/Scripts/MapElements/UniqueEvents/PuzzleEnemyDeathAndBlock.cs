@@ -13,7 +13,7 @@ public class PuzzleEnemyDeathAndBlock : MonoBehaviour
 
     void Update()
     {
-        if (doOnce && enemyToCheck == null && block.isOpened == stateToCheck)
+        if (doOnce && enemyToCheck == null && block.IsOpened == stateToCheck)
         {
             GetComponent<SolvedPuzzleManager>().PlaySound(soundToPlay);
             doOnce = false;

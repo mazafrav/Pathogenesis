@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -21,6 +19,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResetLevel()
     {
+        GameManager.Instance.GetSaveSystem().GetGameData().DeleteLevelData(SceneManager.GetActiveScene().name);
         GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         GameManager.Instance.ResetLevelFromPause();
     }
@@ -30,9 +29,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1.0f;
         GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
         SceneManager.LoadScene("MainMenu");
-
-        GameManager.Instance.ClearRespawn();
-        //SceneManager.UnloadSceneAsync("Pause")
     }
 
     public void OpenSettings()

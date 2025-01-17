@@ -1,8 +1,4 @@
 using Cinemachine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -10,7 +6,6 @@ using UnityEngine.InputSystem.DualShock;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.InputSystem.XInput;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class GameManager : MonoBehaviour
@@ -34,11 +29,6 @@ public class GameManager : MonoBehaviour
     private GameObject levelEventSystem;
     private float processInputTimer = 0.0f;
 
-    private List<GameObject> gameObjectsToRespawn = new List<GameObject>();
-    private Dictionary<int, Vector3> respawnValues = new Dictionary<int, Vector3>();
-    private Vector3 playerRespawnPosition = Vector3.zero;
-    private int possessedEnemyToRespawn = -1;
-
     public bool isPaused { get; set; } = false;
     public bool canPlayerProcessInput { get; set; } = true;
     public bool IsThereAGamepadConnected { get; private set; }
@@ -52,6 +42,10 @@ public class GameManager : MonoBehaviour
     private int targetFrameRate = 144;
     [SerializeField]
     bool limitFps = false;
+
+    private SaveSystem saveSystem;
+
+    public SaveSystem GetSaveSystem() => saveSystem;
 
     private void Awake()
     {
@@ -69,13 +63,12 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         Instance.SetInfo(); //This is neccessary if we start in any level
+        saveSystem = new SaveSystem();
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        //virusBody = player;
-        //playerController = player.GetComponentInChildren<PlayerController>();
         soundtrackManager = GetComponentInChildren<SoundtrackManager>();
         if (limitFps)
         {
@@ -142,10 +135,20 @@ public class GameManager : MonoBehaviour
             if(player)
             {
                 playerLocomotion = player.GetComponent<PlayerLocomotion>();
-                playerController = player.GetComponentInChildren<PlayerController>();
                 onPlayerSet?.Invoke();
             }
         }
+
+        if (player)
+        {
+            playerController = player.GetComponentInChildren<PlayerController>();
+        }
+
+        if (player)
+        {
+            playerLocomotion = player.GetComponent<PlayerLocomotion>();           
+        }
+
         if (virtualCamera == null)
         {
             virtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInParent<CinemachineVirtualCamera>();
@@ -161,7 +164,9 @@ public class GameManager : MonoBehaviour
     }
 
     public GameObject GetPlayer()
-    { return player; }
+    { 
+        return player; 
+    }
 
     public void SetPlayer(GameObject player) { this.player = player; }
 
@@ -184,7 +189,6 @@ public class GameManager : MonoBehaviour
     {
         return playerLocomotion;
     }
-
 
     public LevelLoader GetLevelLoader()
     {
@@ -237,91 +241,5 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1.0f;
             SceneManager.UnloadSceneAsync("PauseMenu");
         }
-    }
-
-    public List<GameObject> GetGameObjectsToRespawn()
-    {
-        return gameObjectsToRespawn;
-    }
-
-    public void AddGameObjectToRespawn(GameObject go)
-    {
-        if (gameObjectsToRespawn.Contains(go))
-        {
-            return;
-        }
-        gameObjectsToRespawn.Add(go);
-    }
-
-    public void AddGameObjectToRespawn(List<GameObject> list)
-    {
-        gameObjectsToRespawn = list;
-    }
-
-    public void ResetGameObjectsToRespawn()
-    {
-        gameObjectsToRespawn.Clear();
-    }
-
-    public Dictionary<int, Vector3> GetRespawnValues()
-    {
-        return respawnValues;
-    }
-    public void AddRespawnValue(int go, Vector3 position)
-    {
-        if (respawnValues.ContainsKey(go))
-        {
-            return;
-        }
-        respawnValues.Add(go, position);
-    }
-
-    public void ResetRespawnValues()
-    {
-        respawnValues.Clear();
-    }
-
-    public void ResetPlayerRespawnPosition()
-    {
-        playerRespawnPosition = Vector3.zero;
-    }
-
-    public Vector3 GetPlayerRespawnPosition()
-    {
-        return playerRespawnPosition;
-    }
-
-    public void SetPlayerRespawnPosition(Vector3 position)
-    {
-        playerRespawnPosition = position;
-    }
-
-    public void ClearRespawn()
-    {
-        ResetGameObjectsToRespawn();
-        ResetRespawnValues();
-        ResetPlayerRespawnPosition();
-        ResetPossessedEnemyToRespawn();
-    }
-
-    public int GetPossessedEnemyToRespawn()
-    {
-        return possessedEnemyToRespawn;
-    }
-
-    public void SetPossessedEnemyToRespawn(int i)
-    {
-        possessedEnemyToRespawn = i;
-    }
-
-    public void ResetPossessedEnemyToRespawn()
-    {
-        possessedEnemyToRespawn = -1;
-    }
-
-    public void SetLastLevelPlayed(int index)
-    {
-        PlayerPrefs.SetInt("LastLevel", index);
-        PlayerPrefs.Save();
     }
 }

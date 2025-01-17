@@ -28,7 +28,7 @@ public class PlayerLocomotion : HostLocomotion
         jumpDistance += jumpOffset;
         jumpHeight += jumpOffset;
 
-        rb2D = GetComponentInChildren<Rigidbody2D>();
+        rb2D = GetComponent<Rigidbody2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
 
         g = (-2 * jumpHeight * moveSpeed * moveSpeed) / ((jumpDistance / 2) * (jumpDistance / 2));

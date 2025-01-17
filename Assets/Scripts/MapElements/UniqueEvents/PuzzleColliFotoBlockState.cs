@@ -12,7 +12,7 @@ public class PuzzleColliFotoBlockState : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") || (other.gameObject.CompareTag("Enemy") && other.GetComponentInParent<PlayerController>()))
         {
-            if (block.isOpened == stateToCheck)
+            if (block.IsOpened == stateToCheck)
             {
                 GetComponent<SolvedPuzzleManager>().PlaySound(soundToPlay);
                 GetComponent<BoxCollider2D>().enabled = false;

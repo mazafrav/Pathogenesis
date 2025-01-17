@@ -8,7 +8,7 @@ public class CrsytallineBouncinessChecker : MonoBehaviour
     [SerializeField]
     private GameObject bounciness;
     [SerializeField]
-    private CrystalineEnemy crystallineenemy;
+    private CrystallineEnemy crystallineenemy;
 
     private void Start()
     {

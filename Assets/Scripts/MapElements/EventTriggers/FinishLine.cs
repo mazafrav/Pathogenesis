@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class FinishLine : MonoBehaviour
 {
     [SerializeField]
-    public LevelLoader levelLoader;
+    private LevelLoader levelLoader;
     [SerializeField]
-    public bool LoadNextScene = true;
+    private bool LoadNextScene = true;
     [SerializeField]
-    public int SceneToLoad = 0;
+    private int SceneToLoad = 0;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -21,8 +20,6 @@ public class FinishLine : MonoBehaviour
             }
             GameManager.Instance.GetPlayerController().UnregisterPlayerInputActions();
             levelLoader.StartLoadingLevel(SceneToLoad);
-
-            GameManager.Instance.ClearRespawn();
         }
     }
 }
