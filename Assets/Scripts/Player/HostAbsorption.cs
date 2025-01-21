@@ -38,6 +38,11 @@ public class HostAbsorption : Interactable
     private bool doOnce = false;
     public Color possessingColor => possessColor;
 
+    public void SetPossessingEffectTime(float newTime)
+    {
+        possessionEffectTime = newTime;
+    }
+
     void Start()
     {
         SetInfo();
@@ -134,15 +139,12 @@ public class HostAbsorption : Interactable
         playerController.transform.parent.gameObject.SetActive(false);
         playerController.transform.parent = gameObject.transform;
         playerController.DisablePlayerBody();
-
-        //ParticleSystem absortionVFX = Instantiate(absortionParticles, this.gameObject.transform.position, Quaternion.identity);
-        //ParticleSystem particlesVFX = Instantiate(possessParticles, this.gameObject.transform.position, Quaternion.identity);
+        
         CinemachineVirtualCamera cinemachineVirtualCamera = GameManager.Instance.GetCamera();
         if (cinemachineVirtualCamera != null)
         {
             CameraSwitchManagement cameraSwitchManagement = cinemachineVirtualCamera.GetComponent<CameraSwitchManagement>();
             cameraSwitchManagement?.setNewFollow(hostLocomotion.transform);
-            //cameraSwitchManagement?.StartPossessionEffect(possessionEffectTime);
         }
 
         RangedEnemy rangedEnemy = GetComponent<RangedEnemy>();
@@ -161,13 +163,10 @@ public class HostAbsorption : Interactable
             playerController.shootingComponent = electricEnemy.GetShootingComponent();
         }
 
-
         possessionTimer = possessionEffectTime;
 
-        //possessionEventInstance.start();
         ApplyEnemySoundtrackLayer();
-        //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Absorption, 1);
-        //GameManager.Instance.soundtrackManager.ChangeSoundtrackParameter(SoundtrackManager.SoundtrackParameter.Danger, 0);
+       
         hostLocomotion.GetComponent<Enemy>().SetLayerDetection(true);
 
         doOnce = true;

@@ -78,7 +78,9 @@ public class LevelDataLoader : MonoBehaviour
     {
         if(possessedEnemy)
         {
-            possessedEnemy.GetComponent<HostAbsorption>().ApplyPossession(GameManager.Instance.GetPlayer());
+            HostAbsorption hostAbsorption = possessedEnemy.GetComponent<HostAbsorption>();
+            hostAbsorption.SetPossessingEffectTime(0.7f);
+            hostAbsorption.ApplyPossession(GameManager.Instance.GetPlayer());
         }
     }
 }
