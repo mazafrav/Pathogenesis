@@ -2533,11 +2533,26 @@
 	</object>
 	<object class="MixerBusFader" id="{4e80e526-e557-498f-b8e5-b2e4137fde09}" />
 	<object class="MultibandEqEffect" id="{9c35d802-3dc8-4874-90c7-9d6b75bf5c7b}">
+		<property name="filterTypeA">
+			<value>7</value>
+		</property>
+		<property name="filterTypeE">
+			<value>2</value>
+		</property>
 		<property name="frequencyA">
-			<value>1046.37341</value>
+			<value>165.518555</value>
+		</property>
+		<property name="frequencyE">
+			<value>4193.3999</value>
 		</property>
 		<property name="qualityA">
 			<value>0.288379312</value>
+		</property>
+		<property name="qualityE">
+			<value>0.246517241</value>
+		</property>
+		<property name="gainA">
+			<value>-30</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{883f0ae8-b68e-41cf-ae20-1270056e8769}</destination>
