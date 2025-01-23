@@ -24,7 +24,7 @@ public class RespawnCheckpoint : MonoBehaviour
 
             //Save player data
             levelData.playerPos.ConvertToPosType(spawnPoint.position.x, spawnPoint.position.y);
-            levelData.possessedEnemy = enemy ? enemy.GetType().ToString() : null;
+            //levelData.possessedEnemy = enemy ? enemy.GetType().ToString() : null;
 
             //Save enemies data
             Enemy[] enemies = FindObjectsOfType<Enemy>();
@@ -52,7 +52,7 @@ public class RespawnCheckpoint : MonoBehaviour
 
 
 
-            //Save al data. This must be at the end
+            //Save all data. This must be at the end
             SaveSystem saveSystem = GameManager.Instance.GetSaveSystem();
             saveSystem.SaveCurrentLevelState(SceneManager.GetActiveScene().name, levelData);
         }

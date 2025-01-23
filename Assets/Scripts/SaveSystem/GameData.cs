@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class GameData
 {
-    #region Data Structs
+    #region Data Containers
 
     [Serializable]
     public struct CheckpointData
@@ -53,14 +52,14 @@ public class GameData
         public Dictionary<string, MovingBlockData> movingBlocks;
         public Dictionary<string, EnemyData> enemies;
         public Dictionary<string, CheckpointData> checkpoints;
-        public string possessedEnemy;
+        //public string possessedEnemy;
 
         public LevelData()
         {
             movingBlocks = new Dictionary<string, MovingBlockData>();
             enemies = new Dictionary<string, EnemyData>();
             checkpoints = new Dictionary<string, CheckpointData>();
-            possessedEnemy = null;
+            //possessedEnemy = null;
             playerPos.x = 0.0f;
             playerPos.y = 0.0f;
         }

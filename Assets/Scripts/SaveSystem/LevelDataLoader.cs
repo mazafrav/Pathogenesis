@@ -5,7 +5,7 @@ public class LevelDataLoader : MonoBehaviour
 {
     private SaveSystem saveSystem;
     private GameData.LevelData levelData;
-    private Enemy possessedEnemy;
+    private Enemy possessedEnemy = null;
 
     void Start()
     {
@@ -20,12 +20,6 @@ public class LevelDataLoader : MonoBehaviour
         //Load data from current level
         GameData gameData = saveSystem.GetGameData();
         levelData = gameData.GetLevelData(SceneManager.GetActiveScene().name);
-
-        //Set player position if it has a position stored and is not possessing an enemy
-        if(levelData.playerPos.x != 0.0f && levelData.playerPos.y != 0.0f && levelData.possessedEnemy == null)
-        {
-            GameManager.Instance.GetPlayer().transform.position = levelData.playerPos.ConvertToUnityType();
-        }
 
         //Set which enemy is possessed
         Enemy[] enemies = FindObjectsOfType<Enemy>();
@@ -42,6 +36,12 @@ public class LevelDataLoader : MonoBehaviour
                     Invoke(nameof(Possess), 0.01f);                 
                 }
             }
+        }
+
+        //Set player position if it has a position stored and is not possessing an enemy
+        if (levelData.playerPos.x != 0.0f && levelData.playerPos.y != 0.0f && possessedEnemy == null)
+        {
+            GameManager.Instance.GetPlayer().transform.position = levelData.playerPos.ConvertToUnityType();
         }
 
         //Set moving blocks data
