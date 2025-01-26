@@ -117,7 +117,7 @@ public class Enemy : MonoBehaviour
         detectEventInstance.getPitch(out float originalPitch);
         detectEventInstance.setPitch(originalPitch + pitch);
 
-        if (shouldApplyDangerLayer && organism.GetComponentInParent<PlayerController>())
+        if (shouldApplyDangerLayer && organism.GetComponentInChildren<PlayerController>())
         {
             if (organism.CompareTag("Enemy") && !CanAttackSameSpecie)
             {
