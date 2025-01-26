@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class RangedEnemy : Enemy
 {
-
-    public static event Action OnAttackSameSpecies;
-
     private Rigidbody2D rb;
     [Header("Movement")]
     [SerializeField] public GameObject graphics;

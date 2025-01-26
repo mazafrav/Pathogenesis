@@ -189,7 +189,7 @@ public class RangedLocomotion : HostLocomotion
         // float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         // Quaternion.LookRotation()
         // bullet.transform.rotation = Quaternion.Euler(0, 0, rot + 90);
-        bullet.GetComponent<Bullet>().owner = gameObject;
+        bullet.GetComponent<Bullet>().Owner = gameObject;
         bullet.transform.up = direction.normalized;
 
         onShoot?.Invoke();

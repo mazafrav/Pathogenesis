@@ -249,10 +249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 17
-  player: {fileID: 0}
-  owner: {fileID: 0}
   BulletVFX: {fileID: 6750202284499076391, guid: 0c77e70aa65a76c48b2bef08af809269, type: 3}
-  bulletHitClip: {fileID: 8300000, guid: d097c4a7bfb7ce34ead594c20bbfebc6, type: 3}
+  timeToDestroy: 8
 --- !u!70 &3499569912808795079
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -349,7 +347,7 @@ MonoBehaviour:
       Data4: 1771330849
     Path: event:/SFX/Enemies/Photogenic Shot Impact
   Event: 
-  EventPlayTrigger: 2
+  EventPlayTrigger: 0
   EventStopTrigger: 0
   AllowFadeout: 1
   TriggerOnce: 0

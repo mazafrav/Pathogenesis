@@ -1,23 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 10.0f;
-    private Rigidbody2D rb;
-    public GameObject player;
-    private DamageControl damageControl;
-    public GameObject owner;
+    [SerializeField] 
+    private float speed = 10.0f;
     [SerializeField]
     private ParticleSystem BulletVFX;
     [SerializeField]
-    private AudioClip bulletHitClip;
+    private float timeToDestroy = 10.0f;
+
+    private DamageControl damageControl;
+    private FMODUnity.StudioEventEmitter emitter;
+
+
+    public GameObject Owner { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
         damageControl = GetComponentInParent<DamageControl>();
+
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+
+        //If the bullet doesnt collide with anything destroy it after x seconds
+        Destroy(gameObject, timeToDestroy);
     }
 
     // Update is called once per frame
@@ -28,7 +34,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(owner == collision.gameObject) return;
+        if(Owner == collision.gameObject) return;
 
         if (collision.gameObject.GetComponent<Reflect>() != null)
         {
@@ -38,11 +44,11 @@ public class Bullet : MonoBehaviour
             HostLocomotion ownerLocomotion = collision.gameObject.GetComponentInParent<HostLocomotion>();
             if(ownerLocomotion != null)
             {
-                owner = ownerLocomotion.gameObject;
+                Owner = ownerLocomotion.gameObject;
             }
             else
             {
-                owner = collision.gameObject;
+                Owner = collision.gameObject;
             }
 
             return;
@@ -73,9 +79,9 @@ public class Bullet : MonoBehaviour
     {
         ParticleSystem bulletVFX = Instantiate(BulletVFX, this.gameObject.transform.position, Quaternion.identity);
         bulletVFX.Play();
-        //HostLocomotion ownerLocomotion = owner.GetComponentInParent<HostLocomotion>();
+       
+        emitter.Play();
 
         Destroy(this.gameObject);
     }
-
 }
