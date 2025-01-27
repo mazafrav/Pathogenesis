@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerLocomotion : HostLocomotion
 {
-    [SerializeField]
-    private GameObject playerBody;
     [SerializeField] 
     private float distanceToFallToPlayLandClip = 2f;
 
@@ -37,7 +35,8 @@ public class PlayerLocomotion : HostLocomotion
 
         originalMoveSpeed = moveSpeed;
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
-}
+        
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -57,7 +56,7 @@ public class PlayerLocomotion : HostLocomotion
         if (groundChecker.isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
-            originalY = playerBody.transform.position.y;
+            originalY = transform.position.y;
         }
         else
         {
@@ -65,7 +64,7 @@ public class PlayerLocomotion : HostLocomotion
 
             if (rb2D.gravityScale > 0.0f)
             {
-                float yDiff = Mathf.Abs(playerBody.transform.position.y - originalY);
+                float yDiff = Mathf.Abs(transform.position.y - originalY);
                 heightJumped = Mathf.Max(heightJumped, yDiff);
             }
         }
@@ -145,7 +144,6 @@ public class PlayerLocomotion : HostLocomotion
 
     public void EnableFreeMovement(float speedModifier = 1.0f)
     {
-        //GetAudioSource().clip = FMAMoveLoopClip;
         //emitter.setParameterByName("Terrain", 1);
         //emitter.SetParameter("Terrain", 1);
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Terrain", 1);
