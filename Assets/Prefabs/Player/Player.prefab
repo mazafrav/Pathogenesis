@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8825285893837274339}
   - component: {fileID: 9192429031515924262}
   - component: {fileID: 2336949185241672158}
+  - component: {fileID: 127163352824668764}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -211,6 +212,37 @@ MonoBehaviour:
   animator: {fileID: 8825285893837274339}
   playerBody: {fileID: 65199086421187785}
   distanceToFallToPlayLandClip: 2
+--- !u!114 &127163352824668764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65199086421187785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -171500067
+      Data2: 1308849377
+      Data3: -1773652092
+      Data4: 991216705
+    Path: event:/SFX/Player/Player Movement Loop
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1636537566738564926
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +929,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3197032246761620373, guid: 7cf6092d04d6ac94eb1508142137d177, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

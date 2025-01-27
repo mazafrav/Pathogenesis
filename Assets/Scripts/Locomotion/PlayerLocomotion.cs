@@ -1,9 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLocomotion : HostLocomotion
 {
+    [SerializeField]
+    private GameObject playerBody;
+    [SerializeField] 
+    private float distanceToFallToPlayLandClip = 2f;
+
     private float gravityScale = 0f;
 
     private bool isJumping = false;
@@ -12,14 +15,9 @@ public class PlayerLocomotion : HostLocomotion
 
     private float originalMoveSpeed;
 
-    [SerializeField]
-    public Animator animator;
-    [SerializeField]
-    private GameObject playerBody;
+    private Animator animator;
 
-    //private FMODUnity.StudioEventEmitter emitter;
-
-    [SerializeField] private float distanceToFallToPlayLandClip = 2f;
+    private FMODUnity.StudioEventEmitter emitter;
 
 
     // Start is called before the first frame update
@@ -28,6 +26,7 @@ public class PlayerLocomotion : HostLocomotion
         jumpDistance += jumpOffset;
         jumpHeight += jumpOffset;
 
+        animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
         groundChecker = GetComponentInChildren<GroundChecker>();
 
@@ -37,8 +36,7 @@ public class PlayerLocomotion : HostLocomotion
         rb2D.gravityScale = g / Physics2D.gravity.y;
 
         originalMoveSpeed = moveSpeed;
-        //emitter = GetComponentInChildren<FMODUnity.StudioEventEmitter>();
-        //audioSource.loop = true;
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
 }
 
     // Update is called once per frame
@@ -78,30 +76,31 @@ public class PlayerLocomotion : HostLocomotion
             landEventInstance.start();
         }
 
-        // if (rb2D.velocity.x != 0)
-        // {
-        //     if (!emitter.IsPlaying())
-        //     {
-        //         emitter.Play();
-        //     }
-        // }
-        // else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
-        // {
-        //     if (!emitter.IsPlaying())
-        //     {
-        //         emitter.Play();
-        //     }
-        // }
-        // else
-        // {
-        //     emitter.Stop();
-        // }
+        //Maybe check input instead of velocity
+        if (rb2D.velocity.x != 0)
+        {
+            if (!emitter.IsPlaying())
+            {
+                emitter.Play();
+            }
+        }
+        else if (rb2D.gravityScale <= 0.0f && rb2D.velocity.y != 0)
+        {
+            if (!emitter.IsPlaying())
+            {
+                emitter.Play();
+            }
+        }
+        else
+        {
+            emitter.Stop();
+        }
 
 
-        // if (GameManager.Instance.isPaused)
-        // {
-        //     emitter.Stop();
-        // }
+        if (GameManager.Instance.isPaused)
+        {
+            emitter.Stop();
+        }
     }
 
     public override void Jump(float deltaX = 0)
