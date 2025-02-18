@@ -236,7 +236,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{43fbbc25-871d-4034-9647-158396abd01a}">
 		<property name="pitch">
-			<value>-1.79999995</value>
+			<value>-7</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{1830937c-0845-40ed-9ff7-5c3a9e47e3f1}</destination>
@@ -450,6 +450,9 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{6604b627-1f71-439f-b681-1909f4d6e6fa}">
+		<property name="start">
+			<value>32</value>
+		</property>
 		<property name="length">
 			<value>15.999984605911333</value>
 		</property>
@@ -473,7 +476,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{7acb94f3-62f4-407b-82b6-7b494acda90e}">
 		<property name="volume">
-			<value>-4</value>
+			<value>-9</value>
 		</property>
 		<property name="name">
 			<value>Pad</value>
@@ -2482,7 +2485,7 @@
 	</object>
 	<object class="ChorusEffect" id="{8264d9f0-e780-4d49-ab13-823ec114cba2}">
 		<property name="rate">
-			<value>0.699999988</value>
+			<value>0.539999962</value>
 		</property>
 		<property name="depth">
 			<value>33.5</value>
@@ -2543,13 +2546,13 @@
 			<value>165.518555</value>
 		</property>
 		<property name="frequencyE">
-			<value>4193.3999</value>
+			<value>1616.77271</value>
 		</property>
 		<property name="qualityA">
 			<value>0.288379312</value>
 		</property>
 		<property name="qualityE">
-			<value>0.246517241</value>
+			<value>0.267448276</value>
 		</property>
 		<property name="gainA">
 			<value>-30</value>

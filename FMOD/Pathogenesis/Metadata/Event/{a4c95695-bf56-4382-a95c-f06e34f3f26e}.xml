@@ -816,9 +816,6 @@
 		<property name="length">
 			<value>6</value>
 		</property>
-		<property name="volume">
-			<value>-1</value>
-		</property>
 		<relationship name="fadeInCurve">
 			<destination>{33d182cb-5532-4f48-b593-a461240bc39e}</destination>
 		</relationship>
@@ -828,10 +825,10 @@
 	</object>
 	<object class="TransitionDestinationSound" id="{603c5301-5bb6-4c12-b958-0f586e6a5faf}">
 		<property name="start">
-			<value>1.18423645320197</value>
+			<value>1.6000000000000001</value>
 		</property>
 		<property name="length">
-			<value>2.8157635467980304</value>
+			<value>2.4000000000000004</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{a0949870-7ab8-42dc-9a54-6c5a61d4a47e}</destination>
@@ -1259,10 +1256,10 @@
 	</object>
 	<object class="LoopRegion" id="{06bd239b-91c1-4b20-8124-1260fcc05326}">
 		<property name="position">
-			<value>14</value>
+			<value>14.600000000000001</value>
 		</property>
 		<property name="length">
-			<value>2</value>
+			<value>1.3999999999999986</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{6e629b19-b7ed-4a6f-bf98-648ef135a81a}</destination>
@@ -2281,12 +2278,12 @@
 			<value>0</value>
 		</property>
 		<property name="curveShape">
-			<value>0.236348942</value>
+			<value>-0.140704989</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{5be5c4fd-cc34-49f4-8f9c-5ea458ad18f7}">
 		<property name="position">
-			<value>13.958456486042692</value>
+			<value>12.200000000000001</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -2294,18 +2291,18 @@
 	</object>
 	<object class="AutomationPoint" id="{6c452405-8c0c-4617-985b-c13a748d9327}">
 		<property name="position">
-			<value>1.18423645320197</value>
+			<value>1.6000000000000001</value>
 		</property>
 		<property name="value">
 			<value>0</value>
 		</property>
 		<property name="curveShape">
-			<value>0.347673267</value>
+			<value>-0.140704989</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{c22dbc66-5cfa-4c49-ad36-3ec133a8c995}">
 		<property name="position">
-			<value>4</value>
+			<value>4.0000000000000009</value>
 		</property>
 		<property name="value">
 			<value>1</value>
